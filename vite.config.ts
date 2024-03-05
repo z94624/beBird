@@ -24,6 +24,7 @@ export default defineConfig({
                 // presets
                 'vue',
                 'vue-router',
+                'vuex',
                 // custom
                 {
                     '@vueuse/core': [
@@ -101,8 +102,9 @@ export default defineConfig({
         }),
         eslintPlugin({ cache: false }),
         Components({
-            dts: true, // enabled by default if `typescript` is installed
-            resolvers: [NaiveUiResolver()],
+            dirs: ['src/components'], // 指定components位置 預設是'src/components'
+            dts: './components.d.ts', // .d.ts生成位置
+            resolvers: [NaiveUiResolver()], // 解析規則
         }),
     ],
 });
