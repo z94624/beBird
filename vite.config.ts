@@ -6,8 +6,25 @@ import eslintPlugin from 'vite-plugin-eslint';
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 
+import { fileURLToPath, URL } from 'node:url';
+
 // https://vitejs.dev/config/
 export default defineConfig({
+    resolve: {
+        alias: [
+            { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+            {
+                find: '@assets',
+                replacement: fileURLToPath(new URL('./src/assets', import.meta.url)),
+            },
+            { find: '@cmp', replacement: fileURLToPath(new URL('./src/cmp', import.meta.url)) },
+            {
+                find: '@stores',
+                replacement: fileURLToPath(new URL('./src/stores', import.meta.url)),
+            },
+            { find: '@use', replacement: fileURLToPath(new URL('./src/use', import.meta.url)) },
+        ],
+    },
     plugins: [
         vue(),
         AutoImport({
