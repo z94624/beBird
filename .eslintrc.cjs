@@ -21,6 +21,18 @@ module.exports = {
             parserOptions: {
                 sourceType: 'script',
             },
+            rules: {
+                'vue/multi-word-component-names': 'off',
+                'vue/component-name-in-template-casing': 'off',
+                'vue/singleline-html-element-content-newline': 'off',
+                '@typescript-eslint/no-var-requires': 'off',
+                'no-console': 'off',
+                'brace-style': 'off',
+                'operator-linebreak': 'off',
+                'vue/operator-linebreak': 'off',
+                'require-await': 'off',
+                'vue/html-indent': 'off',
+            },
         },
     ],
     parser: 'vue-eslint-parser',
@@ -29,7 +41,7 @@ module.exports = {
         sourceType: 'module',
         parser: '@typescript-eslint/parser',
     },
-    plugins: ['@typescript-eslint', 'vue'],
+    plugins: ['@typescript-eslint', 'vue', 'prettier'],
     rules: {
         '@typescript-eslint/ban-types': [
             // 關閉錯誤(error)：不要以 {} 當作一個類型
