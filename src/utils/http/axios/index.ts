@@ -8,6 +8,5 @@ export const ebird = axios.create({
         'X-eBirdApiToken': import.meta.env.VITE_EBIRD_API_KEYGEN,
     },
     method: 'get',
-    timeout: 100,
     maxBodyLength: Infinity,
 });
