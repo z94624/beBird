@@ -54,11 +54,6 @@ module.exports = {
             },
         ],
         '@typescript-eslint/no-explicit-any': ['off'], // 關閉警告(warning)：不允許使用 any
-        'prettier/prettier': [
-            'error',
-            {
-                endOfLine: 'auto',
-            },
-        ],
+        'prettier/prettier': 0,
     },
 };
