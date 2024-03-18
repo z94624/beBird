@@ -23,8 +23,8 @@ export class DATAOBSCommon {
  */
 export class DATAOBSGetRecentObsInRegionReq extends DATAOBSCommon {
     constructor(data?: DATAOBSGetRecentObsInRegionReq) {
-        if (!data) return;
         super(data);
+        if (!data) return;
         const { cat = undefined, includeProvisional = false, r = undefined } = data;
         this.cat = cat;
         this.includeProvisional = includeProvisional;
@@ -40,8 +40,8 @@ export class DATAOBSGetRecentObsInRegionReq extends DATAOBSCommon {
  */
 export class DATAOBSGetRecentNotableObsInRegionReq extends DATAOBSCommon {
     constructor(data?: DATAOBSGetRecentNotableObsInRegionReq) {
-        if (!data) return;
         super(data);
+        if (!data) return;
         const { detail = DataDetailEnum.SIMPLE, r = undefined } = data;
         this.detail = detail;
         this.r = r;
@@ -55,8 +55,8 @@ export class DATAOBSGetRecentNotableObsInRegionReq extends DATAOBSCommon {
  */
 export class DATAOBSGetRecentObsOfSpeciesInRegionReq extends DATAOBSCommon {
     constructor(data?: DATAOBSGetRecentObsOfSpeciesInRegionReq) {
-        if (!data) return;
         super(data);
+        if (!data) return;
         const { includeProvisional = false, r = undefined } = data;
         this.includeProvisional = includeProvisional;
         this.r = r;
@@ -70,8 +70,8 @@ export class DATAOBSGetRecentObsOfSpeciesInRegionReq extends DATAOBSCommon {
  */
 export class DATAOBSGetRecentNearbyObsReq extends DATAOBSCommon {
     constructor(data?: DATAOBSGetRecentNearbyObsReq) {
-        if (!data) return;
         super(data);
+        if (!data) return;
         const {
             cat = undefined,
             dist = 25,
