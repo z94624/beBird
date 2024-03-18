@@ -8,3 +8,13 @@ export enum TaxonomyCategoryEnum {
     DOMESTIC = 'domestic', // Distinctly-plumaged domesticated varieties that may be free-flying (these do not count on personal lists) e.g., Mallard (Domestic type)
     FORM = 'form', // Miscellaneous other taxa, including recently-described species yet to be accepted or distinctive forms that are not universally accepted, e.g., Red-tailed Hawk (abieticola), Upland Goose (Bar-breasted)
 }
+
+export enum DataDetailEnum {
+    SIMPLE = 'simple', // Include a subset of the fields available.
+    FULL = 'full', // Include all of the fields available.
+}
+
+export enum DataSortEnum {
+    DATE = 'date', // Sort observations by date, most recent first.
+    SPECIES = 'species', // Sort observations by taxonomy, most recent first.
+}
