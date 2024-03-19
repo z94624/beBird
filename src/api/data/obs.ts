@@ -1,4 +1,9 @@
 import {
+    DATAOBSGetHistoricObsOnDateReq,
+    DATAOBSGetNearestObsOfSpeciesReq,
+    DATAOBSGetRecentChecklistsFeedReq,
+    DATAOBSGetRecentNearbyNotableObsReq,
+    DATAOBSGetRecentNearbyObsOfSpeciesReq,
     DATAOBSGetRecentNearbyObsReq,
     DATAOBSGetRecentNotableObsInRegionReq,
     DATAOBSGetRecentObsInRegionReq,
@@ -59,9 +64,85 @@ export const getRecentObsOfSpeciesInRegionApi = (
  * @param params Query parameters
  */
 export const getRecentNearbyObsApi = (params: DATAOBSGetRecentNearbyObsReq) => {
-    const { lat, lng } = params;
     return ebird.request({
-        url: `/data/obs/geo/recent?lat=${lat}&lng=${lng}`,
+        url: `/data/obs/geo/recent`,
+        params,
+    });
+};
+
+/**
+ * Recent nearby observations of a species
+ * @param speciesCode The eBird species code.
+ * @param params Query parameters
+ */
+export const getRecentNearbyObsOfSpeciesApi = (
+    speciesCode: string,
+    params: DATAOBSGetRecentNearbyObsOfSpeciesReq,
+) => {
+    return ebird.request({
+        url: `/data/obs/geo/recent/${speciesCode}`,
+        params,
+    });
+};
+
+/**
+ * Nearest observations of a species
+ * @param speciesCode The eBird species code.
+ * @param params Query parameters
+ */
+export const getNearestObsOfSpeciesApi = (
+    speciesCode: string,
+    params: DATAOBSGetNearestObsOfSpeciesReq,
+) => {
+    return ebird.request({
+        url: `/data/nearest/geo/recent/${speciesCode}`,
+        params,
+    });
+};
+
+/**
+ * Recent nearby notable observations
+ * @param params Query parameters
+ */
+export const getRecentNearbyNotableObsApi = (params: DATAOBSGetRecentNearbyNotableObsReq) => {
+    return ebird.request({
+        url: `/data/obs/geo/recent/notable`,
+        params,
+    });
+};
+
+/**
+ * Recent checklists feed
+ * @param regionCode The country, subnational1, subnational2 or location code.
+ * @param params Query parameters
+ */
+export const getRecentChecklistsFeedApi = (
+    regionCode: string,
+    params: DATAOBSGetRecentChecklistsFeedReq,
+) => {
+    return ebird.request({
+        url: `/product/lists/${regionCode}`,
+        params,
+    });
+};
+
+/**
+ * Historic observations on a date
+ * @param regionCode The country, subnational1, subnational2 or location code.
+ * @param year The year, from 1800 to the present.
+ * @param month The month, from 1 -12.
+ * @param day The day in the month.
+ * @param params Query parameters
+ */
+export const getHistoricObsOnDateApi = (
+    regionCode: string,
+    year: string,
+    month: string,
+    day: string,
+    params: DATAOBSGetHistoricObsOnDateReq,
+) => {
+    return ebird.request({
+        url: `/data/obs/${regionCode}/historic/${year}/${month}/${day}`,
         params,
     });
 };

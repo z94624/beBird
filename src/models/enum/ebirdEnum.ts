@@ -18,3 +18,8 @@ export enum DataSortEnum {
     DATE = 'date', // Sort observations by date, most recent first.
     SPECIES = 'species', // Sort observations by taxonomy, most recent first.
 }
+
+export enum DataRankEnum {
+    MREC = 'mrec', // Include latest observation of the day
+    CREATE = 'create', // Include latest observation of the first added
+}

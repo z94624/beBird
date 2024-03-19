@@ -1,4 +1,9 @@
-import { DataDetailEnum, DataSortEnum, TaxonomyCategoryEnum } from '../enum/ebirdEnum';
+import {
+    DataDetailEnum,
+    DataRankEnum,
+    DataSortEnum,
+    TaxonomyCategoryEnum,
+} from '../enum/ebirdEnum';
 
 /**
  * Common Class
@@ -93,4 +98,108 @@ export class DATAOBSGetRecentNearbyObsReq extends DATAOBSCommon {
     lat: number = 0; // Required. Latitude to 2 decimal places.
     lng: number = 0; // Required. Longitude to 2 decimal places.
     sort?: DataSortEnum = DataSortEnum.DATE; // Sort observations by taxonomy or by date, most recent first.
+}
+
+/**
+ * Recent nearby observations of a species
+ */
+export class DATAOBSGetRecentNearbyObsOfSpeciesReq extends DATAOBSCommon {
+    constructor(data?: DATAOBSGetRecentNearbyObsOfSpeciesReq) {
+        super(data);
+        if (!data) return;
+        const { dist = 25, includeProvisional = false, lat = 0, lng = 0 } = data;
+        this.dist = dist;
+        this.includeProvisional = includeProvisional;
+        this.lat = lat;
+        this.lng = lng;
+    }
+    dist?: number = 25; // The search radius from the given position, in kilometers.
+    includeProvisional?: boolean = false; // Include observations which have not yet been reviewed.
+    lat: number = 0; // Required. Latitude to 2 decimal places.
+    lng: number = 0; // Required. Longitude to 2 decimal places.
+}
+
+/**
+ * Nearest observations of a species
+ */
+export class DATAOBSGetNearestObsOfSpeciesReq extends DATAOBSCommon {
+    constructor(data?: DATAOBSGetRecentNearbyObsOfSpeciesReq) {
+        super(data);
+        if (!data) return;
+        const { includeProvisional = false, lat = 0, lng = 0, dist = undefined } = data;
+        this.includeProvisional = includeProvisional;
+        this.lat = lat;
+        this.lng = lng;
+        this.dist = dist;
+    }
+    includeProvisional?: boolean = false; // Include observations which have not yet been reviewed.
+    lat: number = 0; // Required. Latitude to 2 decimal places.
+    lng: number = 0; // Required. Longitude to 2 decimal places.
+    dist?: number = undefined; // The search radius from the given position, in kilometers.
+}
+
+/**
+ * Recent nearby notable observations
+ */
+export class DATAOBSGetRecentNearbyNotableObsReq extends DATAOBSCommon {
+    constructor(data?: DATAOBSGetRecentNearbyNotableObsReq) {
+        super(data);
+        if (!data) return;
+        const { detail = DataDetailEnum.SIMPLE, dist = 25, lat = 0, lng = 0 } = data;
+        this.detail = detail;
+        this.dist = dist;
+        this.lat = lat;
+        this.lng = lng;
+    }
+    detail?: DataDetailEnum = DataDetailEnum.SIMPLE; // Include a subset (simple), or all (full), of the fields available.
+    dist?: number = 25; // The search radius from the given position, in kilometers.
+    lat: number = 0; // Required. Latitude to 2 decimal places.
+    lng: number = 0; // Required. Longitude to 2 decimal places.
+}
+
+/**
+ * Recent checklists feed
+ */
+export class DATAOBSGetRecentChecklistsFeedReq {
+    constructor(data?: DATAOBSGetRecentChecklistsFeedReq) {
+        if (!data) return;
+        const { maxResults = 10 } = data;
+        this.maxResults = maxResults;
+    }
+    maxResults?: number = 10; // Only fetch this number of checklists.
+}
+
+/**
+ * Historic observations on a date
+ */
+export class DATAOBSGetHistoricObsOnDateReq {
+    constructor(data?: DATAOBSGetHistoricObsOnDateReq) {
+        if (!data) return;
+        const {
+            cat = undefined,
+            detail = DataDetailEnum.SIMPLE,
+            hotspot = false,
+            includeProvisional = false,
+            maxResults = undefined,
+            rank = DataRankEnum.MREC,
+            r = undefined,
+            sppLocale = 'en',
+        } = data;
+        this.cat = cat;
+        this.detail = detail;
+        this.hotspot = hotspot;
+        this.includeProvisional = includeProvisional;
+        this.maxResults = maxResults;
+        this.rank = rank;
+        this.r = r;
+        this.sppLocale = sppLocale;
+    }
+    cat?: TaxonomyCategoryEnum[] = undefined; // Only fetch observations from these taxonomic categories.
+    detail?: DataDetailEnum = DataDetailEnum.SIMPLE; // Include a subset (simple), or all (full), of the fields available.
+    hotspot?: boolean = false; // Only fetch observations from hotspots.
+    includeProvisional: boolean = false; // Include observations which have not yet been reviewed.
+    maxResults?: number = undefined; // Only fetch this number of observations.
+    rank?: DataRankEnum = DataRankEnum.MREC; // Include latest observation of the day, or the first added
+    r?: string[] = undefined; // Fetch observations from up to 10 locations.
+    sppLocale?: string = 'en'; // Use this language for species common names.
 }
