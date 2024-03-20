@@ -1,9 +1,4 @@
-import {
-    DataDetailEnum,
-    DataRankEnum,
-    DataSortEnum,
-    TaxonomyCategoryEnum,
-} from '../enum/ebirdEnum';
+import { DetailEnum, RankEnum, SortMethodEnum, TaxonomyCategoryEnum } from '../enum/ebirdEnum';
 
 /**
  * Common Class
@@ -47,11 +42,11 @@ export class DATAOBSGetRecentNotableObsInRegionReq extends DATAOBSCommon {
     constructor(data?: DATAOBSGetRecentNotableObsInRegionReq) {
         super(data);
         if (!data) return;
-        const { detail = DataDetailEnum.SIMPLE, r = undefined } = data;
+        const { detail = DetailEnum.SUBSET, r = undefined } = data;
         this.detail = detail;
         this.r = r;
     }
-    detail?: DataDetailEnum = DataDetailEnum.SIMPLE; // Include a subset (simple), or all (full), of the fields available.
+    detail?: DetailEnum = DetailEnum.SUBSET; // Include a subset (simple), or all (full), of the fields available.
     r?: string[] = undefined; // Fetch observations from up to 10 locations.
 }
 
@@ -83,7 +78,7 @@ export class DATAOBSGetRecentNearbyObsReq extends DATAOBSCommon {
             includeProvisional = false,
             lat = 0,
             lng = 0,
-            sort = DataSortEnum.DATE,
+            sort = SortMethodEnum.DATE,
         } = data;
         this.cat = cat;
         this.dist = dist;
@@ -97,7 +92,7 @@ export class DATAOBSGetRecentNearbyObsReq extends DATAOBSCommon {
     includeProvisional?: boolean = false; // Include observations which have not yet been reviewed.
     lat: number = 0; // Required. Latitude to 2 decimal places.
     lng: number = 0; // Required. Longitude to 2 decimal places.
-    sort?: DataSortEnum = DataSortEnum.DATE; // Sort observations by taxonomy or by date, most recent first.
+    sort?: SortMethodEnum = SortMethodEnum.DATE; // Sort observations by taxonomy or by date, most recent first.
 }
 
 /**
@@ -145,13 +140,13 @@ export class DATAOBSGetRecentNearbyNotableObsReq extends DATAOBSCommon {
     constructor(data?: DATAOBSGetRecentNearbyNotableObsReq) {
         super(data);
         if (!data) return;
-        const { detail = DataDetailEnum.SIMPLE, dist = 25, lat = 0, lng = 0 } = data;
+        const { detail = DetailEnum.SUBSET, dist = 25, lat = 0, lng = 0 } = data;
         this.detail = detail;
         this.dist = dist;
         this.lat = lat;
         this.lng = lng;
     }
-    detail?: DataDetailEnum = DataDetailEnum.SIMPLE; // Include a subset (simple), or all (full), of the fields available.
+    detail?: DetailEnum = DetailEnum.SUBSET; // Include a subset (simple), or all (full), of the fields available.
     dist?: number = 25; // The search radius from the given position, in kilometers.
     lat: number = 0; // Required. Latitude to 2 decimal places.
     lng: number = 0; // Required. Longitude to 2 decimal places.
@@ -177,11 +172,11 @@ export class DATAOBSGetHistoricObsOnDateReq {
         if (!data) return;
         const {
             cat = undefined,
-            detail = DataDetailEnum.SIMPLE,
+            detail = DetailEnum.SUBSET,
             hotspot = false,
             includeProvisional = false,
             maxResults = undefined,
-            rank = DataRankEnum.MREC,
+            rank = RankEnum.THE_DAY,
             r = undefined,
             sppLocale = 'en',
         } = data;
@@ -195,11 +190,11 @@ export class DATAOBSGetHistoricObsOnDateReq {
         this.sppLocale = sppLocale;
     }
     cat?: TaxonomyCategoryEnum[] = undefined; // Only fetch observations from these taxonomic categories.
-    detail?: DataDetailEnum = DataDetailEnum.SIMPLE; // Include a subset (simple), or all (full), of the fields available.
+    detail?: DetailEnum = DetailEnum.SUBSET; // Include a subset (simple), or all (full), of the fields available.
     hotspot?: boolean = false; // Only fetch observations from hotspots.
     includeProvisional: boolean = false; // Include observations which have not yet been reviewed.
     maxResults?: number = undefined; // Only fetch this number of observations.
-    rank?: DataRankEnum = DataRankEnum.MREC; // Include latest observation of the day, or the first added
+    rank?: RankEnum = RankEnum.THE_DAY; // Include latest observation of the day, or the first added
     r?: string[] = undefined; // Fetch observations from up to 10 locations.
     sppLocale?: string = 'en'; // Use this language for species common names.
 }
