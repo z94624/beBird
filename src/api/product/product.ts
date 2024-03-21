@@ -7,6 +7,7 @@ import { ebird } from '@/utils/http/axios';
  * @param year The year, from 1800 to the present.
  * @param month The month, from 1 -12.
  * @param day The day in the month.
+ * @param params Query parameters
  */
 export const getTop100Api = (
     regionCode: string,
@@ -27,6 +28,7 @@ export const getTop100Api = (
  * @param year The year, from 1800 to the present.
  * @param month The month, from 1 -12.
  * @param day The day in the month.
+ * @param params Query parameters
  */
 export const getChecklistFeedOnDateApi = (
     regionCode: string,
@@ -38,5 +40,44 @@ export const getChecklistFeedOnDateApi = (
     return ebird.request({
         url: `/product/lists/${regionCode}/${year}/${month}/${day}`,
         params,
+    });
+};
+
+/**
+ * Regional statistics on a date
+ * @param regionCode The country, subnational1, or location code.
+ * @param year The year, from 1800 to the present.
+ * @param month The month, from 1 -12.
+ * @param day The day in the month.
+ * @param params Query parameters
+ */
+export const getRegionalStatisticsOnDateApi = (
+    regionCode: string,
+    year: string,
+    month: string,
+    day: string,
+) => {
+    return ebird.request({
+        url: `/product/stats/${regionCode}/${year}/${month}/${day}`,
+    });
+};
+
+/**
+ * Species List for a Region
+ * @param regionCode The country, subnational1, or location code.
+ */
+export const getSpeciesListForRegionApi = (regionCode: string) => {
+    return ebird.request({
+        url: `product/spplist/${regionCode}`,
+    });
+};
+
+/**
+ * View Checklist
+ * @param subId The checklist identifier.
+ */
+export const getViewChecklistApi = (subId: string) => {
+    return ebird.request({
+        url: `/product/checklist/view/${subId}`,
     });
 };
