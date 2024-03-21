@@ -4,7 +4,9 @@ import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
 import eslintPlugin from 'vite-plugin-eslint';
 import Components from 'unplugin-vue-components/vite';
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
+import { QuasarResolver } from 'unplugin-vue-components/resolvers';
+
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
 
 import { fileURLToPath, URL } from 'node:url';
 
@@ -27,7 +29,14 @@ export default defineConfig({
         ],
     },
     plugins: [
-        vue(),
+        vue({
+            template: { transformAssetUrls },
+        }),
+        // @quasar/plugin-vite options list:
+        // https://github.com/quasarframework/quasar/blob/dev/vite-plugin/index.d.ts
+        quasar({
+            sassVariables: 'src/quasar-variables.sass',
+        }),
         AutoImport({
             // targets to transform
             include: [
@@ -66,9 +75,6 @@ export default defineConfig({
                     from: 'vue-router',
                     imports: ['RouteLocationRaw'],
                     type: true,
-                },
-                {
-                    'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
                 },
             ],
 
@@ -122,7 +128,7 @@ export default defineConfig({
         Components({
             dirs: ['src/components'], // 指定components位置 預設是'src/components'
             dts: './components.d.ts', // .d.ts生成位置
-            resolvers: [NaiveUiResolver()], // 解析規則
+            resolvers: [QuasarResolver()], // 解析規則
         }),
     ],
 });
