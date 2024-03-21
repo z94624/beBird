@@ -34,6 +34,10 @@ export class DATAOBSGetRecentObsInRegionReq extends DATAOBSCommon {
     includeProvisional?: boolean = false; // Include observations which have not yet been reviewed.
     r?: string[] = undefined; // Fetch observations from up to 10 locations.
 }
+export interface IDATAOBSGetRecentObsInRegionItem
+    extends IDATAOBSGetRecentObsOfSpeciesInRegionItem {
+    subId: string;
+}
 
 /**
  * Recent notable observations in a region
@@ -49,6 +53,25 @@ export class DATAOBSGetRecentNotableObsInRegionReq extends DATAOBSCommon {
     detail?: DetailEnum = DetailEnum.SUBSET; // Include a subset (simple), or all (full), of the fields available.
     r?: string[] = undefined; // Fetch observations from up to 10 locations.
 }
+export interface IDATAOBSGetRecentNotableObsInRegionItem
+    extends IDATAOBSGetRecentObsOfSpeciesInRegionItem {
+    subnational2Code: string;
+    subnational2Name: string;
+    subnational1Code: string;
+    subnational1Name: string;
+    countryCode: string;
+    countryName: string;
+    userDisplayName: string;
+    subId: string;
+    obsId: string;
+    checklistId: string;
+    presenceNoted: boolean;
+    hasComments: boolean;
+    firstName: string;
+    lastName: string;
+    hasRichMedia: boolean;
+    locID: string;
+}
 
 /**
  * Recent observations of a species in a region
@@ -63,6 +86,20 @@ export class DATAOBSGetRecentObsOfSpeciesInRegionReq extends DATAOBSCommon {
     }
     includeProvisional?: boolean = false; // Include observations which have not yet been reviewed.
     r?: string[] = undefined; // Fetch observations from up to 10 locations.
+}
+export interface IDATAOBSGetRecentObsOfSpeciesInRegionItem {
+    speciesCode: string;
+    comName: string;
+    sciName: string;
+    locId: string;
+    locName: string;
+    obsDt: string; // YYYY-MM-DD HH:mm
+    howMany: number;
+    lat: number;
+    lng: number;
+    obsValid: boolean;
+    obsReviewed: boolean;
+    locationPrivate: boolean;
 }
 
 /**
@@ -94,6 +131,7 @@ export class DATAOBSGetRecentNearbyObsReq extends DATAOBSCommon {
     lng: number = 0; // Required. Longitude to 2 decimal places.
     sort?: SortMethodEnum = SortMethodEnum.DATE; // Sort observations by taxonomy or by date, most recent first.
 }
+// IDATAOBSGetRecentNearbyObsItem 用 IDATAOBSGetRecentObsOfSpeciesInRegionItem
 
 /**
  * Recent nearby observations of a species
