@@ -38,3 +38,35 @@ export enum FileFormatEnum {
     CSV = 'csv', // Fetch the records in CSV format.
     JSON = 'json', // Fetch the records in JSON format.
 }
+
+export enum SpeciesGroupEnum {
+    MERLIN = 'merlin', // Select the order in 'merlin' are returned.
+    EBIRD = 'ebird', // Select the order in ebird' are returned.
+}
+
+export enum LocaleEnum {
+    BULGARIAN = 'bg', // Bulgarian
+    CZECH = 'cs', // Czech
+    DANISH = 'da', // Danish
+    GERMAN = 'de', // German
+    ENGLISH = 'en', // English
+    SPANISH = 'es', // Spanish
+    SPANISH_ARGENTINA = 'es_AR', // Spanish_Argentina
+    SPANISH_CHILE = 'es_CL', // Spanish_Chile
+    SPANISH_CUBA = 'es_CU', // Spanish_Cuba
+    SPANISH_SPAIN = 'es_ES', // Spanish_Spain
+    SPANISH_MEXICO = 'es_MX', // Spanish_Mexico
+    SPANISH_PANAMA = 'es_PA', // Spanish_Panama
+    FRENCH = 'fr', // French
+    HEBREW = 'he', // Hebrew (modern)
+    ICELANDIC = 'is', // Icelandic
+    DUTCH = 'nl', // Dutch
+    NORWEGIAN = 'no', // Norwegian
+    PORTUGUESE_BRAZIL = 'pt_BR', // Portuguese_Brazil
+    PORTUGUESE_PORTUGAL = 'pt_PT', // Portuguese_Portugal
+    RUSSIAN = 'ru', // Russian
+    SERBIAN = 'sr', // Serbian
+    THAI = 'th', // Thai
+    TURKISH = 'tr', // Turkish
+    CHINESE = 'zh', // Chinese
+}

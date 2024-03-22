@@ -1,4 +1,10 @@
-import { DetailEnum, RankEnum, SortMethodEnum, TaxonomyCategoryEnum } from '../enum/ebirdEnum';
+import {
+    DetailEnum,
+    LocaleEnum,
+    RankEnum,
+    SortMethodEnum,
+    TaxonomyCategoryEnum,
+} from '../enum/ebirdEnum';
 
 /**
  * Common Class
@@ -6,7 +12,12 @@ import { DetailEnum, RankEnum, SortMethodEnum, TaxonomyCategoryEnum } from '../e
 export class DATAOBSCommon {
     constructor(data?: DATAOBSCommon) {
         if (!data) return;
-        const { back = 14, hotspot = false, maxResults = undefined, sppLocale = 'en' } = data;
+        const {
+            back = 14,
+            hotspot = false,
+            maxResults = undefined,
+            sppLocale = LocaleEnum.ENGLISH,
+        } = data;
         this.back = back;
         this.hotspot = hotspot;
         this.maxResults = maxResults;
@@ -15,7 +26,7 @@ export class DATAOBSCommon {
     back?: number = 14; // 1-30；The number of days back to fetch observations.
     hotspot?: boolean = false; // Only fetch observations from hotspots.
     maxResults?: number = undefined; // Only fetch this number of observations.
-    sppLocale?: string = 'en'; // Use this language for species common names.
+    sppLocale?: LocaleEnum = LocaleEnum.ENGLISH; // Use this language for species common names.
 }
 
 /**
@@ -216,7 +227,7 @@ export class DATAOBSGetHistoricObsOnDateReq {
             maxResults = undefined,
             rank = RankEnum.THE_DAY,
             r = undefined,
-            sppLocale = 'en',
+            sppLocale = LocaleEnum.ENGLISH,
         } = data;
         this.cat = cat;
         this.detail = detail;
@@ -234,5 +245,5 @@ export class DATAOBSGetHistoricObsOnDateReq {
     maxResults?: number = undefined; // Only fetch this number of observations.
     rank?: RankEnum = RankEnum.THE_DAY; // Include latest observation of the day, or the first added
     r?: string[] = undefined; // Fetch observations from up to 10 locations.
-    sppLocale?: string = 'en'; // Use this language for species common names.
+    sppLocale?: LocaleEnum = LocaleEnum.ENGLISH; // Use this language for species common names.
 }
