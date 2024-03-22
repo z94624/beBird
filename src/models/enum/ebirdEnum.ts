@@ -33,3 +33,8 @@ export enum RankMethodEnum {
     SPECIES_SEEN = 'spp', // Order by number of species seen (spp).
     COMPLETE_CHECKLISTS = 'cl', // Order by number of complete checklists (cl).
 }
+
+export enum FileFormatEnum {
+    CSV = 'csv', // Fetch the records in CSV format.
+    JSON = 'json', // Fetch the records in JSON format.
+}
