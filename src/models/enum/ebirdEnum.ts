@@ -70,3 +70,18 @@ export enum LocaleEnum {
     TURKISH = 'tr', // Turkish
     CHINESE = 'zh', // Chinese
 }
+
+export enum RegionNameFormatEnum {
+    DETAILED = 'detailed',
+    DETAILED_NO_QUAL = 'detailednoqual',
+    FULL = 'full',
+    NAME_QUAL = 'namequal',
+    NAME_ONLY = 'nameonly',
+    REV_DETAILED = 'revdetailed',
+}
+
+export enum RegionTypeEnum {
+    COUNTRY = 'country',
+    SUBNATIONAL_1 = 'subnational1',
+    SUBNATIONAL_2 = 'subnational2',
+}
