@@ -15,6 +15,9 @@ async function bootstrap() {
         plugins: {}, // import Quasar plugins and add here
     });
 
+    // Route 準備就緒後掛載 APP 實例
+    // https://router.vuejs.org/api/interfaces/router.html#isready
+    // await router.isReady();
     app.mount('#app');
 }
 

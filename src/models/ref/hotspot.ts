@@ -6,12 +6,12 @@ import { FileFormatEnum } from '../enum/ebirdEnum';
 export class REFHOTSPOTGetHotspotsInRegionReq {
     constructor(data?: REFHOTSPOTGetHotspotsInRegionReq) {
         if (!data) return;
-        const { back = undefined, fmt = FileFormatEnum.CSV } = data;
+        const { back = undefined, fmt = FileFormatEnum.JSON } = data;
         this.back = back;
         this.fmt = fmt;
     }
     back?: number = undefined; // Only fetch hotspots which have been visited up to 'back' days ago.
-    fmt?: FileFormatEnum = FileFormatEnum.CSV; // Fetch the records in CSV or JSON format.
+    fmt?: FileFormatEnum = FileFormatEnum.JSON; // Fetch the records in CSV or JSON format.
 }
 
 /**
@@ -20,7 +20,7 @@ export class REFHOTSPOTGetHotspotsInRegionReq {
 export class REFHOTSPOTGetNearbyHotspotsReq {
     constructor(data?: REFHOTSPOTGetNearbyHotspotsReq) {
         if (!data) return;
-        const { back = undefined, dist = 25, fmt = FileFormatEnum.CSV, lat = 0, lng = 0 } = data;
+        const { back = undefined, dist = 25, fmt = FileFormatEnum.JSON, lat = 0, lng = 0 } = data;
         this.back = back;
         this.dist = dist;
         this.fmt = fmt;
@@ -29,7 +29,7 @@ export class REFHOTSPOTGetNearbyHotspotsReq {
     }
     back?: number = undefined; // Only fetch hotspots which have been visited up to 'back' days ago.
     dist?: number = 25; // The search radius from the given position, in kilometers.
-    fmt?: FileFormatEnum = FileFormatEnum.CSV; // Fetch the records in CSV or JSON format.
+    fmt?: FileFormatEnum = FileFormatEnum.JSON; // Fetch the records in CSV or JSON format.
     lat: number = 0; // Required. Latitude to 2 decimal places.
     lng: number = 0; // Required. Longitude to 2 decimal places.
 }

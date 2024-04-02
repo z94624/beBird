@@ -8,7 +8,7 @@ export class REFTAXGetEbirdTaxonomyReq {
         if (!data) return;
         const {
             cat = undefined,
-            fmt = FileFormatEnum.CSV,
+            fmt = FileFormatEnum.JSON,
             locale = LocaleEnum.ENGLISH,
             species = undefined,
             version = undefined,
@@ -20,7 +20,7 @@ export class REFTAXGetEbirdTaxonomyReq {
         this.version = version;
     }
     cat?: TaxonomyCategoryEnum[] = undefined; // Only fetch records from these taxonomic categories.
-    fmt?: FileFormatEnum = FileFormatEnum.CSV; // Fetch the records in CSV or JSON format.
+    fmt?: FileFormatEnum = FileFormatEnum.JSON; // Fetch the records in CSV or JSON format.
     locale?: LocaleEnum = LocaleEnum.ENGLISH; // Use this language for common names.
     species?: string = undefined; // Only fetch records for these species.
     version?: string = undefined; // Fetch a specific version of the taxonomy.
