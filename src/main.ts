@@ -1,12 +1,16 @@
 import { createApp } from 'vue';
-import './style.css';
+import './styles/main.css';
 import App from './App.vue';
 
+import { setupRouter } from './router';
 import { setupStore } from './store';
 import { setupQuasar } from './plugins/quasar';
 
 async function bootstrap() {
     const app = createApp(App);
+
+    // 掛載 Router
+    setupRouter(app);
 
     // 掛載狀態管理
     setupStore(app);
