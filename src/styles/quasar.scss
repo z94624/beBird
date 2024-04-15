@@ -10,3 +10,23 @@
 .text-primaryDark_e {
     color: var(--q-text-primaryDark_ebird) !important;
 }
+
+// Layout Header 選單
+.q-tabs {
+    overflow-x: auto;
+
+    &.layoutHeaderTabs {
+        .q-tab {
+            &.rareBirdsTab {
+                color: $negative;
+            }
+
+            .q-tab__content {
+                .q-tab__label {
+                    font-weight: 700;
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+}
