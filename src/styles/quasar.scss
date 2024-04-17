@@ -12,6 +12,7 @@
 }
 
 // Layout Header 選單
+// 電腦版
 .q-tabs {
     overflow-x: auto;
 
@@ -26,6 +27,30 @@
                     font-weight: 700;
                     font-size: 17px;
                 }
+            }
+        }
+    }
+}
+// 手機版
+.q-list {
+    &.layoutMenuList {
+        .q-item {
+            &.q-item--active {
+                color: unset;
+                border-left: 2px solid var(--q-text-primary_ebird);
+                margin-left: 2px;
+            }
+            &.rareBirdsItem {
+                color: $negative;
+
+                &.q-item--active {
+                    border-left: 2px solid $negative;
+                }
+            }
+
+            .q-item__section--main {
+                font-weight: 700;
+                font-size: 17px;
             }
         }
     }
