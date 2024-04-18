@@ -5,7 +5,7 @@
             <q-header reveal elevated class="bg-white text-primary_e">
                 <q-toolbar>
                     <div @click="goHome">
-                        <EbirdLogo width="100%" height="26" />
+                        <q-icon :name="`img:${EbirdLogo}`" style="width: 100%; height: 26px;" />
                     </div>
 
                     <q-toolbar-title></q-toolbar-title>
@@ -48,7 +48,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import EbirdLogo from '@/assets/images/components/EbirdLogo.vue';
+import EbirdLogo from '@/assets/images/eBird.svg';
 
 import { PageEnum } from '@/models/enum/pageEnum';
 import { menuList } from './utils';

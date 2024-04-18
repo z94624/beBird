@@ -16,9 +16,9 @@ export const setupQuasar = (app: App<Element>) => {
 		iconSet: MaterialIconSet,
 		config: {
 			brand: {
-				'bg-primaryDark_ebird': '#113245',
-				'text-primary_ebird': '#0070b3',
-				'text-primaryDark_ebird': '#8ad4ff',
+				'bg-primaryDark_ebird': '#385b75', // eBird 背景深色
+				'text-primary_ebird': '#40718f', // eBird 字體淺色
+				'text-primaryDark_ebird': '#b4cfe1', // eBird 字體深色
 			},
 		},
 	});
