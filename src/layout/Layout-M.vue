@@ -5,7 +5,8 @@
             <q-header reveal elevated class="bg-white text-primary_e">
                 <q-toolbar>
                     <div @click="goHome">
-                        <q-icon :name="`img:${EbirdLogo}`" style="width: 100%; height: 26px;" />
+                        <q-icon :name="`img:${BLetter}`" style="width: 19px; height: 26px;" />
+                        <q-icon :name="`img:${EbirdLogo}`" style="width: 73px; height: 26px;" />
                     </div>
 
                     <q-toolbar-title></q-toolbar-title>
@@ -48,6 +49,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import BLetter from '@/assets/images/b.svg';
 import EbirdLogo from '@/assets/images/eBird.svg';
 
 import { PageEnum } from '@/models/enum/pageEnum';
