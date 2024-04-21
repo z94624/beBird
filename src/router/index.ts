@@ -21,7 +21,7 @@ const routes: RouteRecordRaw[] = [
 		path: '/rare-birds-map',
 		name: 'RareBirds',
 		meta: {},
-		component: () => import('@/views/Home.vue'),
+		component: () => import('@/views/RareBirds.vue'),
 	},
 	{
 		path: '/bird-watching-map',

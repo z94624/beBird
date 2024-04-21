@@ -6,22 +6,24 @@ import { setupRouter } from './router';
 import { setupStore } from './store';
 import { setupQuasar } from './plugins/quasar';
 
+import 'leaflet/dist/leaflet.css';
+
 async function bootstrap() {
-    const app = createApp(App);
+	const app = createApp(App);
 
-    // 掛載 Router
-    setupRouter(app);
+	// 掛載 Router
+	setupRouter(app);
 
-    // 掛載狀態管理
-    setupStore(app);
+	// 掛載狀態管理
+	setupStore(app);
 
-    // 掛載 Quasar
-    setupQuasar(app);
+	// 掛載 Quasar
+	setupQuasar(app);
 
-    // Route 準備就緒後掛載 APP 實例
-    // https://router.vuejs.org/api/interfaces/router.html#isready
-    // await router.isReady();
-    app.mount('#app');
+	// Route 準備就緒後掛載 APP 實例
+	// https://router.vuejs.org/api/interfaces/router.html#isready
+	// await router.isReady();
+	app.mount('#app');
 }
 
 void bootstrap();
