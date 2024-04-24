@@ -1,37 +1,44 @@
 <template>
-    <div class="w-full h-full relative">
-        <l-map ref="map" :zoom="zoom" :center="[23.97565, 120.9738819]" :use-global-leaflet="false">
-            <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
-                name="OpenStreetMap"></l-tile-layer>
-        </l-map>
+	<Map>
+		<template #search-menu>
+			<q-form
+				class="q-gutter-md"
+				@reset="onReset"
+				@submit="onSubmit"
+			>
+				<q-select
+					v-model="model"
+					:options="options"
+					label="國家"
+				/>
 
-        <div class="searchMenuContainer">
-            <q-select v-model="model" :options="[
-            'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
-        ]" label="Standard" />
-        </div>
-    </div>
+				<q-slider
+					v-model="standard"
+					:max="30"
+					:min="1"
+					reverse
+					style="width: -webkit-fill-available"
+				/>
+
+				<div>
+					<q-btn
+						color="primary"
+						label="Submit"
+						type="submit"
+					/>
+					<q-btn
+						class="q-ml-sm"
+						color="primary"
+						flat
+						label="Reset"
+						type="reset"
+					/>
+				</div>
+			</q-form>
+		</template>
+	</Map>
 </template>
 
-<script lang="ts" setup>
-import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
-import { ref } from "vue";
+<script lang="ts" setup></script>
 
-const zoom = ref(8);
-const model = ref(null);
-</script>
-
-<style lang="scss" scoped>
-.searchMenuContainer {
-    position: absolute;
-    top: 10px;
-    left: 53.2px;
-    z-index: 400;
-    padding: 12px;
-    background-color: $primary;
-
-    .q-select {
-        background-color: white;
-    }
-}
-</style>
+<style lang="scss" scoped></style>

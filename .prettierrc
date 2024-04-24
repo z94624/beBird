@@ -17,5 +17,31 @@
 	"vueIndentScriptAndStyle": true,
 	"endOfLine": "auto",
 	"rangeStart": 0,
-	"singleAttributePerLine": true
+	"singleAttributePerLine": true,
+
+	"plugins": ["prettier-plugin-organize-attributes"],
+	"attributeSort": "ASC",
+	"attributeGroups": [
+		"^((v-bind)?:|v-)is$",
+		"^v-(if|else-if|else|show|cloak)$",
+		"^v-(once|pre|memo)$",
+		"^#",
+		"$DEFAULT",
+		"^(v-)?slot$",
+		"^v-for$",
+		"^v-model$",
+		"^v-bind$",
+		"^v-html$",
+		"^v-text$",
+		"^v-(?!bind|on|html|text)",
+		"^(v-bind)?:?id$",
+		"^(v-bind)?:?key$",
+		"^(v-bind)?:?ref$",
+		"^((v-bind)?:)?(?!data-|v-|:|@|#)",
+		"^((v-bind)?:)?data-",
+		"^(v-bind)?:class$",
+		"^v-on",
+		"^class$",
+		"^@"
+	]
 }
