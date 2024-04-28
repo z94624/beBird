@@ -41,7 +41,7 @@
 		min-width: 200px;
 		width: 33%;
 		padding: 12px;
-		background-color: color-mix(in srgb, $accent, transparent 77%);
+		background-color: rgba($color: #fff, $alpha: 0.25);
 		z-index: 401;
 	}
 </style>
