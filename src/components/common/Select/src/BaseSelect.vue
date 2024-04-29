@@ -22,7 +22,7 @@
 	}>();
 	const props = withDefaults(
 		defineProps<{
-			standout: boolean | string;
+			standout?: boolean | string;
 		}>(),
 		{
 			standout: 'bg-secondary text-primary',

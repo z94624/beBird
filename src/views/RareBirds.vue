@@ -12,12 +12,19 @@
 					label="國家"
 				/>
 
-				<DaysBackSlider v-model="standard" />
+				<div>
+					<span>時間間隔(幾天以前)</span>
+					<DaysBackSlider v-model="back" />
+				</div>
 			</q-form>
 		</template>
 	</Map>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+	import { ref } from 'vue';
+
+	const back = ref<number | null>(1);
+</script>
 
 <style lang="scss" scoped></style>
