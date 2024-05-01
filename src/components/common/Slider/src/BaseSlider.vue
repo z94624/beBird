@@ -1,5 +1,6 @@
 <template>
 	<q-slider
+		ref="sliderRef"
 		:="attrs"
 		style="width: -webkit-fill-available"
 	>
@@ -14,10 +15,15 @@
 </template>
 
 <script lang="ts" setup>
-	import { useAttrs, useSlots } from 'vue';
+	import { QSlider, QSliderProps } from 'quasar';
+	import { ref, useAttrs, useSlots } from 'vue';
 
-	const attrs = useAttrs();
-	const slots = useSlots();
+	const attrs: Partial<QSliderProps> = useAttrs();
+	const slots: Partial<QSlider> = useSlots();
+
+	const sliderRef = ref();
+
+	defineExpose({ sliderRef });
 </script>
 
 <style lang="scss" scoped></style>

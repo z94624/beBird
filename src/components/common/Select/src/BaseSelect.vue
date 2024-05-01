@@ -1,5 +1,6 @@
 <template>
 	<q-select
+		ref="selectRef"
 		:="attrs"
 		:standout="standout"
 		@update:model-value="(value) => emit('update:model-value', value)"
@@ -15,7 +16,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { useAttrs, useSlots } from 'vue';
+	import { QSelect, QSelectProps } from 'quasar';
+	import { ref, useAttrs, useSlots } from 'vue';
 
 	const emit = defineEmits<{
 		(e: 'update:model-value', v: any): void;
@@ -29,8 +31,12 @@
 		}
 	);
 
-	const attrs = useAttrs();
-	const slots = useSlots();
+	const attrs: Partial<QSelectProps> = useAttrs();
+	const slots: Partial<QSelect> = useSlots();
+
+	const selectRef = ref();
+
+	defineExpose({ selectRef });
 </script>
 
 <style lang="scss" scoped></style>

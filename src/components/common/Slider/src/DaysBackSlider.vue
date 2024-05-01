@@ -1,5 +1,6 @@
 <template>
 	<BaseSlider
+		ref="sliderRef"
 		:="getBindingValues"
 		@update:model-value="(value: number | null) => emit('update:model-value', value)"
 	>
@@ -14,7 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, useAttrs, useSlots } from 'vue';
+	import { QSlider, QSliderProps } from 'quasar';
+	import { computed, ref, useAttrs, useSlots } from 'vue';
 
 	const emit = defineEmits<{
 		(e: 'update:model-value', v: number | null): void;
@@ -44,8 +46,10 @@
 		}
 	);
 
-	const attrs = useAttrs();
-	const slots = useSlots();
+	const attrs: Partial<QSliderProps> = useAttrs();
+	const slots: Partial<QSlider> = useSlots();
+
+	const sliderRef = ref();
 
 	const getBindingValues = computed(() => {
 		return {
@@ -64,6 +68,8 @@
 		if (![props.min, props.max].includes(value)) return ' ';
 		return `${value}`;
 	};
+
+	defineExpose({ sliderRef });
 </script>
 
 <style lang="scss" scoped></style>
