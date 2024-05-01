@@ -6,10 +6,10 @@
 				no-error-focus
 				no-reset-focus
 			>
-				<BaseSelect
-					v-model="country"
-					:options="countryOptions"
-					label="國家"
+				<CountrySelect v-model:country="country" />
+				<RegionSelect
+					v-model:region="region"
+					:country="country"
 				/>
 
 				<div>
@@ -24,6 +24,8 @@
 <script lang="ts" setup>
 	import { ref } from 'vue';
 
+	const country = ref<string>();
+	const region = ref<string>();
 	const back = ref<number | null>(1);
 </script>
 

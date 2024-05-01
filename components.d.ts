@@ -7,10 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseCountrySelect: typeof import('./src/components/common/Select/src/BaseCountrySelect.vue')['default']
     BaseSelect: typeof import('./src/components/common/Select/src/BaseSelect.vue')['default']
     BaseSlider: typeof import('./src/components/common/Slider/src/BaseSlider.vue')['default']
+    CountrySelect: typeof import('./src/components/common/Select/src/CountrySelect.vue')['default']
     DaysBackSlider: typeof import('./src/components/common/Slider/src/DaysBackSlider.vue')['default']
     Map: typeof import('./src/components/common/Map.vue')['default']
+    RegionSelect: typeof import('./src/components/common/Select/src/RegionSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
