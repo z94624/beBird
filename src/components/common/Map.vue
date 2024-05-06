@@ -7,7 +7,7 @@
 		<div class="mapContainer">
 			<l-map
 				ref="map"
-				:center="[23.97565, 120.9738819]"
+				:center="center"
 				:use-global-leaflet="false"
 				:zoom="8"
 			>
@@ -22,7 +22,27 @@
 </template>
 
 <script lang="ts" setup>
+	import { ref, watch } from 'vue';
+	import { useGeolocation } from '@vueuse/core';
 	import { LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
+	import { PointExpression } from 'leaflet';
+
+	import { GeoDataEnum } from '@/models/enum/geoEnum';
+
+	const { coords, error, resume, pause } = useGeolocation();
+
+	const center = ref<PointExpression>([
+		GeoDataEnum.LATITUDE_OF_TAIWAN,
+		GeoDataEnum.LONGITUDE_OF_TAIWAN,
+	] as PointExpression);
+
+	watch(
+		coords,
+		(nv) => {
+			center.value = [nv.latitude, nv.longitude];
+		},
+		{ deep: true }
+	);
 </script>
 
 <style lang="scss" scoped>

@@ -10,7 +10,7 @@
 	import { computed, onBeforeMount, ref, watch } from 'vue';
 	import { QSelectOption } from 'quasar';
 
-	import { useCountryRegionStore } from '@/store/modules/country';
+	import { useCountryRegionStore } from '@/store/modules/geodata';
 
 	const emit = defineEmits<{
 		(e: 'update:region', v: string): void;
@@ -52,3 +52,4 @@
 </script>
 
 <style lang="scss" scoped></style>
+@/store/modules/geodata

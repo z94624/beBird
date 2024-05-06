@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia';
-import { allCountries } from 'country-region-data';
 import { QSelectOption } from 'quasar';
+import { allCountries } from 'country-region-data';
 
+/**
+ * 國家地區相關
+ */
 export const useCountryRegionStore = defineStore('countryRegion', () => {
 	// 國家選項
 	const countryOptions = allCountries.reduce((arr, country) => {
