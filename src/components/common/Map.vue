@@ -1,6 +1,6 @@
 <template>
 	<div class="fullContainer relative">
-		<div class="searchMenuContainer">
+		<div class="searchMenuContainer shadow-3 rounded-borders">
 			<slot name="search-menu"></slot>
 		</div>
 
@@ -10,12 +10,15 @@
 				:center="center"
 				:use-global-leaflet="false"
 				:zoom="8"
+				class="map"
 			>
 				<l-tile-layer
 					layer-type="base"
 					name="OpenStreetMap"
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				></l-tile-layer>
+				<l-control-scale />
+				<l-control-attribution prefix="Leaflet | © smoBEE" />
 			</l-map>
 		</div>
 	</div>
@@ -24,13 +27,14 @@
 <script lang="ts" setup>
 	import { ref, watch } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
-	import { LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
+	import { LMap, LTileLayer, LControlScale, LControlAttribution } from '@vue-leaflet/vue-leaflet';
 	import { PointExpression } from 'leaflet';
 
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	const { coords, error, resume, pause } = useGeolocation();
 
+	const map = ref(null);
 	const center = ref<PointExpression>([
 		GeoDataEnum.LATITUDE_OF_TAIWAN,
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,

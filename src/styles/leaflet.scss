@@ -1,0 +1,10 @@
+// Vue Leaflet
+.leaflet-container {
+	.leaflet-control-container {
+		.leaflet-bottom.leaflet-right {
+			.leaflet-control-attribution:nth-child(2) {
+				display: none;
+			}
+		}
+	}
+}
