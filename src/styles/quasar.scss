@@ -1,57 +1,44 @@
-// eBird 深色背景
-.bg-primaryDark_e {
-    background: var(--q-bg-primaryDark_ebird) !important;
-}
-// eBird 淺色字體
-.text-primary_e {
-    color: var(--q-text-primary_ebird) !important;
-}
-// eBird 深色字體
-.text-primaryDark_e {
-    color: var(--q-text-primaryDark_ebird) !important;
-}
-
 // Layout Header 選單
 // 電腦版
 .q-tabs {
-    overflow-x: auto;
+	overflow-x: auto;
 
-    &.layoutHeaderTabs {
-        .q-tab {
-            &.rareBirdsTab {
-                color: $negative;
-            }
+	&.layoutHeaderTabs {
+		.q-tab {
+			&.rareBirdsTab {
+				color: $negative;
+			}
 
-            .q-tab__content {
-                .q-tab__label {
-                    font-weight: 700;
-                    font-size: 17px;
-                }
-            }
-        }
-    }
+			.q-tab__content {
+				.q-tab__label {
+					font-weight: 700;
+					font-size: 17px;
+				}
+			}
+		}
+	}
 }
 // 手機版
 .q-list {
-    &.layoutMenuList {
-        .q-item {
-            &.q-item--active {
-                color: unset;
-                border-left: 2px solid var(--q-text-primary_ebird);
-                margin-left: 2px;
-            }
-            &.rareBirdsItem {
-                color: $negative;
+	&.layoutMenuList {
+		.q-item {
+			&.q-item--active {
+				color: unset;
+				border-left: 2px solid var(--q-primary_e);
+				margin-left: 2px;
+			}
+			&.rareBirdsItem {
+				color: $negative;
 
-                &.q-item--active {
-                    border-left: 2px solid $negative;
-                }
-            }
+				&.q-item--active {
+					border-left: 2px solid $negative;
+				}
+			}
 
-            .q-item__section--main {
-                font-weight: 700;
-                font-size: 17px;
-            }
-        }
-    }
+			.q-item__section--main {
+				font-weight: 700;
+				font-size: 17px;
+			}
+		}
+	}
 }
