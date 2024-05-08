@@ -1,3 +1,3 @@
 export enum ResponseCodeEnum {
-    SUCCESS = '200', // success
+	SUCCESS = 200, // success
 }

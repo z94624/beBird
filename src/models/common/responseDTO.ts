@@ -1,5 +1,8 @@
+import { AxiosHeaders } from 'axios';
+
 export interface IResponse<T> {
-    code: string;
-    data: T;
-    msg: string;
+	status: number;
+	data: T;
+	statusText: string;
+	headers: AxiosHeaders;
 }
