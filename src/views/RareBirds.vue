@@ -30,6 +30,7 @@
 		IDATAOBSGetRecentNotableObsInRegionItem,
 	} from '@/models/data/obs';
 
+	import { useDebounceFn } from '@vueuse/core';
 	import { IResponse } from '@/models/common/responseDTO';
 	import { ResponseCodeEnum } from '@/models/enum/apiEnum';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
@@ -41,11 +42,14 @@
 	watch(
 		[country, region, notableObsForm],
 		() => {
-			getRecentNotableObsInRegionInfo();
+			debouncedGetNotableObs();
 		},
 		{ deep: true }
 	);
 
+	/**
+	 * 取得近期稀有鳥紀錄
+	 */
 	const getRecentNotableObsInRegionInfo = () => {
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
 			.then(
@@ -64,6 +68,10 @@
 			.catch(() => {})
 			.finally(() => {});
 	};
+	// 防抖
+	const debouncedGetNotableObs = useDebounceFn(() => {
+		getRecentNotableObsInRegionInfo();
+	}, 1000);
 </script>
 
 <style lang="scss" scoped></style>
