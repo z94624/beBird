@@ -1,8 +1,8 @@
 import {
-    REFHOTSPOTGetHotspotsInRegionReq,
-    REFHOTSPOTGetNearbyHotspotsReq,
+	REFHOTSPOTGetHotspotsInRegionReq,
+	REFHOTSPOTGetNearbyHotspotsReq,
 } from '@/models/ref/hotspot';
-import { ebird } from '@/utils/http/axios';
+import ebird from '@/plugins/axios';
 
 /**
  * Hotspots in a region
@@ -10,13 +10,13 @@ import { ebird } from '@/utils/http/axios';
  * @param params Query parameters
  */
 export const getHotspotsInRegionApi = (
-    regionCode: string,
-    params: REFHOTSPOTGetHotspotsInRegionReq,
+	regionCode: string,
+	params: REFHOTSPOTGetHotspotsInRegionReq
 ) => {
-    return ebird.request({
-        url: `/ref/hotspot/${regionCode}`,
-        params,
-    });
+	return ebird.request({
+		url: `/ref/hotspot/${regionCode}`,
+		params,
+	});
 };
 
 /**
@@ -24,10 +24,10 @@ export const getHotspotsInRegionApi = (
  * @param params Query parameters
  */
 export const getNearbyHotspotsApi = (params: REFHOTSPOTGetNearbyHotspotsReq) => {
-    return ebird.request({
-        url: '/ref/hotspot/geo',
-        params,
-    });
+	return ebird.request({
+		url: '/ref/hotspot/geo',
+		params,
+	});
 };
 
 /**
@@ -35,7 +35,7 @@ export const getNearbyHotspotsApi = (params: REFHOTSPOTGetNearbyHotspotsReq) => 
  * @param locId The location code.
  */
 export const getHotspotInfoApi = (locId: string) => {
-    return ebird.request({
-        url: `/ref/hotspot/info/${locId}`,
-    });
+	return ebird.request({
+		url: `/ref/hotspot/info/${locId}`,
+	});
 };

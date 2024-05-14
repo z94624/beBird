@@ -1,15 +1,15 @@
 import {
-    DATAOBSGetHistoricObsOnDateReq,
-    DATAOBSGetNearestObsOfSpeciesReq,
-    DATAOBSGetRecentChecklistsFeedReq,
-    DATAOBSGetRecentNearbyNotableObsReq,
-    DATAOBSGetRecentNearbyObsOfSpeciesReq,
-    DATAOBSGetRecentNearbyObsReq,
-    DATAOBSGetRecentNotableObsInRegionReq,
-    DATAOBSGetRecentObsInRegionReq,
-    DATAOBSGetRecentObsOfSpeciesInRegionReq,
+	DATAOBSGetHistoricObsOnDateReq,
+	DATAOBSGetNearestObsOfSpeciesReq,
+	DATAOBSGetRecentChecklistsFeedReq,
+	DATAOBSGetRecentNearbyNotableObsReq,
+	DATAOBSGetRecentNearbyObsOfSpeciesReq,
+	DATAOBSGetRecentNearbyObsReq,
+	DATAOBSGetRecentNotableObsInRegionReq,
+	DATAOBSGetRecentObsInRegionReq,
+	DATAOBSGetRecentObsOfSpeciesInRegionReq,
 } from '@/models/data/obs';
-import { ebird } from '@/utils/http/axios';
+import ebird from '@/plugins/axios';
 
 /**
  * Recent observations in a region
@@ -17,13 +17,13 @@ import { ebird } from '@/utils/http/axios';
  * @param params Query parameters
  */
 export const getRecentObsInRegionApi = (
-    regionCode: string,
-    params: DATAOBSGetRecentObsInRegionReq,
+	regionCode: string,
+	params: DATAOBSGetRecentObsInRegionReq
 ) => {
-    return ebird.request({
-        url: `/data/obs/${regionCode}/recent`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/obs/${regionCode}/recent`,
+		params,
+	});
 };
 
 /**
@@ -32,13 +32,13 @@ export const getRecentObsInRegionApi = (
  * @param params Query parameters
  */
 export const getRecentNotableObsInRegionApi = (
-    regionCode: string,
-    params: DATAOBSGetRecentNotableObsInRegionReq,
+	regionCode: string,
+	params: DATAOBSGetRecentNotableObsInRegionReq
 ) => {
-    return ebird.request({
-        url: `/data/obs/${regionCode}/recent/notable`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/obs/${regionCode}/recent/notable`,
+		params,
+	});
 };
 
 /**
@@ -48,14 +48,14 @@ export const getRecentNotableObsInRegionApi = (
  * @param params Query parameters
  */
 export const getRecentObsOfSpeciesInRegionApi = (
-    regionCode: string,
-    speciesCode: string,
-    params: DATAOBSGetRecentObsOfSpeciesInRegionReq,
+	regionCode: string,
+	speciesCode: string,
+	params: DATAOBSGetRecentObsOfSpeciesInRegionReq
 ) => {
-    return ebird.request({
-        url: `/data/obs/${regionCode}/recent/${speciesCode}`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/obs/${regionCode}/recent/${speciesCode}`,
+		params,
+	});
 };
 
 /**
@@ -64,10 +64,10 @@ export const getRecentObsOfSpeciesInRegionApi = (
  * @param params Query parameters
  */
 export const getRecentNearbyObsApi = (params: DATAOBSGetRecentNearbyObsReq) => {
-    return ebird.request({
-        url: `/data/obs/geo/recent`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/obs/geo/recent`,
+		params,
+	});
 };
 
 /**
@@ -76,13 +76,13 @@ export const getRecentNearbyObsApi = (params: DATAOBSGetRecentNearbyObsReq) => {
  * @param params Query parameters
  */
 export const getRecentNearbyObsOfSpeciesApi = (
-    speciesCode: string,
-    params: DATAOBSGetRecentNearbyObsOfSpeciesReq,
+	speciesCode: string,
+	params: DATAOBSGetRecentNearbyObsOfSpeciesReq
 ) => {
-    return ebird.request({
-        url: `/data/obs/geo/recent/${speciesCode}`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/obs/geo/recent/${speciesCode}`,
+		params,
+	});
 };
 
 /**
@@ -91,13 +91,13 @@ export const getRecentNearbyObsOfSpeciesApi = (
  * @param params Query parameters
  */
 export const getNearestObsOfSpeciesApi = (
-    speciesCode: string,
-    params: DATAOBSGetNearestObsOfSpeciesReq,
+	speciesCode: string,
+	params: DATAOBSGetNearestObsOfSpeciesReq
 ) => {
-    return ebird.request({
-        url: `/data/nearest/geo/recent/${speciesCode}`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/nearest/geo/recent/${speciesCode}`,
+		params,
+	});
 };
 
 /**
@@ -105,10 +105,10 @@ export const getNearestObsOfSpeciesApi = (
  * @param params Query parameters
  */
 export const getRecentNearbyNotableObsApi = (params: DATAOBSGetRecentNearbyNotableObsReq) => {
-    return ebird.request({
-        url: `/data/obs/geo/recent/notable`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/obs/geo/recent/notable`,
+		params,
+	});
 };
 
 /**
@@ -117,13 +117,13 @@ export const getRecentNearbyNotableObsApi = (params: DATAOBSGetRecentNearbyNotab
  * @param params Query parameters
  */
 export const getRecentChecklistsFeedApi = (
-    regionCode: string,
-    params: DATAOBSGetRecentChecklistsFeedReq,
+	regionCode: string,
+	params: DATAOBSGetRecentChecklistsFeedReq
 ) => {
-    return ebird.request({
-        url: `/product/lists/${regionCode}`,
-        params,
-    });
+	return ebird.request({
+		url: `/product/lists/${regionCode}`,
+		params,
+	});
 };
 
 /**
@@ -135,14 +135,14 @@ export const getRecentChecklistsFeedApi = (
  * @param params Query parameters
  */
 export const getHistoricObsOnDateApi = (
-    regionCode: string,
-    year: string,
-    month: string,
-    day: string,
-    params: DATAOBSGetHistoricObsOnDateReq,
+	regionCode: string,
+	year: string,
+	month: string,
+	day: string,
+	params: DATAOBSGetHistoricObsOnDateReq
 ) => {
-    return ebird.request({
-        url: `/data/obs/${regionCode}/historic/${year}/${month}/${day}`,
-        params,
-    });
+	return ebird.request({
+		url: `/data/obs/${regionCode}/historic/${year}/${month}/${day}`,
+		params,
+	});
 };

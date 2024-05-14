@@ -1,5 +1,5 @@
 import { PRODUCTGetChecklistFeedOnDateReq, PRODUCTGetTop100Req } from '@/models/product/product';
-import { ebird } from '@/utils/http/axios';
+import ebird from '@/plugins/axios';
 
 /**
  * Top 100
@@ -10,16 +10,16 @@ import { ebird } from '@/utils/http/axios';
  * @param params Query parameters
  */
 export const getTop100Api = (
-    regionCode: string,
-    year: string,
-    month: string,
-    day: string,
-    params: PRODUCTGetTop100Req,
+	regionCode: string,
+	year: string,
+	month: string,
+	day: string,
+	params: PRODUCTGetTop100Req
 ) => {
-    return ebird.request({
-        url: `/product/top100/${regionCode}/${year}/${month}/${day}`,
-        params,
-    });
+	return ebird.request({
+		url: `/product/top100/${regionCode}/${year}/${month}/${day}`,
+		params,
+	});
 };
 
 /**
@@ -31,16 +31,16 @@ export const getTop100Api = (
  * @param params Query parameters
  */
 export const getChecklistFeedOnDateApi = (
-    regionCode: string,
-    year: string,
-    month: string,
-    day: string,
-    params: PRODUCTGetChecklistFeedOnDateReq,
+	regionCode: string,
+	year: string,
+	month: string,
+	day: string,
+	params: PRODUCTGetChecklistFeedOnDateReq
 ) => {
-    return ebird.request({
-        url: `/product/lists/${regionCode}/${year}/${month}/${day}`,
-        params,
-    });
+	return ebird.request({
+		url: `/product/lists/${regionCode}/${year}/${month}/${day}`,
+		params,
+	});
 };
 
 /**
@@ -52,14 +52,14 @@ export const getChecklistFeedOnDateApi = (
  * @param params Query parameters
  */
 export const getRegionalStatisticsOnDateApi = (
-    regionCode: string,
-    year: string,
-    month: string,
-    day: string,
+	regionCode: string,
+	year: string,
+	month: string,
+	day: string
 ) => {
-    return ebird.request({
-        url: `/product/stats/${regionCode}/${year}/${month}/${day}`,
-    });
+	return ebird.request({
+		url: `/product/stats/${regionCode}/${year}/${month}/${day}`,
+	});
 };
 
 /**
@@ -67,9 +67,9 @@ export const getRegionalStatisticsOnDateApi = (
  * @param regionCode The country, subnational1, or location code.
  */
 export const getSpeciesListForRegionApi = (regionCode: string) => {
-    return ebird.request({
-        url: `product/spplist/${regionCode}`,
-    });
+	return ebird.request({
+		url: `product/spplist/${regionCode}`,
+	});
 };
 
 /**
@@ -77,7 +77,7 @@ export const getSpeciesListForRegionApi = (regionCode: string) => {
  * @param subId The checklist identifier.
  */
 export const getViewChecklistApi = (subId: string) => {
-    return ebird.request({
-        url: `/product/checklist/view/${subId}`,
-    });
+	return ebird.request({
+		url: `/product/checklist/view/${subId}`,
+	});
 };

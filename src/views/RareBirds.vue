@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { ref, watch } from 'vue';
+	import { onBeforeMount, ref, watch } from 'vue';
 
 	import { getRecentNotableObsInRegionApi } from '@/api/data/obs';
 	import {
@@ -31,8 +31,6 @@
 	} from '@/models/data/obs';
 
 	import { useDebounceFn } from '@vueuse/core';
-	import { IResponse } from '@/models/common/responseDTO';
-	import { ResponseCodeEnum } from '@/models/enum/apiEnum';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	const country = ref<string>(GeoDataEnum.COUNTRYCODE_OF_TAIWAN);
@@ -52,19 +50,9 @@
 	 */
 	const getRecentNotableObsInRegionInfo = () => {
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
-			.then(
-				({
-					status,
-					data,
-					statusText,
-				}: IResponse<IDATAOBSGetRecentNotableObsInRegionItem>) => {
-					console.log(status);
-					if (status === ResponseCodeEnum.SUCCESS) {
-						console.log(data);
-					} else {
-					}
-				}
-			)
+			.then((data: IDATAOBSGetRecentNotableObsInRegionItem[]) => {
+				console.log(data);
+			})
 			.catch(() => {})
 			.finally(() => {});
 	};
@@ -72,6 +60,10 @@
 	const debouncedGetNotableObs = useDebounceFn(() => {
 		getRecentNotableObsInRegionInfo();
 	}, 1000);
+
+	onBeforeMount(() => {
+		getRecentNotableObsInRegionInfo();
+	});
 </script>
 
 <style lang="scss" scoped></style>

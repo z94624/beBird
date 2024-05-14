@@ -1,6 +1,6 @@
 import { RegionTypeEnum } from '@/models/enum/ebirdEnum';
 import { REFREGIONGetRegionInfoReq, REFREGIONGetSubRegionListReq } from '@/models/ref/region';
-import { ebird } from '@/utils/http/axios';
+import ebird from '@/plugins/axios';
 
 /**
  * Region Info
@@ -8,10 +8,10 @@ import { ebird } from '@/utils/http/axios';
  * @param params Query parameters
  */
 export const getRegionInfoApi = (regionCode: string, params: REFREGIONGetRegionInfoReq) => {
-    return ebird.request({
-        url: `/ref/region/info/${regionCode}`,
-        params,
-    });
+	return ebird.request({
+		url: `/ref/region/info/${regionCode}`,
+		params,
+	});
 };
 
 /**
@@ -21,12 +21,12 @@ export const getRegionInfoApi = (regionCode: string, params: REFREGIONGetRegionI
  * @param params Query parameters
  */
 export const getSubRegionListApi = (
-    regionType: RegionTypeEnum,
-    parentRegionCode: string | 'world',
-    params: REFREGIONGetSubRegionListReq,
+	regionType: RegionTypeEnum,
+	parentRegionCode: string | 'world',
+	params: REFREGIONGetSubRegionListReq
 ) => {
-    return ebird.request({
-        url: `/ref/region/list/${regionType}/${parentRegionCode}`,
-        params,
-    });
+	return ebird.request({
+		url: `/ref/region/list/${regionType}/${parentRegionCode}`,
+		params,
+	});
 };
