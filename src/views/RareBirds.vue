@@ -23,6 +23,7 @@
 
 <script lang="ts" setup>
 	import { onBeforeMount, ref, watch } from 'vue';
+	import { useDebounceFn } from '@vueuse/core';
 
 	import { getRecentNotableObsInRegionApi } from '@/api/data/obs';
 	import {
@@ -30,8 +31,10 @@
 		IDATAOBSGetRecentNotableObsInRegionItem,
 	} from '@/models/data/obs';
 
-	import { useDebounceFn } from '@vueuse/core';
+	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
+
+	const { $notify } = useQuasarTool();
 
 	const country = ref<string>(GeoDataEnum.COUNTRYCODE_OF_TAIWAN);
 	const region = ref<string>();
@@ -52,8 +55,11 @@
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
 			.then((data: IDATAOBSGetRecentNotableObsInRegionItem[]) => {
 				console.log(data);
+				$notify.success('成功：取得近期稀有鳥紀錄');
 			})
-			.catch(() => {})
+			.catch(() => {
+				$notify.error('失敗：取得近期稀有鳥紀錄');
+			})
 			.finally(() => {});
 	};
 	// 防抖

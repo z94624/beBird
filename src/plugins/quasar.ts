@@ -1,6 +1,6 @@
 import { App } from 'vue';
 
-import { Quasar, Loading } from 'quasar';
+import { Quasar, Loading, Notify } from 'quasar';
 // Import Quasar css
 import 'quasar/src/css/index.sass';
 import MaterialIconSet from 'quasar/icon-set/material-icons';
@@ -12,7 +12,7 @@ import '@quasar/extras/material-icons-sharp/material-icons-sharp.css';
 
 export const setupQuasar = (app: App<Element>) => {
 	app.use(Quasar, {
-		plugins: { Loading }, // import Quasar plugins and add here
+		plugins: { Loading, Notify }, // import Quasar plugins and add here
 		iconSet: MaterialIconSet,
 		config: {
 			brand: {
