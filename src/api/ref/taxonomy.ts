@@ -6,7 +6,7 @@ import ebird from '@/plugins/axios';
  * eBird Taxonomy
  * @param params Query parameters
  */
-export const getEbirdTaxonomyApi = (params: REFTAXGetEbirdTaxonomyReq) => {
+export const getEbirdTaxonomyApi = (params: REFTAXGetEbirdTaxonomyReq): Promise<any> => {
 	return ebird.request({
 		url: '/ref/taxonomy/ebird',
 		params,
@@ -17,7 +17,7 @@ export const getEbirdTaxonomyApi = (params: REFTAXGetEbirdTaxonomyReq) => {
  * Taxonomic Forms
  * @param speciesCode The species code from the taxonomy.
  */
-export const getTaxonomicFormsApi = (speciesCode: string) => {
+export const getTaxonomicFormsApi = (speciesCode: string): Promise<any> => {
 	return ebird.request({
 		url: `/ref/taxon/forms/${speciesCode}`,
 	});
@@ -26,7 +26,7 @@ export const getTaxonomicFormsApi = (speciesCode: string) => {
 /**
  * Taxa Locale Codes
  */
-export const getTaxaLocaleCodesApi = () => {
+export const getTaxaLocaleCodesApi = (): Promise<any> => {
 	return ebird.request({
 		url: '/ref/taxa-locales/ebird',
 	});
@@ -35,7 +35,7 @@ export const getTaxaLocaleCodesApi = () => {
 /**
  * Taxonomy Versions
  */
-export const getTaxonomyVersionsApi = () => {
+export const getTaxonomyVersionsApi = (): Promise<any> => {
 	return ebird.request({
 		url: '/ref/taxonomy/versions',
 	});
@@ -49,7 +49,7 @@ export const getTaxonomyVersionsApi = () => {
 export const getTaxonomicGroupsApi = (
 	speciesGrouping: SpeciesGroupEnum,
 	params: REFTAXGetTaxonomicGroupsReq
-) => {
+): Promise<any> => {
 	return ebird.request({
 		url: `/ref/sppgroup/${speciesGrouping}`,
 		params,
