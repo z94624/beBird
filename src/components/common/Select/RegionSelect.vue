@@ -10,7 +10,10 @@
 	import { computed, onBeforeMount, ref, watch } from 'vue';
 	import { QSelectOption } from 'quasar';
 
+	import { ISubRegionItem } from '@/models/ref/region';
+
 	import { useCountryRegionStore } from '@/store/modules/geodata';
+	import { RegionTypeEnum } from '@/models/enum/ebirdEnum';
 
 	const emit = defineEmits<{
 		(e: 'update:region', v: string): void;
@@ -43,7 +46,14 @@
 	 * 更新地區選項
 	 */
 	const updateRegionOptions = () => {
-		regionOptions.value = countryRegionStore.getRegionOptions(props.country);
+		countryRegionStore
+			.getSubRegionListInfo(RegionTypeEnum.SUBNATIONAL_1, props.country)
+			.then((data: ISubRegionItem[]) => {
+				regionOptions.value = data.map((region) => ({
+					label: region.name,
+					value: region.code,
+				}));
+			});
 	};
 
 	onBeforeMount(() => {
