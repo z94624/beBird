@@ -19,6 +19,8 @@
 				></l-tile-layer>
 				<l-control-scale />
 				<l-control-attribution prefix="Leaflet | © smoBEE" />
+
+				<slot name="markers"></slot>
 			</l-map>
 		</div>
 	</div>
