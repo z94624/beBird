@@ -21,19 +21,26 @@
 
 		<template #markers>
 			<l-marker
-				v-for="(obs, oIdx) in notableObsList"
+				v-for="(obs, oIdx) in pureObsList"
 				:key="oIdx"
 				:lat-lng="[obs.lat, obs.lng]"
 			>
+				<l-icon
+					:icon-anchor="[7, 35]"
+					:icon-size="[14, 35]"
+					:icon-url="TWT"
+				/>
 			</l-marker>
 		</template>
 	</Map>
 </template>
 
 <script lang="ts" setup>
-	import { onBeforeMount, ref, watch } from 'vue';
+	import { computed, onBeforeMount, ref, watch } from 'vue';
 	import { useDebounceFn } from '@vueuse/core';
-	import { LMarker } from '@vue-leaflet/vue-leaflet';
+	import { LMarker, LIcon } from '@vue-leaflet/vue-leaflet';
+
+	import TWT from '@/assets/images/twt.svg';
 
 	import { getRecentNotableObsInRegionApi } from '@/api/data/obs';
 	import {
@@ -50,6 +57,20 @@
 	const region = ref<string>();
 	const notableObsForm = ref(new DATAOBSGetRecentNotableObsInRegionReq());
 	const notableObsList = ref<IDATAOBSGetRecentNotableObsInRegionItem[]>([]);
+
+	// 不重複座標清單
+	const pureObsList = computed(() => {
+		let pureList: IDATAOBSGetRecentNotableObsInRegionItem[] = [];
+		notableObsList.value.forEach((item) => {
+			let exist = pureList.find(
+				(pureItem) => pureItem.lat === item.lat && pureItem.lng === item.lng
+			);
+			if (!exist) {
+				pureList.push(item);
+			}
+		});
+		return pureList;
+	});
 
 	watch(
 		[country, region, notableObsForm],
