@@ -1,4 +1,40 @@
-import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { IResponse } from '@/models/common/api';
+import axios, { Axios, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+
+// 覆寫 Axios 型別 AxiosResponse<T> => IResponse<T>
+interface CustomAxios extends Axios {
+	get<T = any, R = IResponse<T>, D = any>(
+		url: string,
+		config?: AxiosRequestConfig<D>
+	): Promise<any>;
+	delete<T = any, R = IResponse<T>, D = any>(
+		url: string,
+		config?: AxiosRequestConfig<D>
+	): Promise<any>;
+	head<T = any, R = IResponse<T>, D = any>(
+		url: string,
+		config?: AxiosRequestConfig<D>
+	): Promise<any>;
+	options<T = any, R = IResponse<T>, D = any>(
+		url: string,
+		config?: AxiosRequestConfig<D>
+	): Promise<any>;
+	post<T = any, R = IResponse<T>, D = any>(
+		url: string,
+		data?: D,
+		config?: AxiosRequestConfig<D>
+	): Promise<any>;
+	put<T = any, R = IResponse<T>, D = any>(
+		url: string,
+		data?: D,
+		config?: AxiosRequestConfig<D>
+	): Promise<any>;
+	patch<T = any, R = IResponse<T>, D = any>(
+		url: string,
+		data?: D,
+		config?: AxiosRequestConfig<D>
+	): Promise<any>;
+}
 
 // 建立 Axios 實例
 const ebird = axios.create({
@@ -11,7 +47,7 @@ const ebird = axios.create({
 	method: 'get',
 	maxBodyLength: Infinity,
 	timeout: 10000,
-});
+}) as CustomAxios;
 
 // 請求攔截器
 ebird.interceptors.request.use(

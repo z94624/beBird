@@ -12,30 +12,22 @@ import ebird from '@/plugins/axios';
 export const getHotspotsInRegionApi = (
 	regionCode: string,
 	params: REFHOTSPOTGetHotspotsInRegionReq
-): Promise<any> => {
-	return ebird.request({
-		url: `/ref/hotspot/${regionCode}`,
-		params,
-	});
+) => {
+	return ebird.get(`/ref/hotspot/${regionCode}`, { params });
 };
 
 /**
  * Nearby hotspots
  * @param params Query parameters
  */
-export const getNearbyHotspotsApi = (params: REFHOTSPOTGetNearbyHotspotsReq): Promise<any> => {
-	return ebird.request({
-		url: '/ref/hotspot/geo',
-		params,
-	});
+export const getNearbyHotspotsApi = (params: REFHOTSPOTGetNearbyHotspotsReq) => {
+	return ebird.get('/ref/hotspot/geo', { params });
 };
 
 /**
  * Hotspot Info
  * @param locId The location code.
  */
-export const getHotspotInfoApi = (locId: string): Promise<any> => {
-	return ebird.request({
-		url: `/ref/hotspot/info/${locId}`,
-	});
+export const getHotspotInfoApi = (locId: string) => {
+	return ebird.get(`/ref/hotspot/info/${locId}`);
 };

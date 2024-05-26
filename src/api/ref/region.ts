@@ -7,14 +7,8 @@ import ebird from '@/plugins/axios';
  * @param regionCode The major region, country, subnational1 or subnational2 code, or locId
  * @param params Query parameters
  */
-export const getRegionInfoApi = (
-	regionCode: string,
-	params: REFREGIONGetRegionInfoReq
-): Promise<any> => {
-	return ebird.request({
-		url: `/ref/region/info/${regionCode}`,
-		params,
-	});
+export const getRegionInfoApi = (regionCode: string, params: REFREGIONGetRegionInfoReq) => {
+	return ebird.get(`/ref/region/info/${regionCode}`, { params });
 };
 
 /**
@@ -27,9 +21,6 @@ export const getSubRegionListApi = (
 	regionType: RegionTypeEnum,
 	parentRegionCode: string | 'world',
 	params: REFREGIONGetSubRegionListReq
-): Promise<any> => {
-	return ebird.request({
-		url: `/ref/region/list/${regionType}/${parentRegionCode}`,
-		params,
-	});
+) => {
+	return ebird.get(`/ref/region/list/${regionType}/${parentRegionCode}`, { params });
 };

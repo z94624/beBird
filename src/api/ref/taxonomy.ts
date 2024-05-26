@@ -6,39 +6,30 @@ import ebird from '@/plugins/axios';
  * eBird Taxonomy
  * @param params Query parameters
  */
-export const getEbirdTaxonomyApi = (params: REFTAXGetEbirdTaxonomyReq): Promise<any> => {
-	return ebird.request({
-		url: '/ref/taxonomy/ebird',
-		params,
-	});
+export const getEbirdTaxonomyApi = (params: REFTAXGetEbirdTaxonomyReq) => {
+	return ebird.get('/ref/taxonomy/ebird', { params });
 };
 
 /**
  * Taxonomic Forms
  * @param speciesCode The species code from the taxonomy.
  */
-export const getTaxonomicFormsApi = (speciesCode: string): Promise<any> => {
-	return ebird.request({
-		url: `/ref/taxon/forms/${speciesCode}`,
-	});
+export const getTaxonomicFormsApi = (speciesCode: string) => {
+	return ebird.get(`/ref/taxon/forms/${speciesCode}`);
 };
 
 /**
  * Taxa Locale Codes
  */
-export const getTaxaLocaleCodesApi = (): Promise<any> => {
-	return ebird.request({
-		url: '/ref/taxa-locales/ebird',
-	});
+export const getTaxaLocaleCodesApi = () => {
+	return ebird.get('/ref/taxa-locales/ebird');
 };
 
 /**
  * Taxonomy Versions
  */
-export const getTaxonomyVersionsApi = (): Promise<any> => {
-	return ebird.request({
-		url: '/ref/taxonomy/versions',
-	});
+export const getTaxonomyVersionsApi = () => {
+	return ebird.get('/ref/taxonomy/versions');
 };
 
 /**
@@ -49,9 +40,6 @@ export const getTaxonomyVersionsApi = (): Promise<any> => {
 export const getTaxonomicGroupsApi = (
 	speciesGrouping: SpeciesGroupEnum,
 	params: REFTAXGetTaxonomicGroupsReq
-): Promise<any> => {
-	return ebird.request({
-		url: `/ref/sppgroup/${speciesGrouping}`,
-		params,
-	});
+) => {
+	return ebird.get(`/ref/sppgroup/${speciesGrouping}`, { params });
 };

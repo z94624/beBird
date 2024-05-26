@@ -15,11 +15,8 @@ export const getTop100Api = (
 	month: string,
 	day: string,
 	params: PRODUCTGetTop100Req
-): Promise<any> => {
-	return ebird.request({
-		url: `/product/top100/${regionCode}/${year}/${month}/${day}`,
-		params,
-	});
+) => {
+	return ebird.get(`/product/top100/${regionCode}/${year}/${month}/${day}`, { params });
 };
 
 /**
@@ -36,11 +33,8 @@ export const getChecklistFeedOnDateApi = (
 	month: string,
 	day: string,
 	params: PRODUCTGetChecklistFeedOnDateReq
-): Promise<any> => {
-	return ebird.request({
-		url: `/product/lists/${regionCode}/${year}/${month}/${day}`,
-		params,
-	});
+) => {
+	return ebird.get(`/product/lists/${regionCode}/${year}/${month}/${day}`, { params });
 };
 
 /**
@@ -56,28 +50,22 @@ export const getRegionalStatisticsOnDateApi = (
 	year: string,
 	month: string,
 	day: string
-): Promise<any> => {
-	return ebird.request({
-		url: `/product/stats/${regionCode}/${year}/${month}/${day}`,
-	});
+) => {
+	return ebird.get(`/product/stats/${regionCode}/${year}/${month}/${day}`);
 };
 
 /**
  * Species List for a Region
  * @param regionCode The country, subnational1, or location code.
  */
-export const getSpeciesListForRegionApi = (regionCode: string): Promise<any> => {
-	return ebird.request({
-		url: `product/spplist/${regionCode}`,
-	});
+export const getSpeciesListForRegionApi = (regionCode: string) => {
+	return ebird.get(`product/spplist/${regionCode}`);
 };
 
 /**
  * View Checklist
  * @param subId The checklist identifier.
  */
-export const getViewChecklistApi = (subId: string): Promise<any> => {
-	return ebird.request({
-		url: `/product/checklist/view/${subId}`,
-	});
+export const getViewChecklistApi = (subId: string) => {
+	return ebird.get(`/product/checklist/view/${subId}`);
 };
