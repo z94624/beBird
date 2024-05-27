@@ -30,15 +30,18 @@
 					:icon-size="[14, 35]"
 					:icon-url="TWT"
 				/>
+				<l-tooltip>
+					{{ obs.comName }}
+				</l-tooltip>
 			</l-marker>
 		</template>
 	</Map>
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, ref, watch } from 'vue';
+	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
 	import { useDebounceFn } from '@vueuse/core';
-	import { LMarker, LIcon } from '@vue-leaflet/vue-leaflet';
+	import { LMarker, LIcon, LTooltip } from '@vue-leaflet/vue-leaflet';
 
 	import TWT from '@/assets/images/twt.svg';
 
@@ -49,9 +52,14 @@
 	} from '@/models/data/obs';
 
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
+	import { usePreferredLanguageStore } from '@/store/modules/language';
+	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	const { $notify } = useQuasarTool();
+	const preferredLanguageStore = usePreferredLanguageStore();
+	const { userLangCode } = toRefs(preferredLanguageStore);
+	const taxonomyStore = useTaxonomyStore();
 
 	const country = ref<string>(GeoDataEnum.COUNTRYCODE_OF_TAIWAN);
 	const region = ref<string>();

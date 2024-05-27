@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, ref, toRefs, watch } from 'vue';
-	import { usePreferredLanguages } from '@vueuse/core';
+	import { onMounted, ref, toRefs, watch } from 'vue';
 
+	import { usePreferredLanguageStore } from '@/store/modules/language';
 	import { useCountryRegionStore } from '@/store/modules/geodata';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 	import { QSelectOption } from 'quasar';
@@ -26,15 +26,12 @@
 		}
 	);
 
-	const userLangs = usePreferredLanguages();
+	const preferredLanguageStore = usePreferredLanguageStore();
+	const { userCountryCode } = toRefs(preferredLanguageStore);
 	const countryRegionStore = useCountryRegionStore();
 	const { countryOptions } = toRefs(countryRegionStore);
 
 	const selectedCountry = ref<QSelectOption>();
-
-	const userCountries = computed(() =>
-		userLangs.value.filter((lang) => lang.includes('-')).map((lang) => lang.split('-')[1])
-	);
 
 	watch(
 		() => props.country,
@@ -44,20 +41,14 @@
 		{ immediate: true }
 	);
 
-	watch(
-		userLangs,
-		() => {
-			if (!userCountries.value.includes(GeoDataEnum.COUNTRYCODE_OF_TAIWAN)) {
-				selectedCountry.value = countryOptions.value.find(
-					(country) => country.value === userCountries.value[0]
-				);
-			}
-		},
-		{ immediate: true, deep: true }
-	);
-
 	watch(selectedCountry, (nv) => {
 		emit('update:country', nv ? nv.value : GeoDataEnum.COUNTRYCODE_OF_TAIWAN);
+	});
+
+	onMounted(() => {
+		selectedCountry.value = countryOptions.value.find(
+			(country) => country.value === userCountryCode.value
+		);
 	});
 </script>
 
