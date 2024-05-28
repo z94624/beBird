@@ -9,7 +9,7 @@ export const useTaxonomyStore = defineStore('taxonomy', () => {
 	/**
 	 * 取得物種分類資訊
 	 * @param locale 語系代碼
-	 * @param species 物種代碼
+	 * @param species 物種代碼；comma separated
 	 * @returns 分類
 	 */
 	const getEbirdTaxonomyInfo = async (locale: LocaleEnum, species: string) => {
@@ -18,7 +18,7 @@ export const useTaxonomyStore = defineStore('taxonomy', () => {
 				locale,
 				species,
 			})
-		).then((data: IREFTAXGetEbirdTaxonomyRes) => {
+		).then((data: IREFTAXGetEbirdTaxonomyRes[]) => {
 			return Promise.resolve(data);
 		});
 	};

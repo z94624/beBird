@@ -1,6 +1,7 @@
 import { Notify } from 'quasar';
+import { IMap } from '@/models/common/base';
 
-const notificationMap: { [key: string]: number } = {};
+const notificationMap: IMap<number> = {};
 const timeout = 3000;
 
 export const useQuasarTool = () => {

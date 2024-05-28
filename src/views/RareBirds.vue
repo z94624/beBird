@@ -31,7 +31,7 @@
 					:icon-url="TWT"
 				/>
 				<l-tooltip>
-					{{ obs.comName }}
+					{{ userComNameDict[obs.speciesCode] ?? obs.comName }}
 				</l-tooltip>
 			</l-marker>
 		</template>
@@ -55,6 +55,8 @@
 	import { usePreferredLanguageStore } from '@/store/modules/language';
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
+	import { LocaleEnum } from '@/models/enum/ebirdEnum';
+	import { IMap } from '@/models/common/base';
 
 	const { $notify } = useQuasarTool();
 	const preferredLanguageStore = usePreferredLanguageStore();
@@ -65,20 +67,23 @@
 	const region = ref<string>();
 	const notableObsForm = ref(new DATAOBSGetRecentNotableObsInRegionReq());
 	const notableObsList = ref<IDATAOBSGetRecentNotableObsInRegionItem[]>([]);
+	const userComNameDict = ref<IMap<string>>({});
 
 	// 不重複座標清單
 	const pureObsList = computed(() => {
 		let pureList: IDATAOBSGetRecentNotableObsInRegionItem[] = [];
-		notableObsList.value.forEach((item) => {
+		notableObsList.value.forEach((obs) => {
 			let exist = pureList.find(
-				(pureItem) => pureItem.lat === item.lat && pureItem.lng === item.lng
+				(pureItem) => pureItem.lat === obs.lat && pureItem.lng === obs.lng
 			);
 			if (!exist) {
-				pureList.push(item);
+				pureList.push(obs);
 			}
 		});
 		return pureList;
 	});
+	// 不重複物種代碼列表
+	const pureSpeciesCodes = computed(() => pureObsList.value.map((obs) => obs.speciesCode));
 
 	watch(
 		[country, region, notableObsForm],
@@ -87,6 +92,22 @@
 		},
 		{ deep: true }
 	);
+
+	/**
+	 * 根據使用者語系，建立物種代碼對當地俗名字典
+	 */
+	watch(pureSpeciesCodes, (nv) => {
+		if (!nv.length) return;
+		taxonomyStore
+			.getEbirdTaxonomyInfo(userLangCode.value as LocaleEnum, nv.join(','))
+			.then((data) => {
+				$notify.success('成功：取得物種資訊');
+				console.log('speciesTaxonomies', data);
+				data.forEach((tax) => {
+					userComNameDict.value[tax.speciesCode] = tax.comName;
+				});
+			});
+	});
 
 	/**
 	 * 取得近期稀有鳥紀錄

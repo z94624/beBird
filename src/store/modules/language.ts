@@ -6,7 +6,7 @@ import { LocaleEnum } from '@/models/enum/ebirdEnum';
 import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 /**
- * 國家語系相關
+ * 使用者偏好國家語系相關
  */
 export const usePreferredLanguageStore = defineStore('preferredLanguage', () => {
 	// 使用者偏好語言
