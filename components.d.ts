@@ -12,9 +12,13 @@ declare module 'vue' {
     BaseSlider: typeof import('./src/components/common/Slider/src/BaseSlider.vue')['default']
     CountrySelect: typeof import('./src/components/common/Select/CountrySelect.vue')['default']
     DaysBackSlider: typeof import('./src/components/common/Slider/DaysBackSlider.vue')['default']
-    Map: typeof import('./src/components/common/Map.vue')['default']
+    Icon: typeof import('./src/components/common/Leaflet/BasicTypes/Icon.vue')['default']
+    Map: typeof import('./src/components/common/Leaflet/Map.vue')['default']
     RegionSelect: typeof import('./src/components/common/Select/RegionSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VlIcon: typeof import('./src/components/common/Leaflet/BasicTypes/VlIcon.vue')['default']
+    VlMap: typeof import('./src/components/common/Leaflet/VlMap.vue')['default']
+    VlTooltip: typeof import('./src/components/common/Leaflet/UILayers/VlTooltip.vue')['default']
   }
 }

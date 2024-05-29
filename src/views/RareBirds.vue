@@ -1,5 +1,5 @@
 <template>
-	<Map>
+	<VlMap>
 		<template #search-menu>
 			<q-form
 				class="q-gutter-md"
@@ -25,25 +25,20 @@
 				:key="oIdx"
 				:lat-lng="[obs.lat, obs.lng]"
 			>
-				<l-icon
-					:icon-anchor="[7, 35]"
-					:icon-size="[14, 35]"
-					:icon-url="TWT"
-				/>
-				<l-tooltip>
+				<VlIcon />
+
+				<VlTooltip permanent>
 					{{ userComNameDict[obs.speciesCode] ?? obs.comName }}
-				</l-tooltip>
+				</VlTooltip>
 			</l-marker>
 		</template>
-	</Map>
+	</VlMap>
 </template>
 
 <script lang="ts" setup>
 	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
 	import { useDebounceFn } from '@vueuse/core';
-	import { LMarker, LIcon, LTooltip } from '@vue-leaflet/vue-leaflet';
-
-	import TWT from '@/assets/images/twt.svg';
+	import { LMarker } from '@vue-leaflet/vue-leaflet';
 
 	import { getRecentNotableObsInRegionApi } from '@/api/data/obs';
 	import {
