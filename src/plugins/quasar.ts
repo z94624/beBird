@@ -28,6 +28,7 @@ export const setupQuasar = (app: App<Element>) => {
 				color: 'primary',
 			},
 			loading: {
+				delay: 300,
 				spinnerColor: 'secondary',
 				spinner: QSpinnerHourglass,
 			},

@@ -2,6 +2,7 @@
 	<BaseSelect
 		v-model="selectedRegion"
 		:options="regionOptions"
+		clearable
 		label="地區"
 	/>
 </template>
@@ -32,7 +33,7 @@
 
 	const selectedRegion = computed({
 		get: () => regionOptions.value.find((region) => region.value === props.region),
-		set: (rObj: any) => emit('update:region', rObj.value),
+		set: (rObj: any) => emit('update:region', rObj ? rObj.value : rObj),
 	});
 
 	/**

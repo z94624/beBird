@@ -64,7 +64,7 @@
 
 	const loading = ref(false);
 	const country = ref<string>(GeoDataEnum.COUNTRYCODE_OF_TAIWAN);
-	const region = ref<string>();
+	const region = ref<string | null>(null);
 	const notableObsForm = ref(new DATAOBSGetRecentNotableObsInRegionReq());
 	const notableObsList = ref<IDATAOBSGetRecentNotableObsInRegionItem[]>([]);
 	const userComNameDict = ref<IMap<string>>({});
