@@ -1,4 +1,4 @@
-import { Notify } from 'quasar';
+import { Loading, Notify, QLoadingShowOptions } from 'quasar';
 import { IMap } from '@/models/common/base';
 
 const notificationMap: IMap<number> = {};
@@ -68,7 +68,21 @@ export const useQuasarTool = () => {
 		},
 	};
 
+	/**
+	 * Loading
+	 * https://quasar.dev/quasar-plugins/loading
+	 */
+	const $loading = {
+		on: (options?: QLoadingShowOptions) => {
+			Loading.show(options);
+		},
+		off: () => {
+			Loading.hide();
+		},
+	};
+
 	return {
 		$notify,
+		$loading,
 	};
 };

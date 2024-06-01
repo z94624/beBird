@@ -47,7 +47,7 @@
 	 */
 	const updateRegionOptions = () => {
 		countryRegionStore
-			.getSubRegionListInfo(RegionTypeEnum.SUBNATIONAL_1, props.country)
+			.getSubRegionListInfo(RegionTypeEnum.SUBNATIONAL_1, props.country!)
 			.then((data: ISubRegionItem[]) => {
 				regionOptions.value = data.map((region) => ({
 					label: region.name,

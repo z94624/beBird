@@ -1,6 +1,6 @@
 import { App } from 'vue';
 
-import { Quasar, LoadingBar, Notify } from 'quasar';
+import { Quasar, LoadingBar, Notify, Loading, QSpinnerHourglass } from 'quasar';
 // Import Quasar css
 import 'quasar/src/css/index.sass';
 import MaterialIconSet from 'quasar/icon-set/material-icons';
@@ -12,7 +12,7 @@ import '@quasar/extras/material-icons-sharp/material-icons-sharp.css';
 
 export const setupQuasar = (app: App<Element>) => {
 	app.use(Quasar, {
-		plugins: { LoadingBar, Notify }, // import Quasar plugins and add here
+		plugins: { LoadingBar, Notify, Loading }, // import Quasar plugins and add here
 		iconSet: MaterialIconSet,
 		config: {
 			brand: {
@@ -26,6 +26,10 @@ export const setupQuasar = (app: App<Element>) => {
 			loadingBar: {
 				size: '3px',
 				color: 'primary',
+			},
+			loading: {
+				spinnerColor: 'secondary',
+				spinner: QSpinnerHourglass,
 			},
 		},
 	});

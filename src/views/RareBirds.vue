@@ -24,6 +24,7 @@
 				v-for="(obs, oIdx) in pureObsList"
 				:key="oIdx"
 				:lat-lng="[obs.lat, obs.lng]"
+				@ready="(e) => console.log(e)"
 			>
 				<VlIcon />
 
@@ -53,7 +54,7 @@
 	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 	import { IMap } from '@/models/common/base';
 
-	const { $notify } = useQuasarTool();
+	const { $notify, $loading } = useQuasarTool();
 	const preferredLanguageStore = usePreferredLanguageStore();
 	const { userLangCode } = toRefs(preferredLanguageStore);
 	const taxonomyStore = useTaxonomyStore();
@@ -92,6 +93,7 @@
 	 * 根據使用者語系，建立物種代碼對當地俗名字典
 	 */
 	watch(pureSpeciesCodes, (nv) => {
+		$loading.on();
 		if (!nv.length) return;
 		taxonomyStore
 			.getEbirdTaxonomyInfo(userLangCode.value as LocaleEnum, nv.join(','))
@@ -101,6 +103,12 @@
 				data.forEach((tax) => {
 					userComNameDict.value[tax.speciesCode] = tax.comName;
 				});
+			})
+			.catch(() => {
+				$notify.error('失敗：取得物種資訊');
+			})
+			.finally(() => {
+				$loading.off();
 			});
 	});
 
@@ -108,6 +116,7 @@
 	 * 取得近期稀有鳥紀錄
 	 */
 	const getRecentNotableObsInRegionInfo = () => {
+		$loading.on();
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
 			.then((data: IDATAOBSGetRecentNotableObsInRegionItem[]) => {
 				$notify.success('成功：取得近期稀有鳥紀錄');
@@ -117,7 +126,9 @@
 			.catch(() => {
 				$notify.error('失敗：取得近期稀有鳥紀錄');
 			})
-			.finally(() => {});
+			.finally(() => {
+				$loading.off();
+			});
 	};
 	// 防抖
 	const debouncedGetNotableObs = useDebounceFn(() => {
