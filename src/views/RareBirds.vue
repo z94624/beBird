@@ -10,6 +10,7 @@
 				<RegionSelect
 					v-model:region="region"
 					:country="country"
+					@loading="(status: boolean) => (loading = status)"
 				/>
 
 				<div>
@@ -17,6 +18,8 @@
 					<DaysBackSlider v-model="notableObsForm.back" />
 				</div>
 			</q-form>
+
+			<SubLoading :show="loading" />
 		</template>
 
 		<template #markers>
@@ -59,6 +62,7 @@
 	const { userLangCode } = toRefs(preferredLanguageStore);
 	const taxonomyStore = useTaxonomyStore();
 
+	const loading = ref(false);
 	const country = ref<string>(GeoDataEnum.COUNTRYCODE_OF_TAIWAN);
 	const region = ref<string>();
 	const notableObsForm = ref(new DATAOBSGetRecentNotableObsInRegionReq());

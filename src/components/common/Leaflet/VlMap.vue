@@ -1,6 +1,6 @@
 <template>
 	<div class="fullContainer relative">
-		<div class="searchMenuContainer shadow-3 rounded-borders">
+		<div class="searchMenuContainer shadow-3 rounded-borders relative">
 			<slot name="search-menu"></slot>
 		</div>
 

@@ -12,17 +12,20 @@
 
 	import { ISubRegionItem } from '@/models/ref/region';
 
+	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { useCountryRegionStore } from '@/store/modules/geodata';
 	import { RegionTypeEnum } from '@/models/enum/ebirdEnum';
 
 	const emit = defineEmits<{
 		(e: 'update:region', v: string): void;
+		(e: 'loading', v: boolean): void;
 	}>();
 	const props = defineProps<{
 		region?: string;
 		country?: string;
 	}>();
 
+	const { $notify } = useQuasarTool();
 	const countryRegionStore = useCountryRegionStore();
 
 	const regionOptions = ref<QSelectOption[]>([]);
@@ -46,13 +49,21 @@
 	 * 更新地區選項
 	 */
 	const updateRegionOptions = () => {
+		emit('loading', true);
 		countryRegionStore
 			.getSubRegionListInfo(RegionTypeEnum.SUBNATIONAL_1, props.country!)
 			.then((data: ISubRegionItem[]) => {
+				$notify.success('成功：更新地區');
 				regionOptions.value = data.map((region) => ({
 					label: region.name,
 					value: region.code,
 				}));
+			})
+			.catch(() => {
+				$notify.error('失敗：更新地區');
+			})
+			.finally(() => {
+				emit('loading', false);
 			});
 	};
 
