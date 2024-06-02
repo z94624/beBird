@@ -6,8 +6,8 @@
 
 		<div class="mapContainer">
 			<l-map
+				v-model:center="center"
 				ref="map"
-				:center="center"
 				:use-global-leaflet="false"
 				:zoom="8"
 				class="map"
@@ -44,11 +44,24 @@
 
 	watch(
 		coords,
-		(nv) => {
+		(nv, ov) => {
 			center.value = [nv.latitude, nv.longitude];
+			if (nv.latitude === ov.latitude && nv.longitude === ov.longitude) {
+				pause();
+			}
 		},
 		{ deep: true }
 	);
+
+	/**
+	 * 改變地圖中心
+	 * @param newCenter 地圖新中心
+	 */
+	const updateCenter = (newCenter: PointExpression) => {
+		center.value = newCenter;
+	};
+
+	defineExpose({ updateCenter });
 </script>
 
 <style lang="scss" scoped>

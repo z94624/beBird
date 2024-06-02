@@ -1,5 +1,5 @@
 <template>
-	<VlMap>
+	<VlMap ref="mapRef">
 		<template #search-menu>
 			<q-form
 				class="q-gutter-md"
@@ -27,7 +27,7 @@
 				v-for="(obs, oIdx) in pureObsList"
 				:key="oIdx"
 				:lat-lng="[obs.lat, obs.lng]"
-				@ready="(e) => console.log(e)"
+				@click="onClickMarker"
 			>
 				<VlIcon />
 
@@ -56,6 +56,7 @@
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 	import { IMap } from '@/models/common/base';
+	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
 
 	const { $notify, $loading } = useQuasarTool();
 	const preferredLanguageStore = usePreferredLanguageStore();
@@ -68,6 +69,8 @@
 	const notableObsForm = ref(new DATAOBSGetRecentNotableObsInRegionReq());
 	const notableObsList = ref<IDATAOBSGetRecentNotableObsInRegionItem[]>([]);
 	const userComNameDict = ref<IMap<string>>({});
+
+	const mapRef = ref();
 
 	// 不重複座標清單
 	const pureObsList = computed(() => {
@@ -138,6 +141,16 @@
 	const debouncedGetNotableObs = useDebounceFn(() => {
 		getRecentNotableObsInRegionInfo();
 	}, 1000);
+
+	/**
+	 * 選擇圖釘
+	 */
+	const onClickMarker = (e: MarkerClickEvent) => {
+		console.log('clickMarkerEvent', e);
+		const { latlng } = e;
+		// 圖釘置中
+		mapRef.value.updateCenter([latlng.lat, latlng.lng]);
+	};
 
 	onBeforeMount(() => {
 		getRecentNotableObsInRegionInfo();
