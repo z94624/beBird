@@ -1,7 +1,7 @@
 <template>
-	<l-tooltip
+	<l-popup
 		:="attrs"
-		:options="tooltipOptions"
+		:options="popupOptions"
 	>
 		<template
 			#[slot]
@@ -10,25 +10,24 @@
 		>
 			<slot :name="slot"></slot>
 		</template>
-	</l-tooltip>
+	</l-popup>
 </template>
 
 <script lang="ts" setup>
 	import { computed, useAttrs, useSlots } from 'vue';
-	import { LTooltip } from '@vue-leaflet/vue-leaflet';
-	import { TooltipOptions } from 'leaflet';
+	import { LPopup } from '@vue-leaflet/vue-leaflet';
+	import { PopupOptions } from 'leaflet';
 
 	const props = defineProps<{
-		permanent?: boolean;
-		options?: TooltipOptions;
+		options?: PopupOptions;
 	}>();
 
 	const attrs = useAttrs();
 	const slots = useSlots();
 
-	const tooltipOptions = computed(() => ({
-		offset: [0, -17],
-		permanent: props.permanent,
+	const popupOptions = computed(() => ({
+		offset: [0, -25],
+		closeButton: false,
 		...(props.options || {}),
 	}));
 </script>

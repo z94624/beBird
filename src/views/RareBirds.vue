@@ -34,6 +34,8 @@
 				<VlTooltip permanent>
 					{{ userComNameDict[obs.speciesCode] ?? obs.comName }}
 				</VlTooltip>
+
+				<VlPopup></VlPopup>
 			</l-marker>
 		</template>
 	</VlMap>
