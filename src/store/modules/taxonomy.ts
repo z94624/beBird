@@ -18,7 +18,7 @@ export const useTaxonomyStore = defineStore('taxonomy', () => {
 				locale,
 				species,
 			})
-		).then((data: IREFTAXGetEbirdTaxonomyRes[]) => {
+		).then((data) => {
 			return Promise.resolve(data);
 		});
 	};

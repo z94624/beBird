@@ -1,5 +1,9 @@
 import { RegionTypeEnum } from '@/models/enum/ebirdEnum';
-import { REFREGIONGetRegionInfoReq, REFREGIONGetSubRegionListReq } from '@/models/ref/region';
+import {
+	ISubRegionItem,
+	REFREGIONGetRegionInfoReq,
+	REFREGIONGetSubRegionListReq,
+} from '@/models/ref/region';
 import ebird from '@/plugins/axios';
 
 /**
@@ -22,5 +26,7 @@ export const getSubRegionListApi = (
 	parentRegionCode: string | 'world',
 	params: REFREGIONGetSubRegionListReq
 ) => {
-	return ebird.get(`/ref/region/list/${regionType}/${parentRegionCode}`, { params });
+	return ebird.get<ISubRegionItem[]>(`/ref/region/list/${regionType}/${parentRegionCode}`, {
+		params,
+	});
 };

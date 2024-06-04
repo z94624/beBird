@@ -1,39 +1,22 @@
-import { IResponse } from '@/models/common/api';
 import axios, { Axios, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 // 覆寫 Axios 型別 AxiosResponse<T> => IResponse<T>
 interface CustomAxios extends Axios {
-	get<T = any, R = IResponse<T>, D = any>(
-		url: string,
-		config?: AxiosRequestConfig<D>
-	): Promise<any>;
-	delete<T = any, R = IResponse<T>, D = any>(
-		url: string,
-		config?: AxiosRequestConfig<D>
-	): Promise<any>;
-	head<T = any, R = IResponse<T>, D = any>(
-		url: string,
-		config?: AxiosRequestConfig<D>
-	): Promise<any>;
-	options<T = any, R = IResponse<T>, D = any>(
-		url: string,
-		config?: AxiosRequestConfig<D>
-	): Promise<any>;
-	post<T = any, R = IResponse<T>, D = any>(
+	get<T = any, R = T, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+	delete<T = any, R = T, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+	head<T = any, R = T, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+	options<T = any, R = T, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+	post<T = any, R = T, D = any>(
 		url: string,
 		data?: D,
 		config?: AxiosRequestConfig<D>
-	): Promise<any>;
-	put<T = any, R = IResponse<T>, D = any>(
+	): Promise<R>;
+	put<T = any, R = T, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+	patch<T = any, R = T, D = any>(
 		url: string,
 		data?: D,
 		config?: AxiosRequestConfig<D>
-	): Promise<any>;
-	patch<T = any, R = IResponse<T>, D = any>(
-		url: string,
-		data?: D,
-		config?: AxiosRequestConfig<D>
-	): Promise<any>;
+	): Promise<R>;
 }
 
 // 建立 Axios 實例

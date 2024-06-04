@@ -1,5 +1,9 @@
 import { SpeciesGroupEnum } from '@/models/enum/ebirdEnum';
-import { REFTAXGetEbirdTaxonomyReq, REFTAXGetTaxonomicGroupsReq } from '@/models/ref/taxonomy';
+import {
+	IREFTAXGetEbirdTaxonomyRes,
+	REFTAXGetEbirdTaxonomyReq,
+	REFTAXGetTaxonomicGroupsReq,
+} from '@/models/ref/taxonomy';
 import ebird from '@/plugins/axios';
 
 /**
@@ -7,7 +11,7 @@ import ebird from '@/plugins/axios';
  * @param params Query parameters
  */
 export const getEbirdTaxonomyApi = (params: REFTAXGetEbirdTaxonomyReq) => {
-	return ebird.get('/ref/taxonomy/ebird', { params });
+	return ebird.get<IREFTAXGetEbirdTaxonomyRes[]>('/ref/taxonomy/ebird', { params });
 };
 
 /**

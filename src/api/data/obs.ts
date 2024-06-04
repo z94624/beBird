@@ -8,6 +8,7 @@ import {
 	DATAOBSGetRecentNotableObsInRegionReq,
 	DATAOBSGetRecentObsInRegionReq,
 	DATAOBSGetRecentObsOfSpeciesInRegionReq,
+	IDATAOBSGetRecentNotableObsInRegionItem,
 } from '@/models/data/obs';
 import ebird from '@/plugins/axios';
 
@@ -32,7 +33,10 @@ export const getRecentNotableObsInRegionApi = (
 	regionCode: string,
 	params: DATAOBSGetRecentNotableObsInRegionReq
 ) => {
-	return ebird.get(`/data/obs/${regionCode}/recent/notable`, { params });
+	return ebird.get<IDATAOBSGetRecentNotableObsInRegionItem[]>(
+		`/data/obs/${regionCode}/recent/notable`,
+		{ params }
+	);
 };
 
 /**
