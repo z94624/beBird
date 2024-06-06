@@ -7,21 +7,22 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseButton: typeof import('./src/components/common/button/src/BaseButton.vue')['default']
     BaseCountrySelect: typeof import('./src/components/common/Select/src/BaseCountrySelect.vue')['default']
-    BaseSelect: typeof import('./src/components/common/Select/src/BaseSelect.vue')['default']
-    BaseSlider: typeof import('./src/components/common/Slider/src/BaseSlider.vue')['default']
-    CountrySelect: typeof import('./src/components/common/Select/CountrySelect.vue')['default']
-    DaysBackSlider: typeof import('./src/components/common/Slider/DaysBackSlider.vue')['default']
+    BaseSelect: typeof import('./src/components/common/select/src/BaseSelect.vue')['default']
+    BaseSlider: typeof import('./src/components/common/slider/src/BaseSlider.vue')['default']
+    CountrySelect: typeof import('./src/components/common/select/CountrySelect.vue')['default']
+    DaysBackSlider: typeof import('./src/components/common/slider/DaysBackSlider.vue')['default']
     Icon: typeof import('./src/components/common/Leaflet/BasicTypes/Icon.vue')['default']
     Map: typeof import('./src/components/common/Leaflet/Map.vue')['default']
     PartLoading: typeof import('./src/components/common/Loading/PartLoading.vue')['default']
-    RegionSelect: typeof import('./src/components/common/Select/RegionSelect.vue')['default']
+    RegionSelect: typeof import('./src/components/common/select/RegionSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SubLoading: typeof import('./src/components/common/Loading/SubLoading.vue')['default']
-    VlIcon: typeof import('./src/components/common/Leaflet/BasicTypes/VlIcon.vue')['default']
-    VlMap: typeof import('./src/components/common/Leaflet/VlMap.vue')['default']
-    VlPopup: typeof import('./src/components/common/Leaflet/UILayers/VlPopup.vue')['default']
-    VlTooltip: typeof import('./src/components/common/Leaflet/UILayers/VlTooltip.vue')['default']
+    SubLoading: typeof import('./src/components/common/loading/SubLoading.vue')['default']
+    VlIcon: typeof import('./src/components/common/leaflet/basicTypes/VlIcon.vue')['default']
+    VlMap: typeof import('./src/components/common/leaflet/VlMap.vue')['default']
+    VlPopup: typeof import('./src/components/common/leaflet/uiLayers/VlPopup.vue')['default']
+    VlTooltip: typeof import('./src/components/common/leaflet/uiLayers/VlTooltip.vue')['default']
   }
 }

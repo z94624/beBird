@@ -11,7 +11,7 @@
 	import Layout from '@/layout/Layout.vue';
 	import LayoutM from '@/layout/Layout-M.vue';
 
-	import { usePlatform } from '@/composables/platform';
+	import { usePlatform } from '@/hooks/platform';
 
 	const { isMobile } = usePlatform();
 </script>

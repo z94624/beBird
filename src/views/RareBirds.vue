@@ -58,7 +58,7 @@
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 	import { IMap } from '@/models/common/base';
-	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
+	import { MarkerClickEvent } from '@/components/common/leaflet/types';
 
 	const { $notify, $loading } = useQuasarTool();
 	const preferredLanguageStore = usePreferredLanguageStore();

@@ -13,6 +13,13 @@
 .bg-primary_e {
 	background: var(--q-primary_e) !important;
 }
+.text-primary-bg_e {
+	color: var(--q-primary-bg_e) !important;
+}
+// eBird 淺色背景的按鈕背景色
+.bg-primary-bg_e {
+	background: var(--q-primary-bg_e) !important;
+}
 
 // eBird 深色背景的字體色
 .text-primaryLight_e {
@@ -44,4 +51,12 @@
 }
 .bg-secondaryLight_e {
 	background: var(--q-secondaryLight_e) !important;
+}
+
+.text-accent-bg {
+	color: var(--q-accent-bg) !important;
+}
+// eBird 淺色背景的按鈕背景色
+.bg-accent-bg {
+	background: var(--q-accent-bg) !important;
 }

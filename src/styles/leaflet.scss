@@ -8,3 +8,13 @@
 		}
 	}
 }
+
+// Leaflet Popup
+.leaflet-popup {
+	.leaflet-popup-content-wrapper {
+		.leaflet-popup-content {
+			margin: 0;
+			width: unset !important;
+		}
+	}
+}

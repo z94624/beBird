@@ -18,10 +18,12 @@ export const setupQuasar = (app: App<Element>) => {
 			brand: {
 				primaryDark_e: '#385b75',
 				primary_e: '#40718f',
+				'primary-bg_e': '#f2fafd',
 				primaryLight_e: '#b4cfe1',
 				secondaryDark_e: '#2e261f',
 				secondary_e: '#6f6e67',
 				secondaryLight_e: '#dcdcd5',
+				'accent-bg': '#ecf9eb',
 			},
 			loadingBar: {
 				size: '3px',
