@@ -1,0 +1,20 @@
+// 俗名字體
+.comName-font {
+	// Tailwind: text-xs
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+	font-weight: 700;
+	color: var(--q-primary_e);
+	text-wrap: pretty;
+	text-align: left;
+}
+// 學名字體
+.sciName-font {
+	// Tailwind: text-lg
+	font-size: 0.75rem;
+	line-height: 1rem;
+	color: var(--q-secondary_e);
+	font-style: italic;
+	text-wrap: pretty;
+	text-align: left;
+}

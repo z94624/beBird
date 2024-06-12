@@ -35,7 +35,38 @@
 					{{ userComNameDict[obs.speciesCode] ?? obs.comName }}
 				</VlTooltip>
 
-				<VlPopup></VlPopup>
+				<VlPopup>
+					<template #location>
+						{{ obs.locName }}
+					</template>
+
+					<template #content>
+						<BaseButton
+							:href="`https://ebird.org/species/${obs.speciesCode}`"
+							no-caps
+							push
+							target="_blank"
+						>
+							<q-badge
+								:label="`×${obs.howMany}`"
+								color="warning"
+								floating
+								rounded
+							/>
+
+							<q-tooltip anchor="top middle">{{ obs.comName }}</q-tooltip>
+
+							<div class="flex items-baseline gap-1">
+								<div class="comName-font">
+									{{ userComNameDict[obs.speciesCode] }}
+								</div>
+								<div class="sciName-font">
+									{{ obs.sciName }}
+								</div>
+							</div>
+						</BaseButton>
+					</template>
+				</VlPopup>
 			</l-marker>
 		</template>
 	</VlMap>

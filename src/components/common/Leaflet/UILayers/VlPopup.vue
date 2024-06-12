@@ -5,20 +5,26 @@
 	>
 		<template #default>
 			<q-card
-				class="popupCard"
+				class="popupCard p-2 flex flex-col gap-2"
 				flat
 			>
-				<q-card-section>
-					<slot name="location"></slot>
+				<q-card-section class="!p-0">
+					<div class="ellipsis-2-lines">
+						<slot name="location"></slot>
+					</div>
 				</q-card-section>
 
-				<q-card-section>
+				<q-card-section class="!p-0">
 					<slot name="content"></slot>
 				</q-card-section>
 
-				<q-card-actions class="no-wrap">
+				<q-card-actions
+					align="center"
+					class="!p-0 no-wrap"
+				>
 					<slot name="buttons">
 						<BaseButton
+							class="flex-1"
 							color="info"
 							dense
 							icon="o_info"
