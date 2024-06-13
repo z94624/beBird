@@ -1,11 +1,15 @@
 <template>
 	<q-btn
 		:="attrs"
+		:style="{
+			borderRadius: hasCustomBorderRadius && '3px',
+		}"
 		:text-color="textColor"
 		class="baseButton"
+		no-caps
 		no-wrap
 		padding=".85em 1em"
-		style="border: 1px solid transparent; border-radius: 3px"
+		style="border: 1px solid transparent"
 	>
 		<template
 			#[slot]
@@ -19,11 +23,14 @@
 
 <script lang="ts" setup>
 	import { QBtn, QBtnProps } from 'quasar';
-	import { useAttrs, useSlots } from 'vue';
+	import { computed, useAttrs, useSlots } from 'vue';
 
 	const props = withDefaults(
 		defineProps<{
 			textColor?: string;
+			rounded?: boolean;
+			square?: boolean;
+			round?: boolean;
 		}>(),
 		{
 			textColor: 'white',
@@ -32,6 +39,8 @@
 
 	const attrs: Partial<QBtnProps> = useAttrs();
 	const slots: Partial<QBtn> = useSlots();
+
+	const hasCustomBorderRadius = computed(() => !props.rounded && !props.square && !props.round);
 </script>
 
 <style lang="scss" scoped>

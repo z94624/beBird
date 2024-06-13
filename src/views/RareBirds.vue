@@ -41,12 +41,7 @@
 					</template>
 
 					<template #content>
-						<BaseButton
-							:href="`https://ebird.org/species/${obs.speciesCode}`"
-							no-caps
-							push
-							target="_blank"
-						>
+						<HrefButton :href="`https://ebird.org/species/${obs.speciesCode}`">
 							<q-badge
 								:label="`×${obs.howMany}`"
 								color="warning"
@@ -56,7 +51,7 @@
 
 							<q-tooltip anchor="top middle">{{ obs.comName }}</q-tooltip>
 
-							<div class="flex items-baseline gap-1">
+							<div class="flex justify-center items-baseline gap-1">
 								<div class="comName-font">
 									{{ userComNameDict[obs.speciesCode] }}
 								</div>
@@ -64,7 +59,14 @@
 									{{ obs.sciName }}
 								</div>
 							</div>
-						</BaseButton>
+						</HrefButton>
+					</template>
+
+					<template #remark>
+						<div class="flex justify-between">
+							<div>{{ obs.obsDt }}</div>
+							<div>{{ getDateDiffStr(obs.obsDt) }}</div>
+						</div>
 					</template>
 				</VlPopup>
 			</l-marker>
@@ -90,6 +92,7 @@
 	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 	import { IMap } from '@/models/common/base';
 	import { MarkerClickEvent } from '@/components/common/leaflet/types';
+	import { getDateDiffFromNow } from '@/utils/ebird';
 
 	const { $notify, $loading } = useQuasarTool();
 	const preferredLanguageStore = usePreferredLanguageStore();
@@ -183,6 +186,14 @@
 		const { latlng } = e;
 		// 圖釘置中
 		mapRef.value.updateCenter([latlng.lat, latlng.lng]);
+	};
+
+	/**
+	 * 取得相隔天數字串
+	 */
+	const getDateDiffStr = (obsDt: string): string => {
+		const days = getDateDiffFromNow(obsDt);
+		return days ? `${days} 天前` : '今天';
 	};
 
 	onBeforeMount(() => {

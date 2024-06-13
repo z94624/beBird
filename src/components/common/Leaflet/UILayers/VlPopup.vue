@@ -5,22 +5,22 @@
 	>
 		<template #default>
 			<q-card
-				class="popupCard p-2 flex flex-col gap-2"
+				class="popupCard flex flex-col gap-2"
 				flat
 			>
-				<q-card-section class="!p-0">
+				<q-card-section class="!px-2 !pt-2 !pb-0">
 					<div class="ellipsis-2-lines">
 						<slot name="location"></slot>
 					</div>
 				</q-card-section>
 
-				<q-card-section class="!p-0">
+				<q-card-section class="!px-2 !py-0">
 					<slot name="content"></slot>
 				</q-card-section>
 
 				<q-card-actions
 					align="center"
-					class="!p-0 no-wrap"
+					class="!px-2 !py-0 no-wrap"
 				>
 					<slot name="buttons">
 						<BaseButton
@@ -40,6 +40,14 @@
 						/>
 					</slot>
 				</q-card-actions>
+
+				<q-separator />
+
+				<q-card-section class="!px-2 !pt-0 !pb-2">
+					<div class="remark">
+						<slot name="remark"></slot>
+					</div>
+				</q-card-section>
 			</q-card>
 		</template>
 	</l-popup>
@@ -68,5 +76,11 @@
 <style lang="scss" scoped>
 	.popupCard {
 		border-radius: 12px;
+
+		.remark {
+			font-size: 0.625rem;
+			line-height: 0.75rem;
+			color: var(--q-secondaryLight_e);
+		}
 	}
 </style>
