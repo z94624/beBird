@@ -35,7 +35,7 @@
 					{{ userComNameDict[obs.speciesCode] ?? obs.comName }}
 				</VlTooltip>
 
-				<VlPopup>
+				<VlPopup :navigation-url="getGoogleMapsPlaceURL(obs.lat, obs.lng)">
 					<template #location>
 						{{ obs.locName }}
 					</template>
@@ -92,7 +92,7 @@
 	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 	import { IMap } from '@/models/common/base';
 	import { MarkerClickEvent } from '@/components/common/leaflet/types';
-	import { getDateDiffFromNow } from '@/utils/ebird';
+	import { getDateDiffFromNow, getGoogleMapsPlaceURL } from '@/utils/ebird';
 
 	const { $notify, $loading } = useQuasarTool();
 	const preferredLanguageStore = usePreferredLanguageStore();

@@ -31,7 +31,8 @@
 							label="細節"
 							size="sm"
 						/>
-						<BaseButton
+						<HrefButton
+							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
 							color="positive"
 							dense
@@ -61,6 +62,7 @@
 
 	const props = defineProps<{
 		options?: PopupOptions;
+		navigationUrl?: string;
 	}>();
 
 	const attrs = useAttrs();

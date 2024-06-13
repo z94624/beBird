@@ -22,3 +22,24 @@ export function enumToMap<E>(enumType: E & object): { [key: string]: E[keyof E] 
 export function enumKeysToArray<E>(enumType: E & object): string[] {
 	return Object.keys(enumType).filter((key) => isNaN(Number(key)));
 }
+
+/**
+ * 經緯度數轉換
+ * Decimal Degrees(DD) => Degrees, minutes and Seconds(DMS)
+ */
+export const convertDDToDMS = (
+	dd: number
+): {
+	d: number;
+	m: number;
+	s: number;
+} => {
+	const d = Math.floor(dd);
+
+	const minfloat = (dd - d) * 60;
+	const m = Math.floor(minfloat);
+
+	const s = (minfloat - m) * 60;
+
+	return { d, m, s };
+};
