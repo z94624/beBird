@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BaseButton: typeof import('./src/components/common/button/src/BaseButton.vue')['default']
     BaseCountrySelect: typeof import('./src/components/common/Select/src/BaseCountrySelect.vue')['default']
+    BaseDialog: typeof import('./src/components/common/dialog/BaseDialog.vue')['default']
     BaseSelect: typeof import('./src/components/common/select/src/BaseSelect.vue')['default']
     BaseSlider: typeof import('./src/components/common/slider/src/BaseSlider.vue')['default']
     CountrySelect: typeof import('./src/components/common/select/CountrySelect.vue')['default']
@@ -17,6 +18,7 @@ declare module 'vue' {
     Icon: typeof import('./src/components/common/Leaflet/BasicTypes/Icon.vue')['default']
     Map: typeof import('./src/components/common/Leaflet/Map.vue')['default']
     PartLoading: typeof import('./src/components/common/Loading/PartLoading.vue')['default']
+    RbMarkerDetailDialog: typeof import('./src/components/rareBirds/RbMarkerDetailDialog.vue')['default']
     RegionSelect: typeof import('./src/components/common/select/RegionSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

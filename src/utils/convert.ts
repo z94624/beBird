@@ -1,3 +1,7 @@
+import { colors } from 'quasar';
+
+const { lighten, brightness, getPaletteColor } = colors;
+
 /**
  * 把 Enum 轉換成物件
  * @param enumType
@@ -42,4 +46,14 @@ export const convertDDToDMS = (
 	const s = (minfloat - m) * 60;
 
 	return { d, m, s };
+};
+
+/**
+ * 背景 <=> 字體 對比色
+ */
+export const getContrastColor = (color: string, mode: 'hex' | 'palette' = 'hex') => {
+	const modeColor = mode === 'palette' ? getPaletteColor(color) : color;
+	return brightness(modeColor || '#000') < 128
+		? lighten(modeColor || '#000', 85)
+		: lighten(modeColor || '#000', -85);
 };

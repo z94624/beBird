@@ -30,6 +30,7 @@
 							icon="o_info"
 							label="細節"
 							size="sm"
+							@click="emit('detail')"
 						/>
 						<HrefButton
 							:href="navigationUrl"
@@ -59,6 +60,10 @@
 	import { LPopup } from '@vue-leaflet/vue-leaflet';
 	import { PopupOptions } from 'leaflet';
 	import { mdiCarArrowRight } from '@quasar/extras/mdi-v7';
+
+	const emit = defineEmits<{
+		(e: 'detail'): void;
+	}>();
 
 	const props = defineProps<{
 		options?: PopupOptions;

@@ -35,7 +35,10 @@
 					{{ userComNameDict[obs.speciesCode] ?? obs.comName }}
 				</VlTooltip>
 
-				<VlPopup :navigation-url="getGoogleMapsPlaceURL(obs.lat, obs.lng)">
+				<VlPopup
+					:navigation-url="getGoogleMapsPlaceURL(obs.lat, obs.lng)"
+					@detail="onOpenRbMarkerDetailDialog"
+				>
 					<template #location>
 						{{ obs.locName }}
 					</template>
@@ -72,6 +75,8 @@
 			</l-marker>
 		</template>
 	</VlMap>
+
+	<RbMarkerDetailDialog ref="rbMarkerDetailDialogRef" />
 </template>
 
 <script lang="ts" setup>
@@ -107,6 +112,7 @@
 	const userComNameDict = ref<IMap<string>>({});
 
 	const mapRef = ref();
+	const rbMarkerDetailDialogRef = ref();
 
 	// 不重複座標清單
 	const pureObsList = computed(() => {
@@ -194,6 +200,13 @@
 	const getDateDiffStr = (obsDt: string): string => {
 		const days = getDateDiffFromNow(obsDt);
 		return days ? `${days} 天前` : '今天';
+	};
+
+	/**
+	 * 開啟細節跳窗
+	 */
+	const onOpenRbMarkerDetailDialog = () => {
+		rbMarkerDetailDialogRef.value.open();
 	};
 
 	onBeforeMount(() => {
