@@ -12,6 +12,7 @@
 						icon="close"
 						padding
 						round
+						@click="emit('close')"
 					/>
 				</q-toolbar>
 			</slot>
@@ -30,6 +31,10 @@
 <script lang="ts" setup>
 	import { computed, useAttrs, useSlots } from 'vue';
 	import { QDialog, QDialogProps } from 'quasar';
+
+	const emit = defineEmits<{
+		(e: 'close'): void;
+	}>();
 
 	const props = defineProps<{
 		fullscreen?: boolean; // 全螢幕模式

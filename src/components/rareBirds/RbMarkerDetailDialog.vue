@@ -1,17 +1,16 @@
 <template>
-	<BaseDialog v-model="isOpen"></BaseDialog>
+	<BaseDialog
+		v-model="isOpen"
+		@close="close"
+	>
+		<template #title></template>
+	</BaseDialog>
 </template>
 
 <script lang="ts" setup>
-	const isOpen = ref(false);
+	import { useDialog } from '@/hooks/dialog';
 
-	const open = () => {
-		isOpen.value = true;
-	};
-
-	const close = () => {
-		isOpen.value = false;
-	};
+	const { isOpen, open, close } = useDialog();
 
 	defineExpose({ open, close });
 </script>
