@@ -32,12 +32,12 @@
 				<VlIcon />
 
 				<VlTooltip permanent>
-					{{ userComNameDict[obs.speciesCode] ?? obs.comName }}
+					{{ userComNameDict[obs.speciesCode]?.comName ?? obs.comName }}
 				</VlTooltip>
 
 				<VlPopup
 					:navigation-url="getGoogleMapsPlaceURL(obs.lat, obs.lng)"
-					@detail="onOpenRbMarkerDetailDialog"
+					@detail="onOpenRbMarkerDetailDialog(obs)"
 				>
 					<template #location>
 						{{ obs.locName }}
@@ -56,7 +56,7 @@
 
 							<div class="flex justify-center items-baseline gap-1">
 								<div class="comName-font">
-									{{ userComNameDict[obs.speciesCode] }}
+									{{ userComNameDict[obs.speciesCode]?.comName ?? obs.comName }}
 								</div>
 								<div class="sciName-font">
 									{{ obs.sciName }}
@@ -89,6 +89,7 @@
 		DATAOBSGetRecentNotableObsInRegionReq,
 		IDATAOBSGetRecentNotableObsInRegionItem,
 	} from '@/models/data/obs';
+	import { IREFTAXGetEbirdTaxonomyRes } from '@/models/ref/taxonomy';
 
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { usePreferredLanguageStore } from '@/store/modules/language';
@@ -109,7 +110,7 @@
 	const region = ref<string | null>(null);
 	const notableObsForm = ref(new DATAOBSGetRecentNotableObsInRegionReq());
 	const notableObsList = ref<IDATAOBSGetRecentNotableObsInRegionItem[]>([]);
-	const userComNameDict = ref<IMap<string>>({});
+	const userComNameDict = ref<IMap<IREFTAXGetEbirdTaxonomyRes>>({});
 
 	const mapRef = ref();
 	const rbMarkerDetailDialogRef = ref();
@@ -150,7 +151,7 @@
 				$notify.success('成功：取得物種資訊');
 				console.log('speciesTaxonomies', data);
 				data.forEach((tax) => {
-					userComNameDict.value[tax.speciesCode] = tax.comName;
+					userComNameDict.value[tax.speciesCode] = tax;
 				});
 			})
 			.catch(() => {
@@ -205,8 +206,8 @@
 	/**
 	 * 開啟細節跳窗
 	 */
-	const onOpenRbMarkerDetailDialog = () => {
-		rbMarkerDetailDialogRef.value.open();
+	const onOpenRbMarkerDetailDialog = (obs: IDATAOBSGetRecentNotableObsInRegionItem) => {
+		rbMarkerDetailDialogRef.value.open(obs, userComNameDict.value);
 	};
 
 	onBeforeMount(() => {

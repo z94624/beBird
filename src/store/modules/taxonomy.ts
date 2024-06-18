@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
 import { getEbirdTaxonomyApi } from '@/api/ref/taxonomy';
@@ -6,6 +7,8 @@ import { IREFTAXGetEbirdTaxonomyRes, REFTAXGetEbirdTaxonomyReq } from '@/models/
 import { LocaleEnum } from '@/models/enum/ebirdEnum';
 
 export const useTaxonomyStore = defineStore('taxonomy', () => {
+	const taxInfo = ref<IREFTAXGetEbirdTaxonomyRes[]>([]);
+
 	/**
 	 * 取得物種分類資訊
 	 * @param locale 語系代碼
@@ -19,11 +22,13 @@ export const useTaxonomyStore = defineStore('taxonomy', () => {
 				species,
 			})
 		).then((data) => {
+			taxInfo.value = data;
 			return Promise.resolve(data);
 		});
 	};
 
 	return {
 		getEbirdTaxonomyInfo,
+		taxInfo,
 	};
 });

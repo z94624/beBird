@@ -3,9 +3,11 @@
 		<q-card class="w-[75%]">
 			<slot name="header">
 				<q-toolbar class="text-primary bg-secondary">
+					<slot name="title-before"></slot>
 					<q-toolbar-title>
 						<slot name="title"></slot>
 					</q-toolbar-title>
+					<slot name="title-after"></slot>
 
 					<BaseButton
 						flat
@@ -18,7 +20,9 @@
 			</slot>
 
 			<slot name="body">
-				<q-card-section></q-card-section>
+				<q-card-section>
+					<slot name="content"></slot>
+				</q-card-section>
 			</slot>
 
 			<slot name="actions">

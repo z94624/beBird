@@ -51,6 +51,7 @@ module.exports = {
 				extendDefaults: true,
 				types: {
 					'{}': false,
+					Function: false,
 				},
 			},
 		],

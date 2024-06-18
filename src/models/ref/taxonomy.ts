@@ -30,12 +30,15 @@ export interface IREFTAXGetEbirdTaxonomyRes {
 	category: TaxonomyCategoryEnum;
 	comName: string;
 	comNameCodes: string[];
+	// 科
 	familyCode: string;
 	familyComName: string;
 	familySciName: string;
+	// 目
 	order: string;
 	sciName: string;
 	sciNameCodes: string[];
+	// 種
 	speciesCode: string;
 	taxonOrder: number;
 }
