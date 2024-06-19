@@ -36,7 +36,7 @@
 		}>(),
 		{
 			textColor: 'white',
-			color: getContrastColor('white', 'palette'),
+			color: getContrastColor('white'),
 			padding: '.85em 1em',
 		}
 	);
@@ -49,8 +49,8 @@
 			...props,
 			...attrs,
 
-			color: props.color || getContrastColor(props.textColor, 'palette'),
-			textColor: props.textColor || getContrastColor(props.color, 'palette'),
+			color: props.color || getContrastColor(props.textColor),
+			textColor: props.textColor || getContrastColor(props.color),
 			padding: typeof props.padding === 'boolean' ? undefined : props.padding,
 		};
 	});

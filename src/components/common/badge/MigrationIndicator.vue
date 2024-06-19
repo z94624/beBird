@@ -47,7 +47,7 @@
 			case MigrationStatusEnum.EXOTIC:
 				return '#B200ED'; // Violet
 			default:
-				return 'var(--q-primary)';
+				return 'primary';
 		}
 	});
 </script>

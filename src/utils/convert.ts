@@ -1,4 +1,5 @@
 import { colors } from 'quasar';
+import { isHexColor } from './common';
 
 const { lighten, brightness, getPaletteColor } = colors;
 
@@ -51,9 +52,9 @@ export const convertDDToDMS = (
 /**
  * 背景 <=> 字體 對比色
  */
-export const getContrastColor = (color: string, mode: 'hex' | 'palette' = 'hex') => {
-	const modeColor = mode === 'palette' ? getPaletteColor(color) : color;
-	return brightness(modeColor || '#000') < 128
-		? lighten(modeColor || '#000', 85)
-		: lighten(modeColor || '#000', -85);
+export const getContrastColor = (color: string) => {
+	const hexColor = isHexColor(color) ? color : getPaletteColor(color);
+	return brightness(hexColor || '#000') < 128
+		? lighten(hexColor || '#000', 85)
+		: lighten(hexColor || '#000', -85);
 };
