@@ -5,15 +5,41 @@
 	>
 		<template #title>
 			<div class="flex no-wrap gap-1">
-				<div class="userComName text-4xl text-primary_e">{{ userComName }}</div>
+				<div class="text-3xl">{{ userComName }}</div>
 				<div class="flex flex-col">
-					<div class="sciName text-sm text-secondary_e">{{ obs?.sciName ?? '' }}</div>
-					<div class="comName text-sm text-secondary_e">{{ obs?.comName ?? '' }}</div>
+					<div class="text-xs italic">{{ obs?.sciName ?? '' }}</div>
+					<div class="text-xs">{{ obs?.comName ?? '' }}</div>
 				</div>
 			</div>
 		</template>
 
-		<template #content></template>
+		<template #content>
+			<BaseTabs
+				v-model="tab"
+				align="justify"
+				dense
+			>
+				<q-tab
+					icon="list_alt"
+					name="list"
+				/>
+				<q-tab
+					icon="share"
+					name="share"
+				/>
+			</BaseTabs>
+
+			<q-tab-panels
+				v-model="tab"
+				animated
+				keep-alive
+			>
+				<q-tab-panel name="list">
+					<RbMarkerDetailList />
+				</q-tab-panel>
+				<q-tab-panel name="share"></q-tab-panel>
+			</q-tab-panels>
+		</template>
 	</BaseDialog>
 </template>
 
@@ -30,6 +56,7 @@
 
 	const obs = ref<IDATAOBSGetRecentNotableObsInRegionItem>();
 	const userComNameDict = ref<IMap<IREFTAXGetEbirdTaxonomyRes>>();
+	const tab = ref('list');
 
 	// 當地俗名
 	const userComName = computed(() => {
@@ -47,11 +74,4 @@
 	defineExpose({ open, close });
 </script>
 
-<style lang="scss" scoped>
-	.userComName {
-		font-weight: 700;
-	}
-	.sciName {
-		font-style: italic;
-	}
-</style>
+<style lang="scss" scoped></style>

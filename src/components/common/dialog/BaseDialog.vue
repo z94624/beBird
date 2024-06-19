@@ -2,7 +2,7 @@
 	<q-dialog :="getBindingValues">
 		<q-card class="w-[75%]">
 			<slot name="header">
-				<q-toolbar class="text-primary bg-secondary">
+				<q-toolbar class="text-white bg-primaryDark_e">
 					<slot name="title-before"></slot>
 					<q-toolbar-title>
 						<slot name="title"></slot>
@@ -20,9 +20,7 @@
 			</slot>
 
 			<slot name="body">
-				<q-card-section>
-					<slot name="content"></slot>
-				</q-card-section>
+				<slot name="content"></slot>
 			</slot>
 
 			<slot name="actions">
