@@ -14,6 +14,7 @@ declare module 'vue' {
     BaseSelect: typeof import('./src/components/common/select/src/BaseSelect.vue')['default']
     BaseSlider: typeof import('./src/components/common/slider/src/BaseSlider.vue')['default']
     BaseTabs: typeof import('./src/components/common/tabs/src/BaseTabs.vue')['default']
+    Checklist: typeof import('./src/components/common/list/Checklist.vue')['default']
     CountrySelect: typeof import('./src/components/common/select/CountrySelect.vue')['default']
     DaysBackSlider: typeof import('./src/components/common/slider/DaysBackSlider.vue')['default']
     HrefButton: typeof import('./src/components/common/button/HrefButton.vue')['default']

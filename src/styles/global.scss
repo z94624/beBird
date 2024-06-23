@@ -2,3 +2,7 @@
  * 來源：https://ithelp.ithome.com.tw/articles/10301528
  * Only for defining SCSS Variables, @mixin and @extend...
  */
+
+@mixin border($thick: 1px, $style: solid) {
+	border: $thick $style var(--q-line_e);
+}

@@ -35,7 +35,7 @@
 				keep-alive
 			>
 				<q-tab-panel name="list">
-					<RbMarkerDetailList :subId="obs?.subId" />
+					<RbMarkerDetailList :notableObs="obs" />
 				</q-tab-panel>
 				<q-tab-panel name="share"></q-tab-panel>
 			</q-tab-panels>

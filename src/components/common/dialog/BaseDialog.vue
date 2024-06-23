@@ -23,8 +23,10 @@
 				<slot name="content"></slot>
 			</slot>
 
-			<slot name="actions">
-				<q-card-actions></q-card-actions>
+			<slot name="footer">
+				<q-card-actions v-if="$slots.actions">
+					<slot name="actions"></slot>
+				</q-card-actions>
 			</slot>
 		</q-card>
 	</q-dialog>

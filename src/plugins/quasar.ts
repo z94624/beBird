@@ -23,6 +23,7 @@ export const setupQuasar = (app: App<Element>) => {
 				secondaryDark_e: '#2e261f',
 				secondary_e: '#6f6e67',
 				secondaryLight_e: '#dcdcd5',
+				line_e: '#f4f3f1',
 				'accent-bg': '#ecf9eb',
 			},
 			loadingBar: {

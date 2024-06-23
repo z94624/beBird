@@ -1,14 +1,19 @@
 <template>
-	<div></div>
+	<Checklist
+		:info="checklistInfo || []"
+		:notableSpeciesCode="notableObs?.speciesCode"
+	/>
 </template>
 
 <script lang="ts" setup>
 	import { onMounted, toRefs } from 'vue';
 
+	import { IDATAOBSGetRecentNotableObsInRegionItem } from '@/models/data/obs';
+
 	import { useProductStore } from '@/store/modules/product';
 
 	const props = defineProps<{
-		subId?: string;
+		notableObs?: IDATAOBSGetRecentNotableObsInRegionItem;
 	}>();
 
 	const productStore = useProductStore();
@@ -16,8 +21,8 @@
 
 	onMounted(() => {
 		// 取得記錄清單詳細資訊
-		if (props.subId) {
-			productStore.getViewChecklistInfo(props.subId);
+		if (props.notableObs) {
+			productStore.getViewChecklistInfo(props.notableObs.subId);
 		}
 	});
 </script>
