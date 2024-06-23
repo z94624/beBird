@@ -4,71 +4,71 @@ import { RankMethodEnum, SortKeyEnum } from '../enum/ebirdEnum';
  * Top 100
  */
 export class PRODUCTGetTop100Req {
-    constructor(data?: PRODUCTGetTop100Req) {
-        if (!data) return;
-        const { rankedBy = RankMethodEnum.SPECIES_SEEN, maxResults = undefined } = data;
-        this.rankedBy = rankedBy;
-        this.maxResults = maxResults;
-    }
-    rankedBy?: RankMethodEnum = RankMethodEnum.SPECIES_SEEN; // Order by number of complete checklists (cl) or by number of species seen (spp).
-    maxResults?: number = undefined; // Only fetch this number of contributors.
+	constructor(data?: PRODUCTGetTop100Req) {
+		if (!data) return;
+		const { rankedBy = RankMethodEnum.SPECIES_SEEN, maxResults = undefined } = data;
+		this.rankedBy = rankedBy;
+		this.maxResults = maxResults;
+	}
+	rankedBy?: RankMethodEnum = RankMethodEnum.SPECIES_SEEN; // Order by number of complete checklists (cl) or by number of species seen (spp).
+	maxResults?: number = undefined; // Only fetch this number of contributors.
 }
 
 /**
  * Checklist feed on a date
  */
 export class PRODUCTGetChecklistFeedOnDateReq {
-    constructor(data?: PRODUCTGetChecklistFeedOnDateReq) {
-        if (!data) return;
-        const { sortKey = SortKeyEnum.DATE_OF_CHECKLIST, maxResults = 10 } = data;
-        this.sortKey = sortKey;
-        this.maxResults = maxResults;
-    }
-    sortKey?: SortKeyEnum = SortKeyEnum.DATE_OF_CHECKLIST; // Order the results by the date of the checklist or by the date it was submitted.
-    maxResults?: number = 10; // Only fetch this number of checklists.
+	constructor(data?: PRODUCTGetChecklistFeedOnDateReq) {
+		if (!data) return;
+		const { sortKey = SortKeyEnum.DATE_OF_CHECKLIST, maxResults = 10 } = data;
+		this.sortKey = sortKey;
+		this.maxResults = maxResults;
+	}
+	sortKey?: SortKeyEnum = SortKeyEnum.DATE_OF_CHECKLIST; // Order the results by the date of the checklist or by the date it was submitted.
+	maxResults?: number = 10; // Only fetch this number of checklists.
 }
 
 /**
  * View Checklist
  */
 export interface IPRODUCTGetViewChecklistRes {
-    projId: string;
-    subId: string;
-    protocolId: string;
-    locId: string;
-    durationHrs: number;
-    allObsReported: boolean;
-    creationDt: string; // YYYY-MM-DD HH:mm
-    lastEditedDt: string; // YYYY-MM-DD HH:mm
-    obsDt: string; // YYYY-MM-DD HH:mm
-    obsTimeValid: boolean;
-    checklistId: string;
-    numObservers: number;
-    subnational1Code: string;
-    submissionMethodCode: string;
-    userDisplayName: string;
-    obs: IPRODUCTGetViewChecklistItem[];
+	allObsReported: boolean;
+	checklistId: string;
+	comments: string;
+	creationDt: string; // YYYY-MM-DD HH:mm
+	lastEditedDt: string; // YYYY-MM-DD HH:mm
+	locId: string;
+	numObservers: number;
+	numSpecies: number;
+	obs: IPRODUCTGetViewChecklistItem[];
+	obsDt: string; // YYYY-MM-DD HH:mm
+	obsTimeValid: boolean;
+	projId: string;
+	protocolId: string;
+	subAux?: IPRODUCTGetViewChecklistAux[];
+	subAuxAi?: IPRODUCTGetViewChecklistAuxAi[];
+	subId: string;
+	submissionMethodCode: string;
+	subnational1Code: string;
+	userDisplayName: string;
 }
 export interface IPRODUCTGetViewChecklistItem {
-    speciesCode: string;
-    hideFlags: [];
-    obsDt: string; // YYYY-MM-DD HH:mm
-    subnational1Code: string;
-    howManyAtleast: number;
-    howManyAtmost: number;
-    howManyStr: string;
-    present: boolean;
-    projId: string;
-    subId: string;
-    obsId: string;
-    obsAux?: IPRODUCTGetViewChecklistAux[];
+	hideFlags: any[];
+	howManyAtleast: number;
+	howManyAtmost: number;
+	howManyStr: string;
+	obsDt: string; // YYYY-MM-DD HH:mm
+	obsId: string;
+	present: boolean;
+	projId: string;
+	speciesCode: string;
+	subId: string;
+	subnational1Code: string;
 }
 export interface IPRODUCTGetViewChecklistAux {
-    subId: string;
-    obsId: string;
-    speciesCode: string;
-    fieldName: string;
-    entryMethodCode: string;
-    auxCode: string;
-    value: string;
+	auxCode: string;
+	entryMethodCode: string;
+	fieldName: string;
+	subId: string;
 }
+export interface IPRODUCTGetViewChecklistAuxAi {}

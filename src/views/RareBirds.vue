@@ -143,22 +143,15 @@
 	 * 根據使用者語系，建立物種代碼對當地俗名字典
 	 */
 	watch(pureSpeciesCodes, (nv) => {
-		$loading.on();
 		if (!nv.length) return;
 		taxonomyStore
 			.getEbirdTaxonomyInfo(userLangCode.value as LocaleEnum, nv.join(','))
 			.then((data) => {
-				$notify.success('成功：取得物種資訊');
 				console.log('speciesTaxonomies', data);
-				data.forEach((tax) => {
-					userComNameDict.value[tax.speciesCode] = tax;
-				});
-			})
-			.catch(() => {
-				$notify.error('失敗：取得物種資訊');
-			})
-			.finally(() => {
-				$loading.off();
+				data &&
+					data.forEach((tax) => {
+						userComNameDict.value[tax.speciesCode] = tax;
+					});
 			});
 	});
 

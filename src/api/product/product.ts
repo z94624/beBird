@@ -1,4 +1,8 @@
-import { PRODUCTGetChecklistFeedOnDateReq, PRODUCTGetTop100Req } from '@/models/product/product';
+import {
+	IPRODUCTGetViewChecklistRes,
+	PRODUCTGetChecklistFeedOnDateReq,
+	PRODUCTGetTop100Req,
+} from '@/models/product/product';
 import ebird from '@/plugins/axios';
 
 /**
@@ -67,5 +71,5 @@ export const getSpeciesListForRegionApi = (regionCode: string) => {
  * @param subId The checklist identifier.
  */
 export const getViewChecklistApi = (subId: string) => {
-	return ebird.get(`/product/checklist/view/${subId}`);
+	return ebird.get<IPRODUCTGetViewChecklistRes>(`/product/checklist/view/${subId}`);
 };
