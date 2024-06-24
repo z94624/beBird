@@ -32,7 +32,7 @@
 				<VlIcon />
 
 				<VlTooltip permanent>
-					{{ userComNameDict[obs.speciesCode]?.comName ?? obs.comName }}
+					{{ taxInfoDict[obs.speciesCode]?.comName ?? obs.comName }}
 				</VlTooltip>
 
 				<VlPopup
@@ -56,7 +56,7 @@
 
 							<div class="flex justify-center items-baseline gap-1">
 								<div class="comName-font">
-									{{ userComNameDict[obs.speciesCode]?.comName ?? obs.comName }}
+									{{ taxInfoDict[obs.speciesCode]?.comName ?? obs.comName }}
 								</div>
 								<div class="sciName-font">
 									{{ obs.sciName }}
@@ -110,7 +110,7 @@
 	const region = ref<string | null>(null);
 	const notableObsForm = ref(new DATAOBSGetRecentNotableObsInRegionReq());
 	const notableObsList = ref<IDATAOBSGetRecentNotableObsInRegionItem[]>([]);
-	const userComNameDict = ref<IMap<IREFTAXGetEbirdTaxonomyRes>>({});
+	const taxInfoDict = ref<IMap<IREFTAXGetEbirdTaxonomyRes>>({});
 
 	const mapRef = ref();
 	const rbMarkerDetailDialogRef = ref();
@@ -147,10 +147,10 @@
 		taxonomyStore
 			.getEbirdTaxonomyInfo(userLangCode.value as LocaleEnum, nv.join(','))
 			.then((data) => {
-				console.log('speciesTaxonomies', data);
+				// console.log('speciesTaxonomies', data);
 				data &&
 					data.forEach((tax) => {
-						userComNameDict.value[tax.speciesCode] = tax;
+						taxInfoDict.value[tax.speciesCode] = tax;
 					});
 			});
 	});
@@ -182,7 +182,7 @@
 	 * 選擇圖釘
 	 */
 	const onClickMarker = (e: MarkerClickEvent) => {
-		console.log('clickMarkerEvent', e);
+		// console.log('clickMarkerEvent', e);
 		const { latlng } = e;
 		// 圖釘置中
 		mapRef.value.updateCenter([latlng.lat, latlng.lng]);
@@ -200,7 +200,7 @@
 	 * 開啟細節跳窗
 	 */
 	const onOpenRbMarkerDetailDialog = (obs: IDATAOBSGetRecentNotableObsInRegionItem) => {
-		rbMarkerDetailDialogRef.value.open(obs, userComNameDict.value);
+		rbMarkerDetailDialogRef.value.open(obs, taxInfoDict.value);
 	};
 
 	onBeforeMount(() => {

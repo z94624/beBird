@@ -2,7 +2,7 @@
 	<q-btn
 		:="getBindingValues"
 		:style="{
-			borderRadius: hasCustomBorderRadius && '3px',
+			borderRadius: hasCustomBorderRadius ? '3px' : '',
 		}"
 		class="baseButton"
 		no-caps

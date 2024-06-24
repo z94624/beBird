@@ -24,8 +24,8 @@
 					name="list"
 				/>
 				<q-tab
-					icon="share"
-					name="share"
+					icon="rss_feed"
+					name="feed"
 				/>
 			</BaseTabs>
 
@@ -37,7 +37,7 @@
 				<q-tab-panel name="list">
 					<RbMarkerDetailList :notableObs="obs" />
 				</q-tab-panel>
-				<q-tab-panel name="share"></q-tab-panel>
+				<q-tab-panel name="feed"></q-tab-panel>
 			</q-tab-panels>
 		</template>
 	</BaseDialog>
@@ -69,7 +69,10 @@
 		userComNameDict.value = ucnd;
 	});
 
-	onClose(() => {});
+	onClose(() => {
+		obs.value = undefined;
+		userComNameDict.value = undefined;
+	});
 
 	defineExpose({ open, close });
 </script>

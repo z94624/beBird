@@ -1,4 +1,5 @@
 import { RankMethodEnum, SortKeyEnum } from '../enum/ebirdEnum';
+import { IREFTAXGetEbirdTaxonomyRes } from '../ref/taxonomy';
 
 /**
  * Top 100
@@ -64,6 +65,8 @@ export interface IPRODUCTGetViewChecklistItem {
 	speciesCode: string;
 	subId: string;
 	subnational1Code: string;
+	// 自訂：分類資訊
+	tax?: IREFTAXGetEbirdTaxonomyRes;
 }
 export interface IPRODUCTGetViewChecklistAux {
 	auxCode: string;

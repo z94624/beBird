@@ -6,9 +6,36 @@
 			:class="[`${isNotable(bird.speciesCode) ? 'notableItem' : 'normalItem'}`]"
 			class="birdItem"
 		>
-			<q-item-section>{{ bird.howManyStr }}</q-item-section>
+			<q-item-section avatar>{{ bird.howManyStr }}</q-item-section>
 
-			<q-item-section></q-item-section>
+			<q-item-section>
+				<div class="flex items-center gap-1">
+					<div class="comName-font">
+						{{ bird.tax?.comName ?? bird.speciesCode }}
+					</div>
+					<div class="sciName-font">
+						{{ bird.tax?.sciName ?? bird.speciesCode }}
+					</div>
+				</div>
+			</q-item-section>
+
+			<q-item-section side>
+				<div class="q-gutter-xs">
+					<HrefButton
+						:href="`https://ebird.org/species/${bird.speciesCode}`"
+						icon="language"
+						round
+						size="sm"
+						text-color="primary"
+					/>
+					<BaseButton
+						icon="share"
+						round
+						size="sm"
+						text-color="primary"
+					/>
+				</div>
+			</q-item-section>
 		</q-item>
 	</q-list>
 </template>
