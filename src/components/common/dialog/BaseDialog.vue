@@ -2,7 +2,7 @@
 	<q-dialog :="getBindingValues">
 		<q-card style="max-width: 75vw">
 			<slot name="header">
-				<q-toolbar class="text-white bg-primaryDark_e">
+				<q-toolbar class="dialogHeader text-white bg-primaryDark_e">
 					<slot name="title-before"></slot>
 					<q-toolbar-title>
 						<slot name="title"></slot>
@@ -59,4 +59,10 @@
 	});
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.dialogHeader {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
+</style>

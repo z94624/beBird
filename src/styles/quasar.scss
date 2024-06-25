@@ -3,6 +3,12 @@
 .q-tabs {
 	overflow-x: auto;
 
+	.q-tab {
+		&.q-tab--inactive {
+			background-color: white;
+		}
+	}
+
 	&.layoutHeaderTabs {
 		.q-tab {
 			&.rareBirdsTab {

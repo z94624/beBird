@@ -18,6 +18,7 @@
 				v-model="tab"
 				align="justify"
 				dense
+				style="position: sticky; top: 50px; z-index: 1"
 			>
 				<q-tab
 					icon="list_alt"

@@ -3,8 +3,11 @@
 		<q-item
 			v-for="(bird, bIdx) in info.obs"
 			:key="bIdx"
+			:active="isNotable(bird.speciesCode)"
 			:class="[`${isNotable(bird.speciesCode) ? 'notableItem' : 'normalItem'}`]"
+			:href="`https://ebird.org/species/${bird.speciesCode}`"
 			class="birdItem"
+			target="_blank"
 		>
 			<q-item-section avatar>{{ bird.howManyStr }}</q-item-section>
 
@@ -16,24 +19,6 @@
 					<div class="sciName-font">
 						{{ bird.tax?.sciName ?? bird.speciesCode }}
 					</div>
-				</div>
-			</q-item-section>
-
-			<q-item-section side>
-				<div class="q-gutter-xs">
-					<HrefButton
-						:href="`https://ebird.org/species/${bird.speciesCode}`"
-						icon="language"
-						round
-						size="sm"
-						text-color="primary"
-					/>
-					<BaseButton
-						icon="share"
-						round
-						size="sm"
-						text-color="primary"
-					/>
 				</div>
 			</q-item-section>
 		</q-item>
@@ -63,7 +48,7 @@
 		border-radius: 7px;
 
 		&.notableItem {
-			border-color: $primary;
+			border: 2px solid $secondary;
 		}
 	}
 </style>
