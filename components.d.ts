@@ -25,6 +25,7 @@ declare module 'vue' {
     PartLoading: typeof import('./src/components/common/Loading/PartLoading.vue')['default']
     RarityIndicator: typeof import('./src/components/common/badge/RarityIndicator.vue')['default']
     RbMarkerDetailDialog: typeof import('./src/components/rareBirds/RbMarkerDetailDialog.vue')['default']
+    RbMarkerDetailFeed: typeof import('./src/components/rareBirds/RbMarkerDetailFeed.vue')['default']
     RbMarkerDetailList: typeof import('./src/components/rareBirds/RbMarkerDetailList.vue')['default']
     RegionSelect: typeof import('./src/components/common/select/RegionSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

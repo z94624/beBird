@@ -5,6 +5,7 @@ import App from './App.vue';
 import { setupRouter } from './router';
 import { setupStore } from './store';
 import { setupQuasar } from './plugins/quasar';
+import VueSocialSharing from 'vue-social-sharing';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -19,6 +20,9 @@ async function bootstrap() {
 
 	// 掛載 Quasar
 	setupQuasar(app);
+
+	// 社群分享按鈕套件
+	app.use(VueSocialSharing);
 
 	// Route 準備就緒後掛載 APP 實例
 	// https://router.vuejs.org/api/interfaces/router.html#isready

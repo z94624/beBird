@@ -38,7 +38,12 @@
 				<q-tab-panel name="list">
 					<RbMarkerDetailList :notableObs="obs" />
 				</q-tab-panel>
-				<q-tab-panel name="feed"></q-tab-panel>
+				<q-tab-panel name="feed">
+					<RbMarkerDetailFeed
+						:notableObs="obs"
+						:userComName="userComName"
+					/>
+				</q-tab-panel>
 			</q-tab-panels>
 		</template>
 	</BaseDialog>

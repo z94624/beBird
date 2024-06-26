@@ -54,6 +54,7 @@ export interface IPRODUCTGetViewChecklistRes {
 	userDisplayName: string;
 }
 export interface IPRODUCTGetViewChecklistItem {
+	comments?: string;
 	hideFlags: any[];
 	howManyAtleast: number;
 	howManyAtmost: number;
