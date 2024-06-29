@@ -78,6 +78,7 @@
 	onClose(() => {
 		obs.value = undefined;
 		userComNameDict.value = undefined;
+		tab.value = 'list';
 	});
 
 	defineExpose({ open, close });

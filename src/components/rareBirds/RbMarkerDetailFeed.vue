@@ -3,51 +3,67 @@
 		dense
 		separator
 	>
-		<q-item
-			v-ripple
-			clickable
-			@click="onCopyToClipboard"
-		>
-			<q-item-section avatar>
-				<BaseButton
-					color="secondary"
-					icon="content_copy"
-					round
-					size="sm"
-					text-color="primary"
-				/>
-			</q-item-section>
-			<q-item-section>分享清單</q-item-section>
-		</q-item>
-
-		<ShareNetwork
-			:description="description"
-			:hashtags="userComName"
-			:url="checklistUrl"
-			network="facebook"
-			title="分享紀錄清單至 Facebook"
+		<template
+			v-for="(media, mIdx) in mediaList"
+			:key="mIdx"
 		>
 			<q-item
+				v-if="media.onClick"
+				v-ripple
+				clickable
+				@click="media.onClick"
+			>
+				<div class="w-full flex no-wrap items-center gap-4">
+					<div
+						class="bg-secondary w-[33.33px] h-[33.33px] m-[3.335px] flex justify-center items-center"
+						style="border-radius: 50%"
+					>
+						<q-icon
+							:name="media.customIcon ? `img:${media.icon}` : media.icon"
+							color="primary"
+							size="xs"
+						/>
+					</div>
+					<span>{{ media.name }}</span>
+				</div>
+			</q-item>
+
+			<q-item
+				v-else
 				v-ripple
 				clickable
 			>
-				<q-item-section avatar>
+				<ShareNetwork
+					:description="description"
+					:hashtags="userComName"
+					:network="media.network"
+					:url="checklistUrl"
+					class="w-full flex no-wrap items-center gap-4"
+				>
 					<q-icon
-						:name="mdiFacebook"
-						class="text-[#1877F2]"
-						size="40px"
+						:class="[media.customIcon ? 'm-[3.335px]' : '']"
+						:name="media.customIcon ? `img:${media.icon}` : media.icon"
+						:size="media.customIcon ? '33.33px' : '40px'"
+						:style="{
+							color: media.iconColor,
+						}"
 					/>
-				</q-item-section>
-				<q-item-section>動態消息</q-item-section>
+					<span>{{ media.name }}</span>
+				</ShareNetwork>
 			</q-item>
-		</ShareNetwork>
+		</template>
 	</q-list>
 </template>
 
 <script lang="ts" setup>
 	import { computed, toRefs } from 'vue';
 	import { useClipboard } from '@vueuse/core';
-	import { mdiFacebook } from '@quasar/extras/mdi-v7';
+
+	import { mdiGmail, mdiFacebook } from '@quasar/extras/mdi-v7';
+	import LineLogo from '@/assets/icons/lineLogo.svg';
+	import MessengerLogo from '@assets/icons/messengerLogo.svg';
+	import TwitterLogo from '@assets/icons/twitterLogo.svg';
+	import SkypeLogo from '@assets/icons/skypeLogo.svg';
 
 	import { IDATAOBSGetRecentNotableObsInRegionItem } from '@/models/data/obs';
 
@@ -97,6 +113,79 @@
 			$notify.info('成功：複製紀錄清單資訊');
 		});
 	};
+
+	/**
+	 * 啟動原生分享功能
+	 */
+	const activateWebShareAPI = () => {
+		if (navigator.share) {
+			navigator.share({
+				title: props.userComName,
+				text: description.value,
+				url: checklistUrl.value,
+			});
+		}
+	};
+
+	/**
+	 * 分享途徑列表
+	 */
+	interface IMedia {
+		icon: string;
+		iconColor?: string;
+		customIcon?: boolean;
+		name: string;
+		onClick?: Function;
+		network?: string;
+	}
+	const mediaList: IMedia[] = [
+		{
+			icon: 'content_copy',
+			name: 'Copy',
+			onClick: onCopyToClipboard,
+		},
+		{
+			icon: mdiGmail,
+			iconColor: '#d44638',
+			name: 'Email',
+			network: 'email',
+		},
+		{
+			icon: mdiFacebook,
+			iconColor: '#1877F2',
+			name: 'Facebook',
+			network: 'facebook',
+		},
+		{
+			icon: MessengerLogo,
+			customIcon: true,
+			name: 'Messenger',
+			network: 'messenger',
+		},
+		{
+			icon: LineLogo,
+			customIcon: true,
+			name: 'LINE',
+			network: 'line',
+		},
+		{
+			icon: TwitterLogo,
+			customIcon: true,
+			name: 'Twitter',
+			network: 'twitter',
+		},
+		{
+			icon: SkypeLogo,
+			customIcon: true,
+			name: 'Skype',
+			network: 'skype',
+		},
+		{
+			icon: 'more_horiz',
+			name: 'More',
+			onClick: activateWebShareAPI,
+		},
+	];
 </script>
 
 <style lang="scss" scoped></style>
