@@ -1,6 +1,29 @@
 <template>
 	<div class="fullContainer relative">
-		<div class="searchMenuContainer shadow-3 rounded-borders relative">
+		<BaseButton
+			v-morph:btn.resize="morph"
+			class="map-top-right"
+			color="primary"
+			fab
+			icon="search"
+			round
+			size="lg"
+			@click="nextMorph"
+		/>
+		<div
+			v-morph:panel.resize="morph"
+			class="searchMenuContainer shadow-3 rounded-borders relative"
+		>
+			<BaseButton
+				class="absolute -left-2 -bottom-2"
+				color="white"
+				icon="arrow_outward"
+				round
+				size="sm"
+				text-color="primary"
+				@click="nextMorph"
+			/>
+
 			<slot name="search-menu"></slot>
 		</div>
 
@@ -41,6 +64,12 @@
 		GeoDataEnum.LATITUDE_OF_TAIWAN,
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,
 	] as PointExpression);
+	const morph = ref('btn');
+
+	const nextMorphStep = {
+		btn: 'panel',
+		panel: 'btn',
+	};
 
 	watch(
 		coords,
@@ -61,6 +90,13 @@
 		center.value = newCenter;
 	};
 
+	/**
+	 * 收合 Search Panel
+	 */
+	const nextMorph = () => {
+		morph.value = nextMorphStep[morph.value];
+	};
+
 	defineExpose({ updateCenter });
 </script>
 
@@ -73,14 +109,18 @@
 		@extend .fullContainer;
 	}
 
-	.searchMenuContainer {
+	.map-top-right {
 		position: absolute;
 		top: 11.6px;
 		right: 11.6px;
+		z-index: 401;
+	}
+	.searchMenuContainer {
+		@extend .map-top-right;
+
 		min-width: 200px;
 		width: 33%;
 		padding: 12px;
 		background-color: rgba($color: #fff, $alpha: 0.25);
-		z-index: 401;
 	}
 </style>

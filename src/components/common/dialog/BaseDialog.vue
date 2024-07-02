@@ -12,7 +12,6 @@
 					<BaseButton
 						flat
 						icon="close"
-						padding
 						round
 						@click="emit('close')"
 					/>

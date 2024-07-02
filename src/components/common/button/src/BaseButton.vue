@@ -37,7 +37,6 @@
 		{
 			textColor: 'white',
 			color: getContrastColor('white'),
-			padding: '.85em 1em',
 		}
 	);
 
@@ -51,12 +50,22 @@
 
 			color: props.color || getContrastColor(props.textColor),
 			textColor: props.textColor || getContrastColor(props.color),
-			padding: typeof props.padding === 'boolean' ? undefined : props.padding,
+			padding: getPadding(),
 		};
 	});
 
 	// 是否使用自訂 Border Radius
 	const hasCustomBorderRadius = computed(() => !props.rounded && !props.square && !props.round);
+
+	/**
+	 * 計算 Padding
+	 */
+	const getPadding = (): string | boolean | undefined => {
+		if (props.round) {
+			return props.padding?.toString();
+		}
+		return '.85em 1em';
+	};
 </script>
 
 <style lang="scss" scoped>
