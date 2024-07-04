@@ -1,5 +1,14 @@
 @import './tailwind.css';
 
+/**
+ * https://wumanzoo.com/noto-sans-noto-serif-fonts/
+ * 源泉圓體
+ */
+@font-face {
+	font-family: 'GenSenRounded-R';
+	src: local('GenSenRounded-R'), url('./../assets/fonts/GenSen_Rounded/GenSenRounded-R.ttf');
+}
+
 *,
 *::before,
 *::after {
@@ -9,17 +18,13 @@
 }
 
 body {
-	min-height: 100vh;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-		'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-	font-size: 16px;
+	font-family: 'GenSenRounded-R', Georgia, serif, 'Roboto', '-apple-system', 'Helvetica Neue',
+		Helvetica, Arial, sans-serif !important;
+	font-size: 16px !important;
 	font-weight: 400;
-	line-height: 1.5;
 	color: var(--q-secondaryDark_e);
 	background: #f8f8f8;
 	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 #app {

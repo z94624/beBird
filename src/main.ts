@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import './styles/main.css';
+import './assets/fonts/GenSen_Rounded/GenSenRounded-R.ttf';
 import App from './App.vue';
 
 import { setupRouter } from './router';

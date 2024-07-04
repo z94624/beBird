@@ -1,5 +1,8 @@
 // Vue Leaflet
 .leaflet-container {
+	font-family: 'GenSenRounded-R', Georgia, serif, 'Roboto', '-apple-system', 'Helvetica Neue',
+		Helvetica, Arial, sans-serif !important;
+
 	.leaflet-control-container {
 		.leaflet-bottom.leaflet-right {
 			.leaflet-control-attribution:nth-child(2) {
