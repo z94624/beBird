@@ -125,6 +125,6 @@
 
 		min-width: 250px;
 		padding: 12px;
-		background-color: rgba($color: #fff, $alpha: 0.33);
+		background-color: rgba($color: #fff, $alpha: 0.75);
 	}
 </style>
