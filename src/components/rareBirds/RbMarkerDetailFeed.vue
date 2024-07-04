@@ -37,6 +37,7 @@
 					:description="description"
 					:hashtags="userComName"
 					:network="media.network"
+					:title="`分享至 ${media.name}`"
 					:url="checklistUrl"
 					class="w-full flex no-wrap items-center gap-4"
 				>

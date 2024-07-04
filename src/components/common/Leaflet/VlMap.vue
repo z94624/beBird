@@ -12,6 +12,9 @@
 		/>
 		<div
 			v-morph:panel.resize="morph"
+			:style="{
+				width: isMobile ? 'calc(100vw - 11.6px - 53.2px)' : '33%',
+			}"
 			class="searchMenuContainer shadow-3 rounded-borders relative"
 		>
 			<BaseButton
@@ -19,7 +22,7 @@
 				color="white"
 				icon="arrow_outward"
 				round
-				size="sm"
+				size="md"
 				text-color="primary"
 				@click="nextMorph"
 			/>
@@ -55,9 +58,11 @@
 	import { LMap, LTileLayer, LControlScale, LControlAttribution } from '@vue-leaflet/vue-leaflet';
 	import { PointExpression } from 'leaflet';
 
+	import { usePlatform } from '@/hooks/platform';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	const { coords, error, resume, pause } = useGeolocation();
+	const { isMobile } = usePlatform();
 
 	const map = ref(null);
 	const center = ref<PointExpression>([
@@ -118,9 +123,8 @@
 	.searchMenuContainer {
 		@extend .map-top-right;
 
-		min-width: 200px;
-		width: 33%;
+		min-width: 250px;
 		padding: 12px;
-		background-color: rgba($color: #fff, $alpha: 0.25);
+		background-color: rgba($color: #fff, $alpha: 0.33);
 	}
 </style>
