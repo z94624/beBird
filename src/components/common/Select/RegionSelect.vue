@@ -54,7 +54,7 @@
 		countryRegionStore
 			.getSubRegionListInfo(RegionTypeEnum.SUBNATIONAL_1, props.country!)
 			.then((data) => {
-				$notify.success('成功：更新地區');
+				// $notify.success('成功：更新地區');
 				regionOptions.value = data.map((region) => ({
 					label: region.name,
 					value: region.code,

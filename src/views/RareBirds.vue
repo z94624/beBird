@@ -162,7 +162,7 @@
 		$loading.on();
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
 			.then((data) => {
-				$notify.success('成功：取得近期稀有鳥紀錄');
+				// $notify.success('成功：取得近期稀有鳥紀錄');
 				console.log('notableObsList', data);
 				notableObsList.value = data;
 			})

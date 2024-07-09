@@ -21,7 +21,7 @@ export const useProductStore = defineStore('product', () => {
 		return getViewChecklistApi(subId)
 			.then((data) => {
 				console.log('checklistInfo', data);
-				$notify.success('成功：取得記錄清單詳細資訊');
+				// $notify.success('成功：取得記錄清單詳細資訊');
 				checklistInfo.value = data;
 				return Promise.resolve(data);
 			})

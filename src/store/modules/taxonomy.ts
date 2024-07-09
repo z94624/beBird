@@ -27,7 +27,7 @@ export const useTaxonomyStore = defineStore('taxonomy', () => {
 			})
 		)
 			.then((data) => {
-				$notify.success('成功：取得物種資訊');
+				// $notify.success('成功：取得物種資訊');
 				taxInfo.value = data;
 				return Promise.resolve(data);
 			})
