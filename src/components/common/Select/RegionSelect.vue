@@ -1,9 +1,12 @@
 <template>
 	<BaseSelect
 		v-model="selectedRegion"
-		:options="regionOptions"
+		:options="filteredOptions"
 		clearable
+		input-debounce="0"
 		label="地區"
+		use-input
+		@filter="filterRegion"
 	/>
 </template>
 
@@ -11,14 +14,12 @@
 	import { computed, onBeforeMount, ref, watch } from 'vue';
 	import { QSelectOption } from 'quasar';
 
-	import { ISubRegionItem } from '@/models/ref/region';
-
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { useCountryRegionStore } from '@/store/modules/geodata';
 	import { RegionTypeEnum } from '@/models/enum/ebirdEnum';
 
 	const emit = defineEmits<{
-		(e: 'update:region', v: string): void;
+		(e: 'update:region', v: string | undefined): void;
 		(e: 'loading', v: boolean): void;
 	}>();
 	const props = defineProps<{
@@ -29,12 +30,21 @@
 	const { $notify } = useQuasarTool();
 	const countryRegionStore = useCountryRegionStore();
 
+	const filteredOptions = ref<QSelectOption[]>([]);
 	const regionOptions = ref<QSelectOption[]>([]);
 
 	const selectedRegion = computed({
-		get: () => regionOptions.value.find((region) => region.value === props.region),
-		set: (rObj: any) => emit('update:region', rObj ? rObj.value : rObj),
+		get: () => props.region,
+		set: (rObj: string | undefined) => emit('update:region', rObj),
 	});
+
+	watch(
+		regionOptions,
+		(nv) => {
+			filteredOptions.value = nv;
+		},
+		{ deep: true }
+	);
 
 	/**
 	 * 國家改變，地區選項跟著變
@@ -45,6 +55,24 @@
 			updateRegionOptions();
 		}
 	);
+
+	/**
+	 * 關鍵字篩選選項
+	 */
+	const filterRegion = (keyword: string, update: Function) => {
+		if (!keyword) {
+			update(() => {
+				filteredOptions.value = regionOptions.value;
+			});
+			return;
+		}
+
+		update(() => {
+			filteredOptions.value = regionOptions.value.filter((option) =>
+				option.label.toLowerCase().includes(keyword.toLowerCase())
+			);
+		});
+	};
 
 	/**
 	 * 更新地區選項

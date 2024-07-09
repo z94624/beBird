@@ -3,6 +3,8 @@
 		ref="selectRef"
 		:="attrs"
 		:standout="standout"
+		emit-value
+		map-options
 		@update:model-value="(value) => emit('update:model-value', value)"
 	>
 		<template
