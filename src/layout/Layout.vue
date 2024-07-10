@@ -35,6 +35,15 @@
 							:to="menuItem.to"
 						/>
 					</q-tabs>
+
+					<q-space />
+
+					<BaseButton
+						:label="`v${version}`"
+						outline
+						rounded
+						text-color="primary"
+					/>
 				</q-toolbar>
 			</q-header>
 
@@ -54,6 +63,8 @@
 	import { menuList } from './utils';
 
 	const router = useRouter();
+
+	const version = import.meta.env.VITE_BEBIRD_VERSION;
 
 	/**
 	 * 導向首頁

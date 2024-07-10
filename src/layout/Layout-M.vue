@@ -20,6 +20,12 @@
 
 					<q-toolbar-title></q-toolbar-title>
 
+					<BaseButton
+						:label="`v${version}`"
+						outline
+						rounded
+						text-color="primary"
+					/>
 					<q-btn
 						flat
 						icon="menu"
@@ -85,6 +91,7 @@
 
 	const router = useRouter();
 
+	const version = import.meta.env.VITE_BEBIRD_VERSION;
 	const leftDrawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');
 
