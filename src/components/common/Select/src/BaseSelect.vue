@@ -8,11 +8,14 @@
 		@update:model-value="(value) => emit('update:model-value', value)"
 	>
 		<template
-			#[slot]
+			#[slot]="scope"
 			v-for="(slot, sIdx) in Object.keys(slots)"
 			:key="sIdx"
 		>
-			<slot :name="slot"></slot>
+			<slot
+				:="scope"
+				:name="slot"
+			></slot>
 		</template>
 	</q-select>
 </template>

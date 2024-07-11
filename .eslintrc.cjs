@@ -44,6 +44,7 @@ module.exports = {
 	plugins: ['@typescript-eslint', 'vue', 'prettier'],
 	rules: {
 		'vue/multi-word-component-names': 'off',
+		'vue/no-unused-vars': 'off', // 關閉警告(warning)：不允許未用變數
 		'@typescript-eslint/ban-types': [
 			// 關閉錯誤(error)：不要以 {} 當作一個類型
 			'error',

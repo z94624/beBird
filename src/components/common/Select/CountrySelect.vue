@@ -6,7 +6,21 @@
 		label="國家"
 		use-input
 		@filter="filterCountry"
-	/>
+	>
+		<template #option="scope">
+			<q-item :="scope.itemProps">
+				<q-item-section avatar>
+					<country-flag
+						:country="scope.opt.value.toLowerCase()"
+						shadow
+					/>
+				</q-item-section>
+				<q-item-section>
+					{{ scope.opt.label }}
+				</q-item-section>
+			</q-item>
+		</template>
+	</BaseSelect>
 </template>
 
 <script lang="ts" setup>
