@@ -29,7 +29,7 @@
 		defineProps<{
 			color?: string;
 			textColor?: string;
-			padding?: boolean | string;
+			padding?: string;
 			rounded?: boolean;
 			square?: boolean;
 			round?: boolean;
@@ -60,7 +60,7 @@
 	/**
 	 * 計算 Padding
 	 */
-	const getPadding = (): string | boolean | undefined => {
+	const getPadding = (): string | undefined => {
 		if (props.round) {
 			return props.padding?.toString();
 		}

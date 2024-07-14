@@ -3,7 +3,7 @@ import { LoadingBar } from 'quasar';
 
 export const createRouterGuards = (router: Router) => {
 	// 開始進入新路由之前 (全域)
-	router.beforeEach((to, from, next) => {
+	router.beforeEach((_to, _from, next) => {
 		LoadingBar.start();
 
 		next();
@@ -12,7 +12,7 @@ export const createRouterGuards = (router: Router) => {
 	});
 
 	// 當路由跳轉結束後 (全域)
-	router.afterEach((to, from, failure) => {
+	router.afterEach((_to, _from, _failure) => {
 		LoadingBar.stop();
 	});
 };

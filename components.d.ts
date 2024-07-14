@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BaseButton: typeof import('./src/components/common/button/src/BaseButton.vue')['default']
-    BaseCountrySelect: typeof import('./src/components/common/Select/src/BaseCountrySelect.vue')['default']
     BaseDialog: typeof import('./src/components/common/dialog/BaseDialog.vue')['default']
     BaseIndicator: typeof import('./src/components/common/badge/src/BaseIndicator.vue')['default']
     BaseSelect: typeof import('./src/components/common/select/src/BaseSelect.vue')['default']
@@ -18,11 +17,7 @@ declare module 'vue' {
     CountrySelect: typeof import('./src/components/common/select/CountrySelect.vue')['default']
     DaysBackSlider: typeof import('./src/components/common/slider/DaysBackSlider.vue')['default']
     HrefButton: typeof import('./src/components/common/button/HrefButton.vue')['default']
-    Icon: typeof import('./src/components/common/Leaflet/BasicTypes/Icon.vue')['default']
-    Indicator: typeof import('./src/components/common/badge/Indicator.vue')['default']
-    Map: typeof import('./src/components/common/Leaflet/Map.vue')['default']
     MigrationIndicator: typeof import('./src/components/common/badge/MigrationIndicator.vue')['default']
-    PartLoading: typeof import('./src/components/common/Loading/PartLoading.vue')['default']
     RarityIndicator: typeof import('./src/components/common/badge/RarityIndicator.vue')['default']
     RbMarkerDetailDialog: typeof import('./src/components/rareBirds/RbMarkerDetailDialog.vue')['default']
     RbMarkerDetailFeed: typeof import('./src/components/rareBirds/RbMarkerDetailFeed.vue')['default']

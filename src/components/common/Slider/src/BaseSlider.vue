@@ -2,6 +2,7 @@
 	<q-slider
 		ref="sliderRef"
 		:="attrs"
+		:modelValue="modelValue"
 		style="width: -webkit-fill-available"
 	>
 		<template
@@ -17,6 +18,10 @@
 <script lang="ts" setup>
 	import { QSlider, QSliderProps } from 'quasar';
 	import { ref, useAttrs, useSlots } from 'vue';
+
+	const props = defineProps<{
+		modelValue?: number | null;
+	}>();
 
 	const attrs: Partial<QSliderProps> = useAttrs();
 	const slots: Partial<QSlider> = useSlots();

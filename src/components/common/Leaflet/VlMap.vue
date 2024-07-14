@@ -71,7 +71,11 @@
 	] as PointExpression);
 	const morph = ref('btn');
 
-	const nextMorphStep = {
+	interface IMorphStepDict {
+		btn: string;
+		panel: string;
+	}
+	const nextMorphStep: IMorphStepDict = {
 		btn: 'panel',
 		panel: 'btn',
 	};
@@ -99,7 +103,7 @@
 	 * 收合 Search Panel
 	 */
 	const nextMorph = () => {
-		morph.value = nextMorphStep[morph.value];
+		morph.value = nextMorphStep[morph.value as keyof IMorphStepDict];
 	};
 
 	defineExpose({ updateCenter });

@@ -2,6 +2,7 @@
 	<q-select
 		ref="selectRef"
 		:="attrs"
+		:modelValue="modelValue"
 		:standout="standout"
 		emit-value
 		map-options
@@ -29,6 +30,7 @@
 	}>();
 	const props = withDefaults(
 		defineProps<{
+			modelValue: any;
 			standout?: boolean | string;
 		}>(),
 		{
