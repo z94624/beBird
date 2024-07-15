@@ -58,3 +58,10 @@ export const getContrastColor = (color: string) => {
 		? lighten(hexColor || '#000', 85)
 		: lighten(hexColor || '#000', -85);
 };
+
+/**
+ * 從 HTML 字串抽取文字
+ */
+export const extractTextFromHtml = (html: string): string => {
+	return new DOMParser().parseFromString(html, 'text/html').body.textContent || '';
+};

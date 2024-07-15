@@ -34,7 +34,7 @@
 				clickable
 			>
 				<ShareNetwork
-					:description="description"
+					:description="descHTML"
 					:hashtags="userComName"
 					:network="media.network"
 					:title="`分享至 ${media.name}`"
@@ -70,6 +70,7 @@
 
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { useProductStore } from '@/store/modules/product';
+	import { extractTextFromHtml } from '@/utils/convert';
 
 	const props = defineProps<{
 		notableObs?: IDATAOBSGetRecentNotableObsInRegionItem;
@@ -92,25 +93,24 @@
 		checklistInfo.value?.obs.find((o) => o.speciesCode === obs.value?.speciesCode)
 	);
 
-	const description = computed(() => {
+	const descHTML = computed(() => {
 		if (!obs.value) return;
 		const { comName, howMany, obsDt, locName, lat, lng } = obs.value;
 		const mapUrl = `http://maps.google.com/?ie=UTF8&t=p&z=13&q=${lat},${lng}&ll=${lat},${lng}`;
-		return `
-			${props.userComName} (${comName}) (${howMany})<br />
-			- ${obsDt} by ${checklistInfo.value?.userDisplayName}<br />
-			- ${locName}<br />
-			- 地圖: <a href="${mapUrl}">${mapUrl}</a><br />
-			- 紀錄清單: <a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
-			- 備註: ${notableDetail.value?.comments}
-		`;
+		return `${props.userComName} (${comName}) (${howMany})<br />
+- ${obsDt} by ${checklistInfo.value?.userDisplayName}<br />
+- ${locName}<br />
+- 地圖: <a href="${mapUrl}">${mapUrl}</a><br />
+- 紀錄清單: <a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
+- 備註: ${notableDetail.value?.comments}`;
 	});
+	const descTEXT = computed(() => extractTextFromHtml(descHTML.value));
 
 	/**
 	 * 複製紀錄清單資訊
 	 */
 	const onCopyToClipboard = () => {
-		copy(description.value || checklistUrl.value).then(() => {
+		copy(descTEXT.value || checklistUrl.value).then(() => {
 			$notify.info('成功：複製紀錄清單資訊');
 		});
 	};
@@ -122,7 +122,7 @@
 		if (navigator.share) {
 			navigator.share({
 				title: props.userComName,
-				text: description.value,
+				text: descHTML.value,
 				url: checklistUrl.value,
 			});
 		}
