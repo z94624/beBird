@@ -43,6 +43,7 @@
 						outline
 						rounded
 						text-color="primary"
+						@click="onOpenVersionDialog"
 					/>
 				</q-toolbar>
 			</q-header>
@@ -51,11 +52,15 @@
 				<router-view />
 			</q-page-container>
 		</q-layout>
+
+		<VersionDialog ref="versionDialogRef" />
 	</div>
 </template>
 
 <script lang="ts" setup>
+	import { ref } from 'vue';
 	import { useRouter } from 'vue-router';
+	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import BLetter from '@/assets/images/b.svg';
 	import EbirdLogo from '@/assets/images/eBird.svg';
 
@@ -64,6 +69,8 @@
 
 	const router = useRouter();
 
+	const versionDialogRef = ref();
+
 	const version = import.meta.env.VITE_BEBIRD_VERSION;
 
 	/**
@@ -71,6 +78,13 @@
 	 */
 	const goHome = () => {
 		router.replace(PageEnum.BASE_HOME);
+	};
+
+	/**
+	 * 版本跳窗
+	 */
+	const onOpenVersionDialog = () => {
+		versionDialogRef.value.open();
 	};
 </script>
 

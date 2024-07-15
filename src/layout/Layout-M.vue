@@ -25,6 +25,7 @@
 						outline
 						rounded
 						text-color="primary"
+						@click="onOpenVersionDialog"
 					/>
 					<q-btn
 						flat
@@ -77,12 +78,15 @@
 				<router-view />
 			</q-page-container>
 		</q-layout>
+
+		<VersionDialog ref="versionDialogRef" />
 	</div>
 </template>
 
 <script lang="ts" setup>
 	import { ref } from 'vue';
 	import { useRouter } from 'vue-router';
+	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import BLetter from '@/assets/images/b.svg';
 	import EbirdLogo from '@/assets/images/eBird.svg';
 
@@ -94,6 +98,8 @@
 	const version = import.meta.env.VITE_BEBIRD_VERSION;
 	const leftDrawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');
+
+	const versionDialogRef = ref();
 
 	/**
 	 * 開關選單
@@ -114,6 +120,13 @@
 	 */
 	const onSelectMenu = (menuName: string) => {
 		selectedMenu.value = menuName;
+	};
+
+	/**
+	 * 版本跳窗
+	 */
+	const onOpenVersionDialog = () => {
+		versionDialogRef.value.open();
 	};
 </script>
 

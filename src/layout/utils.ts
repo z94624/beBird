@@ -1,3 +1,8 @@
+import { QSelectOption } from 'quasar';
+
+/**
+ * 地圖選單列表
+ */
 export const menuList: {
 	name: string;
 	label: string;
@@ -36,3 +41,26 @@ export const menuList: {
 	// 	to: '/routine-route-map',
 	// },
 ];
+
+/**
+ * 版本資訊列表
+ */
+export const versionList: {
+	version: string; // 版本號
+	releaseDate: string; // 發佈日期
+	features?: string[]; // 新功能；feat
+	fixes?: string[]; // 修正；fix
+	changes?: string[]; // 變更；change
+	perfs?: string[]; // 優化；perf
+}[] = [
+	{
+		version: '0.9.0',
+		releaseDate: '2024/07/14',
+		features: ['稀有鳥地圖(基本版)開放測試'],
+	},
+];
+// 版本號選項
+export const versionOptions: QSelectOption[] = versionList.map((vi) => ({
+	label: vi.version,
+	value: vi.version,
+}));
