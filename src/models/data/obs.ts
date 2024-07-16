@@ -13,7 +13,7 @@ export class DATAOBSCommon {
 	constructor(data?: DATAOBSCommon) {
 		if (!data) return;
 		const {
-			back = 1,
+			back = 5,
 			hotspot = false,
 			maxResults = undefined,
 			sppLocale = LocaleEnum.ENGLISH,
@@ -23,7 +23,7 @@ export class DATAOBSCommon {
 		this.maxResults = maxResults;
 		this.sppLocale = sppLocale;
 	}
-	back?: number = 1; // 1-30；The number of days back to fetch observations.
+	back?: number = 5; // 1-30；The number of days back to fetch observations.
 	hotspot?: boolean = false; // Only fetch observations from hotspots.
 	maxResults?: number = undefined; // Only fetch this number of observations.
 	sppLocale?: LocaleEnum = LocaleEnum.ENGLISH; // Use this language for species common names.
