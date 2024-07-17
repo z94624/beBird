@@ -37,7 +37,7 @@
 					:description="descTEXT"
 					:hashtags="userComName"
 					:network="media.network"
-					:title="`${userComName} [${obs.sciName}]`"
+					:title="`${userComName} [${obs?.sciName ?? '{sciName}'}]`"
 					:url="checklistUrl"
 					class="w-full flex no-wrap items-center gap-4"
 				>
@@ -94,7 +94,7 @@
 	);
 
 	const descHTML = computed(() => {
-		if (!obs.value) return;
+		if (!obs.value) return '';
 		const { comName, howMany, obsDt, locName, lat, lng } = obs.value;
 		const mapUrl = `http://maps.google.com/?ie=UTF8&t=p&z=13&q=${lat},${lng}&ll=${lat},${lng}`;
 		return `${props.userComName} (${comName}) (${howMany})<br />
