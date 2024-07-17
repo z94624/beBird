@@ -61,6 +61,7 @@
 	import { usePlatform } from '@/hooks/platform';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
+	// 監測定位
 	const { coords, error, resume, pause } = useGeolocation();
 	const { isMobile } = usePlatform();
 
@@ -79,17 +80,6 @@
 		btn: 'panel',
 		panel: 'btn',
 	};
-
-	watch(
-		coords,
-		(nv, ov) => {
-			center.value = [nv.latitude, nv.longitude];
-			if (nv.latitude === ov.latitude && nv.longitude === ov.longitude) {
-				pause();
-			}
-		},
-		{ deep: true }
-	);
 
 	/**
 	 * 改變地圖中心
