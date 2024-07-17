@@ -39,7 +39,7 @@
 					<q-space />
 
 					<BaseButton
-						:label="`v${version}`"
+						:label="`v${versionList[0].version}`"
 						outline
 						rounded
 						text-color="primary"
@@ -66,12 +66,11 @@
 
 	import { PageEnum } from '@/models/enum/pageEnum';
 	import { menuList } from './utils';
+	import { versionList } from '@/layout/utils';
 
 	const router = useRouter();
 
 	const versionDialogRef = ref();
-
-	const version = import.meta.env.VITE_BEBIRD_VERSION;
 
 	/**
 	 * 導向首頁
