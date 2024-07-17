@@ -54,6 +54,16 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '0.9.1',
+		releaseDate: '2024/07/17',
+		features: ['版本按鈕點擊可顯示更新細節'],
+		fixes: ['剛進入地圖時，不以使用者地理座標為中心'],
+		changes: [
+			'分享稀有鳥訊息由 HTML 字串改為純文字',
+			'「時間間隔(幾天以前)」搜尋參數預設值改為 5 天前',
+		],
+	},
+	{
 		version: '0.9.0',
 		releaseDate: '2024/07/14',
 		features: ['稀有鳥地圖(基本版)開放測試'],

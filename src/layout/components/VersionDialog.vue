@@ -13,7 +13,7 @@
 					:options="versionOptions"
 				/>
 
-				<div>發佈日期：{{ selectedVersionItem.releaseDate }}</div>
+				<div>{{ selectedVersionItem.releaseDate }}</div>
 
 				<div class="versionDescContainer flex flex-col gap-4">
 					<template
