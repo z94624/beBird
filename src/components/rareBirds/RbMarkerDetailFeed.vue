@@ -34,10 +34,10 @@
 				clickable
 			>
 				<ShareNetwork
-					:description="descHTML"
+					:description="descTEXT"
 					:hashtags="userComName"
 					:network="media.network"
-					:title="`分享至 ${media.name}`"
+					:title="`${userComName} [${obs.sciName}]`"
 					:url="checklistUrl"
 					class="w-full flex no-wrap items-center gap-4"
 				>
@@ -122,7 +122,7 @@
 		if (navigator.share) {
 			navigator.share({
 				title: props.userComName,
-				text: descHTML.value,
+				text: descTEXT.value,
 				url: checklistUrl.value,
 			});
 		}
