@@ -140,6 +140,17 @@
 	);
 
 	/**
+	 * 以搜尋結果第一筆做地圖中心
+	 */
+	watch(
+		pureObsList,
+		(nv) => {
+			mapRef.value.updateCenter([nv[0].lat, nv[0].lng]);
+		},
+		{ deep: true }
+	);
+
+	/**
 	 * 根據使用者語系，建立物種代碼對當地俗名字典
 	 */
 	watch(pureSpeciesCodes, (nv) => {
