@@ -177,18 +177,18 @@
 	const onUpdateCountry = (val: string) => {
 		country.value = val;
 		// 調整地圖縮放
-		setTimeout(() => {
-			mapRef.value.updateZoom(4);
-		}, 1);
+		mapRef.value.updateZoom(4);
 	};
 
 	/**
 	 * 更新地區
 	 */
-	const onUpdateRegion = (val: string) => {
+	const onUpdateRegion = (val: string | undefined) => {
 		region.value = val;
 		// 調整地圖縮放
-		mapRef.value.updateZoom(8);
+		if (val) {
+			mapRef.value.updateZoom(8);
+		}
 	};
 
 	/**
