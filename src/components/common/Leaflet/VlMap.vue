@@ -35,7 +35,7 @@
 				v-model:center="center"
 				ref="map"
 				:use-global-leaflet="false"
-				:zoom="8"
+				:zoom="zoom"
 				class="map"
 			>
 				<l-tile-layer
@@ -70,6 +70,7 @@
 		GeoDataEnum.LATITUDE_OF_TAIWAN,
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,
 	] as PointExpression);
+	const zoom = ref(8); // max: 18; min: 0
 	const morph = ref('btn');
 
 	interface IMorphStepDict {
@@ -90,13 +91,21 @@
 	};
 
 	/**
+	 * 改變地圖縮放
+	 * @param newZoom 地圖新縮放
+	 */
+	const updateZoom = (newZoom: number) => {
+		zoom.value = newZoom;
+	};
+
+	/**
 	 * 收合 Search Panel
 	 */
 	const nextMorph = () => {
 		morph.value = nextMorphStep[morph.value as keyof IMorphStepDict];
 	};
 
-	defineExpose({ updateCenter });
+	defineExpose({ updateCenter, updateZoom });
 </script>
 
 <style lang="scss" scoped>

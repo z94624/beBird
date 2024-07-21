@@ -6,11 +6,15 @@
 				no-error-focus
 				no-reset-focus
 			>
-				<CountrySelect v-model:country="country" />
-				<RegionSelect
-					v-model:region="region"
+				<CountrySelect
 					:country="country"
+					@update:country="onUpdateCountry"
+				/>
+				<RegionSelect
+					:country="country"
+					:region="region"
 					@loading="(status: boolean) => (loading = status)"
+					@update:region="onUpdateRegion"
 				/>
 
 				<div>
@@ -145,6 +149,7 @@
 	watch(
 		pureObsList,
 		(nv) => {
+			if (!nv.length) return;
 			mapRef.value.updateCenter([nv[0].lat, nv[0].lng]);
 		},
 		{ deep: true }
@@ -167,6 +172,26 @@
 	});
 
 	/**
+	 * 更新國家
+	 */
+	const onUpdateCountry = (val: string) => {
+		country.value = val;
+		// 調整地圖縮放
+		setTimeout(() => {
+			mapRef.value.updateZoom(4);
+		}, 1);
+	};
+
+	/**
+	 * 更新地區
+	 */
+	const onUpdateRegion = (val: string) => {
+		region.value = val;
+		// 調整地圖縮放
+		mapRef.value.updateZoom(8);
+	};
+
+	/**
 	 * 取得近期稀有鳥紀錄
 	 */
 	const getRecentNotableObsInRegionInfo = () => {
@@ -175,6 +200,9 @@
 			.then((data) => {
 				// $notify.success('成功：取得近期稀有鳥紀錄');
 				console.log('notableObsList', data);
+				if (!data.length) {
+					$notify.warning('無紀錄');
+				}
 				notableObsList.value = data;
 			})
 			.catch(() => {

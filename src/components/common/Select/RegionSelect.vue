@@ -52,6 +52,7 @@
 	watch(
 		() => props.country,
 		() => {
+			selectedRegion.value = undefined;
 			updateRegionOptions();
 		}
 	);
