@@ -54,6 +54,14 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '0.9.2',
+		releaseDate: '2024/07/21',
+		perfs: [
+			'Use the coordinates of the first record as the center of the map after every search.',
+			'The zoom level of the map changes with the search values of country and region.',
+		],
+	},
+	{
 		version: '0.9.1',
 		releaseDate: '2024/07/17',
 		features: ['版本按鈕點擊可顯示更新細節'],
