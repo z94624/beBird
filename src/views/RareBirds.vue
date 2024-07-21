@@ -184,7 +184,7 @@
 	 * 更新地區
 	 */
 	const onUpdateRegion = (val: string | undefined) => {
-		region.value = val;
+		region.value = val || null;
 		// 調整地圖縮放
 		if (val) {
 			mapRef.value.updateZoom(8);
