@@ -1,9 +1,6 @@
 <template>
 	<q-btn
 		:="getBindingValues"
-		:style="{
-			borderRadius: hasCustomBorderRadius ? '3px' : '',
-		}"
 		class="baseButton"
 		no-caps
 		no-wrap
@@ -33,6 +30,7 @@
 			rounded?: boolean;
 			square?: boolean;
 			round?: boolean;
+			dense?: boolean;
 		}>(),
 		{
 			textColor: 'white',
@@ -54,14 +52,11 @@
 		};
 	});
 
-	// 是否使用自訂 Border Radius
-	const hasCustomBorderRadius = computed(() => !props.rounded && !props.square && !props.round);
-
 	/**
 	 * 計算 Padding
 	 */
 	const getPadding = (): string | undefined => {
-		if (props.round) {
+		if (props.padding || props.round || props.dense) {
 			return props.padding?.toString();
 		}
 		return '.85em 1em';
