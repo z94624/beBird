@@ -36,6 +36,8 @@
 				color="white"
 				dense
 				icon="my_location"
+				padding="6.425px"
+				size="sm"
 				style="border-radius: 8px"
 				@click="onLocate"
 			/>
@@ -46,6 +48,7 @@
 				v-model:center="center"
 				v-model:zoom="zoom"
 				ref="map"
+				:options="{ zoomControl: false }"
 				:use-global-leaflet="false"
 				class="map"
 				@update:bounds="onUpdateBounds"
@@ -53,12 +56,13 @@
 				@update:zoom="onUpdateZoom"
 			>
 				<l-tile-layer
+					attribution="© smoBEE"
 					layer-type="base"
 					name="OpenStreetMap"
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				></l-tile-layer>
 				<l-control-scale />
-				<l-control-attribution prefix="Leaflet | © smoBEE" />
+				<l-control-zoom position="bottomright" />
 
 				<slot name="markers"></slot>
 			</l-map>
@@ -69,7 +73,7 @@
 <script lang="ts" setup>
 	import { computed, reactive, ref } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
-	import { LMap, LTileLayer, LControlScale, LControlAttribution } from '@vue-leaflet/vue-leaflet';
+	import { LMap, LTileLayer, LControlScale, LControlZoom } from '@vue-leaflet/vue-leaflet';
 	import { PointExpression } from 'leaflet';
 
 	import { usePlatform } from '@/hooks/platform';
@@ -191,7 +195,7 @@
 </script>
 
 <style lang="scss" scoped>
-	$boundary-gap: 11.6px;
+	$boundary-gap: 10px;
 
 	.fullContainer {
 		width: 100%;
@@ -217,7 +221,7 @@
 
 	.map-bottom-right {
 		position: absolute;
-		bottom: calc(#{$boundary-gap} + 16.8px);
+		bottom: 93px;
 		right: $boundary-gap;
 		z-index: 401;
 	}

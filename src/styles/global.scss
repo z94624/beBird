@@ -6,3 +6,8 @@
 @mixin border($thick: 1px, $style: solid) {
 	border: $thick $style var(--q-line_e);
 }
+
+/**
+ * Google
+ */
+$g-border-radius: 8px;
