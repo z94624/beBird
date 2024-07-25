@@ -69,6 +69,27 @@
 				<l-control-scale />
 				<l-control-zoom position="bottomright" />
 
+				<!-- 使用者圖釘 -->
+				<template v-if="locatedAt">
+					<l-circle-marker
+						:lat-lng="userGeoLocation as LatLngExpression"
+						:radius="coords.accuracy / 2"
+						:stroke="false"
+					/>
+					<l-circle-marker
+						:fillOpacity="1"
+						:lat-lng="userGeoLocation as LatLngExpression"
+						:radius="6.5"
+						:stroke="false"
+						fillColor="#fff"
+					/>
+					<l-circle-marker
+						:fillOpacity="1"
+						:lat-lng="userGeoLocation as LatLngExpression"
+						:radius="3.5"
+						fillColor="#3388ff"
+					/>
+				</template>
 				<slot name="markers"></slot>
 			</l-map>
 		</div>
@@ -76,7 +97,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, reactive, ref, watch } from 'vue';
+	import { computed, onBeforeMount, reactive, ref, watch } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
 	import {
 		LMap,
@@ -84,14 +105,15 @@
 		LControlLayers,
 		LControlScale,
 		LControlZoom,
+		LCircleMarker,
 	} from '@vue-leaflet/vue-leaflet';
-	import { PointExpression } from 'leaflet';
+	import { LatLngExpression, PointExpression } from 'leaflet';
 
 	import { usePlatform } from '@/hooks/platform';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	// 監測定位
-	const { coords, error, resume, pause } = useGeolocation();
+	const { coords, locatedAt, error, resume, pause } = useGeolocation();
 	const { isMobile } = usePlatform();
 
 	const map = ref(null);
@@ -167,9 +189,7 @@
 	watch(
 		coords,
 		() => {
-			if (!triggerSrcDict.center) {
-				updateCenter(userGeoLocation.value);
-			}
+			updateCenter(userGeoLocation.value);
 		},
 		{ deep: true }
 	);
@@ -243,13 +263,16 @@
 		if (locateStatus.value) {
 			// 開啟定位
 			resumeLocating();
-			updateCenter(userGeoLocation.value);
 			triggerSrcDict.center = 'locate';
 		} else {
 			// 取消定位
 			pauseLocating();
 		}
 	};
+
+	onBeforeMount(() => {
+		pause();
+	});
 
 	defineExpose({ updateCenter, updateZoom });
 </script>
