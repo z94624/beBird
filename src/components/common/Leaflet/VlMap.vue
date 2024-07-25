@@ -160,23 +160,28 @@
 			visible: true,
 		},
 		{
-			name: 'OPNVKarte',
-			url: 'https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png',
-			visible: false,
-		},
-		{
 			name: 'OpenTopoMap',
 			url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
 			visible: false,
 		},
 		{
-			name: 'Stadia_AlidadeSmoothDark',
-			url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+			name: 'Esri_WorldImagery',
+			url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 			visible: false,
 		},
 		{
-			name: 'Stadia_AlidadeSatellite',
-			url: 'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png',
+			name: 'CartoDB_DarkMatter',
+			url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+			visible: false,
+		},
+		{
+			name: 'CartoDB_Voyager',
+			url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+			visible: false,
+		},
+		{
+			name: 'OPNVKarte',
+			url: 'https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png',
 			visible: false,
 		},
 		{
