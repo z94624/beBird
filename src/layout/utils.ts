@@ -54,6 +54,14 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.0.0',
+		releaseDate: '2024/07/25',
+		features: [
+			'A button at the bottom-right of the map that helps user locate himself.',
+			'A button at the bottom-left of the map that provides some map layers for user to choose.',
+		],
+	},
+	{
 		version: '0.9.2',
 		releaseDate: '2024/07/21',
 		perfs: [
