@@ -22,7 +22,7 @@
 				color="white"
 				icon="arrow_outward"
 				round
-				size="md"
+				size="sm"
 				text-color="primary"
 				@click="nextMorph"
 			/>
@@ -55,12 +55,17 @@
 				@update:center="onUpdateCenter"
 				@update:zoom="onUpdateZoom"
 			>
+				<l-control-layers position="bottomleft" />
 				<l-tile-layer
+					v-for="tileProvider in tileProviders"
+					:key="tileProvider.name"
+					:name="tileProvider.name"
+					:url="tileProvider.url"
+					:visible="tileProvider.visible"
 					attribution="© smoBEE"
 					layer-type="base"
-					name="OpenStreetMap"
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				></l-tile-layer>
+				/>
+
 				<l-control-scale />
 				<l-control-zoom position="bottomright" />
 
@@ -71,9 +76,15 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, reactive, ref } from 'vue';
+	import { computed, reactive, ref, watch } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
-	import { LMap, LTileLayer, LControlScale, LControlZoom } from '@vue-leaflet/vue-leaflet';
+	import {
+		LMap,
+		LTileLayer,
+		LControlLayers,
+		LControlScale,
+		LControlZoom,
+	} from '@vue-leaflet/vue-leaflet';
 	import { PointExpression } from 'leaflet';
 
 	import { usePlatform } from '@/hooks/platform';
@@ -113,6 +124,55 @@
 		btn: 'panel',
 		panel: 'btn',
 	};
+
+	// 圖層列表
+	const tileProviders: {
+		name: string;
+		url: string;
+		visible: boolean;
+		attribution?: string;
+	}[] = [
+		{
+			name: 'OpenStreetMap',
+			url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+			visible: true,
+		},
+		{
+			name: 'OPNVKarte',
+			url: 'https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png',
+			visible: false,
+		},
+		{
+			name: 'OpenTopoMap',
+			url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+			visible: false,
+		},
+		{
+			name: 'Stadia_AlidadeSmoothDark',
+			url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+			visible: false,
+		},
+		{
+			name: 'Stadia_AlidadeSatellite',
+			url: 'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png',
+			visible: false,
+		},
+		{
+			name: 'CyclOSM',
+			url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+			visible: false,
+		},
+	];
+
+	watch(
+		coords,
+		() => {
+			if (!triggerSrcDict.center) {
+				updateCenter(userGeoLocation.value);
+			}
+		},
+		{ deep: true }
+	);
 
 	/**
 	 * 開啟定位

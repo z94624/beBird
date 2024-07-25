@@ -26,7 +26,6 @@
 						<BaseButton
 							class="flex-1"
 							color="info"
-							dense
 							icon="o_info"
 							label="細節"
 							size="sm"
@@ -36,7 +35,6 @@
 							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
 							color="positive"
-							dense
 							label="導航"
 							size="sm"
 						/>
