@@ -32,8 +32,8 @@
 
 		<div class="customToolbar flex flex-col gap-1">
 			<BaseButton
-				:text-color="locateColor"
-				color="white"
+				:color="locateColor.color"
+				:text-color="locateColor.textColor"
 				dense
 				icon="my_location"
 				padding="6.425px"
@@ -69,11 +69,15 @@
 				<l-control-scale />
 				<l-control-zoom position="bottomright" />
 
-				<!-- 使用者圖釘 -->
+				<!--
+					使用者圖釘
+					LCircle 的 radius 單位：meters
+					LCircleMarker 的 radius 單位：pixels
+				-->
 				<template v-if="locatedAt">
-					<l-circle-marker
+					<l-circle
 						:lat-lng="userGeoLocation as LatLngExpression"
-						:radius="coords.accuracy / 2"
+						:radius="Math.ceil(coords.accuracy / 2)"
 						:stroke="false"
 					/>
 					<l-circle-marker
@@ -105,6 +109,7 @@
 		LControlLayers,
 		LControlScale,
 		LControlZoom,
+		LCircle,
 		LCircleMarker,
 	} from '@vue-leaflet/vue-leaflet';
 	import { LatLngExpression, PointExpression } from 'leaflet';
@@ -124,7 +129,10 @@
 	const zoom = ref(8); // max: 18; min: 0; locate: 16
 	const morph = ref('btn');
 	const locateStatus = ref(false);
-	const locateColor = ref('secondary_e');
+	const locateColor = ref({
+		textColor: 'black',
+		color: 'white',
+	});
 
 	// 使用者經緯座標
 	const userGeoLocation = computed(
@@ -203,14 +211,20 @@
 	 * 開啟定位
 	 */
 	const resumeLocating = () => {
-		locateColor.value = 'primary';
+		locateColor.value = {
+			textColor: 'white',
+			color: 'primary',
+		};
 		resume();
 	};
 	/**
 	 * 停止定位
 	 */
 	const pauseLocating = () => {
-		locateColor.value = 'secondary_e';
+		locateColor.value = {
+			textColor: 'black',
+			color: 'white',
+		};
 		pause();
 	};
 
