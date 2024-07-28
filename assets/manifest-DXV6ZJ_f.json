@@ -1,0 +1,16 @@
+{
+	"name": "beBird - 賞鳥世界走透透...",
+	"short_name": "beBird",
+	"theme_color": "#1c1bd6",
+	"background_color": "#ddddff",
+	"display": "standalone",
+	"scope": "/",
+	"start_url": "index.html",
+	"icons": [
+		{
+			"src": "logo-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}
