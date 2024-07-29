@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 
 import AutoImport from 'unplugin-auto-import/vite';
 import eslintPlugin from 'vite-plugin-eslint';
@@ -9,6 +10,93 @@ import { QuasarResolver } from 'unplugin-vue-components/resolvers';
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
 
 import { fileURLToPath, URL } from 'node:url';
+
+const vitePWAOptions: Partial<VitePWAOptions> = {
+	registerType: 'autoUpdate',
+	manifest: {
+		name: 'beBird - 賞鳥世界走透透...',
+		short_name: 'beBird',
+		description: 'Today the birds, tomorrow the Human.',
+		theme_color: '#1c1bd6',
+		background_color: '#ddddff',
+		display: 'standalone',
+		scope: 'https://z94624.github.io/beBird/',
+		start_url: 'https://z94624.github.io/beBird/#/rare-birds-map',
+		icons: [
+			{
+				src: 'logo-512x512.png',
+				type: 'image/png',
+				sizes: '512x512',
+			},
+			{
+				src: 'logo-256x256.png',
+				type: 'image/png',
+				sizes: '256x256',
+			},
+			{
+				src: 'logo-192x192.png',
+				type: 'image/png',
+				sizes: '192x192',
+			},
+			{
+				src: 'logo-168x168.png',
+				type: 'image/png',
+				sizes: '168x168',
+			},
+			{
+				src: 'logo-144x144.png',
+				type: 'image/png',
+				sizes: '144x144',
+			},
+			{
+				src: 'logo-96x96.png',
+				type: 'image/png',
+				sizes: '96x96',
+			},
+			{
+				src: 'logo-72x72.png',
+				type: 'image/png',
+				sizes: '72x72',
+			},
+			{
+				src: 'logo-48x48.png',
+				type: 'image/png',
+				sizes: '48x48',
+			},
+		],
+	},
+	workbox: {
+		// this would disable precache
+		globIgnores: ['**/*.js', '**/*.ts'],
+		runtimeCaching: [
+			{
+				urlPattern: /(.*?)\.(ttf|woff|woff2)/,
+				/* https://developer.chrome.com/docs/workbox/caching-strategies-overview/#cache-first-falling-back-to-network */
+				handler: 'CacheFirst',
+				options: {
+					cacheName: 'font-cache',
+				},
+			},
+			{
+				urlPattern: /(.*?)\.(css)/,
+				handler: 'CacheFirst',
+				options: {
+					cacheName: 'css-cache',
+				},
+			},
+			{
+				urlPattern: /(.*?)\.(png|jpe?g|svg|gif|bmp|psd|tiff|tga|eps)/,
+				handler: 'CacheFirst',
+				options: {
+					cacheName: 'image-cache',
+				},
+			},
+		],
+		swDest: './dist/sw.js',
+		globDirectory: './dist',
+		maximumFileSizeToCacheInBytes: 1024 * 1024 * 4,
+	},
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,6 +120,7 @@ export default defineConfig({
 		vue({
 			template: { transformAssetUrls },
 		}),
+		VitePWA(vitePWAOptions),
 		// @quasar/plugin-vite options list:
 		// https://github.com/quasarframework/quasar/blob/dev/vite-plugin/index.d.ts
 		quasar({
