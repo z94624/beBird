@@ -54,6 +54,12 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.0.1',
+		releaseDate: '2024/07/30',
+		features: ['Convert the website to Progressive Web App(PWA).'],
+		changes: ['For mobile device, the search panel on the map is full in width.'],
+	},
+	{
 		version: '1.0.0',
 		releaseDate: '2024/07/25',
 		features: [
