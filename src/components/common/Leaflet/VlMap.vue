@@ -13,7 +13,7 @@
 		<div
 			v-morph:panel.resize="morph"
 			:style="{
-				width: isMobile ? 'calc(100vw - 11.6px - 53.2px)' : '33%',
+				width: isMobile ? 'calc(100vw - 20px)' : '33%',
 			}"
 			class="searchMenuContainer shadow-3 rounded-borders relative"
 		>
