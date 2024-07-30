@@ -100,9 +100,10 @@
 		return `${props.userComName} (${comName}) (${howMany})<br />
 - ${obsDt} by ${checklistInfo.value?.userDisplayName}<br />
 - ${locName}<br />
-- 地圖: <a href="${mapUrl}">${mapUrl}</a><br />
-- 紀錄清單: <a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
-- 備註: ${notableDetail.value?.comments}`;
+- Map: <a href="${mapUrl}">${mapUrl}</a><br />
+- checklist: <a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
+- Note: ${notableDetail.value?.comments}<br />
+(Source: <a href="https://z94624.github.io/beBird/">https://z94624.github.io/beBird/</a>)`;
 	});
 	const descTEXT = computed(() => extractTextFromHtml(descHTML.value));
 
