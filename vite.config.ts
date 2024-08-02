@@ -18,7 +18,7 @@ const vitePWAOptions: Partial<VitePWAOptions> = {
 		short_name: 'beBird',
 		description: 'Today the birds, tomorrow the Human.',
 		theme_color: '#1c1bd6',
-		background_color: '#ddddff',
+		background_color: '#fff',
 		display: 'standalone',
 		scope: 'https://z94624.github.io/beBird/',
 		start_url: 'https://z94624.github.io/beBird/#/rare-birds-map',
