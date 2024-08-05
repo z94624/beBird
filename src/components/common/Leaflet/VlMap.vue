@@ -1,5 +1,6 @@
 <template>
 	<div class="fullContainer relative">
+		<!-- 搜尋功能 -->
 		<BaseButton
 			v-morph:btn.resize="morph"
 			class="map-top-right"
@@ -8,14 +9,12 @@
 			icon="search"
 			round
 			size="lg"
-			@click="nextMorph"
+			@click="!isMobile ? nextMorph() : toggleSearchDrawer()"
 		/>
 		<div
+			v-if="!isMobile"
 			v-morph:panel.resize="morph"
-			:style="{
-				width: isMobile ? 'calc(100vw - 20px)' : '33%',
-			}"
-			class="searchMenuContainer shadow-3 rounded-borders relative"
+			class="searchMenuContainer w-[33%] shadow-3 rounded-borders relative"
 		>
 			<BaseButton
 				class="absolute -left-2 -bottom-2"
@@ -26,10 +25,21 @@
 				text-color="primary"
 				@click="nextMorph"
 			/>
-
 			<slot name="search-menu"></slot>
 		</div>
+		<q-drawer
+			v-else
+			v-model="searchDrawerOpen"
+			behavior="mobile"
+			bordered
+			class="p-3"
+			overlay
+			side="right"
+		>
+			<slot name="search-menu"></slot>
+		</q-drawer>
 
+		<!-- 右下功能區 -->
 		<div class="customToolbar flex flex-col gap-1">
 			<BaseButton
 				:color="locateColor.color"
@@ -43,6 +53,7 @@
 			/>
 		</div>
 
+		<!-- 地圖 -->
 		<div class="mapContainer">
 			<l-map
 				v-model:center="center"
@@ -128,6 +139,7 @@
 	] as PointExpression);
 	const zoom = ref(8); // max: 18; min: 0; locate: 16
 	const morph = ref('btn');
+	const searchDrawerOpen = ref(false);
 	const locateStatus = ref(false);
 	const locateColor = ref({
 		textColor: 'black',
@@ -206,6 +218,13 @@
 		},
 		{ deep: true }
 	);
+
+	/**
+	 * 開關選單
+	 */
+	const toggleSearchDrawer = () => {
+		searchDrawerOpen.value = !searchDrawerOpen.value;
+	};
 
 	/**
 	 * 開啟定位

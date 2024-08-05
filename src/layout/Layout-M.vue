@@ -7,7 +7,16 @@
 				reveal
 			>
 				<q-toolbar>
-					<div @click="goHome">
+					<q-btn
+						flat
+						icon="menu"
+						round
+						@click="toggleDrawer"
+					/>
+					<div
+						class="cursor-pointer"
+						@click="goHome"
+					>
 						<q-icon
 							:name="`img:${BLetter}`"
 							style="width: 19px; height: 26px"
@@ -27,23 +36,17 @@
 						text-color="primary"
 						@click="onOpenVersionDialog"
 					/>
-					<q-btn
-						flat
-						icon="menu"
-						round
-						@click="toggleLeftDrawer"
-					/>
 				</q-toolbar>
 			</q-header>
 
 			<q-drawer
-				v-model="leftDrawerOpen"
+				v-model="drawerOpen"
 				:width="200"
 				behavior="mobile"
 				bordered
 				class="text-primary_e"
 				overlay
-				side="right"
+				side="left"
 			>
 				<q-scroll-area class="fit">
 					<q-list class="layoutMenuList">
@@ -96,7 +99,7 @@
 
 	const router = useRouter();
 
-	const leftDrawerOpen = ref(false);
+	const drawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');
 
 	const versionDialogRef = ref();
@@ -104,8 +107,8 @@
 	/**
 	 * 開關選單
 	 */
-	const toggleLeftDrawer = () => {
-		leftDrawerOpen.value = !leftDrawerOpen.value;
+	const toggleDrawer = () => {
+		drawerOpen.value = !drawerOpen.value;
 	};
 
 	/**
