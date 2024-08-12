@@ -11,14 +11,9 @@
 						class="cursor-pointer"
 						@click="goHome"
 					>
-						<q-icon
-							:name="`img:${BLetter}`"
-							style="width: 19px; height: 26px"
-						/>
-						<q-icon
-							:name="`img:${EbirdLogo}`"
-							style="width: 73px; height: 26px"
-						/>
+						<span class="logoText text-primary">b</span>
+						<span class="logoText text-accent">e</span>
+						<span class="logoText text-secondaryDark_e">Bird</span>
 					</q-toolbar-title>
 
 					<q-tabs
@@ -61,8 +56,6 @@
 	import { ref } from 'vue';
 	import { useRouter } from 'vue-router';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
-	import BLetter from '@/assets/images/b.svg';
-	import EbirdLogo from '@/assets/images/eBird.svg';
 
 	import { PageEnum } from '@/models/enum/pageEnum';
 	import { menuList } from './utils';
@@ -87,4 +80,10 @@
 	};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.logoText {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+		font-weight: bold;
+	}
+</style>
