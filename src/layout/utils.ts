@@ -54,6 +54,14 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.0.2',
+		releaseDate: '2024/08/12',
+		changes: [
+			'For mobile device, the search panel is moved into the right drawer, and the menu is moved into the left drawer.',
+			'New logo icon and logo text.',
+		],
+	},
+	{
 		version: '1.0.1',
 		releaseDate: '2024/07/30',
 		features: ['Convert the website to Progressive Web App(PWA).'],

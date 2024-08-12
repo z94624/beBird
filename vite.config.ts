@@ -18,7 +18,7 @@ const vitePWAOptions: Partial<VitePWAOptions> = {
 		short_name: 'beBird',
 		description: 'Today the birds, tomorrow the Human.',
 		theme_color: '#1c1bd6',
-		background_color: '#ddddff',
+		background_color: '#ffffff',
 		display: 'standalone',
 		scope: 'https://z94624.github.io/beBird/',
 		start_url: 'https://z94624.github.io/beBird/#/rare-birds-map',
@@ -28,41 +28,41 @@ const vitePWAOptions: Partial<VitePWAOptions> = {
 				type: 'image/png',
 				sizes: '512x512',
 			},
-			{
-				src: 'logo-256x256.png',
-				type: 'image/png',
-				sizes: '256x256',
-			},
+			// {
+			// 	src: 'logo-256x256.png',
+			// 	type: 'image/png',
+			// 	sizes: '256x256',
+			// },
 			{
 				src: 'logo-192x192.png',
 				type: 'image/png',
 				sizes: '192x192',
 			},
-			{
-				src: 'logo-168x168.png',
-				type: 'image/png',
-				sizes: '168x168',
-			},
-			{
-				src: 'logo-144x144.png',
-				type: 'image/png',
-				sizes: '144x144',
-			},
-			{
-				src: 'logo-96x96.png',
-				type: 'image/png',
-				sizes: '96x96',
-			},
-			{
-				src: 'logo-72x72.png',
-				type: 'image/png',
-				sizes: '72x72',
-			},
-			{
-				src: 'logo-48x48.png',
-				type: 'image/png',
-				sizes: '48x48',
-			},
+			// {
+			// 	src: 'logo-168x168.png',
+			// 	type: 'image/png',
+			// 	sizes: '168x168',
+			// },
+			// {
+			// 	src: 'logo-144x144.png',
+			// 	type: 'image/png',
+			// 	sizes: '144x144',
+			// },
+			// {
+			// 	src: 'logo-96x96.png',
+			// 	type: 'image/png',
+			// 	sizes: '96x96',
+			// },
+			// {
+			// 	src: 'logo-72x72.png',
+			// 	type: 'image/png',
+			// 	sizes: '72x72',
+			// },
+			// {
+			// 	src: 'logo-48x48.png',
+			// 	type: 'image/png',
+			// 	sizes: '48x48',
+			// },
 		],
 	},
 	workbox: {

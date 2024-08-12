@@ -7,15 +7,19 @@
 				reveal
 			>
 				<q-toolbar>
-					<div @click="goHome">
-						<q-icon
-							:name="`img:${BLetter}`"
-							style="width: 19px; height: 26px"
-						/>
-						<q-icon
-							:name="`img:${EbirdLogo}`"
-							style="width: 73px; height: 26px"
-						/>
+					<q-btn
+						flat
+						icon="menu"
+						round
+						@click="toggleDrawer"
+					/>
+					<div
+						class="cursor-pointer"
+						@click="goHome"
+					>
+						<span class="logoText text-primary">b</span>
+						<span class="logoText text-accent">e</span>
+						<span class="logoText text-secondaryDark_e">Bird</span>
 					</div>
 
 					<q-toolbar-title></q-toolbar-title>
@@ -27,23 +31,17 @@
 						text-color="primary"
 						@click="onOpenVersionDialog"
 					/>
-					<q-btn
-						flat
-						icon="menu"
-						round
-						@click="toggleLeftDrawer"
-					/>
 				</q-toolbar>
 			</q-header>
 
 			<q-drawer
-				v-model="leftDrawerOpen"
+				v-model="drawerOpen"
 				:width="200"
 				behavior="mobile"
 				bordered
 				class="text-primary_e"
 				overlay
-				side="right"
+				side="left"
 			>
 				<q-scroll-area class="fit">
 					<q-list class="layoutMenuList">
@@ -87,8 +85,6 @@
 	import { ref } from 'vue';
 	import { useRouter } from 'vue-router';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
-	import BLetter from '@/assets/images/b.svg';
-	import EbirdLogo from '@/assets/images/eBird.svg';
 
 	import { PageEnum } from '@/models/enum/pageEnum';
 	import { menuList } from './utils';
@@ -96,7 +92,7 @@
 
 	const router = useRouter();
 
-	const leftDrawerOpen = ref(false);
+	const drawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');
 
 	const versionDialogRef = ref();
@@ -104,8 +100,8 @@
 	/**
 	 * 開關選單
 	 */
-	const toggleLeftDrawer = () => {
-		leftDrawerOpen.value = !leftDrawerOpen.value;
+	const toggleDrawer = () => {
+		drawerOpen.value = !drawerOpen.value;
 	};
 
 	/**
@@ -130,4 +126,10 @@
 	};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.logoText {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+		font-weight: bold;
+	}
+</style>
