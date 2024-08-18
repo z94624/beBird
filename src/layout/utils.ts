@@ -15,6 +15,7 @@ export const menuList: {
 		label: '稀有鳥地圖',
 		icon: 'o_campaign',
 		to: '/rare-birds-map',
+		separator: true,
 	},
 	// {
 	// 	name: 'birdWatching',

@@ -23,14 +23,6 @@
 					</div>
 
 					<q-toolbar-title></q-toolbar-title>
-
-					<BaseButton
-						:label="`v${versionList[0].version}`"
-						outline
-						rounded
-						text-color="primary"
-						@click="onOpenVersionDialog"
-					/>
 				</q-toolbar>
 			</q-header>
 
@@ -66,8 +58,20 @@
 							<q-separator
 								v-if="menuItem.separator"
 								:key="'sep' + mIdx"
+								inset
 							/>
 						</template>
+
+						<q-item>
+							<BaseButton
+								:label="`v${versionList[0].version}`"
+								class="!w-full"
+								outline
+								rounded
+								text-color="primary"
+								@click="onOpenVersionDialog"
+							/>
+						</q-item>
 					</q-list>
 				</q-scroll-area>
 			</q-drawer>
