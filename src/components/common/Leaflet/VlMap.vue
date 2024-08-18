@@ -73,7 +73,7 @@
 					:name="tileProvider.name"
 					:url="tileProvider.url"
 					:visible="tileProvider.visible"
-					attribution="© 2024 smoBEE"
+					attribution="© 2024 smoBEE & Cake"
 					layer-type="base"
 				/>
 
