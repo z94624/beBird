@@ -16,12 +16,14 @@
         "axios": "^1.6.7",
         "country-region-data": "^3.0.0",
         "dotenv": "^16.4.5",
+        "firebase": "^10.13.0",
         "pinia": "^2.1.7",
         "quasar": "^2.15.1",
         "vue": "^3.4.19",
         "vue-country-flag-next": "^2.3.2",
         "vue-router": "^4.3.0",
-        "vue-social-sharing": "^4.0.0-alpha4"
+        "vue-social-sharing": "^4.0.0-alpha4",
+        "vuefire": "^3.2.0"
     },
     "devDependencies": {
         "@quasar/vite-plugin": "^1.6.0",

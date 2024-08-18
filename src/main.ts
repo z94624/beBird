@@ -7,6 +7,7 @@ import { useRegisterSW } from 'virtual:pwa-register/vue';
 import { setupRouter } from './router';
 import { setupStore } from './store';
 import { setupQuasar } from './plugins/quasar';
+import { setupFirebase } from './plugins/firebase';
 import VueSocialSharing from 'vue-social-sharing';
 import CountryFlag from 'vue-country-flag-next';
 
@@ -25,6 +26,9 @@ async function bootstrap() {
 
 	// 掛載 Quasar
 	setupQuasar(app);
+
+	// 掛載 Firebase
+	setupFirebase(app);
 
 	// 社群分享按鈕套件
 	app.use(VueSocialSharing);
