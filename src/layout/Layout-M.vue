@@ -63,6 +63,10 @@
 						</template>
 
 						<q-item>
+							<VisitorsBillboard />
+						</q-item>
+
+						<q-item>
 							<BaseButton
 								:label="`v${versionList[0].version}`"
 								class="!w-full"
@@ -89,6 +93,7 @@
 	import { ref } from 'vue';
 	import { useRouter } from 'vue-router';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
+	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 
 	import { PageEnum } from '@/models/enum/pageEnum';
 	import { menuList } from './utils';
