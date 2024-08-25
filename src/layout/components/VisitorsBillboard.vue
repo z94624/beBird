@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col gap-1 w-full">
 		<div
-			v-for="item in statistics"
+			v-for="item in visitorStatList"
 			:key="item.name"
 			class="flex p-1"
 		>
@@ -19,13 +19,16 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, ref, toRefs } from 'vue';
+	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+	import { useCookies } from '@vueuse/integrations/useCookies';
 	import VisitorsNumberAnimation from '@/components/common/numberAnimation/VisitorsNumberAnimation.vue';
 
 	import { useVisitorStatStore } from '@/store/modules/firebase';
 	import { visitorStatNameMap } from '@/utils/firebase';
+	import { VisitorStat } from '@/types/firebase';
 	import { VisitorStatEnum } from '@/models/enum/firebaseEnum';
 
+	const cookies = useCookies();
 	const visitorStatStore = useVisitorStatStore();
 	const { online, today, total } = toRefs(visitorStatStore);
 
@@ -36,7 +39,7 @@
 	/**
 	 * 拜訪人次統計資訊
 	 */
-	const statistics = computed(() => {
+	const visitorStatList = computed(() => {
 		return {
 			[VisitorStatEnum.ONLINE]: {
 				name: visitorStatNameMap[VisitorStatEnum.ONLINE],
@@ -54,6 +57,42 @@
 				to: total.value,
 			},
 		};
+	});
+
+	watch(
+		() => [online.value, today.value, total.value],
+		() => {
+			if (
+				online.value !== undefined &&
+				today.value !== undefined &&
+				total.value !== undefined
+			) {
+				// 上次簽到日
+				const signDate = cookies.get('visitorSignIn');
+				// 是否為新一天的簽到
+				const isNewDate = new Date().getDate() !== signDate;
+				// 更新資料庫
+				visitorStatStore
+					.updateVisitorStat(
+						new VisitorStat({
+							online: online.value + 1,
+							today: isNewDate ? today.value + 1 : today.value,
+							total: isNewDate ? total.value + 1 : total.value,
+						})
+					)
+					.then(() => {
+						// 更新簽到日
+						if (isNewDate) {
+							cookies.set('visitorSignIn', new Date().getDate());
+						}
+					});
+			}
+		},
+		{ once: true }
+	);
+
+	onBeforeMount(() => {
+		// cookies.remove('visitorSignIn');
 	});
 </script>
 
