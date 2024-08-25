@@ -18,9 +18,8 @@ export const useVisitorStatStore = defineStore('visitorStat', () => {
 	const today = computed(() => visitorStat.value?.today ?? 0);
 	const total = computed(() => visitorStat.value?.total ?? 0);
 
-	const updateVisitorStat = (newState: VisitorStat, mode?: VisitorStatEnum) => {
-		const childRef = ref(db, `visitorStat/${mode}`);
-		return update(mode ? childRef : visitorStatRef, newState);
+	const updateVisitorStat = (newState: VisitorStat) => {
+		return update(visitorStatRef, newState);
 	};
 
 	return {
