@@ -6,7 +6,7 @@ export class VisitorStat {
 		this.today = today;
 		this.total = total;
 	}
-	online: number = 0; // 在線人數
-	today: number = 0; // 當日人數
-	total: number = 0; // 總拜訪人數
+	online?: number = 0; // 在線人數
+	today?: number = 0; // 當日人數
+	total?: number = 0; // 總拜訪人數
 }

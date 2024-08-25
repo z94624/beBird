@@ -1,43 +1,17 @@
 <template>
 	<div class="flex flex-col gap-1 w-full">
-		<div class="flex p-1">
-			<q-item-section>Online</q-item-section>
+		<div
+			v-for="item in statistics"
+			:key="item.name"
+			class="flex p-1"
+		>
 			<q-item-section>
-				<NumberAnimation
-					:duration="3"
-					:format="(val: number) => val.toFixed()"
-					:from="0"
-					:to="online"
-					autoplay
-					easing="easeOutCubic"
-				/>
+				<div class="text-primary text-bold">{{ item.name }}</div>
 			</q-item-section>
-		</div>
-
-		<div class="flex p-1">
-			<q-item-section>Today</q-item-section>
 			<q-item-section>
-				<NumberAnimation
-					:duration="3"
-					:format="(val: number) => val.toFixed()"
-					:from="0"
-					:to="today"
-					autoplay
-					easing="easeOutCubic"
-				/>
-			</q-item-section>
-		</div>
-
-		<div class="flex p-1">
-			<q-item-section>Total</q-item-section>
-			<q-item-section>
-				<NumberAnimation
-					:duration="3"
-					:format="(val: number) => val.toFixed()"
-					:from="0"
-					:to="total"
-					autoplay
-					easing="easeOutCubic"
+				<VisitorsNumberAnimation
+					:ref="item.ref"
+					:to="item.to"
 				/>
 			</q-item-section>
 		</div>
@@ -45,13 +19,42 @@
 </template>
 
 <script lang="ts" setup>
-	import { toRefs } from 'vue';
-	import NumberAnimation from 'vue-number-animation';
+	import { computed, ref, toRefs } from 'vue';
+	import VisitorsNumberAnimation from '@/components/common/numberAnimation/VisitorsNumberAnimation.vue';
 
 	import { useVisitorStatStore } from '@/store/modules/firebase';
+	import { visitorStatNameMap } from '@/utils/firebase';
+	import { VisitorStatEnum } from '@/models/enum/firebaseEnum';
 
 	const visitorStatStore = useVisitorStatStore();
 	const { online, today, total } = toRefs(visitorStatStore);
+
+	const onlineRef = ref();
+	const todayRef = ref();
+	const totalRef = ref();
+
+	/**
+	 * 拜訪人次統計資訊
+	 */
+	const statistics = computed(() => {
+		return {
+			[VisitorStatEnum.ONLINE]: {
+				name: visitorStatNameMap[VisitorStatEnum.ONLINE],
+				ref: onlineRef,
+				to: online.value,
+			},
+			[VisitorStatEnum.TODAY]: {
+				name: visitorStatNameMap[VisitorStatEnum.TODAY],
+				ref: todayRef,
+				to: today.value,
+			},
+			[VisitorStatEnum.TOTAL]: {
+				name: visitorStatNameMap[VisitorStatEnum.TOTAL],
+				ref: totalRef,
+				to: total.value,
+			},
+		};
+	});
 </script>
 
 <style lang="scss" scoped></style>
