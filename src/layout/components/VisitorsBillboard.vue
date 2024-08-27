@@ -19,7 +19,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+	import { computed, ref, toRefs, watch } from 'vue';
+	import { useEventListener } from '@vueuse/core';
 	import { useCookies } from '@vueuse/integrations/useCookies';
 	import VisitorsNumberAnimation from '@/components/common/numberAnimation/VisitorsNumberAnimation.vue';
 
@@ -91,8 +92,23 @@
 		{ once: true }
 	);
 
-	onBeforeMount(() => {
-		// cookies.remove('visitorSignIn');
+	/**
+	 * 監聽關閉視窗之前
+	 */
+	useEventListener(window, 'beforeunload', (e) => {
+		// Recommended
+		e.preventDefault();
+		// Included for legacy support, e.g. Chrome/Edge < 119
+		e.returnValue = true;
+
+		// 更新資料庫：離線
+		visitorStatStore.updateVisitorStat(
+			new VisitorStat({
+				online: online.value! - 1,
+				today: today.value!,
+				total: total.value!,
+			})
+		);
 	});
 </script>
 

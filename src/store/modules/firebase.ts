@@ -5,7 +5,6 @@ import { useDatabaseObject } from 'vuefire';
 
 import { db } from '@/plugins/firebase';
 import { VisitorStat } from '@/types/firebase';
-import { VisitorStatEnum } from '@/models/enum/firebaseEnum';
 
 /**
  * 拜訪人次
