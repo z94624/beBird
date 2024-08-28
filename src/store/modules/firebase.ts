@@ -4,33 +4,48 @@ import { ref, update } from 'firebase/database';
 import { useDatabaseObject } from 'vuefire';
 
 import { db } from '@/plugins/firebase';
-import { VisitorStat } from '@/types/firebase';
+import { VisitorsStatisticsInfo } from '@/types/firebase';
 
 /**
  * 拜訪人次
  */
-export const useVisitorStatStore = defineStore('visitorStat', () => {
-	const visitorStatRef = ref(db, 'visitorStat');
-	const visitorStat = useDatabaseObject<VisitorStat>(visitorStatRef);
+export const useVisitorsStatisticsStore = defineStore('visitorsStatistics', () => {
+	const onlineInfoRef = ref(db, 'visitorsStatistics/onlineInfo');
+	const onlineInfo = useDatabaseObject<VisitorsStatisticsInfo>(onlineInfoRef);
+	const todayInfoRef = ref(db, 'visitorsStatistics/todayInfo');
+	const todayInfo = useDatabaseObject<VisitorsStatisticsInfo>(todayInfoRef);
+	const totalInfoRef = ref(db, 'visitorsStatistics/totalInfo');
+	const totalInfo = useDatabaseObject<VisitorsStatisticsInfo>(totalInfoRef);
 
-	const online = computed(() => visitorStat.value?.online);
-	const today = computed(() => visitorStat.value?.today);
-	const total = computed(() => visitorStat.value?.total);
+	const onlineNumber = computed(() => onlineInfo.value?.visitorNumber);
+	const onlineUpdatedTime = computed(() => onlineInfo.value?.updatedTime);
+	const todayNumber = computed(() => todayInfo.value?.visitorNumber);
+	const todayUpdatedTime = computed(() => todayInfo.value?.updatedTime);
+	const totalNumber = computed(() => totalInfo.value?.visitorNumber);
+	const totalUpdatedTime = computed(() => totalInfo.value?.updatedTime);
 
-	/**
-	 * 更新
-	 * @param newState 新狀態
-	 * @returns Firebase Update Callback
-	 */
-	const updateVisitorStat = (newState: VisitorStat) => {
-		return update(visitorStatRef, newState);
+	const updateOnlineInfo = (newInfo: VisitorsStatisticsInfo) => {
+		return update(onlineInfoRef, newInfo);
+	};
+	const updateTodayInfo = (newInfo: VisitorsStatisticsInfo) => {
+		return update(todayInfoRef, newInfo);
+	};
+	const updateTotalInfo = (newInfo: VisitorsStatisticsInfo) => {
+		return update(totalInfoRef, newInfo);
 	};
 
 	return {
-		visitorStat,
-		online,
-		today,
-		total,
-		updateVisitorStat,
+		updateOnlineInfo,
+		onlineInfo,
+		onlineNumber,
+		onlineUpdatedTime,
+		updateTodayInfo,
+		todayInfo,
+		todayNumber,
+		todayUpdatedTime,
+		updateTotalInfo,
+		totalInfo,
+		totalNumber,
+		totalUpdatedTime,
 	};
 });

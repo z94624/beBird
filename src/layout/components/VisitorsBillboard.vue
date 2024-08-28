@@ -24,18 +24,23 @@
 	import { useCookies } from '@vueuse/integrations/useCookies';
 	import VisitorsNumberAnimation from '@/components/common/numberAnimation/VisitorsNumberAnimation.vue';
 
-	import { useVisitorStatStore } from '@/store/modules/firebase';
+	import { useVisitorsStatisticsStore } from '@/store/modules/firebase';
 	import { visitorStatNameMap } from '@/utils/firebase';
-	import { VisitorStat } from '@/types/firebase';
+	import { VisitorsStatisticsInfo } from '@/types/firebase';
 	import { VisitorStatEnum } from '@/models/enum/firebaseEnum';
 
 	const cookies = useCookies();
-	const visitorStatStore = useVisitorStatStore();
-	const { online, today, total } = toRefs(visitorStatStore);
+	const visitorsStatisticsStore = useVisitorsStatisticsStore();
+	const { onlineNumber, todayNumber, totalNumber } = toRefs(visitorsStatisticsStore);
 
 	const onlineRef = ref();
 	const todayRef = ref();
 	const totalRef = ref();
+
+	// 上次簽到日
+	const signDate = cookies.get('visitorSignIn');
+	// 是否為新一天的簽到
+	const isNewDate = new Date().getDate() !== signDate;
 
 	/**
 	 * 拜訪人次統計資訊
@@ -45,48 +50,73 @@
 			[VisitorStatEnum.ONLINE]: {
 				name: visitorStatNameMap[VisitorStatEnum.ONLINE],
 				ref: onlineRef,
-				to: online.value,
+				to: onlineNumber.value,
 			},
 			[VisitorStatEnum.TODAY]: {
 				name: visitorStatNameMap[VisitorStatEnum.TODAY],
 				ref: todayRef,
-				to: today.value,
+				to: todayNumber.value,
 			},
 			[VisitorStatEnum.TOTAL]: {
 				name: visitorStatNameMap[VisitorStatEnum.TOTAL],
 				ref: totalRef,
-				to: total.value,
+				to: totalNumber.value,
 			},
 		};
 	});
 
+	/**
+	 * 更新：在線人次
+	 */
 	watch(
-		() => [online.value, today.value, total.value],
+		onlineNumber,
 		() => {
-			if (
-				online.value !== undefined &&
-				today.value !== undefined &&
-				total.value !== undefined
-			) {
-				// 上次簽到日
-				const signDate = cookies.get('visitorSignIn');
-				// 是否為新一天的簽到
-				const isNewDate = new Date().getDate() !== signDate;
-				// 更新資料庫
-				visitorStatStore
-					.updateVisitorStat(
-						new VisitorStat({
-							online: online.value + 1,
-							today: isNewDate ? today.value + 1 : today.value,
-							total: isNewDate ? total.value + 1 : total.value,
-						})
-					)
+			if (onlineNumber.value !== undefined) {
+				visitorsStatisticsStore
+					.updateOnlineInfo({
+						...new VisitorsStatisticsInfo(),
+						visitorNumber: onlineNumber.value + 1,
+					})
 					.then(() => {
 						// 更新簽到日
 						if (isNewDate) {
 							cookies.set('visitorSignIn', new Date().getDate());
 						}
 					});
+			}
+		},
+		{ once: true }
+	);
+	/**
+	 * 更新：當日人次
+	 */
+	watch(
+		todayNumber,
+		() => {
+			if (todayNumber.value !== undefined) {
+				if (isNewDate) {
+					visitorsStatisticsStore.updateTodayInfo({
+						...new VisitorsStatisticsInfo(),
+						visitorNumber: todayNumber.value + 1,
+					});
+				}
+			}
+		},
+		{ once: true }
+	);
+	/**
+	 * 更新：歷史人次
+	 */
+	watch(
+		totalNumber,
+		() => {
+			if (totalNumber.value !== undefined) {
+				if (isNewDate) {
+					visitorsStatisticsStore.updateTotalInfo({
+						...new VisitorsStatisticsInfo(),
+						visitorNumber: totalNumber.value + 1,
+					});
+				}
 			}
 		},
 		{ once: true }
@@ -102,13 +132,10 @@
 		e.returnValue = true;
 
 		// 更新資料庫：離線
-		visitorStatStore.updateVisitorStat(
-			new VisitorStat({
-				online: online.value! - 1,
-				today: today.value!,
-				total: total.value!,
-			})
-		);
+		visitorsStatisticsStore.updateOnlineInfo({
+			...new VisitorsStatisticsInfo(),
+			visitorNumber: onlineNumber.value! - 1,
+		});
 	});
 </script>
 
