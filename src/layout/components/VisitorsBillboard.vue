@@ -104,7 +104,6 @@
 		todayNumber,
 		() => {
 			if (todayNumber.value !== undefined) {
-				console.log(isNewUpdatedDate.value);
 				if (isNewSignDate) {
 					visitorsStatisticsStore.updateTodayInfo({
 						...new VisitorsStatisticsInfo(),
