@@ -24,11 +24,14 @@ export const isHexColor = (code?: string): boolean => {
 	return regex.test(code);
 };
 
+// 統一使用的日期時間格式
+export const standardDateTimeFormatString = 'YYYY/MM/DD HH:mm:ss';
+
 /**
  * 取得以 'YYYY/MM/DD HH:mm:ss' 為預設格式或其他格式的現在時間
  * @param format 輸出格式
  * @returns 格式化現在時間
  */
-export const getFormattedDateTimeNow = (format: string = 'YYYY/MM/DD HH:mm:ss') => {
+export const getFormattedDateTimeNow = (format: string = standardDateTimeFormatString) => {
 	return dayjs().format(format);
 };

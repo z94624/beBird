@@ -22,25 +22,23 @@
 	import { computed, ref, toRefs, watch } from 'vue';
 	import { useEventListener } from '@vueuse/core';
 	import { useCookies } from '@vueuse/integrations/useCookies';
+	import dayjs from 'dayjs';
 	import VisitorsNumberAnimation from '@/components/common/numberAnimation/VisitorsNumberAnimation.vue';
 
 	import { useVisitorsStatisticsStore } from '@/store/modules/firebase';
 	import { visitorStatNameMap } from '@/utils/firebase';
+	import { standardDateTimeFormatString } from '@/utils/common';
 	import { VisitorsStatisticsInfo } from '@/types/firebase';
 	import { VisitorStatEnum } from '@/models/enum/firebaseEnum';
 
 	const cookies = useCookies();
 	const visitorsStatisticsStore = useVisitorsStatisticsStore();
-	const { onlineNumber, todayNumber, totalNumber } = toRefs(visitorsStatisticsStore);
+	const { onlineNumber, todayNumber, todayUpdatedTime, totalNumber } =
+		toRefs(visitorsStatisticsStore);
 
 	const onlineRef = ref();
 	const todayRef = ref();
 	const totalRef = ref();
-
-	// 上次簽到日
-	const signDate = cookies.get('visitorSignIn');
-	// 是否為新一天的簽到
-	const isNewDate = new Date().getDate() !== signDate;
 
 	/**
 	 * 拜訪人次統計資訊
@@ -65,6 +63,18 @@
 		};
 	});
 
+	// 是否為新的一天，若是則當日人次歸零
+	const isNewUpdatedDate = computed(
+		() =>
+			new Date().getDate() !==
+			dayjs(todayUpdatedTime.value, standardDateTimeFormatString).get('date')
+	);
+
+	// 上次簽到日
+	const signDate = cookies.get('visitorSignIn');
+	// 是否為新一天的簽到
+	const isNewSignDate = new Date().getDate() !== signDate;
+
 	/**
 	 * 更新：在線人次
 	 */
@@ -79,7 +89,7 @@
 					})
 					.then(() => {
 						// 更新簽到日
-						if (isNewDate) {
+						if (isNewSignDate) {
 							cookies.set('visitorSignIn', new Date().getDate());
 						}
 					});
@@ -94,10 +104,11 @@
 		todayNumber,
 		() => {
 			if (todayNumber.value !== undefined) {
-				if (isNewDate) {
+				console.log(isNewUpdatedDate.value);
+				if (isNewSignDate) {
 					visitorsStatisticsStore.updateTodayInfo({
 						...new VisitorsStatisticsInfo(),
-						visitorNumber: todayNumber.value + 1,
+						visitorNumber: isNewUpdatedDate.value ? 1 : todayNumber.value + 1,
 					});
 				}
 			}
@@ -111,7 +122,7 @@
 		totalNumber,
 		() => {
 			if (totalNumber.value !== undefined) {
-				if (isNewDate) {
+				if (isNewSignDate) {
 					visitorsStatisticsStore.updateTotalInfo({
 						...new VisitorsStatisticsInfo(),
 						visitorNumber: totalNumber.value + 1,
