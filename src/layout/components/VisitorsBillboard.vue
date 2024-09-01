@@ -3,18 +3,14 @@
 		<div
 			v-for="item in visitorStatList"
 			:key="item.name"
-			class="flex p-1"
+			class="flex justify-between items-center gap-8"
 		>
-			<q-item-section>
-				<div class="text-primary text-bold">{{ item.name }}</div>
-			</q-item-section>
-			<q-item-section>
-				<FlipNumber
-					:fontSize="30"
-					:height="40"
-					:value="item.to"
-				/>
-			</q-item-section>
+			<div class="text-primary text-bold">{{ item.name }}</div>
+			<FlipNumber
+				:fontSize="30"
+				:height="40"
+				:value="item.to"
+			/>
 		</div>
 	</div>
 </template>
@@ -37,28 +33,22 @@
 	const { onlineNumber, todayNumber, todayUpdatedTime, totalNumber } =
 		toRefs(visitorsStatisticsStore);
 
-	const onlineRef = ref();
-	const todayRef = ref();
-	const totalRef = ref();
-
 	/**
 	 * 拜訪人次統計資訊
 	 */
 	const visitorStatList = computed(() => {
 		return {
-			[VisitorStatEnum.ONLINE]: {
-				name: visitorStatNameMap[VisitorStatEnum.ONLINE],
-				ref: onlineRef,
-				to: onlineNumber.value,
-			},
+			// [VisitorStatEnum.ONLINE]: {
+			// 	name: visitorStatNameMap[VisitorStatEnum.ONLINE],
+			// 	ref: onlineRef,
+			// 	to: onlineNumber.value,
+			// },
 			[VisitorStatEnum.TODAY]: {
 				name: visitorStatNameMap[VisitorStatEnum.TODAY],
-				ref: todayRef,
 				to: todayNumber.value,
 			},
 			[VisitorStatEnum.TOTAL]: {
 				name: visitorStatNameMap[VisitorStatEnum.TOTAL],
-				ref: totalRef,
 				to: totalNumber.value,
 			},
 		};
@@ -79,25 +69,25 @@
 	/**
 	 * 更新：在線人次
 	 */
-	watch(
-		onlineNumber,
-		() => {
-			if (onlineNumber.value !== undefined) {
-				visitorsStatisticsStore
-					.updateOnlineInfo({
-						...new VisitorsStatisticsInfo(),
-						visitorNumber: onlineNumber.value + 1,
-					})
-					.then(() => {
-						// 更新簽到日
-						if (isNewSignDate) {
-							cookies.set('visitorSignIn', new Date().getDate());
-						}
-					});
-			}
-		},
-		{ once: true }
-	);
+	// watch(
+	// 	onlineNumber,
+	// 	() => {
+	// 		if (onlineNumber.value !== undefined) {
+	// 			visitorsStatisticsStore
+	// 				.updateOnlineInfo({
+	// 					...new VisitorsStatisticsInfo(),
+	// 					visitorNumber: onlineNumber.value + 1,
+	// 				})
+	// 				.then(() => {
+	// 					// 更新簽到日
+	// 					if (isNewSignDate) {
+	// 						cookies.set('visitorSignIn', new Date().getDate());
+	// 					}
+	// 				});
+	// 		}
+	// 	},
+	// 	{ once: true }
+	// );
 	/**
 	 * 更新：當日人次
 	 */
@@ -136,13 +126,13 @@
 	/**
 	 * 監聽關閉視窗之前
 	 */
-	useEventListener(window, 'beforeunload', (e) => {
-		// 更新資料庫：離線
-		visitorsStatisticsStore.updateOnlineInfo({
-			...new VisitorsStatisticsInfo(),
-			visitorNumber: onlineNumber.value! - 1,
-		});
-	});
+	// useEventListener(window, 'beforeunload', () => {
+	// 	// 更新資料庫：離線
+	// 	visitorsStatisticsStore.updateOnlineInfo({
+	// 		...new VisitorsStatisticsInfo(),
+	// 		visitorNumber: onlineNumber.value! - 1,
+	// 	});
+	// });
 </script>
 
 <style lang="scss" scoped></style>

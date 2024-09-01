@@ -34,6 +34,16 @@
 					<q-space />
 
 					<BaseButton
+						:icon="fasUsers"
+						flat
+						round
+						text-color="primary"
+					>
+						<q-tooltip class="bg-white">
+							<VisitorsBillboard />
+						</q-tooltip>
+					</BaseButton>
+					<BaseButton
 						:label="`v${versionList[0].version}`"
 						outline
 						rounded
@@ -56,6 +66,8 @@
 	import { ref } from 'vue';
 	import { useRouter } from 'vue-router';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
+	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
+	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
 	import { PageEnum } from '@/models/enum/pageEnum';
 	import { menuList } from './utils';
