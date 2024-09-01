@@ -42,7 +42,7 @@
 			markers: 5,
 			min: 1,
 			max: 30,
-			switchLabelSide: true,
+			switchLabelSide: false,
 		}
 	);
 
