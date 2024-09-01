@@ -137,11 +137,6 @@
 	 * 監聽關閉視窗之前
 	 */
 	useEventListener(window, 'beforeunload', (e) => {
-		// Recommended
-		e.preventDefault();
-		// Included for legacy support, e.g. Chrome/Edge < 119
-		e.returnValue = true;
-
 		// 更新資料庫：離線
 		visitorsStatisticsStore.updateOnlineInfo({
 			...new VisitorsStatisticsInfo(),
