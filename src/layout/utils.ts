@@ -55,6 +55,17 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.0.3',
+		releaseDate: '2024/09/01',
+		features: [
+			'The visitors statistics shows the number of visitors of the day and the total number in history. For web, it is placed in navigation bar as tooltip button. For mobile device, it is placed in the left drawer',
+		],
+		changes: [
+			'For mobile device, the version button is moved into the left drawer.',
+			'In search panel, the selected label of the slider that adjusts the amount of days before is placed on the top.',
+		],
+	},
+	{
 		version: '1.0.2',
 		releaseDate: '2024/08/12',
 		changes: [
