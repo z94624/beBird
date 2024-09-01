@@ -21,7 +21,7 @@
 		</template>
 	</div>
 </template>
-<script>
+<script lang="ts">
 	import FlipNumberItem from './FlipNumberItem.vue';
 
 	export default {
@@ -36,7 +36,7 @@
 				default: 0,
 			},
 			speed: {
-				type: [Number, String],
+				type: Number,
 				default: 600,
 			},
 			// height 決定 width, line-height 的值
@@ -58,7 +58,7 @@
 				_speed = _speed < 600 ? 600 : _speed;
 			}
 			return {
-				numbersSplitted: [],
+				numbersSplitted: [] as (number | string)[],
 				interval: _speed,
 			};
 		},

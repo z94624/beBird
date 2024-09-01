@@ -21,7 +21,7 @@
 		</div>
 	</div>
 </template>
-<script>
+<script lang="ts">
 	export default {
 		name: 'FlipNumberItem',
 		props: ['value', 'speed', 'height', 'fontSize'],
@@ -43,20 +43,20 @@
 			},
 		},
 		methods: {
-			async flipDown(newVal, oldVal) {
+			async flipDown(newVal: any, oldVal: any) {
 				while (newVal > oldVal) {
 					// console.log(new Date().toTimeString())
 					await this.flipDownOne(oldVal);
 					oldVal++;
 				}
 			},
-			async flipUp(newVal, oldVal) {
+			async flipUp(newVal: any, oldVal: any) {
 				while (newVal < oldVal) {
 					await this.flipUpOne(oldVal);
 					oldVal--;
 				}
 			},
-			async flipDownOne(num) {
+			async flipDownOne(num: any) {
 				if (this.isFlipping) {
 					return false;
 				}
@@ -66,7 +66,7 @@
 				this.isFlipping = true;
 				await this.resetClass('down');
 			},
-			async flipUpOne(num) {
+			async flipUpOne(num: any) {
 				if (this.isFlipping) {
 					return false;
 				}
@@ -76,8 +76,8 @@
 				this.isFlipping = true;
 				await this.resetClass('up');
 			},
-			resetClass(type) {
-				return new Promise((resolve, reject) => {
+			resetClass(type: any) {
+				return new Promise<void>((resolve) => {
 					setTimeout(() => {
 						this.animationClass = type;
 						this.isFlipping = false;

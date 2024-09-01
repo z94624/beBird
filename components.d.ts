@@ -28,7 +28,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SubLoading: typeof import('./src/components/common/loading/SubLoading.vue')['default']
-    VisitorsNumberAnimation: typeof import('./src/components/common/numberAnimation/VisitorsNumberAnimation.vue')['default']
     VlIcon: typeof import('./src/components/common/leaflet/BasicTypes/VlIcon.vue')['default']
     VlMap: typeof import('./src/components/common/leaflet/VlMap.vue')['default']
     VlPopup: typeof import('./src/components/common/leaflet/UILayers/VlPopup.vue')['default']
