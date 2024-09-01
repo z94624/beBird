@@ -24,7 +24,6 @@
         "universal-cookie": "^7.2.0",
         "vue": "^3.4.19",
         "vue-country-flag-next": "^2.3.2",
-        "vue-number-animation": "^2.0.2",
         "vue-router": "^4.3.0",
         "vue-social-sharing": "^4.0.0-alpha4",
         "vuefire": "^3.2.0"

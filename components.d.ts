@@ -16,6 +16,8 @@ declare module 'vue' {
     Checklist: typeof import('./src/components/common/list/Checklist.vue')['default']
     CountrySelect: typeof import('./src/components/common/select/CountrySelect.vue')['default']
     DaysBackSlider: typeof import('./src/components/common/slider/DaysBackSlider.vue')['default']
+    FlipNumber: typeof import('./src/components/common/flipNumber/FlipNumber.vue')['default']
+    FlipNumberItem: typeof import('./src/components/common/flipNumber/FlipNumberItem.vue')['default']
     HrefButton: typeof import('./src/components/common/button/HrefButton.vue')['default']
     MigrationIndicator: typeof import('./src/components/common/badge/MigrationIndicator.vue')['default']
     RarityIndicator: typeof import('./src/components/common/badge/RarityIndicator.vue')['default']

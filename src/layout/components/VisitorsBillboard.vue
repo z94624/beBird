@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col gap-1 w-full">
+	<div class="flex flex-col !flex-nowrap gap-1 w-full">
 		<div
 			v-for="item in visitorStatList"
 			:key="item.name"
@@ -9,9 +9,10 @@
 				<div class="text-primary text-bold">{{ item.name }}</div>
 			</q-item-section>
 			<q-item-section>
-				<VisitorsNumberAnimation
-					:ref="item.ref"
-					:to="item.to"
+				<FlipNumber
+					:fontSize="30"
+					:height="40"
+					:value="item.to"
 				/>
 			</q-item-section>
 		</div>
@@ -23,7 +24,7 @@
 	import { useEventListener } from '@vueuse/core';
 	import { useCookies } from '@vueuse/integrations/useCookies';
 	import dayjs from 'dayjs';
-	import VisitorsNumberAnimation from '@/components/common/numberAnimation/VisitorsNumberAnimation.vue';
+	import FlipNumber from '@/components/common/flipNumber';
 
 	import { useVisitorsStatisticsStore } from '@/store/modules/firebase';
 	import { visitorStatNameMap } from '@/utils/firebase';
