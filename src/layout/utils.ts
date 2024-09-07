@@ -15,7 +15,6 @@ export const menuList: {
 		label: '稀有鳥地圖',
 		icon: 'o_campaign',
 		to: '/rare-birds-map',
-		separator: true,
 	},
 	// {
 	// 	name: 'birdWatching',
@@ -41,6 +40,13 @@ export const menuList: {
 	// 	icon: 'o_route',
 	// 	to: '/routine-route-map',
 	// },
+	{
+		name: 'contactMe',
+		label: 'Contact Me',
+		icon: 'o_alternate_email',
+		to: '/contact-me',
+		separator: true,
+	},
 ];
 
 /**

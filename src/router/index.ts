@@ -47,6 +47,12 @@ const routes: RouteRecordRaw[] = [
 		meta: {},
 		component: () => import('@/views/Home.vue'),
 	},
+	{
+		path: '/contact-me',
+		name: 'ContactMe',
+		meta: {},
+		component: () => import('@/views/ContactMe.vue'),
+	},
 ];
 
 const router = createRouter({
