@@ -43,7 +43,8 @@
 	.leaflet-popup-content-wrapper {
 		.leaflet-popup-content {
 			margin: 0;
-			width: 200px !important;
+			min-width: 200px !important;
+			width: unset !important;
 		}
 	}
 }
