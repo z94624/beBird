@@ -8,6 +8,26 @@
 }
 
 /**
+ * 社群媒體圖示元件
+ * Hover 顏色動畫
+ */
+@mixin socialMediaFill($fill) {
+	transition: fill 0.3s;
+
+	&:is(.lineSM) path {
+		transition: fill 0.3s;
+	}
+
+	&:hover {
+		fill: $fill;
+
+		&:is(.lineSM) path {
+			fill: $fill;
+		}
+	}
+}
+
+/**
  * Google
  */
 $g-border-radius: 8px;

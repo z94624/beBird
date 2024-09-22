@@ -7,7 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    BackgroundVideo: typeof import('./src/components/common/BackgroundVideo.vue')['default']
+    BackgroundVideo: typeof import('./src/components/common/media/BackgroundVideo.vue')['default']
     BaseButton: typeof import('./src/components/common/button/src/BaseButton.vue')['default']
     BaseDialog: typeof import('./src/components/common/dialog/BaseDialog.vue')['default']
     BaseIndicator: typeof import('./src/components/common/badge/src/BaseIndicator.vue')['default']
@@ -17,9 +17,13 @@ declare module 'vue' {
     Checklist: typeof import('./src/components/common/list/Checklist.vue')['default']
     CountrySelect: typeof import('./src/components/common/select/CountrySelect.vue')['default']
     DaysBackSlider: typeof import('./src/components/common/slider/DaysBackSlider.vue')['default']
+    Facebook: typeof import('./src/components/common/socialMedia/Facebook.vue')['default']
     FlipNumber: typeof import('./src/components/common/flipNumber/FlipNumber.vue')['default']
     FlipNumberItem: typeof import('./src/components/common/flipNumber/FlipNumberItem.vue')['default']
+    Github: typeof import('./src/components/common/socialMedia/Github.vue')['default']
     HrefButton: typeof import('./src/components/common/button/HrefButton.vue')['default']
+    Instagram: typeof import('./src/components/common/socialMedia/Instagram.vue')['default']
+    Line: typeof import('./src/components/common/socialMedia/Line.vue')['default']
     MigrationIndicator: typeof import('./src/components/common/badge/MigrationIndicator.vue')['default']
     RarityIndicator: typeof import('./src/components/common/badge/RarityIndicator.vue')['default']
     RbMarkerDetailDialog: typeof import('./src/components/rareBirds/RbMarkerDetailDialog.vue')['default']
@@ -33,5 +37,6 @@ declare module 'vue' {
     VlMap: typeof import('./src/components/common/leaflet/VlMap.vue')['default']
     VlPopup: typeof import('./src/components/common/leaflet/UILayers/VlPopup.vue')['default']
     VlTooltip: typeof import('./src/components/common/leaflet/UILayers/VlTooltip.vue')['default']
+    YouTube: typeof import('./src/components/common/socialMedia/YouTube.vue')['default']
   }
 }
