@@ -64,6 +64,7 @@
 	import LineLogo from '@/assets/icons/lineLogo.svg';
 	import MessengerLogo from '@assets/icons/messengerLogo.svg';
 	import TwitterLogo from '@assets/icons/twitterLogo.svg';
+	import TelegramLogo from '@/assets/icons/telegramLogo.svg';
 	import SkypeLogo from '@assets/icons/skypeLogo.svg';
 
 	import { IDATAOBSGetRecentNotableObsInRegionItem } from '@/models/data/obs';
@@ -175,6 +176,12 @@
 			customIcon: true,
 			name: 'Twitter',
 			network: 'twitter',
+		},
+		{
+			icon: TelegramLogo,
+			customIcon: true,
+			name: 'Telegram',
+			network: 'telegram',
 		},
 		{
 			icon: SkypeLogo,
