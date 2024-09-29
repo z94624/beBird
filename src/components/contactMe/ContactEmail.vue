@@ -3,25 +3,30 @@
 		<q-form
 			ref="formRef"
 			class="q-gutter-md"
-			@reset="onReset"
 			@submit="onSubmit"
 		>
 			<FormInput
 				v-model="form.name"
 				:rules="[requiredValid]"
+				dark
+				dense
 				title="Name"
 				titleColor="white"
 			/>
 
 			<FormInput
 				v-model="form.email"
-				:rules="[requiredValid]"
+				:rules="[requiredValid, emailValid]"
+				dark
+				dense
 				title="Email"
 				titleColor="white"
 			/>
 
 			<FormInput
 				v-model="form.subject"
+				dark
+				dense
 				title="Subject"
 				titleColor="white"
 			/>
@@ -29,8 +34,17 @@
 			<FormInput
 				v-model="form.message"
 				:rules="[requiredValid]"
+				dark
+				dense
 				title="Message"
 				titleColor="white"
+				type="textarea"
+			/>
+
+			<BaseButton
+				color="primary"
+				label="SEND"
+				type="submit"
 			/>
 		</q-form>
 	</div>
@@ -41,14 +55,12 @@
 
 	import { EMAILJSContactEmailReq } from '@/models/emailjs/contactEmail';
 
-	import { requiredValid } from '@/utils/validation';
+	import { requiredValid, emailValid } from '@/utils/validation';
 
 	const formRef = ref();
 	const form = ref(new EMAILJSContactEmailReq());
 
 	const onSubmit = () => {};
-
-	const onReset = () => {};
 </script>
 
 <style lang="scss" scoped></style>

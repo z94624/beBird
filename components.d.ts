@@ -23,6 +23,7 @@ declare module 'vue' {
     Facebook: typeof import('./src/components/common/socialMedia/Facebook.vue')['default']
     FlipNumber: typeof import('./src/components/common/flipNumber/FlipNumber.vue')['default']
     FlipNumberItem: typeof import('./src/components/common/flipNumber/FlipNumberItem.vue')['default']
+    FormEditor: typeof import('./src/components/common/form/FormEditor.vue')['default']
     FormInput: typeof import('./src/components/common/form/FormInput.vue')['default']
     FormLabel: typeof import('./src/components/common/form/FormLabel.vue')['default']
     Github: typeof import('./src/components/common/socialMedia/Github.vue')['default']

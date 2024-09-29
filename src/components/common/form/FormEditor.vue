@@ -5,32 +5,38 @@
 			:required="isRequired"
 		/>
 
-		<q-input
+		<q-field
 			:="attrs"
 			:model-value="modelValue"
 			:rules="rules"
-			clearable
-			standout="bg-secondary text-white"
 		>
-			<template
-				#[slot]
-				v-for="(slot, sIdx) in Object.keys(slots)"
-				:key="sIdx"
-			>
-				<slot :name="slot"></slot>
+			<template #control>
+				<q-editor
+					:="attrs"
+					:model-value="modelValue"
+          class="w-full"
+				>
+					<template
+						#[slot]
+						v-for="(slot, sIdx) in Object.keys(slots)"
+						:key="sIdx"
+					>
+						<slot :name="slot"></slot>
+					</template>
+				</q-editor>
 			</template>
-		</q-input>
+		</q-field>
 	</div>
 </template>
 
 <script lang="ts" setup>
 	import { computed, useAttrs, useSlots } from 'vue';
-	import { QInput, QInputProps, ValidationRule } from 'quasar';
+	import { QEditor, QEditorProps, ValidationRule } from 'quasar';
 
 	import { requiredValid } from '@/utils/validation';
 
 	const props = defineProps<{
-		modelValue: string | number | null | undefined;
+		modelValue: string;
 		rules?: ValidationRule[];
 		// FormLabel
 		title?: string;
@@ -39,8 +45,8 @@
 		tipsColor?: string;
 	}>();
 
-	const attrs: Partial<QInputProps> = useAttrs();
-	const slots: Partial<QInput> = useSlots();
+	const attrs: Partial<QEditorProps> = useAttrs();
+	const slots: Partial<QEditor> = useSlots();
 
 	/**
 	 * 是否為必填
