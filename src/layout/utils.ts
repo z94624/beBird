@@ -41,10 +41,10 @@ export const menuList: {
 	// 	to: '/routine-route-map',
 	// },
 	{
-		name: 'contactMe',
-		label: 'Contact Me',
+		name: 'contactUs',
+		label: 'Contact Us',
 		icon: 'o_alternate_email',
-		to: '/contact-me',
+		to: '/contact-us',
 		separator: true,
 	},
 ];

@@ -7,6 +7,7 @@
 
 		<q-input
 			:="attrs"
+			:hide-bottom-space="true"
 			:model-value="modelValue"
 			:rules="rules"
 			clearable

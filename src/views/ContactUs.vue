@@ -5,7 +5,7 @@
 			style="filter: brightness(50%) saturate(125%) contrast(125%)"
 		/>
 
-		<div class="w-[90%] h-[90%] grid grid-flow-row grid-cols-1 lg:grid-cols-3">
+		<div class="w-[90%] h-[90%] grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-12">
 			<!-- 聯絡管道 -->
 			<ContactConnections />
 			<!-- EMAIL -->

@@ -7,6 +7,7 @@
 
 		<q-field
 			:="attrs"
+			:hide-bottom-space="true"
 			:model-value="modelValue"
 			:rules="rules"
 		>
@@ -14,7 +15,7 @@
 				<q-editor
 					:="attrs"
 					:model-value="modelValue"
-          class="w-full"
+					class="w-full"
 				>
 					<template
 						#[slot]

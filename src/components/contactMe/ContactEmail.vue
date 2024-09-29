@@ -1,8 +1,10 @@
 <template>
-	<div>
+	<div class="flex flex-col justify-center gap-6">
+		<h3 class="text-white text-center">Email Us</h3>
+
 		<q-form
 			ref="formRef"
-			class="q-gutter-md"
+			class="flex flex-col gap-3"
 			@submit="onSubmit"
 		>
 			<FormInput

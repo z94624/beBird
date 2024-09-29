@@ -48,10 +48,10 @@ const routes: RouteRecordRaw[] = [
 		component: () => import('@/views/Home.vue'),
 	},
 	{
-		path: '/contact-me',
-		name: 'ContactMe',
+		path: '/contact-us',
+		name: 'ContactUs',
 		meta: {},
-		component: () => import('@/views/ContactMe.vue'),
+		component: () => import('@/views/ContactUs.vue'),
 	},
 ];
 
