@@ -1,6 +1,6 @@
 <template>
 	<q-dialog :="getBindingValues">
-		<q-card style="min-width: 50vw; max-width: 75vw">
+		<q-card style="min-width: 50vw">
 			<slot name="header">
 				<q-toolbar class="dialogHeader text-white bg-primaryDark_e">
 					<slot name="title-before"></slot>
