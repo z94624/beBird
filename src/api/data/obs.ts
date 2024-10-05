@@ -10,7 +10,7 @@ import {
 	DATAOBSGetRecentObsOfSpeciesInRegionReq,
 	IDATAOBSGetRecentNotableObsInRegionItem,
 } from '@/models/data/obs';
-import ebird from '@/plugins/axios';
+import { ebird } from '@/plugins/axios';
 
 /**
  * Recent observations in a region

@@ -3,7 +3,7 @@ import {
 	PRODUCTGetChecklistFeedOnDateReq,
 	PRODUCTGetTop100Req,
 } from '@/models/product/product';
-import ebird from '@/plugins/axios';
+import { ebird } from '@/plugins/axios';
 
 /**
  * Top 100

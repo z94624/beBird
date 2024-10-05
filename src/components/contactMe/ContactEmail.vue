@@ -44,6 +44,7 @@
 			/>
 
 			<BaseButton
+				:loading="sendLoading"
 				color="primary"
 				label="SEND"
 				type="submit"
@@ -55,14 +56,35 @@
 <script lang="ts" setup>
 	import { ref } from 'vue';
 
-	import { EMAILJSContactEmailReq } from '@/models/emailjs/contactEmail';
+	import { sendEmailWithFormDataApi } from '@/api/emailjs/v1.0/email';
+	import { EMAILJSSendEmailReq } from '@/models/emailjs/v1.0/email';
 
+	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { requiredValid, emailValid } from '@/utils/validation';
 
-	const formRef = ref();
-	const form = ref(new EMAILJSContactEmailReq());
+	const { $notify } = useQuasarTool();
 
-	const onSubmit = () => {};
+	const sendLoading = ref(false);
+	const formRef = ref();
+	const form = ref(new EMAILJSSendEmailReq());
+
+	const onSubmit = () => {
+		sendLoading.value = true;
+		sendEmailWithFormDataApi(form.value)
+			.then(() => {
+				// 寄送成功
+				form.value = new EMAILJSSendEmailReq();
+			})
+			.catch(() => {
+				// 寄送失敗
+				$notify.error('Send Fail! Please try again later...');
+			})
+			.finally(() => {
+				sendLoading.value = false;
+				// 清空表單不要驗證
+				formRef.value.resetValidation();
+			});
+	};
 </script>
 
 <style lang="scss" scoped></style>

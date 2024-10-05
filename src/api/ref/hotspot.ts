@@ -2,7 +2,7 @@ import {
 	REFHOTSPOTGetHotspotsInRegionReq,
 	REFHOTSPOTGetNearbyHotspotsReq,
 } from '@/models/ref/hotspot';
-import ebird from '@/plugins/axios';
+import { ebird } from '@/plugins/axios';
 
 /**
  * Hotspots in a region

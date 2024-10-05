@@ -4,7 +4,7 @@ import {
 	REFREGIONGetRegionInfoReq,
 	REFREGIONGetSubRegionListReq,
 } from '@/models/ref/region';
-import ebird from '@/plugins/axios';
+import { ebird } from '@/plugins/axios';
 
 /**
  * Region Info

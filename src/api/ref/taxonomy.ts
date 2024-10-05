@@ -4,7 +4,7 @@ import {
 	REFTAXGetEbirdTaxonomyReq,
 	REFTAXGetTaxonomicGroupsReq,
 } from '@/models/ref/taxonomy';
-import ebird from '@/plugins/axios';
+import { ebird } from '@/plugins/axios';
 
 /**
  * eBird Taxonomy

@@ -1,4 +1,4 @@
-import ebird from '@/plugins/axios';
+import { ebird } from '@/plugins/axios';
 
 /**
  * Adjacent Regions

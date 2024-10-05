@@ -1,8 +1,9 @@
 /**
- * 聯絡我 > 寄送 Email
+ * /send
+ * https://www.emailjs.com/docs/rest-api/send/
  */
-export class EMAILJSContactEmailReq {
-	constructor(data?: EMAILJSContactEmailReq) {
+export class EMAILJSSendEmailReq {
+	constructor(data?: EMAILJSSendEmailReq) {
 		if (!data) return;
 		const { name = '', email = '', subject = '', message = '' } = data;
 		this.name = name;
@@ -11,7 +12,7 @@ export class EMAILJSContactEmailReq {
 		this.message = message;
 	}
 	name: string = ''; // 姓名
-	email: string = ''; // Email
-	subject?: string = ''; // 標題
-	message: string = ''; // 訊息
+	email: string = ''; // 信箱
+	subject?: string = ''; // 主題
+	message: string = ''; // 內容
 }

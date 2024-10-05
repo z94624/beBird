@@ -16,14 +16,14 @@
 
 		<div class="flex gap-1">
 			<BaseButton
-				:color="step === ContactPageEnum.EMAIL && 'white'"
+				:color="step === ContactPageEnum.EMAIL ? 'white' : undefined"
 				:flat="step !== ContactPageEnum.EMAIL"
 				:icon="`img:${GmailLogo}`"
 				round
 				@click="emit('change-step', ContactPageEnum.EMAIL)"
 			/>
 			<BaseButton
-				:color="step === ContactPageEnum.FAN_PAGE && 'white'"
+				:color="step === ContactPageEnum.FAN_PAGE ? 'white' : undefined"
 				:flat="step !== ContactPageEnum.FAN_PAGE"
 				:icon="`img:${FanPageLogo}`"
 				round
