@@ -15,7 +15,7 @@
 			<q-stepper
 				v-model="step"
 				animated
-				class="bg-transparent my-auto"
+				class="bg-transparent flex flex-col justify-center"
 				flat
 				header-class="hidden"
 				infinite
@@ -25,9 +25,19 @@
 				transition-prev="scale"
 			>
 				<!-- EMAIL -->
-				<ContactEmail :name="ContactPageEnum.EMAIL" />
+				<q-step
+					:name="ContactPageEnum.EMAIL"
+					:title="ContactPageEnum.EMAIL"
+				>
+					<ContactEmail />
+				</q-step>
 				<!-- FB 粉專 -->
-				<ContactFanPage :name="ContactPageEnum.FAN_PAGE" />
+				<q-step
+					:name="ContactPageEnum.FAN_PAGE"
+					:title="ContactPageEnum.FAN_PAGE"
+				>
+					<ContactFanPage />
+				</q-step>
 			</q-stepper>
 		</div>
 	</div>
