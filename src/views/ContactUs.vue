@@ -1,11 +1,11 @@
 <template>
-	<div class="w-full h-full flex justify-center items-center">
+	<q-scroll-area class="cuScrollArea h-full">
 		<BackgroundVideo
 			:src="TaiwanBirds"
 			style="filter: brightness(50%) saturate(125%) contrast(125%)"
 		/>
 
-		<div class="w-[90%] h-[90%] grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-6">
+		<div class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8">
 			<!-- 聯絡管道 -->
 			<ContactConnections
 				:step="step"
@@ -40,7 +40,7 @@
 				</q-step>
 			</q-stepper>
 		</div>
-	</div>
+	</q-scroll-area>
 </template>
 
 <script lang="ts" setup>

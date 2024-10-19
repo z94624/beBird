@@ -48,3 +48,15 @@
 		}
 	}
 }
+
+.q-scrollarea {
+	&.cuScrollArea {
+		.q-scrollarea__content {
+			padding: 5%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+}
