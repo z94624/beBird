@@ -39,10 +39,10 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SubLoading: typeof import('./src/components/common/Loading/SubLoading.vue')['default']
-    VlIcon: typeof import('./src/components/common/leaflet/BasicTypes/VlIcon.vue')['default']
-    VlMap: typeof import('./src/components/common/leaflet/VlMap.vue')['default']
-    VlPopup: typeof import('./src/components/common/leaflet/UILayers/VlPopup.vue')['default']
-    VlTooltip: typeof import('./src/components/common/leaflet/UILayers/VlTooltip.vue')['default']
+    VlIcon: typeof import('./src/components/common/Leaflet/BasicTypes/VlIcon.vue')['default']
+    VlMap: typeof import('./src/components/common/Leaflet/VlMap.vue')['default']
+    VlPopup: typeof import('./src/components/common/Leaflet/UILayers/VlPopup.vue')['default']
+    VlTooltip: typeof import('./src/components/common/Leaflet/UILayers/VlTooltip.vue')['default']
     YouTube: typeof import('./src/components/common/socialMedia/YouTube.vue')['default']
   }
 }
