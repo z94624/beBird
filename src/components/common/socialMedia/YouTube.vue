@@ -6,7 +6,7 @@
 		target="_blank"
 	>
 		<svg
-			:fill="fill"
+			:fill="hasColor ? '#ff0000' : fill"
 			:height="size"
 			:width="size"
 			class="youtubeSM"
@@ -26,6 +26,7 @@
 			href?: string;
 			size?: string;
 			fill?: string;
+			hasColor?: boolean;
 		}>(),
 		{
 			size: '32',

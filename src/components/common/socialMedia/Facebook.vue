@@ -6,7 +6,7 @@
 		target="_blank"
 	>
 		<svg
-			:fill="fill"
+			:fill="hasColor ? '#0866ff' : fill"
 			:height="size"
 			:width="size"
 			class="facebookSM"
@@ -26,6 +26,7 @@
 			href?: string;
 			size?: string;
 			fill?: string;
+			hasColor?: boolean;
 		}>(),
 		{
 			size: '32',

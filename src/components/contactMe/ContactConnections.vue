@@ -7,14 +7,32 @@
 		<span class="text-white">Email: z94624@gmail.com</span>
 
 		<div class="flex gap-4">
-			<Facebook href="https://www.facebook.com/profile.php?id=61565159713117" />
-			<Instagram href="https://www.instagram.com/smobee_universe/" />
-			<Line href="https://lin.ee/ctu3G0j" />
-			<YouTube href="https://www.youtube.com/@smoBEEUniverse" />
-			<Github href="https://github.com/z94624/beBird" />
+			<Facebook
+				:has-color="isMobile"
+				href="https://www.facebook.com/profile.php?id=61565159713117"
+			/>
+			<Instagram
+				:has-color="isMobile"
+				href="https://www.instagram.com/smobee_universe/"
+			/>
+			<Line
+				:has-color="isMobile"
+				href="https://lin.ee/ctu3G0j"
+			/>
+			<YouTube
+				:has-color="isMobile"
+				href="https://www.youtube.com/@smoBEEUniverse"
+			/>
+			<Github
+				:has-color="isMobile"
+				href="https://github.com/z94624/beBird"
+			/>
 		</div>
 
-		<div class="flex gap-1">
+		<div
+			v-if="!isMobile"
+			class="flex gap-1"
+		>
 			<BaseButton
 				:color="step === ContactPageEnum.EMAIL ? 'white' : undefined"
 				:flat="step !== ContactPageEnum.EMAIL"
@@ -38,6 +56,7 @@
 	import GmailLogo from '@/assets/icons/gmailLogo.svg';
 	import FanPageLogo from '@/assets/icons/fbFanPageLogo.svg';
 
+	import { usePlatform } from '@/hooks/platform';
 	import { ContactPageEnum } from '@/models/enum/contactEnum';
 
 	const emit = defineEmits<{
@@ -46,6 +65,8 @@
 	const props = defineProps<{
 		step: ContactPageEnum;
 	}>();
+
+	const { isMobile } = usePlatform();
 </script>
 
 <style lang="scss" scoped></style>

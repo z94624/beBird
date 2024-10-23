@@ -12,7 +12,9 @@
 				@change-step="(nextStep: ContactPageEnum) => onChangeStep(nextStep)"
 			/>
 
+			<ContactEmail v-if="isMobile" />
 			<q-stepper
+				v-else
 				v-model="step"
 				animated
 				class="bg-transparent flex flex-col justify-center"
@@ -47,7 +49,10 @@
 	import { ref } from 'vue';
 	import TaiwanBirds from '@/assets/videos/taiwanBirds.webm';
 
+	import { usePlatform } from '@/hooks/platform';
 	import { ContactPageEnum } from '@/models/enum/contactEnum';
+
+	const { isMobile } = usePlatform();
 
 	const step = ref(ContactPageEnum.EMAIL);
 

@@ -23,23 +23,23 @@
 				r="150%"
 			>
 				<stop
-					:stop-color="stopColor"
+					:stop-color="hasColor ? '#fdf497' : stopColor"
 					offset="0"
 				/>
 				<stop
-					:stop-color="stopColor"
+					:stop-color="hasColor ? '#fdf497' : stopColor"
 					offset="0.05"
 				/>
 				<stop
-					:stop-color="stopColor"
+					:stop-color="hasColor ? '#fd5949' : stopColor"
 					offset="0.45"
 				/>
 				<stop
-					:stop-color="stopColor"
+					:stop-color="hasColor ? '#d6249f' : stopColor"
 					offset="0.6"
 				/>
 				<stop
-					:stop-color="stopColor"
+					:stop-color="hasColor ? '#285aeb' : stopColor"
 					offset="0.9"
 				/>
 			</radialGradient>
@@ -53,6 +53,7 @@
 			href?: string;
 			size?: string;
 			stopColor?: string;
+			hasColor?: boolean;
 		}>(),
 		{
 			size: '32',
