@@ -1,48 +1,50 @@
 <template>
-	<q-scroll-area class="cuScrollArea h-full">
+	<div class="h-full">
 		<BackgroundVideo
 			:src="TaiwanBirds"
-			style="filter: brightness(50%) saturate(125%) contrast(125%)"
+			style="padding-top: 50px; filter: brightness(50%) saturate(125%) contrast(125%)"
 		/>
 
-		<div class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8">
-			<!-- 聯絡管道 -->
-			<ContactConnections
-				:step="step"
-				@change-step="(nextStep: ContactPageEnum) => onChangeStep(nextStep)"
-			/>
+		<q-scroll-area class="cuScrollArea h-full">
+			<div class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8">
+				<!-- 聯絡管道 -->
+				<ContactConnections
+					:step="step"
+					@change-step="(nextStep: ContactPageEnum) => onChangeStep(nextStep)"
+				/>
 
-			<ContactEmail v-if="isMobile" />
-			<q-stepper
-				v-else
-				v-model="step"
-				animated
-				class="bg-transparent flex flex-col justify-center"
-				flat
-				header-class="hidden"
-				infinite
-				keep-alive
-				swipeable
-				transition-next="scale"
-				transition-prev="scale"
-			>
-				<!-- EMAIL -->
-				<q-step
-					:name="ContactPageEnum.EMAIL"
-					:title="ContactPageEnum.EMAIL"
+				<ContactEmail v-if="isMobile" />
+				<q-stepper
+					v-else
+					v-model="step"
+					animated
+					class="bg-transparent flex flex-col justify-center"
+					flat
+					header-class="hidden"
+					infinite
+					keep-alive
+					swipeable
+					transition-next="scale"
+					transition-prev="scale"
 				>
-					<ContactEmail />
-				</q-step>
-				<!-- FB 粉專 -->
-				<q-step
-					:name="ContactPageEnum.FAN_PAGE"
-					:title="ContactPageEnum.FAN_PAGE"
-				>
-					<ContactFanPage />
-				</q-step>
-			</q-stepper>
-		</div>
-	</q-scroll-area>
+					<!-- EMAIL -->
+					<q-step
+						:name="ContactPageEnum.EMAIL"
+						:title="ContactPageEnum.EMAIL"
+					>
+						<ContactEmail />
+					</q-step>
+					<!-- FB 粉專 -->
+					<q-step
+						:name="ContactPageEnum.FAN_PAGE"
+						:title="ContactPageEnum.FAN_PAGE"
+					>
+						<ContactFanPage />
+					</q-step>
+				</q-stepper>
+			</div>
+		</q-scroll-area>
+	</div>
 </template>
 
 <script lang="ts" setup>
