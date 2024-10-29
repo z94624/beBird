@@ -1,5 +1,8 @@
 <template>
-	<q-tabs :="getBindingValues">
+	<q-tabs
+		:="getBindingValues"
+		class="baseTabs"
+	>
 		<template
 			#[slot]
 			v-for="(slot, sIdx) in Object.keys(slots)"
