@@ -61,6 +61,12 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.1',
+		releaseDate: '2024/10/29',
+		features: ['We will see snow in Christmas season.'],
+		changes: ['For mobile device, the logo is centered.'],
+	},
+	{
 		version: '1.1.0',
 		releaseDate: '2024/10/22',
 		features: [
