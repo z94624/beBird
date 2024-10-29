@@ -13,16 +13,15 @@
 						round
 						@click="toggleDrawer"
 					/>
+
 					<div
-						class="cursor-pointer"
+						class="flex-1 pr-[42px] text-center cursor-pointer"
 						@click="goHome"
 					>
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-accent">e</span>
 						<span class="logoText text-secondaryDark_e">Bird</span>
 					</div>
-
-					<q-toolbar-title></q-toolbar-title>
 				</q-toolbar>
 			</q-header>
 
