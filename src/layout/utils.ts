@@ -62,7 +62,7 @@ export const versionList: {
 }[] = [
 	{
 		version: '1.1.1',
-		releaseDate: '2024/10/29',
+		releaseDate: '2024/10/30',
 		features: ['We will see snow in Christmas season.'],
 		changes: ['For mobile device, the logo is centered.'],
 	},
