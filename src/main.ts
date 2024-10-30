@@ -10,12 +10,8 @@ import { setupQuasar } from './plugins/quasar';
 import { setupFirebase } from './plugins/firebase';
 import VueSocialSharing from 'vue-social-sharing';
 import CountryFlag from 'vue-country-flag-next';
-import { createSnow, showSnow } from 'pure-snow.js';
 
 import 'leaflet/dist/leaflet.css';
-import 'pure-snow.js/style.css';
-
-import { checkIsInChristmasSeason } from './utils/date';
 
 useRegisterSW();
 
@@ -39,10 +35,6 @@ async function bootstrap() {
 
 	// 國家國旗套件
 	app.use(CountryFlag);
-
-	// 下雪套件
-	createSnow(); // creates snowflakes and generate css for them
-	showSnow(checkIsInChristmasSeason()); // snow can be disabled using showSnow function
 
 	// Route 準備就緒後掛載 APP 實例
 	// https://router.vuejs.org/api/interfaces/router.html#isready

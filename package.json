@@ -20,7 +20,6 @@
         "dotenv": "^16.4.5",
         "firebase": "^10.13.0",
         "pinia": "^2.1.7",
-        "pure-snow.js": "^2.1.0",
         "quasar": "^2.15.1",
         "universal-cookie": "^7.2.0",
         "vue": "^3.4.19",
