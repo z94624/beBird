@@ -12,6 +12,7 @@ import VueSocialSharing from 'vue-social-sharing';
 import CountryFlag from 'vue-country-flag-next';
 
 import 'leaflet/dist/leaflet.css';
+import './components/common/snow/snow.css';
 
 useRegisterSW();
 

@@ -38,6 +38,7 @@ declare module 'vue' {
     RegionSelect: typeof import('./src/components/common/Select/RegionSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Snow: typeof import('./src/components/common/snow/Snow.vue')['default']
     SubLoading: typeof import('./src/components/common/Loading/SubLoading.vue')['default']
     VlIcon: typeof import('./src/components/common/Leaflet/BasicTypes/VlIcon.vue')['default']
     VlMap: typeof import('./src/components/common/Leaflet/VlMap.vue')['default']

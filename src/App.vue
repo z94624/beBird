@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<!-- 下雪公元 -->
+		<Snow v-if="checkIsInChristmasSeason()" />
+
 		<!-- 手機版選單 -->
 		<LayoutM v-if="isMobile" />
 		<!-- 電腦版選單 -->
@@ -12,6 +15,7 @@
 	import LayoutM from '@/layout/Layout-M.vue';
 
 	import { usePlatform } from '@/hooks/platform';
+	import { checkIsInChristmasSeason } from './utils/date';
 
 	const { isMobile } = usePlatform();
 </script>
