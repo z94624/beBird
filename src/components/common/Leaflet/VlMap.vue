@@ -2,18 +2,18 @@
 	<div class="fullContainer relative">
 		<!-- 搜尋功能 -->
 		<BaseButton
-			v-morph:btn.resize="morph"
+			v-morph:btn.resize="birdMorph"
 			class="map-top-right"
 			color="primary"
 			fab
 			icon="search"
 			round
 			size="lg"
-			@click="!isMobile ? nextMorph() : toggleSearchDrawer()"
+			@click="!isMobile ? nextBirdMorph() : toggleSearchDrawer()"
 		/>
 		<div
 			v-if="!isMobile"
-			v-morph:panel.resize="morph"
+			v-morph:panel.resize="birdMorph"
 			class="searchMenuContainer w-[33%] shadow-3 rounded-borders relative"
 		>
 			<BaseButton
@@ -23,7 +23,7 @@
 				round
 				size="sm"
 				text-color="primary"
-				@click="nextMorph"
+				@click="nextBirdMorph"
 			/>
 			<slot name="search-menu"></slot>
 		</div>
@@ -40,7 +40,7 @@
 		</q-drawer>
 
 		<!-- 右下功能區 -->
-		<div class="customToolbar flex flex-col gap-1">
+		<div class="bottomRightToolbar flex flex-col gap-1">
 			<BaseButton
 				:color="locateColor.color"
 				:text-color="locateColor.textColor"
@@ -75,6 +75,7 @@
 					:visible="tileProvider.visible"
 					attribution="© 2024 smoBEE & Cake"
 					layer-type="base"
+					@update:visible="tileProvider.onUpdateVisibility"
 				/>
 
 				<l-control-scale />
@@ -138,7 +139,7 @@
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,
 	] as PointExpression);
 	const zoom = ref(8); // max: 18; min: 0; locate: 16
-	const morph = ref('btn');
+	const birdMorph = ref('btn');
 	const searchDrawerOpen = ref(false);
 	const locateStatus = ref(false);
 	const locateColor = ref({
@@ -162,7 +163,7 @@
 		btn: string;
 		panel: string;
 	}
-	const nextMorphStep: IMorphStepDict = {
+	const nextBirdMorphStep: IMorphStepDict = {
 		btn: 'panel',
 		panel: 'btn',
 	};
@@ -173,6 +174,7 @@
 		url: string;
 		visible: boolean;
 		attribution?: string;
+		onUpdateVisibility?: (val: boolean) => void;
 	}[] = [
 		{
 			name: 'OpenStreetMap',
@@ -288,8 +290,8 @@
 	/**
 	 * 收合 Search Panel
 	 */
-	const nextMorph = () => {
-		morph.value = nextMorphStep[morph.value as keyof IMorphStepDict];
+	const nextBirdMorph = () => {
+		birdMorph.value = nextBirdMorphStep[birdMorph.value as keyof IMorphStepDict];
 	};
 
 	/**
@@ -346,7 +348,7 @@
 		right: $boundary-gap;
 		z-index: 401;
 	}
-	.customToolbar {
+	.bottomRightToolbar {
 		@extend .map-bottom-right;
 	}
 </style>
