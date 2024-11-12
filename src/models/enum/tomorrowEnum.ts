@@ -1,8 +1,17 @@
 /**
+ * Unit System
+ * 字典：utils/tomorrow.ts/metricUnitsDict+imperialUnitsDict
+ */
+export enum UnitSystemEnum {
+	METRIC = 'metric', // 公制 EX: Celcius
+	IMPERIAL = 'imperial', // 英制 EX: Fahrenheit
+}
+
+/**
  * Data Fields
  * https://docs.tomorrow.io/reference/data-layers-core
  */
-export enum TomorrowDataFieldsEnum {
+export enum DataFieldsEnum {
 	TEMP = 'temperature', // The "real" temperature measurement (at 2m)
 	TEMP_APP = 'temperatureApparent', // The temperature equivalent perceived by humans, caused by the combined effects of air temperature, relative humidity, and wind speed (at 2m)
 	DEW_POINT = 'dewPoint', // The temperature to which air must be cooled to become saturated with water vapor (at 2m)
