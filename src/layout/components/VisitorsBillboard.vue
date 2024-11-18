@@ -16,8 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, ref, toRefs, watch } from 'vue';
-	import { useEventListener } from '@vueuse/core';
+	import { computed, toRefs, watch } from 'vue';
 	import { useCookies } from '@vueuse/integrations/useCookies';
 	import dayjs from 'dayjs';
 	import FlipNumber from '@/components/common/flipNumber';
