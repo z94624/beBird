@@ -25,13 +25,8 @@ import SunriseVideo from '@assets/icons/weather/types/sunrise.mp4';
 import SunsetVideo from '@assets/icons/weather/types/sunset.mp4';
 
 import { IMap } from '@/models/common/base';
-import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
-
-/**
- * Weather Codes
- * https://docs.tomorrow.io/reference/data-layers-weather-codes
- */
-export const weatherCodeMapping_tomorrow = {};
+import { DielEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
+import { ITOMORROWDataValueItem } from '@/models/tomorrow/v4/weather';
 
 /**
  * 天氣影片圖示對應檔案路徑
@@ -62,4 +57,45 @@ export const weatherVideoDict: IMap<string> = {
 
 	[WeatherTypeEnum.SUNRISE]: SunriseVideo,
 	[WeatherTypeEnum.SUNSET]: SunsetVideo,
+};
+
+export const getWeatherTypeWithoutCode = (
+	values: ITOMORROWDataValueItem,
+	diel: DielEnum
+): WeatherTypeEnum => {
+	const {
+		cloudCover,
+		dewPoint,
+		humidity,
+		precipitationProbability,
+		rainIntensity,
+		sleetIntensity,
+		snowIntensity,
+		temperatureApparent,
+		visibility,
+		windSpeed,
+	} = values;
+
+	let weatherType = WeatherTypeEnum.UNKNOWN;
+
+	// Cloud Cover
+	if (diel === DielEnum.DAY) {
+		if (cloudCover <= 40) {
+			weatherType = WeatherTypeEnum.CLEAR;
+		} else if (cloudCover > 40 && cloudCover <= 80) {
+			weatherType = WeatherTypeEnum.PARTLY_CLOUDY;
+		} else {
+			weatherType = WeatherTypeEnum.CLOUDY;
+		}
+	} else {
+		if (cloudCover <= 40) {
+			weatherType = WeatherTypeEnum.CLEAR_NIGHT;
+		} else {
+			weatherType = WeatherTypeEnum.CLOUDY_NIGHT;
+		}
+	}
+
+	// Rain
+
+	return weatherType;
 };

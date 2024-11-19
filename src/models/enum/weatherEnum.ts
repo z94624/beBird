@@ -2,6 +2,7 @@
  * 天氣類型
  */
 export enum WeatherTypeEnum {
+	UNKNOWN = 'unknown',
 	BLIZZARD = 'blizzard',
 	CLEAR = 'clear',
 	CLEAR_NIGHT = 'clear_night',
@@ -20,4 +21,12 @@ export enum WeatherTypeEnum {
 	SUNSET = 'sunset',
 	THUNDER_STORM = 'thunderstorm',
 	WINDY = 'windy',
+}
+
+/**
+ * 晝夜
+ */
+export enum DielEnum {
+	DAY = 'day', // 日
+	NIGHT = 'night', // 夜
 }
