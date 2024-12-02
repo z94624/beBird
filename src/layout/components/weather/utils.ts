@@ -59,7 +59,13 @@ export const weatherVideoDict: IMap<string> = {
 	[WeatherTypeEnum.SUNSET]: SunsetVideo,
 };
 
-export const getWeatherTypeWithoutCode = (
+/**
+ * 從 Tomorrow.io 天氣資料判斷屬於哪種天氣類型
+ * @param values Tomorrow.io 即時天氣資料
+ * @param diel 晝夜
+ * @returns 天氣類型
+ */
+export const getWeatherTypeWithoutCode_tomorrow = (
 	values: ITOMORROWDataValueItem,
 	diel: DielEnum
 ): WeatherTypeEnum => {
@@ -71,8 +77,10 @@ export const getWeatherTypeWithoutCode = (
 		rainIntensity,
 		sleetIntensity,
 		snowIntensity,
+		temperature,
 		temperatureApparent,
 		visibility,
+		windGust,
 		windSpeed,
 	} = values;
 
@@ -95,7 +103,50 @@ export const getWeatherTypeWithoutCode = (
 		}
 	}
 
-	// Rain
+	// 降水
+	if (precipitationProbability > 50) {
+		// Rain
+		if (rainIntensity <= 40) {
+			weatherType = WeatherTypeEnum.DRIZZLE;
+		} else if (rainIntensity > 40 && rainIntensity <= 60) {
+			weatherType = WeatherTypeEnum.RAIN;
+		} else {
+			weatherType = WeatherTypeEnum.THUNDER_STORM;
+		}
+
+		// Snow
+		if (snowIntensity * 24 <= 5 && windSpeed <= 15 && visibility > 0.4) {
+			weatherType = WeatherTypeEnum.SNOW;
+		} else if (
+			snowIntensity * 24 > 5 &&
+			(windSpeed > 15 || windGust > 15) &&
+			visibility <= 0.4
+		) {
+			weatherType = WeatherTypeEnum.BLIZZARD;
+		}
+
+		// Sleet
+		if (temperature < 0 && sleetIntensity > 0) {
+			weatherType = WeatherTypeEnum.SLEET;
+		}
+	}
+
+	// Special Cases
+	if (temperature >= dewPoint - 1 && temperature <= dewPoint + 1 && humidity > 90) {
+		weatherType = WeatherTypeEnum.FOG;
+	}
+
+	if (temperatureApparent <= 10) {
+		weatherType = WeatherTypeEnum.COLD;
+	} else if (temperatureApparent > 36) {
+		weatherType = WeatherTypeEnum.HOT;
+	}
+
+	if (windSpeed > 10.8 && windSpeed <= 13.8) {
+		weatherType = WeatherTypeEnum.WINDY;
+	} else if (windSpeed > 17.2) {
+		weatherType = WeatherTypeEnum.HURRICANE;
+	}
 
 	return weatherType;
 };
