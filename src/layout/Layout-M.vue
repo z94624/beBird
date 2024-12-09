@@ -27,7 +27,6 @@
 
 			<q-drawer
 				v-model="drawerOpen"
-				:width="200"
 				behavior="mobile"
 				bordered
 				class="text-primary_e"
