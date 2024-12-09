@@ -33,23 +33,23 @@
 
 					<q-space />
 
-					<BaseButton
-						:icon="fasUsers"
-						flat
-						round
-						text-color="primary"
-					>
-						<q-tooltip class="bg-white">
-							<VisitorsBillboard />
-						</q-tooltip>
-					</BaseButton>
-					<BaseButton
-						:label="`v${versionList[0].version}`"
-						outline
-						rounded
-						text-color="primary"
-						@click="onOpenVersionDialog"
-					/>
+					<div class="flex no-wrap items-center gap-1">
+						<BaseButton
+							:icon="fasUsers"
+							round
+							text-color="primary"
+						>
+							<q-tooltip class="bg-white">
+								<VisitorsBillboard />
+							</q-tooltip>
+						</BaseButton>
+						<BaseButton
+							:label="`v${versionList[0].version}`"
+							rounded
+							text-color="primary"
+							@click="onOpenVersionDialog"
+						/>
+					</div>
 				</q-toolbar>
 			</q-header>
 

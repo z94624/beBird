@@ -60,19 +60,20 @@
 							/>
 						</template>
 
-						<q-item>
-							<VisitorsBillboard />
+						<q-item
+							clickable
+							@click="onOpenVersionDialog"
+						>
+							<q-item-section avatar>
+								<q-icon name="o_library_add" />
+							</q-item-section>
+							<q-item-section>
+								{{ `v${versionList[0].version}` }}
+							</q-item-section>
 						</q-item>
 
 						<q-item>
-							<BaseButton
-								:label="`v${versionList[0].version}`"
-								class="!w-full"
-								outline
-								rounded
-								text-color="primary"
-								@click="onOpenVersionDialog"
-							/>
+							<VisitorsBillboard />
 						</q-item>
 					</q-list>
 				</q-scroll-area>
