@@ -1,5 +1,21 @@
 <template>
-	<div>{{ weatherType }}</div>
+	<BaseButton
+		class="weatherButton"
+		padding="0"
+		round
+	>
+		<video
+			autoplay
+			loop="true"
+			muted
+			preload="none"
+		>
+			<source
+				:src="weatherVideoDict[weatherType]"
+				type="video/mp4"
+			/>
+		</video>
+	</BaseButton>
 </template>
 
 <script lang="ts" setup>
@@ -10,12 +26,14 @@
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
 
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
-	import { getWeatherTypeWithoutCode_tomorrow } from './utils';
+	import { weatherVideoDict, getWeatherTypeWithoutCode_tomorrow } from './utils';
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const props = defineProps<{
 		lat: string; // 緯度
 		lng: string; // 經度
+		width?: string; // 內容寬度
+		height?: string; // 內容高度
 	}>();
 
 	const sunrisetStore = useSunrisetStore();
@@ -55,4 +73,12 @@
 	);
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+	.weatherButton {
+		.q-btn__content {
+			width: v-bind(width);
+			height: v-bind(height);
+			padding: 7px;
+		}
+	}
+</style>

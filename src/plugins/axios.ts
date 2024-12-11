@@ -127,10 +127,7 @@ export const tomorrow = axios.create({
 tomorrow.interceptors.request.use(
 	(config: InternalAxiosRequestConfig) => {
 		// 可以在這裡處理或修改請求參數
-		config.data = {
-			...config.data,
-			apikey: import.meta.env.VITE_TOMORROW_API_KEY,
-		};
+		config.params.apikey = import.meta.env.VITE_TOMORROW_API_KEY;
 		return config;
 	},
 	(error) => {
