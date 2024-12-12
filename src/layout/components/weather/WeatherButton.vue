@@ -5,11 +5,17 @@
 		round
 	>
 		<video
+			v-if="!videoLoading"
 			autoplay
 			loop="true"
 			muted
+			playsinline
 			preload="none"
 		>
+			<source
+				:src="weatherVideoUrlDict[weatherType]"
+				type="video/mp4"
+			/>
 			<source
 				:src="weatherVideoDict[weatherType]"
 				type="video/mp4"
@@ -26,7 +32,12 @@
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
 
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
-	import { weatherVideoDict, getWeatherTypeWithoutCode_tomorrow } from './utils';
+	import {
+		weatherVideoUrlDict,
+		weatherVideoDict,
+		weatherImgDict,
+		getWeatherTypeWithoutCode_tomorrow,
+	} from './utils';
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const props = defineProps<{
@@ -34,6 +45,7 @@
 		lng: string; // 經度
 		width?: string; // 內容寬度
 		height?: string; // 內容高度
+		padding?: string; // 內容 Padding
 	}>();
 
 	const sunrisetStore = useSunrisetStore();
@@ -42,8 +54,15 @@
 	const { obsResult } = toRefs(tomorrowStore);
 
 	const weatherType = ref(WeatherTypeEnum.UNKNOWN);
+	const videoLoading = ref(false);
 
 	const location = computed(() => `${props.lat}, ${props.lng}`);
+
+	watch(weatherType, () => {
+		// 強迫更新影片：從 UNKNOWN 類型更新為正確類型
+		videoLoading.value = true;
+		setTimeout(() => (videoLoading.value = false), 1);
+	});
 
 	const onReload = useDebounceFn(() => {
 		Promise.all([
@@ -78,7 +97,7 @@
 		.q-btn__content {
 			width: v-bind(width);
 			height: v-bind(height);
-			padding: 7px;
+			padding: v-bind(padding);
 		}
 	}
 </style>

@@ -38,6 +38,7 @@
 							height="41.6px"
 							lat="23.97565"
 							lng="120.9738819"
+							padding="7px"
 							width="41.6px"
 						/>
 
