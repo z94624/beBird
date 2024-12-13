@@ -21,6 +21,8 @@
 				type="video/mp4"
 			/>
 		</video>
+
+		<q-tooltip>{{ weatherDescDict[weatherType] }}</q-tooltip>
 	</BaseButton>
 </template>
 
@@ -33,9 +35,9 @@
 
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
 	import {
+		weatherDescDict,
 		weatherVideoUrlDict,
 		weatherVideoDict,
-		weatherImgDict,
 		getWeatherTypeWithoutCode_tomorrow,
 	} from './utils';
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';

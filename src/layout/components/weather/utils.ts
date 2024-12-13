@@ -43,10 +43,42 @@ import { DielEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
 import { ITOMORROWDataValueItem } from '@/models/tomorrow/v4/weather';
 
 /**
+ * 天氣圖示對應文字說明
+ */
+export const weatherDescDict: IMap<string> = {
+	[WeatherTypeEnum.UNKNOWN]: 'Weather(天氣)',
+
+	[WeatherTypeEnum.WINDY]: 'Windy(多風)',
+	[WeatherTypeEnum.HURRICANE]: 'Typhoon/Hurricane/Cyclone(強風)',
+
+	[WeatherTypeEnum.CLEAR]: 'Sunny(晴天)',
+	[WeatherTypeEnum.PARTLY_CLOUDY]: 'Partly Cloudy(晴時多雲)',
+	[WeatherTypeEnum.CLOUDY]: 'Cloudy(多雲時陰)',
+
+	[WeatherTypeEnum.CLEAR_NIGHT]: 'Clear Night(晴夜)',
+	[WeatherTypeEnum.CLOUDY_NIGHT]: 'Cloudy Night(陰夜)',
+
+	[WeatherTypeEnum.DRIZZLE]: 'Drizzle(細雨)',
+	[WeatherTypeEnum.RAIN]: 'Rainy(雨天)',
+	[WeatherTypeEnum.THUNDER_STORM]: 'Thunder Storm(暴風雨)',
+
+	[WeatherTypeEnum.SNOW]: 'Snowy(降雪)',
+	[WeatherTypeEnum.SLEET]: 'Sleet(冰霰)',
+	[WeatherTypeEnum.BLIZZARD]: 'Blizzard(暴風雪)',
+
+	[WeatherTypeEnum.FOG]: 'Foggy(多霧)',
+
+	[WeatherTypeEnum.COLD]: 'Cold(冷)',
+	[WeatherTypeEnum.HOT]: 'Hot(熱)',
+
+	[WeatherTypeEnum.SUNRISE]: 'Sunrise(日昇)',
+	[WeatherTypeEnum.SUNSET]: 'Sunset(日落)',
+};
+/**
  * 天氣影片圖示對應來源 URL
  */
 export const weatherVideoUrlDict: IMap<string> = {
-	[WeatherTypeEnum.UNKNOWN]: 'https://cdn-icons-mp4.flaticon.com/512/17904/17904083.mp4',
+	[WeatherTypeEnum.UNKNOWN]: 'https://cdn-icons-mp4.flaticon.com/512/14464/14464176.mp4',
 
 	[WeatherTypeEnum.WINDY]: 'https://cdn-icons-mp4.flaticon.com/512/17484/17484929.mp4',
 	[WeatherTypeEnum.HURRICANE]: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858147.mp4',
