@@ -60,6 +60,22 @@
 							/>
 						</template>
 
+						<!-- 天氣 -->
+						<q-item
+							clickable
+							@click="() => {}"
+						>
+							<q-item-section avatar>
+								<WeatherIconVideo
+									lat="23.97565"
+									lng="120.9738819"
+									width="30px"
+								/>
+							</q-item-section>
+							<q-item-section>Weather</q-item-section>
+						</q-item>
+
+						<!-- 版本 -->
 						<q-item
 							clickable
 							@click="onOpenVersionDialog"
@@ -72,6 +88,7 @@
 							</q-item-section>
 						</q-item>
 
+						<!-- 人次 -->
 						<q-item>
 							<VisitorsBillboard />
 						</q-item>
@@ -91,6 +108,7 @@
 <script lang="ts" setup>
 	import { ref } from 'vue';
 	import { useRouter } from 'vue-router';
+	import WeatherIconVideo from './components/weather/WeatherIconVideo.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 

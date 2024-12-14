@@ -28,6 +28,7 @@ declare module 'vue' {
     FormLabel: typeof import('./src/components/common/form/FormLabel.vue')['default']
     Github: typeof import('./src/components/common/socialMedia/Github.vue')['default']
     HrefButton: typeof import('./src/components/common/button/HrefButton.vue')['default']
+    IconVideo: typeof import('./src/components/common/media/IconVideo.vue')['default']
     Instagram: typeof import('./src/components/common/socialMedia/Instagram.vue')['default']
     Line: typeof import('./src/components/common/socialMedia/Line.vue')['default']
     MigrationIndicator: typeof import('./src/components/common/badge/MigrationIndicator.vue')['default']

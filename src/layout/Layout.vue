@@ -34,6 +34,7 @@
 					<q-space />
 
 					<div class="flex no-wrap items-center gap-1">
+						<!-- 天氣 -->
 						<WeatherButton
 							height="41.6px"
 							lat="23.97565"
@@ -42,6 +43,7 @@
 							width="41.6px"
 						/>
 
+						<!-- 人次 -->
 						<BaseButton
 							:icon="fasUsers"
 							round
@@ -52,6 +54,7 @@
 							</q-tooltip>
 						</BaseButton>
 
+						<!-- 版本 -->
 						<BaseButton
 							:label="`v${versionList[0].version}`"
 							rounded
