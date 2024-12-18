@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, reactive, ref, watch } from 'vue';
+	import { computed, onBeforeMount, reactive, ref, toRefs, watch } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
 	import {
 		LMap,
@@ -124,14 +124,18 @@
 		LCircle,
 		LCircleMarker,
 	} from '@vue-leaflet/vue-leaflet';
-	import { LatLngExpression, PointExpression } from 'leaflet';
+	import { LatLng, LatLngExpression, PointExpression } from 'leaflet';
 
 	import { usePlatform } from '@/hooks/platform';
+	import { useLeafletStore } from '@/store/modules/geodata';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	// 監測定位
 	const { coords, locatedAt, error, resume, pause } = useGeolocation();
 	const { isMobile } = usePlatform();
+	// Leaflet Store
+	const leafletStore = useLeafletStore();
+	const { mapCenter } = toRefs(leafletStore);
 
 	const map = ref(null);
 	const center = ref<PointExpression>([
@@ -260,7 +264,10 @@
 	 * Triggers when center is updated
 	 * 順序：先移動再縮放
 	 */
-	const onUpdateCenter = () => {
+	const onUpdateCenter = (newCenter: LatLng) => {
+		// 儲存目前地圖中心位置
+		mapCenter.value = newCenter;
+
 		switch (triggerSrcDict.center) {
 			case 'locate':
 				triggerSrcDict.center = '';

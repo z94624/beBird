@@ -1,11 +1,14 @@
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { QSelectOption } from 'quasar';
+import { LatLng } from 'leaflet';
 import { allCountries } from 'country-region-data';
 
 import { getSubRegionListApi } from '@/api/ref/region';
 import { REFREGIONGetSubRegionListReq } from '@/models/ref/region';
 
 import { RegionTypeEnum } from '@/models/enum/ebirdEnum';
+import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 /**
  * 國家地區相關
@@ -65,5 +68,19 @@ export const useCountryRegionStore = defineStore('countryRegion', () => {
 		countryOptions,
 		getRegionOptions,
 		getSubRegionListInfo,
+	};
+});
+
+/**
+ * Leaflet 相關
+ */
+export const useLeafletStore = defineStore('leaflet', () => {
+	// 地圖中心
+	const mapCenter = ref(
+		new LatLng(GeoDataEnum.LATITUDE_OF_TAIWAN, GeoDataEnum.LONGITUDE_OF_TAIWAN)
+	);
+
+	return {
+		mapCenter,
 	};
 });

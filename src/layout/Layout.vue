@@ -36,9 +36,9 @@
 					<div class="flex no-wrap items-center gap-1">
 						<!-- 天氣 -->
 						<WeatherButton
+							:lat="mapCenter.lat.toString()"
+							:lng="mapCenter.lng.toString()"
 							height="41.6px"
-							lat="23.97565"
-							lng="120.9738819"
 							padding="7px"
 							width="41.6px"
 						/>
@@ -75,18 +75,22 @@
 </template>
 
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { ref, toRefs } from 'vue';
 	import { useRouter } from 'vue-router';
 	import WeatherButton from './components/weather/WeatherButton.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
+	import { useLeafletStore } from '@/store/modules/geodata';
 	import { PageEnum } from '@/models/enum/pageEnum';
 	import { menuList } from './utils';
 	import { versionList } from '@/layout/utils';
 
 	const router = useRouter();
+	// Leaflet Store
+	const leafletStore = useLeafletStore();
+	const { mapCenter } = toRefs(leafletStore);
 
 	const versionDialogRef = ref();
 
