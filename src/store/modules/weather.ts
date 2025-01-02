@@ -83,7 +83,6 @@ export const useTomorrowStore = defineStore('tomorrow', () => {
 				return Promise.resolve(res);
 			})
 			.catch((_msg) => {
-				$notify.error('失敗：取得即時天氣資訊');
 				return Promise.reject(_msg);
 			})
 			.finally(() => {
