@@ -1,5 +1,4 @@
 import { date } from 'quasar';
-import { convertDDToDMS } from './convert';
 
 /**
  * 取得紀錄距現在相隔天數
@@ -13,17 +12,10 @@ export const getDateDiffFromNow = (obsDt: string): number => {
 };
 
 /**
- * 取得 Google Maps 的地點 URL
- * @param lat eBird 緯度
- * @param lng eBird 經度
- * @returns Google Maps Place URL 字串
+ * 取得 Google Maps 任意地點 URL
+ * @param lat 緯度
+ * @param lng 經度
  */
 export const getGoogleMapsPlaceURL = (lat: number, lng: number): string => {
-	const baseURL = 'https://www.google.com/maps/place';
-
-	const { d: latD, m: latM, s: latS } = convertDDToDMS(lat);
-	const { d: lngD, m: lngM, s: lngS } = convertDDToDMS(lng);
-	const lat_lng = `/${Math.abs(latD)}%C2%B0${latM}'${latS}%22${latD ? 'N' : 'S'}+${Math.abs(lngD)}%C2%B0${lngM}'${lngS}%22${lngD ? 'E' : 'W'}`;
-
-	return baseURL + lat_lng;
+	return `http://maps.google.com/?ie=UTF8&t=p&z=13&q=${lat},${lng}&ll=${lat},${lng}`;
 };
