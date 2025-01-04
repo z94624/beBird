@@ -61,6 +61,17 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.2',
+		releaseDate: '2025/01/04',
+		features: [
+			'A weather button that shows the real-time weather is added, and the weather data changes by the center location of the map.',
+		],
+		fixes: [
+			'The destination that the navigation button in the rare-bird spot detail dialog leads to is fixed.',
+		],
+		changes: ['For mobile device, the width of the left drawer is increased.'],
+	},
+	{
 		version: '1.1.1',
 		releaseDate: '2024/10/30',
 		features: ['We will see snow in Christmas season.'],
