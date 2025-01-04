@@ -31,6 +31,7 @@
 		weatherVideoUrlDict,
 		weatherVideoDict,
 		getWeatherTypeWithoutCode_tomorrow,
+		getWeatherTypeWithCode_tomorrow,
 	} from './utils';
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
@@ -71,7 +72,15 @@
 			),
 		]).then(() => {
 			if (obsResult.value) {
-				weatherType.value = getWeatherTypeWithoutCode_tomorrow(obsResult.value, diel.value);
+				// 先直接利用天氣代碼判斷
+				weatherType.value = getWeatherTypeWithCode_tomorrow(obsResult.value, diel.value);
+				if (weatherType.value === WeatherTypeEnum.UNKNOWN) {
+					// 其次再用自訂規則判斷
+					weatherType.value = getWeatherTypeWithoutCode_tomorrow(
+						obsResult.value,
+						diel.value
+					);
+				}
 			}
 		});
 	}, 2000);

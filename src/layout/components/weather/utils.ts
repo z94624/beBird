@@ -43,6 +43,30 @@ import { DielEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
 import { ITOMORROWDataValueItem } from '@/models/tomorrow/v4/weather';
 
 /**
+ * 天氣圖示對應天氣代碼
+ * https://docs.tomorrow.io/reference/data-layers-weather-codes
+ */
+export const weatherCodeDict_tomorrow: IMap<number[]> = {
+	[WeatherTypeEnum.UNKNOWN]: [0],
+
+	[WeatherTypeEnum.CLEAR]: [1000, 1100],
+	[WeatherTypeEnum.PARTLY_CLOUDY]: [1101],
+	[WeatherTypeEnum.CLOUDY]: [1102, 1001],
+
+	[WeatherTypeEnum.CLEAR_NIGHT]: [1000, 1100],
+	[WeatherTypeEnum.CLOUDY_NIGHT]: [1101, 1102, 1001],
+
+	[WeatherTypeEnum.DRIZZLE]: [4000],
+	[WeatherTypeEnum.RAIN]: [4001, 4200, 4201],
+	[WeatherTypeEnum.THUNDER_STORM]: [8000],
+
+	[WeatherTypeEnum.SNOW]: [5000, 5001, 5100],
+	[WeatherTypeEnum.SLEET]: [6000, 6001, 6200, 6201, 7000, 7101, 7102],
+	[WeatherTypeEnum.BLIZZARD]: [5101],
+
+	[WeatherTypeEnum.FOG]: [2000, 2100],
+};
+/**
  * 天氣圖示對應文字說明
  */
 export const weatherDescDict: IMap<string> = {
@@ -171,6 +195,36 @@ export const weatherImgDict: IMap<string> = {
 	[WeatherTypeEnum.SUNSET]: SunsetImg,
 };
 
+/**
+ * 從 Tomorrow.io 天氣代碼判斷屬於哪種天氣類型
+ * @param values Tomorrow.io 即時天氣資料
+ * @param diel 晝夜
+ * @returns 天氣類型
+ */
+export const getWeatherTypeWithCode_tomorrow = (
+	values: ITOMORROWDataValueItem,
+	diel: DielEnum
+): WeatherTypeEnum => {
+	const { weatherCode } = values;
+
+	let weatherType = WeatherTypeEnum.UNKNOWN;
+
+	for (const [type, codes] of Object.entries(weatherCodeDict_tomorrow)) {
+		if (codes.includes(weatherCode)) {
+			weatherType = type as WeatherTypeEnum;
+			break;
+		}
+	}
+	if (diel === DielEnum.NIGHT) {
+		if ([1000, 1100].includes(weatherCode)) {
+			weatherType = WeatherTypeEnum.CLEAR_NIGHT;
+		} else if ([1101, 1102, 1001].includes(weatherCode)) {
+			weatherType = WeatherTypeEnum.CLOUDY_NIGHT;
+		}
+	}
+
+	return weatherType;
+};
 /**
  * 從 Tomorrow.io 天氣資料判斷屬於哪種天氣類型
  * @param values Tomorrow.io 即時天氣資料
