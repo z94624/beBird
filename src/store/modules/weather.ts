@@ -24,7 +24,7 @@ export const useSunrisetStore = defineStore('sunriset', () => {
 	// 是否為晝
 	const diel = computed((): DielEnum => {
 		const now = new Date();
-		const nowStr = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+		const nowStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
 		if (sunResult.value) {
 			return nowStr >= sunResult.value.sunrise && nowStr < sunResult.value.sunset
 				? DielEnum.DAY
