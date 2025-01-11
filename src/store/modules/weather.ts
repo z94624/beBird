@@ -25,13 +25,10 @@ export const useSunrisetStore = defineStore('sunriset', () => {
 	const diel = computed((): DielEnum => {
 		const now = new Date();
 		const nowStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
-		if (sunResult.value) {
-			return nowStr >= sunResult.value.sunrise && nowStr < sunResult.value.sunset
-				? DielEnum.DAY
-				: DielEnum.NIGHT;
-		} else {
-			return DielEnum.DAY;
-		}
+		return nowStr >= (sunResult.value?.sunrise ?? '06:00:00') &&
+			nowStr < (sunResult.value?.sunset ?? '18:00:00')
+			? DielEnum.DAY
+			: DielEnum.NIGHT;
 	});
 
 	/**
@@ -46,6 +43,7 @@ export const useSunrisetStore = defineStore('sunriset', () => {
 			})
 			.catch((_msg) => {
 				$notify.error('失敗：取得日出日落資訊');
+				sunResult.value = undefined;
 				return Promise.reject(_msg);
 			})
 			.finally(() => {
