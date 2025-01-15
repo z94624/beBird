@@ -1,5 +1,6 @@
 <template>
 	<div class="fullContainer relative">
+		<!-- 右上功能區 -->
 		<!-- 搜尋功能 -->
 		<BaseButton
 			v-morph:btn.resize="birdMorph"
@@ -38,6 +39,24 @@
 		>
 			<slot name="search-menu"></slot>
 		</q-drawer>
+		<!-- 資料更新按鈕 -->
+		<BaseButton
+			:icon="fasRotateRight"
+			:loading="updateLoading"
+			:style="{
+				top:
+					birdMorph === 'btn'
+						? `calc(${boundaryGap} + 57.6px + 4px)`
+						: `calc(${boundaryGap} + 244px + 4px)`,
+			}"
+			class="researchBtn"
+			color="secondary"
+			fab
+			round
+			size="lg"
+			text-color="primary"
+			@click="emit('research')"
+		/>
 
 		<!-- 右下功能區 -->
 		<div class="bottomRightToolbar flex flex-col gap-1">
@@ -125,10 +144,15 @@
 		LCircleMarker,
 	} from '@vue-leaflet/vue-leaflet';
 	import { LatLng, LatLngExpression, PointExpression } from 'leaflet';
+	import { fasRotateRight } from '@quasar/extras/fontawesome-v6';
 
 	import { usePlatform } from '@/hooks/platform';
 	import { useLeafletStore } from '@/store/modules/geodata';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
+
+	const emit = defineEmits<{
+		(e: 'research'): void; // 重新搜尋
+	}>();
 
 	// 監測定位
 	const { coords, locatedAt, error, resume, pause } = useGeolocation();
@@ -137,6 +161,8 @@
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
 
+	const boundaryGap = ref('10px');
+	const updateLoading = ref(false);
 	const map = ref(null);
 	const center = ref<PointExpression>([
 		GeoDataEnum.LATITUDE_OF_TAIWAN,
@@ -233,6 +259,13 @@
 	};
 
 	/**
+	 * 更新資料按鈕 Loading 狀態
+	 */
+	const setUpdateLoadingState = (loading: boolean) => {
+		updateLoading.value = loading;
+	};
+
+	/**
 	 * 開啟定位
 	 */
 	const resumeLocating = () => {
@@ -321,12 +354,14 @@
 		pause();
 	});
 
-	defineExpose({ updateCenter, updateZoom });
+	defineExpose({
+		setUpdateLoadingState,
+		updateCenter,
+		updateZoom,
+	});
 </script>
 
 <style lang="scss" scoped>
-	$boundary-gap: 10px;
-
 	.fullContainer {
 		width: 100%;
 		height: 100%;
@@ -337,8 +372,8 @@
 
 	.map-top-right {
 		position: absolute;
-		top: $boundary-gap;
-		right: $boundary-gap;
+		top: v-bind(boundaryGap);
+		right: v-bind(boundaryGap);
 		z-index: 401;
 	}
 	.searchMenuContainer {
@@ -348,11 +383,16 @@
 		padding: 12px;
 		background-color: rgba($color: #fff, $alpha: 0.75);
 	}
+	.researchBtn {
+		@extend .map-top-right;
+
+		transition: top 0.3s;
+	}
 
 	.map-bottom-right {
 		position: absolute;
 		bottom: 93px;
-		right: $boundary-gap;
+		right: v-bind(boundaryGap);
 		z-index: 401;
 	}
 	.bottomRightToolbar {

@@ -1,5 +1,8 @@
 <template>
-	<VlMap ref="mapRef">
+	<VlMap
+		ref="mapRef"
+		@research="getRecentNotableObsInRegionInfo"
+	>
 		<template #search-menu>
 			<q-form
 				class="q-gutter-md"
@@ -196,6 +199,8 @@
 	 */
 	const getRecentNotableObsInRegionInfo = () => {
 		$loading.on();
+		// 資料更新按鈕
+		mapRef.value && mapRef.value.setUpdateLoadingState(true);
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
 			.then((data) => {
 				// $notify.success('成功：取得近期稀有鳥紀錄');
@@ -210,6 +215,8 @@
 			})
 			.finally(() => {
 				$loading.off();
+				// 資料更新按鈕
+				mapRef.value && mapRef.value.setUpdateLoadingState(false);
 			});
 	};
 	// 防抖

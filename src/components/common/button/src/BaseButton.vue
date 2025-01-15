@@ -4,7 +4,6 @@
 		class="baseButton"
 		no-caps
 		no-wrap
-		style="border: 1px solid transparent"
 	>
 		<template
 			#[slot]
@@ -68,5 +67,6 @@
 		font-weight: 700;
 		font-size: 0.9rem;
 		line-height: 1;
+		border: 1px solid transparent;
 	}
 </style>
