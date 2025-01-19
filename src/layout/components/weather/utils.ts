@@ -43,156 +43,137 @@ import { DielEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
 import { ITOMORROWDataValueItem } from '@/models/tomorrow/v4/weather';
 
 /**
- * 天氣圖示對應天氣代碼
- * https://docs.tomorrow.io/reference/data-layers-weather-codes
+ * 天氣圖示對應表
  */
-export const weatherCodeDict_tomorrow: IMap<number[]> = {
-	[WeatherTypeEnum.UNKNOWN]: [0],
+export const weatherDataDict: IMap<{
+	desc: string; // 文字說明
+	videoUrl: string; // 影片來源 URL
+	video: string; // 影片檔案路徑
+	image: string; // 圖片檔案路徑
+	code_tomorrow?: number[]; // Tomorrow.io 天氣代碼；https://docs.tomorrow.io/reference/data-layers-weather-codes
+}> = {
+	[WeatherTypeEnum.UNKNOWN]: {
+		desc: 'Weather(天氣)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/14464/14464176.mp4',
+		video: WeatherVideo,
+		image: WeatherImg,
+		code_tomorrow: [0],
+	},
 
-	[WeatherTypeEnum.CLEAR]: [1000, 1100],
-	[WeatherTypeEnum.PARTLY_CLOUDY]: [1101],
-	[WeatherTypeEnum.CLOUDY]: [1102, 1001],
+	[WeatherTypeEnum.CLEAR]: {
+		desc: 'Sunny(晴天)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455017.mp4',
+		video: ClearVideo,
+		image: ClearImg,
+		code_tomorrow: [1000, 1100],
+	},
+	[WeatherTypeEnum.PARTLY_CLOUDY]: {
+		desc: 'Partly Cloudy(晴時多雲)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455053.mp4',
+		video: PartlyCloudyVideo,
+		image: PartlyCloudyImg,
+		code_tomorrow: [1101],
+	},
+	[WeatherTypeEnum.CLOUDY]: {
+		desc: 'Cloudy(多雲時陰)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455024.mp4',
+		video: CloudyVideo,
+		image: CloudyImg,
+		code_tomorrow: [1102, 1001],
+	},
 
-	[WeatherTypeEnum.CLEAR_NIGHT]: [1000, 1100],
-	[WeatherTypeEnum.CLOUDY_NIGHT]: [1101, 1102, 1001],
+	[WeatherTypeEnum.CLEAR_NIGHT]: {
+		desc: 'Clear Night(晴夜)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455031.mp4',
+		video: ClearNightVideo,
+		image: ClearNightImg,
+		code_tomorrow: [1000, 1100],
+	},
+	[WeatherTypeEnum.CLOUDY_NIGHT]: {
+		desc: 'Cloudy Night(陰夜)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455043.mp4',
+		video: CloudyNightVideo,
+		image: CloudyNightImg,
+		code_tomorrow: [1101, 1102, 1001],
+	},
 
-	[WeatherTypeEnum.DRIZZLE]: [4000],
-	[WeatherTypeEnum.RAIN]: [4001, 4200, 4201],
-	[WeatherTypeEnum.THUNDER_STORM]: [8000],
+	[WeatherTypeEnum.DRIZZLE]: {
+		desc: 'Drizzle(細雨)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455057.mp4',
+		video: DrizzleVideo,
+		image: DrizzleImg,
+		code_tomorrow: [4000],
+	},
+	[WeatherTypeEnum.RAIN]: {
+		desc: 'Rainy(雨天)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455055.mp4',
+		video: RainVideo,
+		image: RainImg,
+		code_tomorrow: [4001, 4200, 4201],
+	},
+	[WeatherTypeEnum.THUNDER_STORM]: {
+		desc: 'Thunder Storm(暴風雨)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858190.mp4',
+		video: ThunderStormVideo,
+		image: ThunderStormImg,
+		code_tomorrow: [8000],
+	},
 
-	[WeatherTypeEnum.SNOW]: [5000, 5001, 5100],
-	[WeatherTypeEnum.SLEET]: [6000, 6001, 6200, 6201, 7000, 7101, 7102],
-	[WeatherTypeEnum.BLIZZARD]: [5101],
+	[WeatherTypeEnum.SNOW]: {
+		desc: 'Snowy(降雪)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455036.mp4',
+		video: SnowVideo,
+		image: SnowImg,
+		code_tomorrow: [5000, 5001, 5100],
+	},
+	[WeatherTypeEnum.SLEET]: {
+		desc: 'Sleet(冰霰)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858163.mp4',
+		video: SleetVideo,
+		image: SleetImg,
+		code_tomorrow: [6000, 6001, 6200, 6201, 7000, 7101, 7102],
+	},
+	[WeatherTypeEnum.BLIZZARD]: {
+		desc: 'Blizzard(暴風雪)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455058.mp4',
+		video: BlizzardVideo,
+		image: BlizzardImg,
+		code_tomorrow: [5101],
+	},
 
-	[WeatherTypeEnum.FOG]: [2000, 2100],
-};
-/**
- * 天氣圖示對應文字說明
- */
-export const weatherDescDict: IMap<string> = {
-	[WeatherTypeEnum.UNKNOWN]: 'Weather(天氣)',
+	[WeatherTypeEnum.FOG]: {
+		desc: 'Foggy(多霧)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6454/6454995.mp4',
+		video: FogVideo,
+		image: FogImg,
+		code_tomorrow: [2000, 2100],
+	},
 
-	[WeatherTypeEnum.WINDY]: 'Windy(多風)',
-	[WeatherTypeEnum.HURRICANE]: 'Typhoon/Hurricane/Cyclone(強風)',
+	[WeatherTypeEnum.COLD]: {
+		desc: 'Cold(冷)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455060.mp4',
+		video: ColdVideo,
+		image: ColdImg,
+	},
+	[WeatherTypeEnum.HOT]: {
+		desc: 'Hot(熱)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6454/6454983.mp4',
+		video: HotVideo,
+		image: HotImg,
+	},
 
-	[WeatherTypeEnum.CLEAR]: 'Sunny(晴天)',
-	[WeatherTypeEnum.PARTLY_CLOUDY]: 'Partly Cloudy(晴時多雲)',
-	[WeatherTypeEnum.CLOUDY]: 'Cloudy(多雲時陰)',
-
-	[WeatherTypeEnum.CLEAR_NIGHT]: 'Clear Night(晴夜)',
-	[WeatherTypeEnum.CLOUDY_NIGHT]: 'Cloudy Night(陰夜)',
-
-	[WeatherTypeEnum.DRIZZLE]: 'Drizzle(細雨)',
-	[WeatherTypeEnum.RAIN]: 'Rainy(雨天)',
-	[WeatherTypeEnum.THUNDER_STORM]: 'Thunder Storm(暴風雨)',
-
-	[WeatherTypeEnum.SNOW]: 'Snowy(降雪)',
-	[WeatherTypeEnum.SLEET]: 'Sleet(冰霰)',
-	[WeatherTypeEnum.BLIZZARD]: 'Blizzard(暴風雪)',
-
-	[WeatherTypeEnum.FOG]: 'Foggy(多霧)',
-
-	[WeatherTypeEnum.COLD]: 'Cold(冷)',
-	[WeatherTypeEnum.HOT]: 'Hot(熱)',
-
-	[WeatherTypeEnum.SUNRISE]: 'Sunrise(日昇)',
-	[WeatherTypeEnum.SUNSET]: 'Sunset(日落)',
-};
-/**
- * 天氣影片圖示對應來源 URL
- */
-export const weatherVideoUrlDict: IMap<string> = {
-	[WeatherTypeEnum.UNKNOWN]: 'https://cdn-icons-mp4.flaticon.com/512/14464/14464176.mp4',
-
-	[WeatherTypeEnum.WINDY]: 'https://cdn-icons-mp4.flaticon.com/512/17484/17484929.mp4',
-	[WeatherTypeEnum.HURRICANE]: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858147.mp4',
-
-	[WeatherTypeEnum.CLEAR]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455017.mp4',
-	[WeatherTypeEnum.PARTLY_CLOUDY]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455053.mp4',
-	[WeatherTypeEnum.CLOUDY]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455024.mp4',
-
-	[WeatherTypeEnum.CLEAR_NIGHT]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455031.mp4',
-	[WeatherTypeEnum.CLOUDY_NIGHT]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455043.mp4',
-
-	[WeatherTypeEnum.DRIZZLE]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455057.mp4',
-	[WeatherTypeEnum.RAIN]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455055.mp4',
-	[WeatherTypeEnum.THUNDER_STORM]: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858190.mp4',
-
-	[WeatherTypeEnum.SNOW]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455036.mp4',
-	[WeatherTypeEnum.SLEET]: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858163.mp4',
-	[WeatherTypeEnum.BLIZZARD]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455058.mp4',
-
-	[WeatherTypeEnum.FOG]: 'https://cdn-icons-mp4.flaticon.com/512/6454/6454995.mp4',
-
-	[WeatherTypeEnum.COLD]: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455060.mp4',
-	[WeatherTypeEnum.HOT]: 'https://cdn-icons-mp4.flaticon.com/512/6454/6454983.mp4',
-
-	[WeatherTypeEnum.SUNRISE]: 'https://cdn-icons-mp4.flaticon.com/512/14193/14193984.mp4',
-	[WeatherTypeEnum.SUNSET]: 'https://cdn-icons-mp4.flaticon.com/512/8800/8800140.mp4',
-};
-/**
- * 天氣影片圖示對應檔案路徑
- */
-export const weatherVideoDict: IMap<string> = {
-	[WeatherTypeEnum.UNKNOWN]: WeatherVideo,
-
-	[WeatherTypeEnum.WINDY]: WindyVideo,
-	[WeatherTypeEnum.HURRICANE]: HurricaneVideo,
-
-	[WeatherTypeEnum.CLEAR]: ClearVideo,
-	[WeatherTypeEnum.PARTLY_CLOUDY]: PartlyCloudyVideo,
-	[WeatherTypeEnum.CLOUDY]: CloudyVideo,
-
-	[WeatherTypeEnum.CLEAR_NIGHT]: ClearNightVideo,
-	[WeatherTypeEnum.CLOUDY_NIGHT]: CloudyNightVideo,
-
-	[WeatherTypeEnum.DRIZZLE]: DrizzleVideo,
-	[WeatherTypeEnum.RAIN]: RainVideo,
-	[WeatherTypeEnum.THUNDER_STORM]: ThunderStormVideo,
-
-	[WeatherTypeEnum.SNOW]: SnowVideo,
-	[WeatherTypeEnum.SLEET]: SleetVideo,
-	[WeatherTypeEnum.BLIZZARD]: BlizzardVideo,
-
-	[WeatherTypeEnum.FOG]: FogVideo,
-
-	[WeatherTypeEnum.COLD]: ColdVideo,
-	[WeatherTypeEnum.HOT]: HotVideo,
-
-	[WeatherTypeEnum.SUNRISE]: SunriseVideo,
-	[WeatherTypeEnum.SUNSET]: SunsetVideo,
-};
-/**
- * 天氣圖片圖示對應檔案路徑
- */
-export const weatherImgDict: IMap<string> = {
-	[WeatherTypeEnum.UNKNOWN]: WeatherImg,
-
-	[WeatherTypeEnum.WINDY]: WindyImg,
-	[WeatherTypeEnum.HURRICANE]: HurricaneImg,
-
-	[WeatherTypeEnum.CLEAR]: ClearImg,
-	[WeatherTypeEnum.PARTLY_CLOUDY]: PartlyCloudyImg,
-	[WeatherTypeEnum.CLOUDY]: CloudyImg,
-
-	[WeatherTypeEnum.CLEAR_NIGHT]: ClearNightImg,
-	[WeatherTypeEnum.CLOUDY_NIGHT]: CloudyNightImg,
-
-	[WeatherTypeEnum.DRIZZLE]: DrizzleImg,
-	[WeatherTypeEnum.RAIN]: RainImg,
-	[WeatherTypeEnum.THUNDER_STORM]: ThunderStormImg,
-
-	[WeatherTypeEnum.SNOW]: SnowImg,
-	[WeatherTypeEnum.SLEET]: SleetImg,
-	[WeatherTypeEnum.BLIZZARD]: BlizzardImg,
-
-	[WeatherTypeEnum.FOG]: FogImg,
-
-	[WeatherTypeEnum.COLD]: ColdImg,
-	[WeatherTypeEnum.HOT]: HotImg,
-
-	[WeatherTypeEnum.SUNRISE]: SunriseImg,
-	[WeatherTypeEnum.SUNSET]: SunsetImg,
+	[WeatherTypeEnum.SUNRISE]: {
+		desc: 'Sunrise(日昇)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/14193/14193984.mp4',
+		video: SunriseVideo,
+		image: SunriseImg,
+	},
+	[WeatherTypeEnum.SUNSET]: {
+		desc: 'Sunset(日落)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/8800/8800140.mp4',
+		video: SunsetVideo,
+		image: SunsetImg,
+	},
 };
 
 /**
@@ -209,8 +190,8 @@ export const getWeatherTypeWithCode_tomorrow = (
 
 	let weatherType = WeatherTypeEnum.UNKNOWN;
 
-	for (const [type, codes] of Object.entries(weatherCodeDict_tomorrow)) {
-		if (codes.includes(weatherCode)) {
+	for (const [type, data] of Object.entries(weatherDataDict)) {
+		if (data['code_tomorrow']?.includes(weatherCode)) {
 			weatherType = type as WeatherTypeEnum;
 			break;
 		}

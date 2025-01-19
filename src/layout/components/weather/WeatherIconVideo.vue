@@ -5,16 +5,16 @@
 			:="attrs"
 		>
 			<source
-				:src="weatherVideoUrlDict[weatherType]"
+				:src="weatherDataDict[weatherType].videoUrl"
 				type="video/mp4"
 			/>
 			<source
-				:src="weatherVideoDict[weatherType]"
+				:src="weatherDataDict[weatherType].video"
 				type="video/mp4"
 			/>
 		</IconVideo>
 
-		<q-tooltip>{{ weatherDescDict[weatherType] }}</q-tooltip>
+		<q-tooltip>{{ weatherDataDict[weatherType].desc }}</q-tooltip>
 	</div>
 </template>
 
@@ -27,9 +27,7 @@
 
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
 	import {
-		weatherDescDict,
-		weatherVideoUrlDict,
-		weatherVideoDict,
+		weatherDataDict,
 		getWeatherTypeWithoutCode_tomorrow,
 		getWeatherTypeWithCode_tomorrow,
 	} from './utils';
