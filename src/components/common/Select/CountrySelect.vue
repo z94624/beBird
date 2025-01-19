@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { onMounted, ref, toRefs, watch } from 'vue';
+	import { computed, onMounted, ref, toRefs, watch } from 'vue';
 
 	import { usePreferredLanguageStore } from '@/store/modules/language';
 	import { useCountryRegionStore } from '@/store/modules/geodata';
@@ -34,9 +34,14 @@
 	const emit = defineEmits<{
 		(e: 'update:country', v: string): void;
 	}>();
-	const props = defineProps<{
-		country?: string;
-	}>();
+	const props = withDefaults(
+		defineProps<{
+			country?: string;
+		}>(),
+		{
+			country: GeoDataEnum.COUNTRYCODE_OF_TAIWAN,
+		}
+	);
 
 	const preferredLanguageStore = usePreferredLanguageStore();
 	const { userCountryCode } = toRefs(preferredLanguageStore);
@@ -44,7 +49,11 @@
 	const { countryOptions } = toRefs(countryRegionStore);
 
 	const filteredOptions = ref<QSelectOption[]>([]);
-	const selectedCountry = ref<string>(GeoDataEnum.COUNTRYCODE_OF_TAIWAN);
+
+	const selectedCountry = computed({
+		get: () => props.country,
+		set: (val: string) => emit('update:country', val),
+	});
 
 	watch(
 		countryOptions,
@@ -53,10 +62,6 @@
 		},
 		{ immediate: true, deep: true }
 	);
-
-	watch(selectedCountry, (nv) => {
-		emit('update:country', nv);
-	});
 
 	/**
 	 * 關鍵字篩選選項
@@ -77,9 +82,11 @@
 	};
 
 	onMounted(() => {
-		selectedCountry.value = countryOptions.value.find(
-			(country) => country.value === userCountryCode.value
-		)!.value;
+		if (!selectedCountry.value) {
+			selectedCountry.value = countryOptions.value.find(
+				(option) => option.value === userCountryCode.value
+			)!.value;
+		}
 	});
 </script>
 

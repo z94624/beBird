@@ -141,6 +141,16 @@
 	watch(
 		[country, region, notableObsForm],
 		() => {
+			// 儲存查詢參數，下次開啟使用
+			localStorage.setItem(
+				'rareBirds-searchForm',
+				JSON.stringify({
+					c: country.value,
+					r: region.value,
+					n: notableObsForm.value,
+				})
+			);
+
 			debouncedGetNotableObs();
 		},
 		{ deep: true }
@@ -250,7 +260,17 @@
 	};
 
 	onBeforeMount(() => {
-		getRecentNotableObsInRegionInfo();
+		// localStorage.removeItem('rareBirds-searchForm');
+		const oldSearchFormStr = localStorage.getItem('rareBirds-searchForm');
+		if (oldSearchFormStr) {
+			// 延續使用者最近一次的查詢參數
+			const { c, r, n } = JSON.parse(oldSearchFormStr);
+			country.value = c;
+			region.value = r;
+			notableObsForm.value = n;
+		} else {
+			getRecentNotableObsInRegionInfo();
+		}
 	});
 </script>
 
