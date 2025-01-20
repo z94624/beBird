@@ -61,6 +61,18 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.3',
+		releaseDate: '2025/01/20',
+		features: [
+			'A refresh button, that can re-search again immediately, is added below the search button.',
+		],
+		fixes: ['The weather button: the decision of day or night is fixed.'],
+		changes: [
+			'We temporarily close the portal to "Home" by clicking the Logo on the top left corner.',
+		],
+		perfs: ['BeBird remembers the latest search parameters, and uses them at your next visit.'],
+	},
+	{
 		version: '1.1.2',
 		releaseDate: '2025/01/04',
 		features: [
