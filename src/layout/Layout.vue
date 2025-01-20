@@ -9,7 +9,6 @@
 					<q-toolbar-title
 						:shrink="true"
 						class="cursor-pointer"
-						@click="goHome"
 					>
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-accent">e</span>
