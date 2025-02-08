@@ -29,7 +29,7 @@
 			<SubLoading :show="loading" />
 		</template>
 
-		<template #markers>
+		<!-- <template #markers>
 			<l-marker
 				v-for="(obs, oIdx) in pureObsList"
 				:key="oIdx"
@@ -80,7 +80,7 @@
 					</template>
 				</VlPopup>
 			</l-marker>
-		</template>
+		</template> -->
 	</VlMap>
 
 	<RbMarkerDetailDialog ref="rbMarkerDetailDialogRef" />
@@ -156,14 +156,30 @@
 		{ deep: true }
 	);
 
-	/**
-	 * 以搜尋結果第一筆做地圖中心
-	 */
 	watch(
 		pureObsList,
 		(nv) => {
 			if (!nv.length) return;
+
+			// 以搜尋結果第一筆做地圖中心
 			mapRef.value.updateCenter([nv[0].lat, nv[0].lng]);
+		},
+		{ deep: true }
+	);
+
+	/**
+	 * 只要資料有更新，重新繪製 Markers
+	 */
+	watch(
+		[pureObsList, taxInfoDict],
+		(nv) => {
+			console.log(nv);
+			mapRef.value.createMarkers(
+				pureObsList.value.map((item) => ({
+					position: [item.lat, item.lng],
+					tooltip: taxInfoDict.value[item.speciesCode]?.comName ?? item.comName,
+				}))
+			);
 		},
 		{ deep: true }
 	);
