@@ -81,6 +81,7 @@
 				:options="{ zoomControl: false }"
 				:use-global-leaflet="false"
 				class="map"
+				@ready="(obj: Map) => (leafletMap = obj)"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
 				@update:zoom="onUpdateZoom"
@@ -143,7 +144,7 @@
 		LCircle,
 		LCircleMarker,
 	} from '@vue-leaflet/vue-leaflet';
-	import { LatLng, LatLngExpression, PointExpression } from 'leaflet';
+	import L, { LatLng, LatLngExpression, Layer, Map, PointExpression } from 'leaflet';
 	import { fasRotateRight } from '@quasar/extras/fontawesome-v6';
 
 	import { usePlatform } from '@/hooks/platform';
@@ -164,6 +165,8 @@
 	const boundaryGap = ref('10px');
 	const updateLoading = ref(false);
 	const map = ref(null);
+	const leafletMap = ref<Map>();
+	const markerGroup = ref(L.layerGroup());
 	const center = ref<PointExpression>([
 		GeoDataEnum.LATITUDE_OF_TAIWAN,
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,
@@ -350,6 +353,59 @@
 		}
 	};
 
+	/**
+	 * 建立 Markers 至 Canvas 版 Leaflet
+	 */
+	const createMarkers = (
+		infos: { position: LatLngExpression; tooltip?: string }[],
+		options = {
+			fillColor: 'red',
+			fillOpacity: 0.5,
+			color: 'red',
+			permanent: true,
+		}
+	) => {
+		if (!leafletMap.value) {
+			console.warn('地圖尚未初始化');
+			return;
+		}
+
+		const canvas = L.canvas({ padding: 0.5 });
+
+		// 每次資料更新，先清空 Markers
+		// markerGroup.value.clearLayers();
+		markerGroup.value.getLayers().forEach((layer) => {
+			try {
+				markerGroup.value.removeLayer(layer); // 從 markerGroup 移除圖層
+			} catch {}
+		});
+
+		infos.forEach((info) => {
+			const marker = L.circleMarker(info.position, {
+				renderer: canvas,
+				radius: 5, // 標記大小
+				fillColor: options.fillColor,
+				fillOpacity: options.fillOpacity,
+				color: options.color,
+			});
+
+			// 設定 Tooltip
+			if (info.tooltip) {
+				marker.bindTooltip(info.tooltip, {
+					permanent: options.permanent, // true: 固定顯示，false: 滑鼠懸停時顯示
+					direction: 'auto',
+				});
+			}
+
+			markerGroup.value.addLayer(marker);
+		});
+
+		// 將 markerGroup 加入地圖
+		if (!leafletMap.value.hasLayer(markerGroup.value as unknown as Layer)) {
+			markerGroup.value.addTo(leafletMap.value);
+		}
+	};
+
 	onBeforeMount(() => {
 		pause();
 	});
@@ -358,6 +414,7 @@
 		setUpdateLoadingState,
 		updateCenter,
 		updateZoom,
+		createMarkers,
 	});
 </script>
 

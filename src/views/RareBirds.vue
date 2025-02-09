@@ -172,8 +172,7 @@
 	 */
 	watch(
 		[pureObsList, taxInfoDict],
-		(nv) => {
-			console.log(nv);
+		() => {
 			mapRef.value.createMarkers(
 				pureObsList.value.map((item) => ({
 					position: [item.lat, item.lng],
