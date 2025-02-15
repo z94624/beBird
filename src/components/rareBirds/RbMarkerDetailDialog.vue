@@ -67,7 +67,7 @@
 	// 當地俗名
 	const userComName = computed(() => {
 		if (!obs.value || !userComNameDict.value) return;
-		return userComNameDict.value[obs.value.speciesCode].comName;
+		return userComNameDict.value[obs.value.speciesCode]?.comName ?? obs.value.comName;
 	});
 
 	onOpen((o: IDATAOBSGetRecentNotableObsInRegionItem, ucnd: IMap<IREFTAXGetEbirdTaxonomyRes>) => {
