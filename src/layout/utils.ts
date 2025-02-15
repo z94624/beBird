@@ -61,6 +61,16 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.4',
+		releaseDate: '2025/02/15',
+		fixes: [
+			'For the rare-bird spot detail dialog, if the local common name is not available, the English common name will be displayed instead.',
+		],
+		perfs: [
+			'For displaying markers on the map, we show them all at once when the number is small; otherwise, we show them as clusters.',
+		],
+	},
+	{
 		version: '1.1.3',
 		releaseDate: '2025/01/20',
 		features: [
