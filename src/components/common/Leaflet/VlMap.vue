@@ -77,10 +77,11 @@
 			<l-map
 				v-model:center="center"
 				v-model:zoom="zoom"
-				ref="map"
-				:options="{ zoomControl: false }"
+				ref="mapRef"
+				:options="{ zoomControl: false, preferCanvas: true }"
 				:use-global-leaflet="true"
 				class="map"
+				@ready="(obj: Map) => (leafletMap = obj)"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
 				@update:zoom="onUpdateZoom"
@@ -141,7 +142,7 @@
 <script lang="ts" setup>
 	import { computed, onBeforeMount, reactive, ref, toRefs, watch } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
-	import { LatLng, LatLngExpression, PointExpression } from 'leaflet';
+	import { LatLng, LatLngExpression, Map, PointExpression } from 'leaflet';
 	import {
 		LMap,
 		LTileLayer,
@@ -175,7 +176,8 @@
 
 	const boundaryGap = ref('10px');
 	const updateLoading = ref(false);
-	const map = ref(null);
+	const mapRef = ref(null);
+	const leafletMap = ref<Map>();
 	const center = ref<PointExpression>([
 		GeoDataEnum.LATITUDE_OF_TAIWAN,
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,
