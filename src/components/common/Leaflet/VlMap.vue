@@ -79,7 +79,7 @@
 				v-model:zoom="zoom"
 				ref="map"
 				:options="{ zoomControl: false }"
-				:use-global-leaflet="false"
+				:use-global-leaflet="true"
 				class="map"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
@@ -125,7 +125,10 @@
 						fillColor="#3388ff"
 					/>
 				</template>
-				<slot name="markers"></slot>
+
+				<l-marker-cluster-group>
+					<slot name="markers"></slot>
+				</l-marker-cluster-group>
 			</l-map>
 		</div>
 	</div>
@@ -134,6 +137,7 @@
 <script lang="ts" setup>
 	import { computed, onBeforeMount, reactive, ref, toRefs, watch } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
+	import { LatLng, LatLngExpression, PointExpression } from 'leaflet';
 	import {
 		LMap,
 		LTileLayer,
@@ -143,7 +147,7 @@
 		LCircle,
 		LCircleMarker,
 	} from '@vue-leaflet/vue-leaflet';
-	import { LatLng, LatLngExpression, PointExpression } from 'leaflet';
+	import { LMarkerClusterGroup } from 'vue-leaflet-markercluster';
 	import { fasRotateRight } from '@quasar/extras/fontawesome-v6';
 
 	import { usePlatform } from '@/hooks/platform';
