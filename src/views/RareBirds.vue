@@ -1,6 +1,7 @@
 <template>
 	<VlMap
 		ref="mapRef"
+		:markers-number="pureObsList.length"
 		@research="getRecentNotableObsInRegionInfo"
 	>
 		<template #search-menu>

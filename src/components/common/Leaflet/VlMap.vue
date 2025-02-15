@@ -126,7 +126,11 @@
 					/>
 				</template>
 
-				<l-marker-cluster-group>
+				<slot
+					v-if="markersNumber <= 100"
+					name="markers"
+				></slot>
+				<l-marker-cluster-group v-else>
 					<slot name="markers"></slot>
 				</l-marker-cluster-group>
 			</l-map>
@@ -156,6 +160,10 @@
 
 	const emit = defineEmits<{
 		(e: 'research'): void; // 重新搜尋
+	}>();
+
+	const props = defineProps<{
+		markersNumber: number; // 地圖圖釘數量
 	}>();
 
 	// 監測定位
