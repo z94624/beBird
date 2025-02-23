@@ -3,18 +3,32 @@
 		class="weatherButton"
 		padding="0"
 		round
+		@click="onOpenWeatherDialog"
 	>
-		<WeatherIconVideo
-			ref="weatherIconVideoRef"
-			:lat="lat"
-			:lng="lng"
-		/>
+		<WeatherIconVideo :weatherType="weatherType" />
+
+		<q-tooltip>{{ weatherDataDict[weatherType].desc }}</q-tooltip>
 	</BaseButton>
+
+	<WeatherDialog ref="weatherDialogRef" />
 </template>
 
 <script lang="ts" setup>
-	import { computed, ref } from 'vue';
+	import { computed, ref, toRefs, watch } from 'vue';
+	import { useDebounceFn } from '@vueuse/core';
 	import WeatherIconVideo from './WeatherIconVideo.vue';
+	import WeatherDialog from './WeatherDialog.vue';
+
+	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
+	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
+
+	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
+	import {
+		weatherDataDict,
+		getWeatherTypeWithCode_tomorrow,
+		getWeatherTypeWithoutCode_tomorrow,
+	} from './utils';
+	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const props = defineProps<{
 		lat: string; // 緯度
@@ -24,10 +38,58 @@
 		padding?: string; // 內容 Padding
 	}>();
 
-	const weatherIconVideoRef = ref();
+	const sunrisetStore = useSunrisetStore();
+	const { diel } = toRefs(sunrisetStore);
+	const tomorrowStore = useTomorrowStore();
+	const { obsResult } = toRefs(tomorrowStore);
 
-	// 天氣類型
-	const weatherType = computed(() => weatherIconVideoRef.value.weatherType);
+	const weatherType = ref(WeatherTypeEnum.UNKNOWN);
+
+	const weatherDialogRef = ref();
+
+	const location = computed(() => `${props.lat}, ${props.lng}`);
+
+	const onReload = useDebounceFn(() => {
+		Promise.all([
+			sunrisetStore.getSunriseSunsetTimesInfo(
+				new SUNRISETGetSunriseSunsetTimesReq({
+					lat: props.lat,
+					lng: props.lng,
+				})
+			),
+			tomorrowStore.getRealtimeWeatherInfo(
+				new TOMORROWGetRealtimeWeatherReq({
+					location: location.value,
+				})
+			),
+		]).then(() => {
+			if (obsResult.value) {
+				// 先直接利用天氣代碼判斷
+				weatherType.value = getWeatherTypeWithCode_tomorrow(obsResult.value, diel.value);
+				if (weatherType.value === WeatherTypeEnum.UNKNOWN) {
+					// 其次再用自訂規則判斷
+					weatherType.value = getWeatherTypeWithoutCode_tomorrow(
+						obsResult.value,
+						diel.value
+					);
+				}
+			}
+		});
+	}, 3000);
+	watch(
+		location,
+		() => {
+			onReload();
+		},
+		{ immediate: true }
+	);
+
+	/**
+	 * 開啟天氣詳情跳窗
+	 */
+	const onOpenWeatherDialog = () => {
+		weatherDialogRef.value.open();
+	};
 </script>
 
 <style lang="scss">

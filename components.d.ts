@@ -10,6 +10,7 @@ declare module 'vue' {
     BackgroundVideo: typeof import('./src/components/common/media/BackgroundVideo.vue')['default']
     BaseButton: typeof import('./src/components/common/button/src/BaseButton.vue')['default']
     BaseDialog: typeof import('./src/components/common/dialog/BaseDialog.vue')['default']
+    BaseDialogTemplate: typeof import('./src/components/common/dialog/_template/BaseDialogTemplate.vue')['default']
     BaseIndicator: typeof import('./src/components/common/badge/src/BaseIndicator.vue')['default']
     BaseSelect: typeof import('./src/components/common/Select/src/BaseSelect.vue')['default']
     BaseSlider: typeof import('./src/components/common/Slider/src/BaseSlider.vue')['default']
