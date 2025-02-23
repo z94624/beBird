@@ -17,6 +17,13 @@ import ColdVideo from '@assets/icons/weather/types/cold.mp4';
 import HotVideo from '@assets/icons/weather/types/hot.mp4';
 import SunriseVideo from '@assets/icons/weather/items/sunrise.mp4';
 import SunsetVideo from '@assets/icons/weather/items/sunset.mp4';
+import TempVideo from '@assets/icons/weather/items/temperature.mp4';
+import PrecipVideo from '@assets/icons/weather/items/precipitation.mp4';
+import HumidVideo from '@assets/icons/weather/items/humidity.mp4';
+import WindSpeedVideo from '@assets/icons/weather/items/wind_speed.mp4';
+import CelsiusVideo from '@assets/icons/weather/items/celsius.mp4';
+import FahrenheitVideo from '@assets/icons/weather/items/fahrenheit.mp4';
+import ObsTimeVideo from '@assets/icons/weather/items/observation_time.mp4';
 
 import WeatherImg from '@assets/icons/weather/items/weather.png';
 import WindyImg from '@assets/icons/weather/types/windy.png';
@@ -37,6 +44,13 @@ import ColdImg from '@assets/icons/weather/types/cold.png';
 import HotImg from '@assets/icons/weather/types/hot.png';
 import SunriseImg from '@assets/icons/weather/items/sunrise.png';
 import SunsetImg from '@assets/icons/weather/items/sunset.png';
+import TempImg from '@assets/icons/weather/items/temperature.png';
+import PrecipImg from '@assets/icons/weather/items/precipitation.png';
+import HumidImg from '@assets/icons/weather/items/humidity.png';
+import WindSpeedImg from '@assets/icons/weather/items/wind_speed.png';
+import CelsiusImg from '@assets/icons/weather/items/celsius.png';
+import FahrenheitImg from '@assets/icons/weather/items/fahrenheit.png';
+import ObsTimeImg from '@assets/icons/weather/items/observation_time.png';
 
 import { IMap } from '@/models/common/base';
 import { DielEnum, WeatherItemEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
@@ -173,6 +187,48 @@ export const weatherDataDict: IMap<{
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/11779/11779599.mp4',
 		video: SunsetVideo,
 		image: SunsetImg,
+	},
+	[WeatherItemEnum.TEMP]: {
+		desc: 'Temperature[Apparent](氣溫[體感])',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/15968/15968679.mp4',
+		video: TempVideo,
+		image: TempImg,
+	},
+	[WeatherItemEnum.PRECIP]: {
+		desc: 'Precipitation Probability(降水機率)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102917.mp4',
+		video: PrecipVideo,
+		image: PrecipImg,
+	},
+	[WeatherItemEnum.HUMID]: {
+		desc: 'Humidity(濕度)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/11201/11201779.mp4',
+		video: HumidVideo,
+		image: HumidImg,
+	},
+	[WeatherItemEnum.WIND_SPEED]: {
+		desc: 'Wind Speed(風速)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/12277/12277857.mp4',
+		video: WindSpeedVideo,
+		image: WindSpeedImg,
+	},
+	[WeatherItemEnum.C]: {
+		desc: 'Metric Unit(公制)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102847.mp4',
+		video: CelsiusVideo,
+		image: CelsiusImg,
+	},
+	[WeatherItemEnum.F]: {
+		desc: 'Imperial Unit(英制)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102882.mp4',
+		video: FahrenheitVideo,
+		image: FahrenheitImg,
+	},
+	[WeatherItemEnum.OBS_TIME]: {
+		desc: 'Observation Time(觀測時間)',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/12320/12320221.mp4',
+		video: ObsTimeVideo,
+		image: ObsTimeImg,
 	},
 };
 

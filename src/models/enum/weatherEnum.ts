@@ -4,6 +4,13 @@
 export enum WeatherItemEnum {
 	SUNRISE = 'sunrise',
 	SUNSET = 'sunset',
+	TEMP = 'temperature',
+	PRECIP = 'precipitation',
+	HUMID = 'humidity',
+	WIND_SPEED = 'wind_speed',
+	C = 'celsius',
+	F = 'fahrenheit',
+	OBS_TIME = 'observation_time',
 }
 
 /**
