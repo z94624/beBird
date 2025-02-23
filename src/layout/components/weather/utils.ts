@@ -15,8 +15,8 @@ import BlizzardVideo from '@assets/icons/weather/types/blizzard.mp4';
 import FogVideo from '@assets/icons/weather/types/fog.mp4';
 import ColdVideo from '@assets/icons/weather/types/cold.mp4';
 import HotVideo from '@assets/icons/weather/types/hot.mp4';
-import SunriseVideo from '@assets/icons/weather/types/sunrise.mp4';
-import SunsetVideo from '@assets/icons/weather/types/sunset.mp4';
+import SunriseVideo from '@assets/icons/weather/items/sunrise.mp4';
+import SunsetVideo from '@assets/icons/weather/items/sunset.mp4';
 
 import WeatherImg from '@assets/icons/weather/items/weather.png';
 import WindyImg from '@assets/icons/weather/types/windy.png';
@@ -35,11 +35,11 @@ import BlizzardImg from '@assets/icons/weather/types/blizzard.png';
 import FogImg from '@assets/icons/weather/types/fog.png';
 import ColdImg from '@assets/icons/weather/types/cold.png';
 import HotImg from '@assets/icons/weather/types/hot.png';
-import SunriseImg from '@assets/icons/weather/types/sunrise.png';
-import SunsetImg from '@assets/icons/weather/types/sunset.png';
+import SunriseImg from '@assets/icons/weather/items/sunrise.png';
+import SunsetImg from '@assets/icons/weather/items/sunset.png';
 
 import { IMap } from '@/models/common/base';
-import { DielEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
+import { DielEnum, WeatherItemEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
 import { ITOMORROWDataValueItem } from '@/models/tomorrow/v4/weather';
 
 /**
@@ -162,13 +162,13 @@ export const weatherDataDict: IMap<{
 		image: HotImg,
 	},
 
-	[WeatherTypeEnum.SUNRISE]: {
+	[WeatherItemEnum.SUNRISE]: {
 		desc: 'Sunrise(日昇)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/14204/14204927.mp4',
 		video: SunriseVideo,
 		image: SunriseImg,
 	},
-	[WeatherTypeEnum.SUNSET]: {
+	[WeatherItemEnum.SUNSET]: {
 		desc: 'Sunset(日落)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/11779/11779599.mp4',
 		video: SunsetVideo,

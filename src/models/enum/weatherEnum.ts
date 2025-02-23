@@ -1,4 +1,12 @@
 /**
+ * 天氣項目
+ */
+export enum WeatherItemEnum {
+	SUNRISE = 'sunrise',
+	SUNSET = 'sunset',
+}
+
+/**
  * 天氣類型
  */
 export enum WeatherTypeEnum {
@@ -17,8 +25,6 @@ export enum WeatherTypeEnum {
 	RAIN = 'rain',
 	SLEET = 'sleet',
 	SNOW = 'snow',
-	SUNRISE = 'sunrise',
-	SUNSET = 'sunset',
 	THUNDER_STORM = 'thunderstorm',
 	WINDY = 'windy',
 }
