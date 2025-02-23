@@ -43,6 +43,7 @@
 	const tomorrowStore = useTomorrowStore();
 	const { obsResult } = toRefs(tomorrowStore);
 
+	// 天氣類型
 	const weatherType = ref(WeatherTypeEnum.UNKNOWN);
 
 	const weatherDialogRef = ref();
@@ -79,6 +80,7 @@
 	watch(
 		location,
 		() => {
+			// 地圖中心變動，重新取得該中心位置天氣資料
 			onReload();
 		},
 		{ immediate: true }
