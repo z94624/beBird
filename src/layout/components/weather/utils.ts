@@ -62,21 +62,21 @@ export const weatherDataDict: IMap<{
 
 	[WeatherTypeEnum.CLEAR]: {
 		desc: 'Sunny(晴天)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455017.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102813.mp4',
 		video: ClearVideo,
 		image: ClearImg,
 		code_tomorrow: [1000, 1100],
 	},
 	[WeatherTypeEnum.PARTLY_CLOUDY]: {
 		desc: 'Partly Cloudy(晴時多雲)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455053.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102931.mp4',
 		video: PartlyCloudyVideo,
 		image: PartlyCloudyImg,
 		code_tomorrow: [1101],
 	},
 	[WeatherTypeEnum.CLOUDY]: {
 		desc: 'Cloudy(多雲時陰)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455024.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102874.mp4',
 		video: CloudyVideo,
 		image: CloudyImg,
 		code_tomorrow: [1102, 1001],
@@ -84,14 +84,14 @@ export const weatherDataDict: IMap<{
 
 	[WeatherTypeEnum.CLEAR_NIGHT]: {
 		desc: 'Clear Night(晴夜)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455031.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102940.mp4',
 		video: ClearNightVideo,
 		image: ClearNightImg,
 		code_tomorrow: [1000, 1100],
 	},
 	[WeatherTypeEnum.CLOUDY_NIGHT]: {
 		desc: 'Cloudy Night(陰夜)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455043.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102854.mp4',
 		video: CloudyNightVideo,
 		image: CloudyNightImg,
 		code_tomorrow: [1101, 1102, 1001],
@@ -99,21 +99,21 @@ export const weatherDataDict: IMap<{
 
 	[WeatherTypeEnum.DRIZZLE]: {
 		desc: 'Drizzle(細雨)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455057.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102975.mp4',
 		video: DrizzleVideo,
 		image: DrizzleImg,
 		code_tomorrow: [4000],
 	},
 	[WeatherTypeEnum.RAIN]: {
 		desc: 'Rainy(雨天)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455055.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102963.mp4',
 		video: RainVideo,
 		image: RainImg,
 		code_tomorrow: [4001, 4200, 4201],
 	},
 	[WeatherTypeEnum.THUNDER_STORM]: {
 		desc: 'Thunder Storm(暴風雨)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858190.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858208.mp4',
 		video: ThunderStormVideo,
 		image: ThunderStormImg,
 		code_tomorrow: [8000],
@@ -121,21 +121,21 @@ export const weatherDataDict: IMap<{
 
 	[WeatherTypeEnum.SNOW]: {
 		desc: 'Snowy(降雪)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455036.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17103/17103024.mp4',
 		video: SnowVideo,
 		image: SnowImg,
 		code_tomorrow: [5000, 5001, 5100],
 	},
 	[WeatherTypeEnum.SLEET]: {
 		desc: 'Sleet(冰霰)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858163.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858185.mp4',
 		video: SleetVideo,
 		image: SleetImg,
 		code_tomorrow: [6000, 6001, 6200, 6201, 7000, 7101, 7102],
 	},
 	[WeatherTypeEnum.BLIZZARD]: {
 		desc: 'Blizzard(暴風雪)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455058.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17484/17484878.mp4',
 		video: BlizzardVideo,
 		image: BlizzardImg,
 		code_tomorrow: [5101],
@@ -143,7 +143,7 @@ export const weatherDataDict: IMap<{
 
 	[WeatherTypeEnum.FOG]: {
 		desc: 'Foggy(多霧)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6454/6454995.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102868.mp4',
 		video: FogVideo,
 		image: FogImg,
 		code_tomorrow: [2000, 2100],
@@ -151,26 +151,26 @@ export const weatherDataDict: IMap<{
 
 	[WeatherTypeEnum.COLD]: {
 		desc: 'Cold(冷)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6455/6455060.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17103/17103071.mp4',
 		video: ColdVideo,
 		image: ColdImg,
 	},
 	[WeatherTypeEnum.HOT]: {
 		desc: 'Hot(熱)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/6454/6454983.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17103/17103056.mp4',
 		video: HotVideo,
 		image: HotImg,
 	},
 
 	[WeatherTypeEnum.SUNRISE]: {
 		desc: 'Sunrise(日昇)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/14193/14193984.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/14204/14204927.mp4',
 		video: SunriseVideo,
 		image: SunriseImg,
 	},
 	[WeatherTypeEnum.SUNSET]: {
 		desc: 'Sunset(日落)',
-		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/8800/8800140.mp4',
+		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/11779/11779599.mp4',
 		video: SunsetVideo,
 		image: SunsetImg,
 	},
