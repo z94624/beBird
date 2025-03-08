@@ -1,12 +1,16 @@
 <template>
 	<BaseDialog
 		v-model="isOpen"
+		full-width
 		@close="close"
 	>
 		<template #title>天氣面板</template>
 
 		<template #content>
-			<q-splitter v-model="split">
+			<q-splitter
+				v-model="split"
+				:limits="[15, 15]"
+			>
 				<template v-slot:before>
 					<BaseTabs
 						v-model="tab"
@@ -30,7 +34,7 @@
 						keep-alive
 					>
 						<q-tab-panel name="tomorrow">
-							<WeatherPanel />
+							<WeatherPanel :weather-data="weatherData" />
 						</q-tab-panel>
 					</q-tab-panels>
 				</template>
@@ -45,13 +49,17 @@
 	import WeatherPanel from './WeatherPanel.vue';
 
 	import { useDialog } from '@/hooks/dialog';
+	import { WeatherPanelInfo } from './types';
 
 	const { isOpen, open, onOpen, close, onClose } = useDialog();
 
 	const split = ref(15);
 	const tab = ref('tomorrow');
+	const weatherData = ref<WeatherPanelInfo>(new WeatherPanelInfo());
 
-	onOpen(() => {});
+	onOpen((data: WeatherPanelInfo) => {
+		weatherData.value = data;
+	});
 
 	onClose(() => {});
 

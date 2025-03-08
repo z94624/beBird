@@ -1,6 +1,11 @@
 <template>
 	<q-dialog :="getBindingValues">
-		<q-card style="min-width: 50vw">
+		<q-card
+			:style="{
+				width: contentWidth,
+			}"
+			style="min-width: 50vw"
+		>
 			<slot name="header">
 				<q-toolbar class="dialogHeader text-white bg-primaryDark_e">
 					<slot name="title-before"></slot>
@@ -40,6 +45,8 @@
 	}>();
 
 	const props = defineProps<{
+		contentWidth?: string; // 內容寬度
+		fullWidth?: boolean;
 		fullscreen?: boolean; // 全螢幕模式
 	}>();
 
@@ -52,7 +59,7 @@
 			...attrs,
 			// 全螢幕
 			maximized: props.fullscreen,
-			fullWidth: props.fullscreen,
+			fullWidth: props.fullscreen || props.fullWidth,
 			fullHeight: props.fullscreen,
 		};
 	});

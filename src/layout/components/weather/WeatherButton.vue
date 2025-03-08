@@ -28,6 +28,7 @@
 		getWeatherTypeWithCode_tomorrow,
 		getWeatherTypeWithoutCode_tomorrow,
 	} from './utils';
+	import { WeatherPanelInfo } from './types';
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const props = defineProps<{
@@ -39,9 +40,9 @@
 	}>();
 
 	const sunrisetStore = useSunrisetStore();
-	const { diel } = toRefs(sunrisetStore);
+	const { sunResult, diel } = toRefs(sunrisetStore);
 	const tomorrowStore = useTomorrowStore();
-	const { obsResult } = toRefs(tomorrowStore);
+	const { obsResult, obsTime } = toRefs(tomorrowStore);
 
 	// 天氣類型
 	const weatherType = ref(WeatherTypeEnum.UNKNOWN);
@@ -90,7 +91,22 @@
 	 * 開啟天氣詳情跳窗
 	 */
 	const onOpenWeatherDialog = () => {
-		weatherDialogRef.value.open();
+		weatherDialogRef.value.open(
+			new WeatherPanelInfo({
+				iconUrl: weatherDataDict[weatherType.value].videoUrl,
+				iconPath: weatherDataDict[weatherType.value].video,
+				iconDescription: weatherDataDict[weatherType.value].desc,
+				sunriseTime: sunResult.value?.sunrise ?? '',
+				sunsetTime: sunResult.value?.sunset ?? '',
+				temperature: obsResult.value?.temperature ?? 0,
+				temperatureApparent: obsResult.value?.temperatureApparent ?? 0,
+				precipitation: obsResult.value?.precipitationProbability ?? 0,
+				humidity: obsResult.value?.humidity ?? 0,
+				windSpeed: obsResult.value?.windSpeed ?? 0,
+				windGust: obsResult.value?.windGust ?? 0,
+				observationDatetime: obsTime.value,
+			})
+		);
 	};
 </script>
 
