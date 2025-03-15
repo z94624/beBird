@@ -93,9 +93,8 @@
 	const onOpenWeatherDialog = () => {
 		weatherDialogRef.value.open(
 			new WeatherPanelInfo({
-				iconUrl: weatherDataDict[weatherType.value].videoUrl,
-				iconPath: weatherDataDict[weatherType.value].video,
-				iconDescription: weatherDataDict[weatherType.value].desc,
+				diel: diel.value,
+				weatherType: weatherType.value,
 				sunriseTime: sunResult.value?.sunrise ?? '',
 				sunsetTime: sunResult.value?.sunset ?? '',
 				temperature: obsResult.value?.temperature ?? 0,

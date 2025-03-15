@@ -1,4 +1,5 @@
 import { UnitSystemEnum } from '@/models/enum/tomorrowEnum';
+import { DielEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 /**
  * 天氣面板
@@ -8,9 +9,8 @@ export class WeatherPanelInfo {
 	constructor(data?: WeatherPanelInfo) {
 		if (!data) return;
 		const {
-			iconUrl = '',
-			iconPath = '',
-			iconDescription = '',
+			diel = DielEnum.DAY,
+			weatherType = WeatherTypeEnum.UNKNOWN,
 			sunriseTime = '',
 			sunsetTime = '',
 			temperature = 0,
@@ -22,9 +22,8 @@ export class WeatherPanelInfo {
 			unit = UnitSystemEnum.METRIC,
 			observationDatetime = '',
 		} = data;
-		this.iconUrl = iconUrl;
-		this.iconPath = iconPath;
-		this.iconDescription = iconDescription;
+		this.diel = diel;
+		this.weatherType = weatherType;
 		this.sunriseTime = sunriseTime;
 		this.sunsetTime = sunsetTime;
 		this.temperature = temperature;
@@ -36,9 +35,8 @@ export class WeatherPanelInfo {
 		this.unit = unit;
 		this.observationDatetime = observationDatetime;
 	}
-	iconUrl: string = ''; // 天氣圖示 URL
-	iconPath: string = ''; // 天氣圖示路徑
-	iconDescription: string = ''; // 天氣圖示描述
+	diel: DielEnum = DielEnum.DAY; // 晝夜
+	weatherType: WeatherTypeEnum = WeatherTypeEnum.UNKNOWN; // 天氣類型
 	sunriseTime: string = ''; // 日出時間
 	sunsetTime: string = ''; // 日落時間
 	temperature: number = 0; // 溫度
