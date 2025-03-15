@@ -35,3 +35,15 @@ export const standardDateTimeFormatString = 'YYYY/MM/DD HH:mm:ss';
 export const getFormattedDateTimeNow = (format: string = standardDateTimeFormatString) => {
 	return dayjs().format(format);
 };
+/**
+ * 取得以 'YYYY/MM/DD HH:mm:ss' 為預設格式或其他格式的時間
+ * @param dateTime ISO 8601 format
+ * @param format 輸出格式
+ * @returns 格式化時間
+ */
+export const getFormattedDateTime = (
+	dateTime: string,
+	format: string = standardDateTimeFormatString
+) => {
+	return dayjs(dateTime).format(format);
+};
