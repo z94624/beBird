@@ -5,7 +5,10 @@
 		round
 		@click="onOpenWeatherDialog"
 	>
-		<WeatherIconVideo :weatherType="weatherType" />
+		<WeatherIconVideo
+			:weatherType="weatherType"
+			no-tooltip
+		/>
 
 		<q-tooltip>{{ weatherDataDict[weatherType].desc }}</q-tooltip>
 	</BaseButton>

@@ -1,27 +1,42 @@
 <template>
-	<IconVideo
-		v-if="!videoLoading"
-		:="attrs"
-	>
-		<source
-			:src="weatherDataDict[weatherType].videoUrl"
-			type="video/mp4"
-		/>
-		<source
-			:src="weatherDataDict[weatherType].video"
-			type="video/mp4"
-		/>
-	</IconVideo>
+	<div>
+		<IconVideo
+			v-if="!videoLoading"
+			:="attrs"
+		>
+			<source
+				:src="weatherDataDict[weatherType].videoUrl"
+				type="video/mp4"
+			/>
+			<source
+				:src="weatherDataDict[weatherType].video"
+				type="video/mp4"
+			/>
+		</IconVideo>
+
+		<q-tooltip
+			v-if="!noTooltip"
+			:="tooltipProps"
+			:anchor="tooltipProps?.anchor ?? 'top middle'"
+			:offset="tooltipProps?.offset ?? [0, -10]"
+			:self="tooltipProps?.self ?? 'bottom middle'"
+		>
+			{{ weatherDataDict[weatherType].desc }}
+		</q-tooltip>
+	</div>
 </template>
 
 <script lang="ts" setup>
 	import { ref, useAttrs, watch } from 'vue';
 
 	import { weatherDataDict } from './utils';
-	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
+	import { WeatherItemEnum, WeatherTypeEnum } from '@/models/enum/weatherEnum';
+	import { QTooltipProps } from 'quasar';
 
 	const props = defineProps<{
-		weatherType: WeatherTypeEnum; // 天氣類型
+		weatherType: WeatherTypeEnum | WeatherItemEnum; // 天氣類型
+		noTooltip?: boolean; // 是否不顯示 Tooltip
+		tooltipProps?: QTooltipProps; // Tooltip 的屬性
 	}>();
 
 	const attrs = useAttrs();
