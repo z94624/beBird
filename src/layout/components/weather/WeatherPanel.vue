@@ -1,6 +1,16 @@
 <template>
 	<q-card>
 		<q-card-section class="!pb-1">
+			<!-- 官方網站 -->
+			<HrefButton
+				class="absolute top-4 right-4"
+				href="https://weather.tomorrow.io/"
+				round
+				size="11px"
+			>
+				<TomorrowIcon only-icon />
+			</HrefButton>
+
 			<div class="archContainer">
 				<!-- 天氣圖示 -->
 				<div class="flex justify-center items-center">
@@ -8,7 +18,7 @@
 						:tooltip-props="{
 							offset: [0, -40],
 						}"
-						:weatherType="weatherType"
+						:weatherType="data.weatherType"
 						class="h-[150px]"
 					/>
 				</div>
@@ -19,14 +29,14 @@
 							:weatherType="WeatherItemEnum.SUNRISE"
 							width="40px"
 						/>
-						<span>{{ sunriseTime }}</span>
+						<span>{{ data.sunriseTime }}</span>
 					</div>
 					<div class="flex items-center gap-1">
 						<WeatherIconVideo
 							:weatherType="WeatherItemEnum.SUNSET"
 							width="40px"
 						/>
-						<span>{{ sunsetTime }}</span>
+						<span>{{ data.sunsetTime }}</span>
 					</div>
 				</div>
 			</div>
@@ -39,28 +49,28 @@
 					<div class="weatherItemIconContainer">
 						<WeatherIconVideo :weatherType="WeatherItemEnum.TEMP" />
 					</div>
-					<span>{{ temperature }}{{ isMetric ? '℃' : '℉' }}</span>
+					<span>{{ data.temperatureApparent }}{{ isMetric ? '℃' : '℉' }}</span>
 				</div>
 				<!-- 機率 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
 						<WeatherIconVideo :weatherType="WeatherItemEnum.PRECIP" />
 					</div>
-					<span>{{ precipitation }}%</span>
+					<span>{{ data.precipitationProbability }}%</span>
 				</div>
 				<!-- 濕度 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
 						<WeatherIconVideo :weatherType="WeatherItemEnum.HUMID" />
 					</div>
-					<span>{{ humidity }}%</span>
+					<span>{{ data.humidity }}%</span>
 				</div>
 				<!-- 風速 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
 						<WeatherIconVideo :weatherType="WeatherItemEnum.WIND_SPEED" />
 					</div>
-					<span>{{ windSpeed }}{{ isMetric ? 'm/s' : 'mph' }}</span>
+					<span>{{ data.windSpeed }}{{ isMetric ? 'm/s' : 'mph' }}</span>
 				</div>
 			</div>
 		</q-card-section>
@@ -75,6 +85,7 @@
 				:model-value="unitSystem"
 				:true-value="UnitSystemEnum.METRIC"
 				keep-color
+				left-label
 				@update:model-value="onUpdateUnitSystem"
 			>
 				<WeatherIconVideo
@@ -88,16 +99,20 @@
 					:weatherType="WeatherItemEnum.OBS_TIME"
 					width="40px"
 				/>
-				<span>{{ getFormattedDateTime(observationDatetime) }}</span>
+				<span>{{ getFormattedDateTime(data.observationDatetime) }}</span>
 			</div>
 		</q-card-actions>
 	</q-card>
 </template>
 
 <script lang="ts" setup>
-	import { computed, ref, toRefs } from 'vue';
+	import { computed, ref, watch } from 'vue';
 	import WeatherIconVideo from './WeatherIconVideo.vue';
+	import TomorrowIcon from '@/assets/icons/weather/providers/TomorrowIcon.vue';
 
+	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
+
+	import { useTomorrowStore } from '@/store/modules/weather';
 	import { WeatherPanelInfo } from './types';
 	import { getFormattedDateTime } from '@/utils/common';
 	import { WeatherItemEnum } from '@/models/enum/weatherEnum';
@@ -107,31 +122,49 @@
 		weatherData: WeatherPanelInfo;
 	}>();
 
-	const {
-		diel,
-		weatherType,
-		sunriseTime,
-		sunsetTime,
-		temperature,
-		temperatureApparent,
-		precipitation,
-		humidity,
-		windSpeed,
-		windGust,
-		observationDatetime,
-	} = toRefs(props.weatherData);
+	const tomorrowStore = useTomorrowStore();
 
 	const unitSystem = ref(localStorage.getItem('weatherUnitSystem'));
+	const data = ref(new WeatherPanelInfo());
 
 	const isMetric = computed(() => unitSystem.value === UnitSystemEnum.METRIC);
+
+	watch(
+		() => props.weatherData,
+		(nv) => {
+			data.value = nv;
+		},
+		{ immediate: true }
+	);
 
 	/**
 	 * 切換單位系統
 	 */
 	const onUpdateUnitSystem = (val: UnitSystemEnum) => {
 		unitSystem.value = val;
-		// 儲存作為使用者預設單位系統
+
+		// 儲存作為使用者預設天氣單位系統
 		localStorage.setItem('weatherUnitSystem', val);
+
+		/*
+		 * 獲取該天氣單位系統的天氣資料
+		 * 因不會頻繁切換，所以不需快取
+		 */
+		tomorrowStore
+			.getRealtimeWeatherInfo(
+				new TOMORROWGetRealtimeWeatherReq({
+					location: data.value.location,
+				})
+			)
+			.then((res) => {
+				if (res) {
+					data.value = {
+						...data.value,
+						...res.data.values,
+						observationDatetime: res.data.time,
+					};
+				}
+			});
 	};
 </script>
 

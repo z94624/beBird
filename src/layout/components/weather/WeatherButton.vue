@@ -96,13 +96,14 @@
 	const onOpenWeatherDialog = () => {
 		weatherDialogRef.value.open(
 			new WeatherPanelInfo({
+				location: location.value,
 				diel: diel.value,
 				weatherType: weatherType.value,
 				sunriseTime: sunResult.value?.sunrise ?? '',
 				sunsetTime: sunResult.value?.sunset ?? '',
 				temperature: obsResult.value?.temperature ?? 0,
 				temperatureApparent: obsResult.value?.temperatureApparent ?? 0,
-				precipitation: obsResult.value?.precipitationProbability ?? 0,
+				precipitationProbability: obsResult.value?.precipitationProbability ?? 0,
 				humidity: obsResult.value?.humidity ?? 0,
 				windSpeed: obsResult.value?.windSpeed ?? 0,
 				windGust: obsResult.value?.windGust ?? 0,

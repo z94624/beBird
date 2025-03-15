@@ -12,6 +12,7 @@ import {
 
 import { useQuasarTool } from '@/hooks/useQuasarTool';
 import { DielEnum } from '@/models/enum/weatherEnum';
+import { UnitSystemEnum } from '@/models/enum/tomorrowEnum';
 
 /**
  * SunriseSunset.io Store
@@ -72,6 +73,12 @@ export const useTomorrowStore = defineStore('tomorrow', () => {
 	 * Realtime Weather
 	 */
 	const getRealtimeWeatherInfo = (req: TOMORROWGetRealtimeWeatherReq) => {
+		// 使用使用者預設天氣單位系統
+		const unitSystem = localStorage.getItem('weatherUnitSystem') as UnitSystemEnum;
+		if (unitSystem) {
+			req.units = unitSystem;
+		}
+
 		$loading.on();
 		return getRealtimeWeatherApi(req)
 			.then((res) => {
