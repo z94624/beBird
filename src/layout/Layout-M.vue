@@ -146,7 +146,7 @@
 
 	const location = computed(() => `${mapCenter.value.lat}, ${mapCenter.value.lng}`);
 
-	const onReload = useDebounceFn(() => {
+	const onReloadWeather = useDebounceFn(() => {
 		Promise.all([
 			sunrisetStore.getSunriseSunsetTimesInfo(
 				new SUNRISETGetSunriseSunsetTimesReq({
@@ -177,7 +177,7 @@
 		location,
 		() => {
 			// 地圖中心變動，重新取得該中心位置天氣資料
-			onReload();
+			onReloadWeather();
 		},
 		{ immediate: true }
 	);
