@@ -12,6 +12,7 @@
 				:rules="[requiredValid]"
 				dark
 				dense
+				for="contactEmailName"
 				title="Name"
 				titleColor="white"
 			/>
@@ -21,14 +22,17 @@
 				:rules="[requiredValid, emailValid]"
 				dark
 				dense
+				for="contactEmailEmail"
 				title="Email"
 				titleColor="white"
+				type="email"
 			/>
 
 			<FormInput
 				v-model="form.subject"
 				dark
 				dense
+				for="contactEmailSubject"
 				title="Subject"
 				titleColor="white"
 			/>
@@ -38,6 +42,7 @@
 				:rules="[requiredValid]"
 				dark
 				dense
+				for="contactEmailMessage"
 				title="Message"
 				titleColor="white"
 				type="textarea"

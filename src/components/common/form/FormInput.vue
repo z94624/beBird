@@ -7,6 +7,7 @@
 
 		<q-input
 			:="attrs"
+			:for="props.for"
 			:hide-bottom-space="true"
 			:model-value="modelValue"
 			:rules="rules"
@@ -33,6 +34,7 @@
 	const props = defineProps<{
 		modelValue: string | number | null | undefined;
 		rules?: ValidationRule[];
+		for?: string;
 		// FormLabel
 		title?: string;
 		titleColor?: string;
