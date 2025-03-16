@@ -61,6 +61,17 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.5',
+		releaseDate: '2025/03/16',
+		features: [
+			'The weather information panel will be shown by clicking the weather button for desktop or the weather tab for mobile.',
+		],
+		changes: [
+			'Use colorized version of weather icons.',
+			'The time waiting for updating weather is changed from 2s to 3s.',
+		],
+	},
+	{
 		version: '1.1.4',
 		releaseDate: '2025/02/15',
 		fixes: [
