@@ -43,7 +43,7 @@
 		</q-card-section>
 
 		<q-card-section class="!pt-1">
-			<div class="flex justify-around gap-2">
+			<div class="flex justify-around gap-1">
 				<!-- 溫度 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
@@ -124,7 +124,7 @@
 
 	const tomorrowStore = useTomorrowStore();
 
-	const unitSystem = ref(localStorage.getItem('weatherUnitSystem'));
+	const unitSystem = ref(localStorage.getItem('weatherUnitSystem') ?? UnitSystemEnum.METRIC);
 	const data = ref(new WeatherPanelInfo());
 
 	const isMetric = computed(() => unitSystem.value === UnitSystemEnum.METRIC);
