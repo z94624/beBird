@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 
 import AutoImport from 'unplugin-auto-import/vite';
@@ -120,6 +121,7 @@ export default defineConfig({
 		vue({
 			template: { transformAssetUrls },
 		}),
+		vueDevTools(),
 		VitePWA(vitePWAOptions),
 		// @quasar/plugin-vite options list:
 		// https://github.com/quasarframework/quasar/blob/dev/vite-plugin/index.d.ts
