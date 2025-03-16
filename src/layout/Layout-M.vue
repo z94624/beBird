@@ -60,12 +60,11 @@
 						<!-- 天氣 -->
 						<q-item
 							clickable
-							@click="() => {}"
+							@click="onOpenWeatherDialog"
 						>
 							<q-item-section avatar>
 								<WeatherIconVideo
-									:lat="mapCenter.lat.toString()"
-									:lng="mapCenter.lng.toString()"
+									:weatherType="weatherType"
 									width="30px"
 								/>
 							</q-item-section>
@@ -98,31 +97,90 @@
 			</q-page-container>
 		</q-layout>
 
+		<WeatherDialog ref="weatherDialogRef" />
+
 		<VersionDialog ref="versionDialogRef" />
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import { ref, toRefs } from 'vue';
+	import { computed, ref, toRefs, watch } from 'vue';
 	import { useRouter } from 'vue-router';
+	import { useDebounceFn } from '@vueuse/core';
 	import WeatherIconVideo from './components/weather/WeatherIconVideo.vue';
+	import WeatherDialog from './components/weather/WeatherDialog.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 
+	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
+	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
+
 	import { useLeafletStore } from '@/store/modules/geodata';
-	import { PageEnum } from '@/models/enum/pageEnum';
+	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
 	import { menuList } from './utils';
 	import { versionList } from '@/layout/utils';
+	import {
+		getWeatherTypeWithCode_tomorrow,
+		getWeatherTypeWithoutCode_tomorrow,
+	} from './components/weather/utils';
+	import { WeatherPanelInfo } from './components/weather/types';
+	import { PageEnum } from '@/models/enum/pageEnum';
+	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const router = useRouter();
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
+	const sunrisetStore = useSunrisetStore();
+	const { sunResult, diel } = toRefs(sunrisetStore);
+	const tomorrowStore = useTomorrowStore();
+	const { obsResult, obsTime } = toRefs(tomorrowStore);
 
 	const drawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');
+	// 天氣類型
+	const weatherType = ref(WeatherTypeEnum.UNKNOWN);
 
+	const weatherDialogRef = ref();
 	const versionDialogRef = ref();
+
+	const location = computed(() => `${mapCenter.value.lat}, ${mapCenter.value.lng}`);
+
+	const onReload = useDebounceFn(() => {
+		Promise.all([
+			sunrisetStore.getSunriseSunsetTimesInfo(
+				new SUNRISETGetSunriseSunsetTimesReq({
+					lat: mapCenter.value.lat.toString(),
+					lng: mapCenter.value.lng.toString(),
+				})
+			),
+			tomorrowStore.getRealtimeWeatherInfo(
+				new TOMORROWGetRealtimeWeatherReq({
+					location: location.value,
+				})
+			),
+		]).then(() => {
+			if (obsResult.value) {
+				// 先直接利用天氣代碼判斷
+				weatherType.value = getWeatherTypeWithCode_tomorrow(obsResult.value, diel.value);
+				if (weatherType.value === WeatherTypeEnum.UNKNOWN) {
+					// 其次再用自訂規則判斷
+					weatherType.value = getWeatherTypeWithoutCode_tomorrow(
+						obsResult.value,
+						diel.value
+					);
+				}
+			}
+		});
+	}, 3000);
+	watch(
+		location,
+		() => {
+			// 地圖中心變動，重新取得該中心位置天氣資料
+			onReload();
+		},
+		{ immediate: true }
+	);
 
 	/**
 	 * 開關選單
@@ -143,6 +201,28 @@
 	 */
 	const onSelectMenu = (menuName: string) => {
 		selectedMenu.value = menuName;
+	};
+
+	/**
+	 * 天氣詳情跳窗
+	 */
+	const onOpenWeatherDialog = () => {
+		weatherDialogRef.value.open(
+			new WeatherPanelInfo({
+				location: location.value,
+				diel: diel.value,
+				weatherType: weatherType.value,
+				sunriseTime: sunResult.value?.sunrise ?? '',
+				sunsetTime: sunResult.value?.sunset ?? '',
+				temperature: obsResult.value?.temperature ?? 0,
+				temperatureApparent: obsResult.value?.temperatureApparent ?? 0,
+				precipitationProbability: obsResult.value?.precipitationProbability ?? 0,
+				humidity: obsResult.value?.humidity ?? 0,
+				windSpeed: obsResult.value?.windSpeed ?? 0,
+				windGust: obsResult.value?.windGust ?? 0,
+				observationDatetime: obsTime.value,
+			})
+		);
 	};
 
 	/**

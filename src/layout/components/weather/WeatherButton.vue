@@ -91,7 +91,7 @@
 	);
 
 	/**
-	 * 開啟天氣詳情跳窗
+	 * 天氣詳情跳窗
 	 */
 	const onOpenWeatherDialog = () => {
 		weatherDialogRef.value.open(
