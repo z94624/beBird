@@ -29,14 +29,14 @@
 							:weatherType="WeatherItemEnum.SUNRISE"
 							width="40px"
 						/>
-						<span>{{ data.sunriseTime }}</span>
+						<span>{{ data.sunriseTime.slice(0, -3) }}</span>
 					</div>
 					<div class="flex items-center gap-1">
 						<WeatherIconVideo
 							:weatherType="WeatherItemEnum.SUNSET"
 							width="40px"
 						/>
-						<span>{{ data.sunsetTime }}</span>
+						<span>{{ data.sunsetTime.slice(0, -3) }}</span>
 					</div>
 				</div>
 			</div>
