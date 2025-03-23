@@ -8,6 +8,7 @@ import { setupRouter } from './router';
 import { setupStore } from './store';
 import { setupQuasar } from './plugins/quasar';
 import { setupFirebase } from './plugins/firebase';
+import { setupI18n } from './plugins/i18n';
 import VueSocialSharing from 'vue-social-sharing';
 import CountryFlag from 'vue-country-flag-next';
 
@@ -31,6 +32,9 @@ async function bootstrap() {
 
 	// 掛載 Firebase
 	setupFirebase(app);
+
+	// 掛載 I18n
+	setupI18n(app);
 
 	// 社群分享按鈕套件
 	app.use(VueSocialSharing);

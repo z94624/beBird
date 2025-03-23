@@ -2,6 +2,7 @@ import { computed } from 'vue';
 import { defineStore } from 'pinia';
 import { usePreferredLanguages } from '@vueuse/core';
 
+import { store } from '..';
 import { LocaleEnum } from '@/models/enum/ebirdEnum';
 import { GeoDataEnum } from '@/models/enum/geoEnum';
 
@@ -46,3 +47,8 @@ export const usePreferredLanguageStore = defineStore('preferredLanguage', () => 
 		userCountryCode,
 	};
 });
+
+// Need to be used outside setup
+export const usePreferredLanguageStoreOutsideSetup = () => {
+	return usePreferredLanguageStore(store);
+};
