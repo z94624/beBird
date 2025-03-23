@@ -16,7 +16,7 @@
 				<div class="flex justify-center items-center">
 					<WeatherIconVideo
 						:tooltip-props="{
-							offset: [0, -40],
+							offset: [0, 0],
 						}"
 						:weatherType="data.weatherType"
 						class="h-[150px]"

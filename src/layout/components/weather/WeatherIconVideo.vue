@@ -18,8 +18,8 @@
 			v-if="!noTooltip"
 			:="tooltipProps"
 			:anchor="tooltipProps?.anchor ?? 'top middle'"
-			:offset="tooltipProps?.offset ?? [0, -10]"
-			:self="tooltipProps?.self ?? 'bottom middle'"
+			:offset="tooltipProps?.offset ?? undefined"
+			:self="tooltipProps?.self ?? 'center middle'"
 		>
 			{{ weatherDataDict[weatherType].desc }}
 		</q-tooltip>
