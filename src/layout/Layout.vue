@@ -60,6 +60,9 @@
 							text-color="primary"
 							@click="onOpenVersionDialog"
 						/>
+
+						<!-- 網站語言 -->
+						<WebLangButton />
 					</div>
 				</q-toolbar>
 			</q-header>
@@ -79,6 +82,7 @@
 	import WeatherButton from './components/weather/WeatherButton.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
+	import WebLangButton from './components/WebLangButton.vue';
 	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
 	import { useLeafletStore } from '@/store/modules/geodata';
