@@ -47,7 +47,7 @@
 									<q-icon :name="menuItem.icon" />
 								</q-item-section>
 								<q-item-section>
-									{{ menuItem.label }}
+									{{ $t(menuItem.name) }}
 								</q-item-section>
 							</q-item>
 							<q-separator
@@ -130,6 +130,7 @@
 <script lang="ts" setup>
 	import { computed, ref, toRefs, watch } from 'vue';
 	import { useRouter } from 'vue-router';
+	import { useI18n } from 'vue-i18n';
 	import { useDebounceFn } from '@vueuse/core';
 	import WeatherIconVideo from './components/weather/WeatherIconVideo.vue';
 	import WeatherDialog from './components/weather/WeatherDialog.vue';
@@ -153,6 +154,7 @@
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const router = useRouter();
+	const { t } = useI18n();
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);

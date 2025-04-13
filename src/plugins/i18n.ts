@@ -5,6 +5,8 @@ import { WebLangEnum } from '@/models/enum/language';
 
 import commonEnUs from '@/locales/en-us/common.json';
 import commonZhTw from '@/locales/zh-tw/common.json';
+import routerEnUs from '@/locales/en-us/router.json';
+import routerZhTw from '@/locales/zh-tw/router.json';
 
 /**
  * 取得國家語系代碼
@@ -27,8 +29,8 @@ const i18n = createI18n({
 	locale: getLocale(),
 	fallbackLocale: WebLangEnum.AMERICA,
 	messages: {
-		[WebLangEnum.AMERICA]: mergeDictionaries(commonEnUs),
-		[WebLangEnum.TAIWAN]: mergeDictionaries(commonZhTw),
+		[WebLangEnum.AMERICA]: mergeDictionaries(commonEnUs, routerEnUs),
+		[WebLangEnum.TAIWAN]: mergeDictionaries(commonZhTw, routerZhTw),
 	},
 });
 

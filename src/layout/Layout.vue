@@ -24,7 +24,7 @@
 							v-for="(menuItem, mIdx) in menuList"
 							:key="mIdx"
 							:class="[`${menuItem.name === 'rareBirds' ? 'rareBirdsTab' : ''}`]"
-							:label="menuItem.label"
+							:label="$t(menuItem.name)"
 							:name="menuItem.name"
 							:to="menuItem.to"
 						/>
@@ -82,6 +82,7 @@
 <script lang="ts" setup>
 	import { ref, toRefs } from 'vue';
 	import { useRouter } from 'vue-router';
+	import { useI18n } from 'vue-i18n';
 	import WeatherButton from './components/weather/WeatherButton.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
@@ -94,6 +95,7 @@
 	import { versionList } from '@/layout/utils';
 
 	const router = useRouter();
+	const { t } = useI18n();
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
