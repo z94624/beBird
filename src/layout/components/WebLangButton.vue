@@ -1,8 +1,5 @@
 <template>
-	<BaseButton
-		padding="0"
-		rounded
-	>
+	<BaseButton :="attrs">
 		<country-flag :country="locale.split('-')[1]" />
 
 		<q-menu class="!max-w-none">
@@ -30,12 +27,16 @@
 </template>
 
 <script lang="ts" setup>
+	import { useAttrs } from 'vue';
+	import { QBtnProps } from 'quasar';
 	import { useI18n } from 'vue-i18n';
 
 	import { webLangCountryNameMap, webLangNameMap } from '@/utils/options';
 	import { WebLangEnum } from '@/models/enum/language';
 
 	const { locale } = useI18n();
+
+	const attrs: Partial<QBtnProps> = useAttrs();
 </script>
 
 <style lang="scss" scoped></style>

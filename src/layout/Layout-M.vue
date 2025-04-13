@@ -88,6 +88,30 @@
 						<q-item>
 							<VisitorsBillboard />
 						</q-item>
+
+						<!-- 網站語言 / 日夜模式 / 字體大小 -->
+						<q-item class="!p-0">
+							<WebLangButton
+								class="flex-1"
+								flat
+							/>
+							<q-separator
+								inset
+								vertical
+							/>
+							<BaseButton
+								class="flex-1"
+								flat
+							/>
+							<q-separator
+								inset
+								vertical
+							/>
+							<BaseButton
+								class="flex-1"
+								flat
+							/>
+						</q-item>
 					</q-list>
 				</q-scroll-area>
 			</q-drawer>
@@ -111,6 +135,7 @@
 	import WeatherDialog from './components/weather/WeatherDialog.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
+	import WebLangButton from './components/WebLangButton.vue';
 
 	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';

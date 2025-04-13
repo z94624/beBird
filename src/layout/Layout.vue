@@ -62,7 +62,10 @@
 						/>
 
 						<!-- 網站語言 -->
-						<WebLangButton />
+						<WebLangButton
+							padding="0"
+							rounded
+						/>
 					</div>
 				</q-toolbar>
 			</q-header>
