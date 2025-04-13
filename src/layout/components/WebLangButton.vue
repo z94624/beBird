@@ -11,7 +11,7 @@
 					:active="webLang === locale"
 					class="items-center !pl-0 !pr-3 !py-0"
 					clickable
-					@click="locale = webLang"
+					@click="onSelectWebsiteLanguage(webLang)"
 				>
 					<country-flag
 						:country="webLang.split('-')[1]"
@@ -37,6 +37,14 @@
 	const { locale } = useI18n();
 
 	const attrs: Partial<QBtnProps> = useAttrs();
+
+	/**
+	 * 選擇網站語言
+	 */
+	const onSelectWebsiteLanguage = (webLang: WebLangEnum) => {
+		locale.value = webLang;
+		localStorage.setItem('i18n-locale', webLang);
+	};
 </script>
 
 <style lang="scss" scoped></style>
