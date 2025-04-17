@@ -9,6 +9,8 @@ import routerEnUs from '@/locales/en-us/router.json';
 import routerZhTw from '@/locales/zh-tw/router.json';
 import weatherEnUs from '@/locales/en-us/weather.json';
 import weatherZhTw from '@/locales/zh-tw/weather.json';
+import visitorEnUs from '@/locales/en-us/visitor.json';
+import visitorZhTw from '@/locales/zh-tw/visitor.json';
 
 /**
  * 取得國家語系代碼
@@ -31,8 +33,8 @@ const i18n = createI18n({
 	locale: getLocale(),
 	fallbackLocale: WebLangEnum.AMERICA,
 	messages: {
-		[WebLangEnum.AMERICA]: mergeDictionaries(commonEnUs, routerEnUs, weatherEnUs),
-		[WebLangEnum.TAIWAN]: mergeDictionaries(commonZhTw, routerZhTw, weatherZhTw),
+		[WebLangEnum.AMERICA]: mergeDictionaries(commonEnUs, routerEnUs, weatherEnUs, visitorEnUs),
+		[WebLangEnum.TAIWAN]: mergeDictionaries(commonZhTw, routerZhTw, weatherZhTw, visitorZhTw),
 	},
 });
 
