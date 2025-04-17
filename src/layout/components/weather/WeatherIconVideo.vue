@@ -21,7 +21,7 @@
 			:offset="tooltipProps?.offset ?? undefined"
 			:self="tooltipProps?.self ?? 'center middle'"
 		>
-			{{ weatherDataDict[weatherType].desc }}
+			{{ $t(weatherType) }}
 		</q-tooltip>
 	</div>
 </template>

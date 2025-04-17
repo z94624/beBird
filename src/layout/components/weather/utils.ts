@@ -60,14 +60,12 @@ import { ITOMORROWDataValueItem } from '@/models/tomorrow/v4/weather';
  * 天氣圖示對應表
  */
 export const weatherDataDict: IMap<{
-	desc: string; // 文字說明
 	videoUrl: string; // 影片來源 URL
 	video: string; // 影片檔案路徑
 	image: string; // 圖片檔案路徑
 	code_tomorrow?: number[]; // Tomorrow.io 天氣代碼；https://docs.tomorrow.io/reference/data-layers-weather-codes
 }> = {
 	[WeatherTypeEnum.UNKNOWN]: {
-		desc: 'Weather(天氣)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/14464/14464176.mp4',
 		video: WeatherVideo,
 		image: WeatherImg,
@@ -75,21 +73,18 @@ export const weatherDataDict: IMap<{
 	},
 
 	[WeatherTypeEnum.CLEAR]: {
-		desc: 'Sunny(晴天)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102813.mp4',
 		video: ClearVideo,
 		image: ClearImg,
 		code_tomorrow: [1000, 1100],
 	},
 	[WeatherTypeEnum.PARTLY_CLOUDY]: {
-		desc: 'Partly Cloudy(晴時多雲)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102931.mp4',
 		video: PartlyCloudyVideo,
 		image: PartlyCloudyImg,
 		code_tomorrow: [1101],
 	},
 	[WeatherTypeEnum.CLOUDY]: {
-		desc: 'Cloudy(多雲時陰)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102874.mp4',
 		video: CloudyVideo,
 		image: CloudyImg,
@@ -97,14 +92,12 @@ export const weatherDataDict: IMap<{
 	},
 
 	[WeatherTypeEnum.CLEAR_NIGHT]: {
-		desc: 'Clear Night(晴夜)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102940.mp4',
 		video: ClearNightVideo,
 		image: ClearNightImg,
 		code_tomorrow: [1000, 1100],
 	},
 	[WeatherTypeEnum.CLOUDY_NIGHT]: {
-		desc: 'Cloudy Night(陰夜)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102854.mp4',
 		video: CloudyNightVideo,
 		image: CloudyNightImg,
@@ -112,21 +105,18 @@ export const weatherDataDict: IMap<{
 	},
 
 	[WeatherTypeEnum.DRIZZLE]: {
-		desc: 'Drizzle(細雨)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102975.mp4',
 		video: DrizzleVideo,
 		image: DrizzleImg,
 		code_tomorrow: [4000],
 	},
 	[WeatherTypeEnum.RAIN]: {
-		desc: 'Rainy(雨天)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102963.mp4',
 		video: RainVideo,
 		image: RainImg,
 		code_tomorrow: [4001, 4200, 4201],
 	},
 	[WeatherTypeEnum.THUNDER_STORM]: {
-		desc: 'Thunder Storm(暴風雨)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858208.mp4',
 		video: ThunderStormVideo,
 		image: ThunderStormImg,
@@ -134,21 +124,18 @@ export const weatherDataDict: IMap<{
 	},
 
 	[WeatherTypeEnum.SNOW]: {
-		desc: 'Snowy(降雪)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17103/17103024.mp4',
 		video: SnowVideo,
 		image: SnowImg,
 		code_tomorrow: [5000, 5001, 5100],
 	},
 	[WeatherTypeEnum.SLEET]: {
-		desc: 'Sleet(冰霰)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17858/17858185.mp4',
 		video: SleetVideo,
 		image: SleetImg,
 		code_tomorrow: [6000, 6001, 6200, 6201, 7000, 7101, 7102],
 	},
 	[WeatherTypeEnum.BLIZZARD]: {
-		desc: 'Blizzard(暴風雪)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17484/17484878.mp4',
 		video: BlizzardVideo,
 		image: BlizzardImg,
@@ -156,7 +143,6 @@ export const weatherDataDict: IMap<{
 	},
 
 	[WeatherTypeEnum.FOG]: {
-		desc: 'Foggy(多霧)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102868.mp4',
 		video: FogVideo,
 		image: FogImg,
@@ -164,68 +150,57 @@ export const weatherDataDict: IMap<{
 	},
 
 	[WeatherTypeEnum.COLD]: {
-		desc: 'Cold(冷)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17103/17103071.mp4',
 		video: ColdVideo,
 		image: ColdImg,
 	},
 	[WeatherTypeEnum.HOT]: {
-		desc: 'Hot(熱)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17103/17103056.mp4',
 		video: HotVideo,
 		image: HotImg,
 	},
 
 	[WeatherItemEnum.SUNRISE]: {
-		desc: 'Sunrise(日昇)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/14204/14204927.mp4',
 		video: SunriseVideo,
 		image: SunriseImg,
 	},
 	[WeatherItemEnum.SUNSET]: {
-		desc: 'Sunset(日落)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/11779/11779599.mp4',
 		video: SunsetVideo,
 		image: SunsetImg,
 	},
 	[WeatherItemEnum.TEMP]: {
-		desc: 'Temperature[Apparent](氣溫[體感])',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/15968/15968679.mp4',
 		video: TempVideo,
 		image: TempImg,
 	},
 	[WeatherItemEnum.PRECIP]: {
-		desc: 'Precipitation Probability(降水機率)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102917.mp4',
 		video: PrecipVideo,
 		image: PrecipImg,
 	},
 	[WeatherItemEnum.HUMID]: {
-		desc: 'Humidity(濕度)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/11201/11201779.mp4',
 		video: HumidVideo,
 		image: HumidImg,
 	},
 	[WeatherItemEnum.WIND_SPEED]: {
-		desc: 'Wind Speed(風速)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/12277/12277857.mp4',
 		video: WindSpeedVideo,
 		image: WindSpeedImg,
 	},
 	[WeatherItemEnum.C]: {
-		desc: 'Metric Unit(公制)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102847.mp4',
 		video: CelsiusVideo,
 		image: CelsiusImg,
 	},
 	[WeatherItemEnum.F]: {
-		desc: 'Imperial Unit(英制)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/17102/17102882.mp4',
 		video: FahrenheitVideo,
 		image: FahrenheitImg,
 	},
 	[WeatherItemEnum.OBS_TIME]: {
-		desc: 'Observation Time(觀測時間)',
 		videoUrl: 'https://cdn-icons-mp4.flaticon.com/512/12320/12320221.mp4',
 		video: ObsTimeVideo,
 		image: ObsTimeImg,

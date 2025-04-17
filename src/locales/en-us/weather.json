@@ -1,0 +1,33 @@
+{
+	"unknown": "Weather",
+
+	"clear": "Sunny",
+	"partly_cloudy": "Partly Cloudy",
+	"cloudy": "Cloudy",
+
+	"clear_night": "Clear Night",
+	"cloudy_night": "Cloudy Night",
+
+	"drizzle": "Drizzle",
+	"rain": "Rainy",
+	"thunderstorm": "Thunderstorm",
+
+	"snow": "Snowy",
+	"sleet": "Sleet",
+	"blizzard": "Blizzard",
+
+	"fog": "Foggy",
+
+	"cold": "Cold",
+	"hot": "Hot",
+
+	"sunrise": "Sunrise",
+	"sunset": "Sunset",
+	"temperature": "Apparent Temperature",
+	"precipitation": "Precipitation Probability",
+	"humidity": "Humidity",
+	"wind_speed": "Wind Speed",
+	"celsius": "Metric Unit",
+	"fahrenheit": "Imperial Unit",
+	"observation_time": "Observation Time"
+}

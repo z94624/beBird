@@ -10,7 +10,7 @@
 			no-tooltip
 		/>
 
-		<q-tooltip>{{ weatherDataDict[weatherType].desc }}</q-tooltip>
+		<q-tooltip>{{ $t(weatherType) }}</q-tooltip>
 	</BaseButton>
 
 	<WeatherDialog ref="weatherDialogRef" />

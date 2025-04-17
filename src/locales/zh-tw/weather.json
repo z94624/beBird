@@ -1,0 +1,33 @@
+{
+	"unknown": "天氣",
+
+	"clear": "晴天",
+	"partly_cloudy": "晴時多雲",
+	"cloudy": "多雲時陰",
+
+	"clear_night": "晴夜",
+	"cloudy_night": "陰夜",
+
+	"drizzle": "細雨",
+	"rain": "雨天",
+	"thunderstorm": "暴風雨",
+
+	"snow": "降雪",
+	"sleet": "冰霰",
+	"blizzard": "暴風雪",
+
+	"fog": "多霧",
+
+	"cold": "冷",
+	"hot": "熱",
+
+	"sunrise": "日出",
+	"sunset": "日沒",
+	"temperature": "體感溫度",
+	"precipitation": "降水機率",
+	"humidity": "濕度",
+	"wind_speed": "風速",
+	"celsius": "公制",
+	"fahrenheit": "英制",
+	"observation_time": "觀測時間"
+}

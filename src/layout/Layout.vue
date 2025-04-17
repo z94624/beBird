@@ -82,7 +82,6 @@
 <script lang="ts" setup>
 	import { ref, toRefs } from 'vue';
 	import { useRouter } from 'vue-router';
-	import { useI18n } from 'vue-i18n';
 	import WeatherButton from './components/weather/WeatherButton.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
@@ -95,7 +94,6 @@
 	import { versionList } from '@/layout/utils';
 
 	const router = useRouter();
-	const { t } = useI18n();
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
