@@ -89,6 +89,7 @@
 
 <script lang="ts" setup>
 	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+	import { useI18n } from 'vue-i18n';
 	import { useDebounceFn } from '@vueuse/core';
 	import { LMarker } from '@vue-leaflet/vue-leaflet';
 
@@ -108,6 +109,7 @@
 	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
 	import { getDateDiffFromNow, getGoogleMapsPlaceURL } from '@/utils/ebird';
 
+	const { t } = useI18n();
 	const { $notify, $loading } = useQuasarTool();
 	const preferredLanguageStore = usePreferredLanguageStore();
 	const { userLangCode } = toRefs(preferredLanguageStore);
@@ -250,7 +252,7 @@
 	 */
 	const getDateDiffStr = (obsDt: string): string => {
 		const days = getDateDiffFromNow(obsDt);
-		return days ? `${days} 天前` : '今天';
+		return days ? `${days} ${t('ago')}` : t('today');
 	};
 
 	/**

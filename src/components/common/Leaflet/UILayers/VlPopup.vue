@@ -24,18 +24,18 @@
 				>
 					<slot name="buttons">
 						<BaseButton
+							:label="$t('detail')"
 							class="flex-1"
 							color="info"
 							icon="o_info"
-							label="細節"
 							size="sm"
 							@click="emit('detail')"
 						/>
 						<HrefButton
 							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
+							:label="$t('navigation')"
 							color="positive"
-							label="導航"
 							size="sm"
 						/>
 					</slot>

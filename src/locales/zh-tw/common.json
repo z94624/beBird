@@ -1,5 +1,8 @@
 {
 	"country": "國家",
 	"region": "地區",
-	"back": "時間間隔(幾天以前)"
+	"back": "時間間隔(幾天以前)",
+
+	"detail": "細節",
+	"navigation": "導航"
 }

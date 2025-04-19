@@ -58,6 +58,7 @@
 
 <script lang="ts" setup>
 	import { computed, toRefs } from 'vue';
+	import { useI18n } from 'vue-i18n';
 	import { useClipboard } from '@vueuse/core';
 
 	import { mdiGmail, mdiFacebook } from '@quasar/extras/mdi-v7';
@@ -79,6 +80,7 @@
 		userComName?: string;
 	}>();
 
+	const { t } = useI18n();
 	const { copy } = useClipboard();
 	const { $notify } = useQuasarTool();
 	const productStore = useProductStore();
@@ -114,7 +116,7 @@
 	 */
 	const onCopyToClipboard = () => {
 		copy(descTEXT.value || checklistUrl.value).then(() => {
-			$notify.info('成功：複製紀錄清單資訊');
+			$notify.info(t('info_listInfoCopied'));
 		});
 	};
 
