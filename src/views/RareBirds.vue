@@ -22,7 +22,7 @@
 				/>
 
 				<div>
-					<span>時間間隔(幾天以前)</span>
+					<span>{{ $t('back') }}</span>
 					<DaysBackSlider v-model="notableObsForm.back" />
 				</div>
 			</q-form>

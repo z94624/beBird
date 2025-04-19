@@ -1,1 +1,5 @@
-{}
+{
+	"country": "Country",
+	"region": "Region",
+	"back": "Time Interval (days ago)"
+}

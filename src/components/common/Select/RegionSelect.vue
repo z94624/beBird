@@ -1,10 +1,10 @@
 <template>
 	<BaseSelect
 		v-model="selectedRegion"
+		:label="$t('region')"
 		:options="filteredOptions"
 		clearable
 		input-debounce="0"
-		label="地區"
 		use-input
 		@filter="filterRegion"
 	/>
