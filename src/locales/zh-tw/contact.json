@@ -1,0 +1,10 @@
+{
+	"emailUs": "聯絡我們",
+	"name": "姓名",
+	"email": "電子信箱",
+	"subject": "主旨",
+	"message": "內容",
+	"send": "傳送",
+
+	"sendError": "傳送失敗！請稍後再試..."
+}

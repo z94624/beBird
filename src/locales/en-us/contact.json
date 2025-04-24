@@ -1,0 +1,10 @@
+{
+	"emailUs": "Email Us",
+	"name": "Name",
+	"email": "Email",
+	"subject": "Subject",
+	"message": "Message",
+	"send": "SEND",
+
+	"sendError": "Send Fail! Please try again later..."
+}
