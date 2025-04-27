@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+	import { computed, onBeforeMount, ref, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import { useDebounceFn } from '@vueuse/core';
 	import { LMarker } from '@vue-leaflet/vue-leaflet';
@@ -101,7 +101,6 @@
 	import { IREFTAXGetEbirdTaxonomyRes } from '@/models/ref/taxonomy';
 
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
-	import { usePreferredLanguageStore } from '@/store/modules/language';
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 	import { LocaleEnum } from '@/models/enum/ebirdEnum';
@@ -109,10 +108,8 @@
 	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
 	import { getDateDiffFromNow, getGoogleMapsPlaceURL } from '@/utils/ebird';
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
 	const { $notify, $loading } = useQuasarTool();
-	const preferredLanguageStore = usePreferredLanguageStore();
-	const { userLangCode } = toRefs(preferredLanguageStore);
 	const taxonomyStore = useTaxonomyStore();
 
 	const loading = ref(false);
@@ -140,6 +137,11 @@
 	});
 	// 不重複物種代碼列表
 	const pureSpeciesCodes = computed(() => pureObsList.value.map((obs) => obs.speciesCode));
+	// 新物種代碼列表(尚不存在於物種資訊字典)
+	const newSpeciesCodes = computed(() => {
+		const oldSpeciesCodes = Object.keys(taxInfoDict.value);
+		return pureSpeciesCodes.value.filter((code) => !oldSpeciesCodes.includes(code));
+	});
 
 	watch(
 		[country, region, notableObsForm],
@@ -172,19 +174,37 @@
 	);
 
 	/**
-	 * 根據使用者語系，建立物種代碼對當地俗名字典
+	 * 取得物種分類資訊
 	 */
-	watch(pureSpeciesCodes, (nv) => {
-		if (!nv.length) return;
+	const getEbirdTaxonomyInfo = (all: boolean) => {
 		taxonomyStore
-			.getEbirdTaxonomyInfo(userLangCode.value as LocaleEnum, nv.join(','))
+			.getEbirdTaxonomyInfo(
+				locale.value as LocaleEnum,
+				all ? pureSpeciesCodes.value.join(',') : newSpeciesCodes.value.join(',')
+			)
 			.then((data) => {
+				// 切換網站語言，重設字典
+				all && (taxInfoDict.value = {});
+
 				// console.log('speciesTaxonomies', data);
 				data &&
 					data.forEach((tax) => {
 						taxInfoDict.value[tax.speciesCode] = tax;
 					});
 			});
+	};
+	/**
+	 * 有新鳥種時，建立物種代碼對當地俗名字典
+	 */
+	watch(newSpeciesCodes, (nv) => {
+		if (!nv.length) return;
+		getEbirdTaxonomyInfo(false);
+	});
+	/**
+	 * 切換網站語言時，建立物種代碼對當地俗名字典
+	 */
+	watch(locale, () => {
+		getEbirdTaxonomyInfo(true);
 	});
 
 	/**
