@@ -68,7 +68,7 @@
 									width="30px"
 								/>
 							</q-item-section>
-							<q-item-section>Weather</q-item-section>
+							<q-item-section>{{ $t(WeatherTypeEnum.UNKNOWN) }}</q-item-section>
 						</q-item>
 
 						<!-- 版本 -->
