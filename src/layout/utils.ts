@@ -54,6 +54,20 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.6',
+		releaseDate: '2025/04/27',
+		features: [
+			'Website internationalization (i18n) has implemented, and render a button for user to switch website language.',
+		],
+		changes: [
+			'The weather information panel layout for mobile and for desktop are both adjusted.',
+			'The locale of bird species information given by eBird is decided by the website language.',
+		],
+		perfs: [
+			'It is not necessary to acquire duplicate species information, unless the website language is changed.',
+		],
+	},
+	{
 		version: '1.1.5',
 		releaseDate: '2025/03/16',
 		features: [
