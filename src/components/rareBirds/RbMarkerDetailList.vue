@@ -12,8 +12,6 @@
 
 	import { useProductStore } from '@/store/modules/product';
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
-	import { usePreferredLanguageStore } from '@/store/modules/language';
-	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 
 	const props = defineProps<{
 		notableObs?: IDATAOBSGetRecentNotableObsInRegionItem;
@@ -22,29 +20,31 @@
 	const productStore = useProductStore();
 	const { checklistInfo } = toRefs(productStore);
 	const taxonomyStore = useTaxonomyStore();
-	const preferredLanguageStore = usePreferredLanguageStore();
-	const { userLangCode } = toRefs(preferredLanguageStore);
+	const { taxInfoDict } = toRefs(taxonomyStore);
 
-	const speciesCodes = computed(() => checklistInfo.value?.obs.map((o) => o.speciesCode));
+	/**
+	 * 篩選出沒有獲取過物種資訊的物種代碼
+	 */
+	const speciesCodes = computed(() => {
+		const oldSpeciesCodes = Object.keys(taxInfoDict.value);
+		return checklistInfo.value?.obs
+			.map((o) => o.speciesCode)
+			.filter((code) => !oldSpeciesCodes.includes(code));
+	});
 
 	onMounted(() => {
 		// 取得記錄清單詳細資訊
 		if (props.notableObs) {
-			productStore.getViewChecklistInfo(props.notableObs.subId).then(() => {
-				if (speciesCodes.value) {
+			productStore.getViewChecklistInfo(props.notableObs.subId).then(async () => {
+				if (speciesCodes.value?.length) {
 					// 取得各鳥種分類資訊
-					taxonomyStore
-						.getEbirdTaxonomyInfo(
-							userLangCode.value as LocaleEnum,
-							speciesCodes.value.join(',')
-						)
-						.then((data) => {
-							checklistInfo.value!.obs = checklistInfo.value!.obs.map((o) => ({
-								...o,
-								tax: data.find((s) => s.speciesCode === o.speciesCode),
-							}));
-						});
+					await taxonomyStore.getEbirdTaxonomyInfo(speciesCodes.value.join(','));
 				}
+				// 待物種資訊字典完整後...
+				checklistInfo.value!.obs = checklistInfo.value!.obs.map((o) => ({
+					...o,
+					tax: taxInfoDict.value[o.speciesCode],
+				}));
 			});
 		}
 	});

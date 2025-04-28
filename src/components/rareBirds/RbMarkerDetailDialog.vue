@@ -50,34 +50,32 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, ref } from 'vue';
+	import { computed, ref, toRefs } from 'vue';
 
 	import { IDATAOBSGetRecentNotableObsInRegionItem } from '@/models/data/obs';
-	import { IREFTAXGetEbirdTaxonomyRes } from '@/models/ref/taxonomy';
 
 	import { useDialog } from '@/hooks/dialog';
-	import { IMap } from '@/models/common/base';
+	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 
 	const { isOpen, open, onOpen, close, onClose } = useDialog();
+	const taxonomyStore = useTaxonomyStore();
+	const { taxInfoDict } = toRefs(taxonomyStore);
 
 	const obs = ref<IDATAOBSGetRecentNotableObsInRegionItem>();
-	const userComNameDict = ref<IMap<IREFTAXGetEbirdTaxonomyRes>>();
 	const tab = ref('list');
 
 	// 當地俗名
 	const userComName = computed(() => {
-		if (!obs.value || !userComNameDict.value) return;
-		return userComNameDict.value[obs.value.speciesCode]?.comName ?? obs.value.comName;
+		if (!obs.value || !taxInfoDict.value) return;
+		return taxInfoDict.value[obs.value.speciesCode]?.comName ?? obs.value.comName;
 	});
 
-	onOpen((o: IDATAOBSGetRecentNotableObsInRegionItem, ucnd: IMap<IREFTAXGetEbirdTaxonomyRes>) => {
+	onOpen((o: IDATAOBSGetRecentNotableObsInRegionItem) => {
 		obs.value = o;
-		userComNameDict.value = ucnd;
 	});
 
 	onClose(() => {
 		obs.value = undefined;
-		userComNameDict.value = undefined;
 		tab.value = 'list';
 	});
 

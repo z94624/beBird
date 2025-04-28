@@ -27,16 +27,26 @@
 </template>
 
 <script lang="ts" setup>
-	import { useAttrs } from 'vue';
+	import { toRefs, useAttrs, watch } from 'vue';
 	import { QBtnProps } from 'quasar';
 	import { useI18n } from 'vue-i18n';
 
+	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { webLangCountryNameMap, webLangNameMap } from '@/utils/options';
 	import { WebLangEnum } from '@/models/enum/language';
 
 	const { locale } = useI18n();
 
 	const attrs: Partial<QBtnProps> = useAttrs();
+	const taxonomyStore = useTaxonomyStore();
+	const { taxInfoDict } = toRefs(taxonomyStore);
+
+	/**
+	 * 切換網站語言時，先清空物種資訊字典
+	 */
+	watch(locale, () => {
+		taxInfoDict.value = {};
+	});
 
 	/**
 	 * 選擇網站語言
