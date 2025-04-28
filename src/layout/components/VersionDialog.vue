@@ -4,7 +4,7 @@
 		fullscreen
 		@close="close"
 	>
-		<template #title>Release Notes</template>
+		<template #title>{{ $t('version') }}</template>
 
 		<template #content>
 			<div class="p-4 flex flex-col gap-4">

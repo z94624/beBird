@@ -9,8 +9,6 @@ import routerEnUs from '@/locales/en-us/router.json';
 import routerZhTw from '@/locales/zh-tw/router.json';
 import weatherEnUs from '@/locales/en-us/weather.json';
 import weatherZhTw from '@/locales/zh-tw/weather.json';
-import visitorEnUs from '@/locales/en-us/visitor.json';
-import visitorZhTw from '@/locales/zh-tw/visitor.json';
 import ebirdEnUs from '@/locales/en-us/ebird.json';
 import ebirdZhTw from '@/locales/zh-tw/ebird.json';
 import contactEnUs from '@/locales/en-us/contact.json';
@@ -41,7 +39,6 @@ const i18n = createI18n({
 			commonEnUs,
 			routerEnUs,
 			weatherEnUs,
-			visitorEnUs,
 			ebirdEnUs,
 			contactEnUs
 		),
@@ -49,7 +46,6 @@ const i18n = createI18n({
 			commonZhTw,
 			routerZhTw,
 			weatherZhTw,
-			visitorZhTw,
 			ebirdZhTw,
 			contactZhTw
 		),

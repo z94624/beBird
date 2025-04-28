@@ -1,4 +1,10 @@
 {
+	"visitorStatistics-online": "Online",
+	"visitorStatistics-today": "Today",
+	"visitorStatistics-total": "Total",
+
+	"version": "Release Notes",
+
 	"country": "Country",
 	"region": "Region",
 	"back": "Time Interval (days ago)",
