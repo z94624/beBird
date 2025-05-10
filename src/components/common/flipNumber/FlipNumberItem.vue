@@ -3,10 +3,10 @@
 		<div
 			:class="animationClass"
 			:style="{
-				width: `${(height / 5) * 3}px`,
-				height: `${height}px`,
-				fontSize: `${fontSize}px`,
-				lineHeight: `${height}px`,
+				width: `${(height / 5) * 3}rem`,
+				height: `${height}rem`,
+				fontSize: `${fontSize}rem`,
+				lineHeight: `${height}rem`,
 			}"
 			class="flip"
 		>

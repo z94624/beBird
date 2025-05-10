@@ -7,8 +7,8 @@
 		>
 			<div class="text-primary text-bold">{{ item.name }}</div>
 			<FlipNumber
-				:fontSize="30"
-				:height="40"
+				:fontSize="1.875"
+				:height="2.5"
 				:value="item.to"
 			/>
 		</div>
