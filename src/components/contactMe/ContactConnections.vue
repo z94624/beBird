@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col justify-center items-center gap-4">
-		<q-avatar style="width: 90%; max-width: 350px; height: auto">
+		<q-avatar style="width: 90%; max-width: 21.875rem; height: auto">
 			<img :src="Logo" />
 		</q-avatar>
 

@@ -46,8 +46,8 @@
 			:style="{
 				top:
 					birdMorph === 'btn'
-						? `calc(${boundaryGap} + 57.6px + 4px)`
-						: `calc(${boundaryGap} + 244px + 4px)`,
+						? `calc(${boundaryGap} + 3.6rem + 0.25rem)`
+						: `calc(${boundaryGap} + 15.25rem + 0.25rem)`,
 			}"
 			class="researchBtn"
 			color="secondary"
@@ -65,9 +65,9 @@
 				:text-color="locateColor.textColor"
 				dense
 				icon="my_location"
-				padding="6.425px"
+				padding="0.4015625rem"
 				size="sm"
-				style="border-radius: 8px"
+				style="border-radius: 0.5rem"
 				@click="onLocate"
 			/>
 		</div>
@@ -174,7 +174,7 @@
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
 
-	const boundaryGap = ref('10px');
+	const boundaryGap = ref('0.625rem');
 	const updateLoading = ref(false);
 	const mapRef = ref(null);
 	const leafletMap = ref<Map>();
@@ -393,8 +393,8 @@
 	.searchMenuContainer {
 		@extend .map-top-right;
 
-		min-width: 250px;
-		padding: 12px;
+		min-width: 15.625rem;
+		padding: 0.75rem;
 		background-color: rgba($color: #fff, $alpha: 0.75);
 	}
 	.researchBtn {
@@ -405,7 +405,7 @@
 
 	.map-bottom-right {
 		position: absolute;
-		bottom: 93px;
+		bottom: 5.8125rem;
 		right: v-bind(boundaryGap);
 		z-index: 401;
 	}

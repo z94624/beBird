@@ -15,7 +15,7 @@
 			>
 				<div class="w-full flex no-wrap items-center gap-4">
 					<div
-						class="bg-secondary w-[33.33px] h-[33.33px] m-[3.335px] flex justify-center items-center"
+						class="bg-secondary w-[2.083125rem] h-[2.083125rem] m-[0.2084375rem] flex justify-center items-center"
 						style="border-radius: 50%"
 					>
 						<q-icon
@@ -42,9 +42,9 @@
 					class="w-full flex no-wrap items-center gap-4"
 				>
 					<q-icon
-						:class="[media.customIcon ? 'm-[3.335px]' : '']"
+						:class="[media.customIcon ? 'm-[0.2084375rem]' : '']"
 						:name="media.customIcon ? `img:${media.icon}` : media.icon"
-						:size="media.customIcon ? '33.33px' : '40px'"
+						:size="media.customIcon ? '2.083125rem' : '2.5rem'"
 						:style="{
 							color: media.iconColor,
 						}"

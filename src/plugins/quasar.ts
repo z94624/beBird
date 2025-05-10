@@ -35,7 +35,7 @@ export const setupQuasar = (app: App<Element>) => {
 				'accent-bg': '#ecf9eb',
 			},
 			loadingBar: {
-				size: '3px',
+				size: '0.1875rem',
 				color: 'primary',
 			},
 			loading: {

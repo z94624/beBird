@@ -22,7 +22,7 @@
 			.q-tab__content {
 				.q-tab__label {
 					font-weight: 700;
-					font-size: 17px;
+					font-size: 1.0625rem;
 				}
 			}
 		}
@@ -34,20 +34,20 @@
 		.q-item {
 			&.q-item--active {
 				color: unset;
-				border-left: 2px solid var(--q-primary_e);
-				margin-left: 2px;
+				border-left: 0.125rem solid var(--q-primary_e);
+				margin-left: 0.125rem;
 			}
 			&.rareBirdsItem {
 				color: $negative;
 
 				&.q-item--active {
-					border-left: 2px solid $negative;
+					border-left: 0.125rem solid $negative;
 				}
 			}
 
 			.q-item__section--main {
 				font-weight: 700;
-				font-size: 17px;
+				font-size: 1.0625rem;
 			}
 		}
 	}

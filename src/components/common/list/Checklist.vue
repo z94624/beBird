@@ -45,10 +45,10 @@
 <style lang="scss" scoped>
 	.birdItem {
 		@include border;
-		border-radius: 7px;
+		border-radius: 0.4375rem;
 
 		&.notableItem {
-			border: 2px solid $secondary;
+			border: 0.125rem solid $secondary;
 		}
 	}
 </style>

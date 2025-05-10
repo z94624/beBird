@@ -67,6 +67,6 @@
 		font-weight: 700;
 		font-size: 0.9rem;
 		line-height: 1;
-		border: 1px solid transparent;
+		border: 0.0625rem solid transparent;
 	}
 </style>

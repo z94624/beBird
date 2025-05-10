@@ -80,7 +80,7 @@
 
 <style lang="scss" scoped>
 	.popupCard {
-		border-radius: 12px;
+		border-radius: 0.75rem;
 
 		.remark {
 			font-size: 0.625rem;

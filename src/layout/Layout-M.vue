@@ -14,7 +14,7 @@
 						@click="toggleDrawer"
 					/>
 
-					<div class="flex-1 pr-[42px] text-center cursor-pointer">
+					<div class="flex-1 pr-[2.625rem] text-center cursor-pointer">
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-accent">e</span>
 						<span class="logoText text-secondaryDark_e">Bird</span>
@@ -65,7 +65,7 @@
 							<q-item-section avatar>
 								<WeatherIconVideo
 									:weatherType="weatherType"
-									width="30px"
+									width="1.875rem"
 								/>
 							</q-item-section>
 							<q-item-section>{{ $t(WeatherTypeEnum.UNKNOWN) }}</q-item-section>

@@ -30,11 +30,11 @@
 		$total: 50;
 
 		position: absolute;
-		width: 10px;
-		height: 10px;
+		width: 0.625rem;
+		height: 0.625rem;
 		background: white;
 		border-radius: 50%;
-		filter: drop-shadow(0 0 10px white);
+		filter: drop-shadow(0 0 0.625rem white);
 		z-index: 999;
 
 		@for $i from 1 through $total {
@@ -50,7 +50,7 @@
 
 			&:nth-child(#{$i}) {
 				opacity: random(10000) * 0.0001;
-				transform: translate($random-x, -10px) scale($random-scale);
+				transform: translate($random-x, -0.625rem) scale($random-scale);
 				animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
 			}
 

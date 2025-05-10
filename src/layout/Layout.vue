@@ -37,9 +37,9 @@
 						<WeatherButton
 							:lat="mapCenter.lat.toString()"
 							:lng="mapCenter.lng.toString()"
-							height="41.6px"
-							padding="7px"
-							width="41.6px"
+							height="2.6rem"
+							padding="0.4375rem"
+							width="2.6rem"
 						/>
 
 						<!-- 人次 -->

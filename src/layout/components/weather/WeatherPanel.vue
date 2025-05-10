@@ -6,7 +6,7 @@
 				class="absolute top-4 right-4"
 				href="https://weather.tomorrow.io/"
 				round
-				size="11px"
+				size="0.6875rem"
 			>
 				<TomorrowIcon only-icon />
 			</HrefButton>
@@ -19,7 +19,7 @@
 							offset: [0, 0],
 						}"
 						:weatherType="data.weatherType"
-						class="h-[150px]"
+						class="h-[9.375rem]"
 					/>
 				</div>
 				<!-- 日出落 -->
@@ -27,14 +27,14 @@
 					<div class="flex items-center gap-1">
 						<WeatherIconVideo
 							:weatherType="WeatherItemEnum.SUNRISE"
-							width="40px"
+							width="2.5rem"
 						/>
 						<span>{{ data.sunriseTime.slice(0, -3) }}</span>
 					</div>
 					<div class="flex items-center gap-1">
 						<WeatherIconVideo
 							:weatherType="WeatherItemEnum.SUNSET"
-							width="40px"
+							width="2.5rem"
 						/>
 						<span>{{ data.sunsetTime.slice(0, -3) }}</span>
 					</div>
@@ -90,14 +90,14 @@
 			>
 				<WeatherIconVideo
 					:weatherType="isMetric ? WeatherItemEnum.C : WeatherItemEnum.F"
-					width="40px"
+					width="2.5rem"
 				/>
 			</BaseToggle>
 			<!-- 觀測時間 -->
 			<div class="flex items-center gap-1">
 				<WeatherIconVideo
 					:weatherType="WeatherItemEnum.OBS_TIME"
-					width="40px"
+					width="2.5rem"
 				/>
 				<span>{{ getFormattedDateTime(data.observationDatetime) }}</span>
 			</div>
@@ -171,8 +171,8 @@
 <style lang="scss" scoped>
 	%top-right-inset-shadow {
 		box-shadow:
-			rgb(0, 0, 0) -3px 3px 6px 0px inset,
-			rgba(255, 255, 255, 0.5) 3px -3px 6px 1px inset;
+			rgb(0, 0, 0) -0.1875rem 0.1875rem 0.375rem 0 inset,
+			rgba(255, 255, 255, 0.5) 0.1875rem -0.1875rem 0.375rem 0.0625rem inset;
 	}
 
 	.archContainer {
@@ -180,14 +180,14 @@
 
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
-		padding: 40px 0 15px 0;
+		padding: 2.5rem 0 0.9375rem 0;
 	}
 
 	.weatherItemIconContainer {
 		@extend %top-right-inset-shadow;
 
-		width: 59px;
-		padding: 15px;
+		width: 3.6875rem;
+		padding: 0.9375rem;
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;
