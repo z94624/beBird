@@ -23,7 +23,10 @@ export const useTextSizeStore = defineStore('textSize', () => {
 	}));
 
 	// 字體放大倍率
-	const textSizeMultiplier = ref(multiplierDict[TextSizeEnum.MD]);
+	const userMultiplier = localStorage.getItem('textSizeMultiplier');
+	const textSizeMultiplier = ref(
+		userMultiplier ? +userMultiplier : multiplierDict[TextSizeEnum.MD]
+	);
 
 	return {
 		multiplierDict,
