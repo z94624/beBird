@@ -33,7 +33,7 @@
 
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { webLangCountryNameMap, webLangNameMap } from '@/utils/options';
-	import { WebLangEnum } from '@/models/enum/language';
+	import { WebLangEnum } from '@/models/enum/languageEnum';
 
 	const { locale } = useI18n();
 
