@@ -66,6 +66,9 @@
 							padding="0"
 							rounded
 						/>
+
+						<!-- 網站字體大小 -->
+						<WebTextSizeButton round />
 					</div>
 				</q-toolbar>
 			</q-header>
@@ -86,6 +89,7 @@
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import WebLangButton from './components/WebLangButton.vue';
+	import WebTextSizeButton from './components/WebTextSizeButton.vue';
 	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
 	import { useLeafletStore } from '@/store/modules/geodata';

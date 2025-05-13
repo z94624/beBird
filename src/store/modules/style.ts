@@ -1,6 +1,8 @@
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { QSelectOption } from 'quasar';
 import { defineStore } from 'pinia';
+
+import { mdiSizeS, mdiSizeM, mdiSizeL, mdiSizeXl } from '@quasar/extras/mdi-v7';
 
 import { IMap } from '@/models/common/base';
 import { TextSizeEnum } from '@/models/enum/styleEnum';
@@ -9,28 +11,58 @@ import { TextSizeEnum } from '@/models/enum/styleEnum';
  * 字體大小
  */
 export const useTextSizeStore = defineStore('textSize', () => {
-	// 放大倍率字典
-	const multiplierDict: IMap<number> = {
-		[TextSizeEnum.SM]: 0.8,
-		[TextSizeEnum.MD]: 1,
-		[TextSizeEnum.LG]: 1.2,
-		[TextSizeEnum.XL]: 1.4,
+	// 字體大小字典
+	const textSizeDict: IMap<{
+		multiplier: number;
+		icon: string;
+	}> = {
+		[TextSizeEnum.SM]: {
+			multiplier: 0.8,
+			icon: mdiSizeS,
+		},
+		[TextSizeEnum.MD]: {
+			multiplier: 1,
+			icon: mdiSizeM,
+		},
+		[TextSizeEnum.LG]: {
+			multiplier: 1.2,
+			icon: mdiSizeL,
+		},
+		[TextSizeEnum.XL]: {
+			multiplier: 1.4,
+			icon: mdiSizeXl,
+		},
 	};
-	// 放大倍率選項
-	const multiplierOptions: QSelectOption[] = Object.keys(multiplierDict).map((k) => ({
-		label: k,
-		value: multiplierDict[k].toString(),
-	}));
 
 	// 字體放大倍率
 	const userMultiplier = localStorage.getItem('textSizeMultiplier');
 	const textSizeMultiplier = ref(
-		userMultiplier ? +userMultiplier : multiplierDict[TextSizeEnum.MD]
+		userMultiplier ? +userMultiplier : textSizeDict[TextSizeEnum.MD].multiplier
+	);
+
+	/**
+	 * 取得選定放大倍率所有資訊
+	 */
+	const textSizeInfo = computed(
+		(): {
+			name: string;
+			multiplier: number;
+			icon: string;
+		} => {
+			const item = Object.entries(textSizeDict).find(
+				([_k, v]) => v.multiplier === textSizeMultiplier.value
+			)!;
+			return {
+				name: item[0],
+				multiplier: item[1].multiplier,
+				icon: item[1].icon,
+			};
+		}
 	);
 
 	return {
-		multiplierDict,
-		multiplierOptions,
+		textSizeDict,
 		textSizeMultiplier,
+		textSizeInfo,
 	};
 });
