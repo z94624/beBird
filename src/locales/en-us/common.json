@@ -3,6 +3,11 @@
 	"visitorStatistics-today": "Today",
 	"visitorStatistics-total": "Total",
 
+	"text-size-sm": "Small",
+	"text-size-md": "Medium (Default)",
+	"text-size-lg": "Large",
+	"text-size-xl": "Extra Large",
+
 	"version": "Release Notes",
 
 	"country": "Country",

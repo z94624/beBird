@@ -3,6 +3,11 @@
 	"visitorStatistics-today": "當日人次",
 	"visitorStatistics-total": "歷史人次",
 
+	"text-size-sm": "小",
+	"text-size-md": "正常 (預設)",
+	"text-size-lg": "大",
+	"text-size-xl": "極大",
+
 	"version": "版本",
 
 	"country": "國家",
