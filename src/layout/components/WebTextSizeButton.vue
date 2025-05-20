@@ -13,7 +13,7 @@
 					:active="value.multiplier === textSizeMultiplier"
 					class="items-center"
 					clickable
-					@click="textSizeMultiplier = value.multiplier"
+					@click="onSelectWebsiteTextSize(value)"
 				>
 					<q-icon
 						:name="value.icon"
@@ -41,6 +41,15 @@
 	const attrs: Partial<QBtnProps> = useAttrs();
 	const textSizeStore = useTextSizeStore();
 	const { textSizeDict, textSizeMultiplier, textSizeInfo } = toRefs(textSizeStore);
+
+	/**
+	 * 選擇網站字體大小
+	 */
+	const onSelectWebsiteTextSize = (dictVal: { multiplier: number; icon: string }) => {
+		const { multiplier } = dictVal;
+		textSizeMultiplier.value = multiplier;
+		localStorage.setItem('textSizeMultiplier', multiplier.toString());
+	};
 </script>
 
 <style lang="scss" scoped></style>
