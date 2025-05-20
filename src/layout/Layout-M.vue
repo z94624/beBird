@@ -65,7 +65,7 @@
 							<q-item-section avatar>
 								<WeatherIconVideo
 									:weatherType="weatherType"
-									width="1.875rem"
+									class="w-[1.875rem]"
 								/>
 							</q-item-section>
 							<q-item-section>{{ $t(WeatherTypeEnum.UNKNOWN) }}</q-item-section>
