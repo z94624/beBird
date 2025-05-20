@@ -1,4 +1,8 @@
 <template>
+	<!-- 
+		網站字體大小設計
+		影片：https://www.youtube.com/watch?v=yUUdhCpOCFY&t=750s
+	-->
 	<div
 		:style="{
 			fontSize: `${textSizeMultiplier}rem`,
