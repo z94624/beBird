@@ -27,14 +27,14 @@
 					<div class="flex items-center gap-1">
 						<WeatherIconVideo
 							:weatherType="WeatherItemEnum.SUNRISE"
-							width="2.5rem"
+							class="w-[2.5rem]"
 						/>
 						<span>{{ data.sunriseTime.slice(0, -3) }}</span>
 					</div>
 					<div class="flex items-center gap-1">
 						<WeatherIconVideo
 							:weatherType="WeatherItemEnum.SUNSET"
-							width="2.5rem"
+							class="w-[2.5rem]"
 						/>
 						<span>{{ data.sunsetTime.slice(0, -3) }}</span>
 					</div>
@@ -90,14 +90,14 @@
 			>
 				<WeatherIconVideo
 					:weatherType="isMetric ? WeatherItemEnum.C : WeatherItemEnum.F"
-					width="2.5rem"
+					class="w-[2.5rem]"
 				/>
 			</BaseToggle>
 			<!-- 觀測時間 -->
 			<div class="flex items-center gap-1">
 				<WeatherIconVideo
 					:weatherType="WeatherItemEnum.OBS_TIME"
-					width="2.5rem"
+					class="w-[2.5rem]"
 				/>
 				<span>{{ getFormattedDateTime(data.observationDatetime) }}</span>
 			</div>
