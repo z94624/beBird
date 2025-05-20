@@ -13,22 +13,27 @@ import { TextSizeEnum } from '@/models/enum/styleEnum';
 export const useTextSizeStore = defineStore('textSize', () => {
 	// 字體大小字典
 	const textSizeDict: IMap<{
+		nick: string;
 		multiplier: number;
 		icon: string;
 	}> = {
 		[TextSizeEnum.SM]: {
+			nick: 'sm',
 			multiplier: 0.5,
 			icon: mdiSizeS,
 		},
 		[TextSizeEnum.MD]: {
+			nick: 'md',
 			multiplier: 1,
 			icon: mdiSizeM,
 		},
 		[TextSizeEnum.LG]: {
+			nick: 'lg',
 			multiplier: 2,
 			icon: mdiSizeL,
 		},
 		[TextSizeEnum.XL]: {
+			nick: 'xl',
 			multiplier: 4,
 			icon: mdiSizeXl,
 		},
@@ -46,6 +51,7 @@ export const useTextSizeStore = defineStore('textSize', () => {
 	const textSizeInfo = computed(
 		(): {
 			name: string;
+			nickName: string;
 			multiplier: number;
 			icon: string;
 		} => {
@@ -54,6 +60,7 @@ export const useTextSizeStore = defineStore('textSize', () => {
 			)!;
 			return {
 				name: item[0],
+				nickName: item[1].nick,
 				multiplier: item[1].multiplier,
 				icon: item[1].icon,
 			};

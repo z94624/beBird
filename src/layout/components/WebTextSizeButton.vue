@@ -45,7 +45,11 @@
 	/**
 	 * 選擇網站字體大小
 	 */
-	const onSelectWebsiteTextSize = (dictVal: { multiplier: number; icon: string }) => {
+	const onSelectWebsiteTextSize = (dictVal: {
+		nick: string;
+		multiplier: number;
+		icon: string;
+	}) => {
 		const { multiplier } = dictVal;
 		textSizeMultiplier.value = multiplier;
 		localStorage.setItem('textSizeMultiplier', multiplier.toString());

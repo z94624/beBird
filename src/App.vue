@@ -3,6 +3,7 @@
 		:style="{
 			fontSize: `${textSizeMultiplier}rem`,
 		}"
+		:data-text-size="[textSizeInfo.nickName]"
 	>
 		<!-- 下雪公元 -->
 		<Snow v-if="checkIsInChristmasSeason()" />
@@ -25,7 +26,7 @@
 
 	const { isMobile } = usePlatform();
 	const textSizeStore = useTextSizeStore();
-	const { textSizeMultiplier } = toRefs(textSizeStore);
+	const { textSizeMultiplier, textSizeInfo } = toRefs(textSizeStore);
 </script>
 
 <style lang="scss">
