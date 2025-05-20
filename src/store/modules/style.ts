@@ -17,7 +17,7 @@ export const useTextSizeStore = defineStore('textSize', () => {
 		icon: string;
 	}> = {
 		[TextSizeEnum.SM]: {
-			multiplier: 0.8,
+			multiplier: 0.5,
 			icon: mdiSizeS,
 		},
 		[TextSizeEnum.MD]: {
@@ -25,11 +25,11 @@ export const useTextSizeStore = defineStore('textSize', () => {
 			icon: mdiSizeM,
 		},
 		[TextSizeEnum.LG]: {
-			multiplier: 1.2,
+			multiplier: 2,
 			icon: mdiSizeL,
 		},
 		[TextSizeEnum.XL]: {
-			multiplier: 1.4,
+			multiplier: 4,
 			icon: mdiSizeXl,
 		},
 	};
