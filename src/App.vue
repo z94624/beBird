@@ -3,12 +3,7 @@
 		網站字體大小設計
 		影片：https://www.youtube.com/watch?v=yUUdhCpOCFY&t=750s
 	-->
-	<div
-		:style="{
-			fontSize: `${textSizeMultiplier}rem`,
-		}"
-		:data-text-size="[textSizeInfo.nickName]"
-	>
+	<div :data-text-size="textSizeInfo.nickName">
 		<!-- 下雪公元 -->
 		<Snow v-if="checkIsInChristmasSeason()" />
 
@@ -30,7 +25,7 @@
 
 	const { isMobile } = usePlatform();
 	const textSizeStore = useTextSizeStore();
-	const { textSizeMultiplier, textSizeInfo } = toRefs(textSizeStore);
+	const { textSizeInfo } = toRefs(textSizeStore);
 </script>
 
 <style lang="scss">

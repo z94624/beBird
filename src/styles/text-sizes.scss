@@ -1,0 +1,49 @@
+// text size options & multipliers
+$text-size-options: (
+	'sm': 0.5,
+	'md': 1,
+	'lg': 2,
+	'xl': 4,
+);
+
+// variable text size classes
+@each $text-size, $multiplier in $text-size-options {
+	[data-text-size='#{$text-size}'] {
+		font-size: #{$multiplier}rem;
+
+		// Input
+		.q-input {
+			.q-field__control {
+				min-height: 2.5rem;
+				height: unset;
+			}
+			.q-field__native {
+				font-size: #{$multiplier}rem;
+				line-height: #{1.75 * $multiplier}rem;
+			}
+		}
+
+		// Textarea
+		.q-textarea {
+			.q-field__native {
+				font-size: #{$multiplier}rem;
+				line-height: #{1.125 * $multiplier}rem;
+			}
+		}
+
+		// Select
+		.q-select {
+			.q-field__control-container {
+				padding-top: #{1.5 * $multiplier}rem !important;
+			}
+			.q-field__native {
+				font-size: #{$multiplier}rem;
+				line-height: #{1.125 * $multiplier}rem;
+			}
+			.q-field__label {
+				top: #{1.125 * $multiplier}rem;
+				font-size: #{$multiplier}rem;
+			}
+		}
+	}
+}
