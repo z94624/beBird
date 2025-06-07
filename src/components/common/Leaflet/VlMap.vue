@@ -33,7 +33,7 @@
 			v-model="searchDrawerOpen"
 			behavior="mobile"
 			bordered
-			class="p-3"
+			class="p-4"
 			overlay
 			side="right"
 		>
@@ -394,7 +394,7 @@
 		@extend .map-top-right;
 
 		min-width: 15.625rem;
-		padding: 0.75rem;
+		padding: 1rem;
 		background-color: rgba($color: #fff, $alpha: 0.75);
 	}
 	.researchBtn {
