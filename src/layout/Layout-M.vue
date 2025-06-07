@@ -107,7 +107,7 @@
 								inset
 								vertical
 							/>
-							<BaseButton
+							<WebTextSizeButton
 								class="flex-1"
 								flat
 							/>
@@ -136,6 +136,7 @@
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import WebLangButton from './components/WebLangButton.vue';
+	import WebTextSizeButton from './components/WebTextSizeButton.vue';
 
 	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
