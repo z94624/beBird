@@ -2,5 +2,9 @@
 	"ago": "days ago",
 	"today": "Today",
 
+	"info_map": "Map",
+	"info_checklist": "Checklist",
+	"info_note": "Note",
+	"info_source": "Source",
 	"info_listInfoCopied": "The checklist info is copied"
 }
