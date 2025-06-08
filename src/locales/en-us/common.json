@@ -1,6 +1,9 @@
 {
 	"colon": ": ",
 
+	"copyToClipboard": "Copy",
+	"shareToApps": "More",
+
 	"visitorStatistics-online": "Online",
 	"visitorStatistics-today": "Today",
 	"visitorStatistics-total": "Total",

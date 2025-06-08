@@ -13,6 +13,8 @@ import ebirdEnUs from '@/locales/en-us/ebird.json';
 import ebirdZhTw from '@/locales/zh-tw/ebird.json';
 import contactEnUs from '@/locales/en-us/contact.json';
 import contactZhTw from '@/locales/zh-tw/contact.json';
+import socialMediaEnUs from '@/locales/en-us/socialMedia.json';
+import socialMediaZhTw from '@/locales/zh-tw/socialMedia.json';
 
 /**
  * 取得國家語系代碼
@@ -40,14 +42,16 @@ const i18n = createI18n({
 			routerEnUs,
 			weatherEnUs,
 			ebirdEnUs,
-			contactEnUs
+			contactEnUs,
+			socialMediaEnUs
 		),
 		[WebLangEnum.TAIWAN]: mergeDictionaries(
 			commonZhTw,
 			routerZhTw,
 			weatherZhTw,
 			ebirdZhTw,
-			contactZhTw
+			contactZhTw,
+			socialMediaZhTw
 		),
 	},
 });
