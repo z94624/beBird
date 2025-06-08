@@ -148,54 +148,54 @@
 	const mediaList: IMedia[] = [
 		{
 			icon: 'content_copy',
-			name: 'Copy',
+			name: t('copyToClipboard'),
 			onClick: onCopyToClipboard,
 		},
 		{
 			icon: mdiGmail,
 			iconColor: '#d44638',
-			name: 'Email',
+			name: t('email'),
 			network: 'email',
 		},
 		{
 			icon: mdiFacebook,
 			iconColor: '#1877F2',
-			name: 'Facebook',
+			name: t('facebook'),
 			network: 'facebook',
 		},
 		{
 			icon: MessengerLogo,
 			customIcon: true,
-			name: 'Messenger',
+			name: t('messenger'),
 			network: 'messenger',
 		},
 		{
 			icon: LineLogo,
 			customIcon: true,
-			name: 'LINE',
+			name: t('line'),
 			network: 'line',
 		},
 		{
 			icon: TwitterLogo,
 			customIcon: true,
-			name: 'Twitter',
+			name: t('twitter'),
 			network: 'twitter',
 		},
 		{
 			icon: TelegramLogo,
 			customIcon: true,
-			name: 'Telegram',
+			name: t('telegram'),
 			network: 'telegram',
 		},
 		{
 			icon: SkypeLogo,
 			customIcon: true,
-			name: 'Skype',
+			name: t('skype'),
 			network: 'skype',
 		},
 		{
 			icon: 'more_horiz',
-			name: 'More',
+			name: t('shareToApps'),
 			onClick: activateWebShareAPI,
 		},
 	];
