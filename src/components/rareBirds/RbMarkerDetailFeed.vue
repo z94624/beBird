@@ -74,13 +74,14 @@
 	import { useProductStore } from '@/store/modules/product';
 	import { extractTextFromHtml } from '@/utils/convert';
 	import { getGoogleMapsPlaceURL } from '@/utils/ebird';
+	import { WebLangEnum } from '@/models/enum/languageEnum';
 
 	const props = defineProps<{
 		notableObs?: IDATAOBSGetRecentNotableObsInRegionItem;
 		userComName?: string;
 	}>();
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
 	const { copy } = useClipboard();
 	const { $notify } = useQuasarTool();
 	const productStore = useProductStore();
@@ -101,13 +102,13 @@
 		if (!obs.value) return '';
 		const { comName, howMany, obsDt, locName, lat, lng } = obs.value;
 		const mapUrl = getGoogleMapsPlaceURL(lat, lng);
-		return `${props.userComName} (${comName}) (${howMany})<br />
+		return `${locale.value === WebLangEnum.AMERICA ? comName : `${props.userComName} (${comName})`} (${howMany})<br />
 - ${obsDt} by ${checklistInfo.value?.userDisplayName}<br />
 - ${locName}<br />
-- Map: <a href="${mapUrl}">${mapUrl}</a><br />
-- checklist: <a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
-- Note: ${notableDetail.value?.comments}<br />
-(Source: <a href="https://z94624.github.io/beBird/">https://z94624.github.io/beBird/</a>)`;
+- ${t('info_map')}${t('colon')}<a href="${mapUrl}">${mapUrl}</a><br />
+- ${t('info_checklist')}${t('colon')}<a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
+- ${t('info_note')}${t('colon')}${notableDetail.value?.comments}<br />
+(${t('info_source')}${t('colon')}<a href="https://z94624.github.io/beBird/">https://z94624.github.io/beBird</a>)`;
 	});
 	const descTEXT = computed(() => extractTextFromHtml(descHTML.value));
 
