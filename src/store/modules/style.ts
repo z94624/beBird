@@ -1,8 +1,7 @@
 import { computed, ref } from 'vue';
-import { QSelectOption } from 'quasar';
 import { defineStore } from 'pinia';
 
-import { mdiSizeS, mdiSizeM, mdiSizeL, mdiSizeXl } from '@quasar/extras/mdi-v7';
+import { mdiSizeM, mdiSizeL, mdiSizeXl } from '@quasar/extras/mdi-v7';
 
 import { IMap } from '@/models/common/base';
 import { TextSizeEnum } from '@/models/enum/styleEnum';
@@ -17,11 +16,6 @@ export const useTextSizeStore = defineStore('textSize', () => {
 		multiplier: number;
 		icon: string;
 	}> = {
-		[TextSizeEnum.SM]: {
-			nick: 'sm',
-			multiplier: 0.5,
-			icon: mdiSizeS,
-		},
 		[TextSizeEnum.MD]: {
 			nick: 'md',
 			multiplier: 1,

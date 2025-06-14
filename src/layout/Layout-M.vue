@@ -143,6 +143,7 @@
 
 	import { useLeafletStore } from '@/store/modules/geodata';
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
+	import { useTextSizeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
 	import { versionList } from '@/layout/utils';
 	import {
@@ -161,6 +162,8 @@
 	const { sunResult, diel } = toRefs(sunrisetStore);
 	const tomorrowStore = useTomorrowStore();
 	const { obsResult, obsTime } = toRefs(tomorrowStore);
+	const textSizeStore = useTextSizeStore();
+	const { textSizeMultiplier } = toRefs(textSizeStore);
 
 	const drawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');
@@ -261,8 +264,8 @@
 
 <style lang="scss" scoped>
 	.logoText {
-		font-size: 2.25rem;
-		line-height: 2.5rem;
+		font-size: calc(2.25rem * v-bind(textSizeMultiplier));
+		line-height: calc(2.5rem * v-bind(textSizeMultiplier));
 		font-weight: bold;
 	}
 </style>

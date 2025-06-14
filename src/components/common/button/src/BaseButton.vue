@@ -16,9 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, useAttrs, useSlots } from 'vue';
+	import { computed, toRefs, useAttrs, useSlots } from 'vue';
 	import { QBtn, QBtnProps } from 'quasar';
 
+	import { useTextSizeStore } from '@/store/modules/style';
 	import { getContrastColor } from '@/utils/convert';
 
 	const props = withDefaults(
@@ -39,6 +40,8 @@
 
 	const attrs: Partial<QBtnProps> = useAttrs();
 	const slots: Partial<QBtn> = useSlots();
+	const textSizeStore = useTextSizeStore();
+	const { textSizeMultiplier } = toRefs(textSizeStore);
 
 	const getBindingValues = computed(() => {
 		return {
@@ -65,8 +68,8 @@
 <style lang="scss" scoped>
 	.baseButton {
 		font-weight: 700;
-		font-size: 0.9rem;
-		line-height: 1;
+		font-size: calc(0.9rem * v-bind(textSizeMultiplier));
+		line-height: calc(1rem * v-bind(textSizeMultiplier));
 		border: 0.0625rem solid transparent;
 	}
 </style>

@@ -25,9 +25,42 @@
 
 	const { isMobile } = usePlatform();
 	const textSizeStore = useTextSizeStore();
-	const { textSizeInfo } = toRefs(textSizeStore);
+	const { textSizeMultiplier, textSizeInfo } = toRefs(textSizeStore);
 </script>
 
 <style lang="scss">
 	@import 'styles/index';
+
+	.comName-font {
+		// Tailwind: text-xs
+		font-size: calc(1.125rem * v-bind(textSizeMultiplier));
+		line-height: calc(1.75rem * v-bind(textSizeMultiplier));
+	}
+	.sciName-font {
+		// Tailwind: text-lg
+		font-size: calc(0.75rem * v-bind(textSizeMultiplier));
+		line-height: calc(1rem * v-bind(textSizeMultiplier));
+	}
+
+	.q-tabs {
+		&.layoutHeaderTabs {
+			.q-tab {
+				.q-tab__content {
+					.q-tab__label {
+						font-size: calc(1.0625rem * v-bind(textSizeMultiplier));
+					}
+				}
+			}
+		}
+	}
+
+	.q-list {
+		&.layoutMenuList {
+			.q-item {
+				.q-item__section--main {
+					font-size: calc(1.0625rem * v-bind(textSizeMultiplier));
+				}
+			}
+		}
+	}
 </style>
