@@ -74,7 +74,7 @@
 	import { useProductStore } from '@/store/modules/product';
 	import { extractTextFromHtml } from '@/utils/convert';
 	import { getGoogleMapsPlaceURL } from '@/utils/ebird';
-	import { WebLangEnum } from '@/models/enum/languageEnum';
+	import { WebLangEnum } from '@/models/enum/language';
 
 	const props = defineProps<{
 		notableObs?: IDATAOBSGetRecentNotableObsInRegionItem;
