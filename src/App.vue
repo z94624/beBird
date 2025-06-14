@@ -31,6 +31,9 @@
 <style lang="scss">
 	@import 'styles/index';
 
+	/**
+		* 網站字體大小
+		*/
 	.comName-font {
 		// Tailwind: text-xs
 		font-size: calc(1.125rem * v-bind(textSizeMultiplier));
