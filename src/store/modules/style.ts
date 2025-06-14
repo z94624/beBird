@@ -29,12 +29,12 @@ export const useTextSizeStore = defineStore('textSize', () => {
 		},
 		[TextSizeEnum.LG]: {
 			nick: 'lg',
-			multiplier: 2,
+			multiplier: 1.5,
 			icon: mdiSizeL,
 		},
 		[TextSizeEnum.XL]: {
 			nick: 'xl',
-			multiplier: 4,
+			multiplier: 2,
 			icon: mdiSizeXl,
 		},
 	};
