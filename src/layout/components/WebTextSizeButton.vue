@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { toRefs, useAttrs } from 'vue';
+	import { toRefs, useAttrs, watch } from 'vue';
 	import { QBtnProps } from 'quasar';
 
 	import { useTextSizeStore } from '@/store/modules/style';
@@ -54,6 +54,20 @@
 		textSizeMultiplier.value = multiplier;
 		localStorage.setItem('textSizeMultiplier', multiplier.toString());
 	};
+
+	/**
+	 * 'data-text-size' attribute 必須設定在 body
+	 * 否則如跳窗透過 portal 方式將無法設定
+	 */
+	watch(
+		textSizeInfo,
+		(nv) => {
+			document.querySelector('body')?.setAttribute('data-text-size', nv.nickName);
+		},
+		{
+			immediate: true,
+		}
+	);
 </script>
 
 <style lang="scss" scoped></style>

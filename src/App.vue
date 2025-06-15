@@ -3,7 +3,7 @@
 		網站字體大小設計
 		影片：https://www.youtube.com/watch?v=yUUdhCpOCFY&t=750s
 	-->
-	<div :data-text-size="textSizeInfo.nickName">
+	<div>
 		<!-- 下雪公元 -->
 		<Snow v-if="checkIsInChristmasSeason()" />
 
@@ -15,17 +15,13 @@
 </template>
 
 <script lang="ts" setup>
-	import { toRefs } from 'vue';
 	import Layout from '@/layout/Layout.vue';
 	import LayoutM from '@/layout/Layout-M.vue';
 
 	import { usePlatform } from '@/hooks/platform';
-	import { useTextSizeStore } from '@/store/modules/style';
 	import { checkIsInChristmasSeason } from './utils/date';
 
 	const { isMobile } = usePlatform();
-	const textSizeStore = useTextSizeStore();
-	const { textSizeInfo } = toRefs(textSizeStore);
 </script>
 
 <style lang="scss">
