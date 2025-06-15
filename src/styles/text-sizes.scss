@@ -110,5 +110,61 @@ $text-size-options: (
 				font-size: #{$multiplier}rem;
 			}
 		}
+
+		/**
+		 * Tailwind
+		 */
+		.text-xs {
+			font-size: #{0.75 * $multiplier}rem;
+			line-height: #{$multiplier}rem;
+		}
+		.text-sm {
+			font-size: #{0.875 * $multiplier}rem;
+			line-height: #{1.25 * $multiplier}rem;
+		}
+		.text-base {
+			font-size: #{$multiplier}rem;
+			line-height: #{1.5 * $multiplier}rem;
+		}
+		.text-lg {
+			font-size: #{1.125 * $multiplier}rem;
+			line-height: #{1.75 * $multiplier}rem;
+		}
+		.text-xl {
+			font-size: #{1.25 * $multiplier}rem;
+			line-height: #{1.75 * $multiplier}rem;
+		}
+		.text-2xl {
+			font-size: #{1.5 * $multiplier}rem;
+			line-height: #{2 * $multiplier}rem;
+		}
+		.text-3xl {
+			font-size: #{1.875 * $multiplier}rem;
+			line-height: #{2.25 * $multiplier}rem;
+		}
+		.text-4xl {
+			font-size: #{2.25 * $multiplier}rem;
+			line-height: #{2.5 * $multiplier}rem;
+		}
+		.text-5xl {
+			font-size: #{3 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-6xl {
+			font-size: #{3.75 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-7xl {
+			font-size: #{4.5 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-8xl {
+			font-size: #{6 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-9xl {
+			font-size: #{8 * $multiplier}rem;
+			line-height: 1;
+		}
 	}
 }
