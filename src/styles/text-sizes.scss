@@ -10,6 +10,72 @@ $text-size-options: (
 	[data-text-size='#{$text-size}'] {
 		font-size: #{$multiplier}rem;
 
+		/**
+		 * 自訂(原 SCSS 檔裡)
+		 */
+		// 俗名字體
+		.comName-font {
+			// Tailwind: text-lg
+			font-size: #{1.125 * $multiplier}rem;
+			line-height: #{1.75 * $multiplier}rem;
+		}
+		// 學名字體
+		.sciName-font {
+			// Tailwind: text-xs
+			font-size: #{0.75 * $multiplier}rem;
+			line-height: #{$multiplier}rem;
+		}
+
+		// Layout Header 選單
+		// 電腦版
+		.q-tabs {
+			&.layoutHeaderTabs {
+				.q-tab {
+					.q-tab__content {
+						.q-tab__label {
+							font-size: #{1.0625 * $multiplier}rem;
+						}
+					}
+				}
+			}
+		}
+		// 手機版
+		.q-list {
+			&.layoutMenuList {
+				.q-item {
+					.q-item__section--main {
+						font-size: #{1.0625 * $multiplier}rem;
+					}
+				}
+			}
+		}
+
+		/**
+		 * 自訂(原 VUE 檔裡)
+		 */
+		// Layout/Layout-M
+		.logoText {
+			font-size: #{2.25 * $multiplier}rem;
+			line-height: #{2.5 * $multiplier}rem;
+		}
+
+		// BaseButton
+		.baseButton {
+			font-size: #{0.9 * $multiplier}rem;
+			line-height: #{$multiplier}rem;
+		}
+
+		// VlPopup
+		.popupCard {
+			.remark {
+				font-size: #{0.625 * $multiplier}rem;
+				line-height: #{0.75 * $multiplier}rem;
+			}
+		}
+
+		/**
+		 * Quasar
+		 */
 		// Input
 		.q-input {
 			.q-field__control {

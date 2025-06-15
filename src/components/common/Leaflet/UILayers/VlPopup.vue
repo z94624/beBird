@@ -54,12 +54,10 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, toRefs, useAttrs, useSlots } from 'vue';
+	import { computed, useAttrs, useSlots } from 'vue';
 	import { LPopup } from '@vue-leaflet/vue-leaflet';
 	import { PopupOptions } from 'leaflet';
 	import { mdiCarArrowRight } from '@quasar/extras/mdi-v7';
-
-	import { useTextSizeStore } from '@/store/modules/style';
 
 	const emit = defineEmits<{
 		(e: 'detail'): void;
@@ -72,8 +70,6 @@
 
 	const attrs = useAttrs();
 	const slots = useSlots();
-	const textSizeStore = useTextSizeStore();
-	const { textSizeMultiplier } = toRefs(textSizeStore);
 
 	const popupOptions = computed(() => ({
 		offset: [0, -25],
@@ -86,9 +82,8 @@
 	.popupCard {
 		border-radius: 0.75rem;
 
+		// 字體大小 text-sizes.scss
 		.remark {
-			font-size: calc(0.625rem * v-bind(textSizeMultiplier));
-			line-height: calc(0.75rem * v-bind(textSizeMultiplier));
 			color: var(--q-secondaryLight_e);
 		}
 	}

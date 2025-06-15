@@ -93,7 +93,6 @@
 	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
 	import { useLeafletStore } from '@/store/modules/geodata';
-	import { useTextSizeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
 	import { versionList } from '@/layout/utils';
 	import { PageEnum } from '@/models/enum/pageEnum';
@@ -102,8 +101,6 @@
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
-	const textSizeStore = useTextSizeStore();
-	const { textSizeMultiplier } = toRefs(textSizeStore);
 
 	const versionDialogRef = ref();
 
@@ -123,9 +120,8 @@
 </script>
 
 <style lang="scss" scoped>
+	// 字體大小 text-sizes.scss
 	.logoText {
-		font-size: calc(2.25rem * v-bind(textSizeMultiplier));
-		line-height: calc(2.5rem * v-bind(textSizeMultiplier));
 		font-weight: bold;
 	}
 </style>

@@ -4,7 +4,7 @@
 		@close="close"
 	>
 		<template #title>
-			<div class="flex no-wrap gap-1">
+			<div class="flex no-wrap items-center gap-1">
 				<div class="text-3xl">{{ userComName }}</div>
 				<div class="flex flex-col">
 					<div class="text-xs italic">{{ obs?.sciName ?? '' }}</div>
