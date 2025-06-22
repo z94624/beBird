@@ -60,10 +60,16 @@ export const useTextSizeStore = defineStore('textSize', () => {
 			};
 		}
 	);
+	const isTextSizeMd = computed(() => textSizeInfo.value.name === TextSizeEnum.MD);
+	const isTextSizeLg = computed(() => textSizeInfo.value.name === TextSizeEnum.LG);
+	const isTextSizeXl = computed(() => textSizeInfo.value.name === TextSizeEnum.XL);
 
 	return {
 		textSizeDict,
 		textSizeMultiplier,
 		textSizeInfo,
+		isTextSizeMd,
+		isTextSizeLg,
+		isTextSizeXl,
 	};
 });

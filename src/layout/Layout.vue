@@ -7,8 +7,8 @@
 			>
 				<q-toolbar>
 					<q-toolbar-title
-						:shrink="true"
 						class="cursor-pointer"
+						style="flex: 0 0 auto"
 					>
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-accent">e</span>
