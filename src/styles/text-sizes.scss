@@ -112,12 +112,13 @@ $text-size-options: (
 		}
 
 		// Tabs
-		// 分頁箭頭
+		// 電腦版：分頁箭頭
 		.q-tabs__arrow {
 			font-size: #{2 * $multiplier}rem;
 		}
 
 		// List and List Items
+		// 手機版：分頁圖示
 		.q-item__section--side > .q-icon {
 			font-size: #{1.5 * $multiplier}rem;
 		}
