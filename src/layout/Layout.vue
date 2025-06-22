@@ -19,6 +19,9 @@
 						align="left"
 						class="layoutHeaderTabs"
 						inline-label
+						no-caps
+						outside-arrows
+						stretch
 					>
 						<q-route-tab
 							v-for="(menuItem, mIdx) in menuList"
