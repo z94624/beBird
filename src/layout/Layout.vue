@@ -35,43 +35,22 @@
 
 					<q-space />
 
-					<div class="flex no-wrap items-center gap-1">
-						<!-- 天氣 -->
-						<WeatherButton
-							:lat="mapCenter.lat.toString()"
-							:lng="mapCenter.lng.toString()"
-							height="2.6rem"
-							padding="0.4375rem"
-							width="2.6rem"
-						/>
-
-						<!-- 人次 -->
-						<BaseButton
-							:icon="fasUsers"
-							round
-							text-color="primary"
-						>
-							<q-tooltip class="bg-white">
-								<VisitorsBillboard />
-							</q-tooltip>
-						</BaseButton>
-
-						<!-- 版本 -->
-						<BaseButton
-							:label="`v${versionList[0].version}`"
-							rounded
-							text-color="primary"
-							@click="onOpenVersionDialog"
-						/>
-
-						<!-- 網站語言 -->
-						<WebLangButton
-							padding="0"
-							rounded
-						/>
-
-						<!-- 網站字體大小 -->
-						<WebTextSizeButton round />
+					<!-- 功能按鈕集 -->
+					<!-- 字體極大時，以 Floating Action Button 顯示 -->
+					<q-fab
+						v-if="isTextSizeXl"
+						id="layoutFeatureButton"
+						direction="left"
+						icon="extension"
+					>
+						<LayoutFeatureButtonSet @click-version-button="onOpenVersionDialog" />
+					</q-fab>
+					<!-- 字體非極大時，以展開顯示 -->
+					<div
+						v-else
+						class="flex no-wrap items-center gap-1"
+					>
+						<LayoutFeatureButtonSet @click-version-button="onOpenVersionDialog" />
 					</div>
 				</q-toolbar>
 			</q-header>
@@ -88,22 +67,16 @@
 <script lang="ts" setup>
 	import { ref, toRefs } from 'vue';
 	import { useRouter } from 'vue-router';
-	import WeatherButton from './components/weather/WeatherButton.vue';
-	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
+	import LayoutFeatureButtonSet from './components/LayoutFeatureButtonSet.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
-	import WebLangButton from './components/WebLangButton.vue';
-	import WebTextSizeButton from './components/WebTextSizeButton.vue';
-	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
-	import { useLeafletStore } from '@/store/modules/geodata';
+	import { useTextSizeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
-	import { versionList } from '@/layout/utils';
 	import { PageEnum } from '@/models/enum/pageEnum';
 
 	const router = useRouter();
-	// Leaflet Store
-	const leafletStore = useLeafletStore();
-	const { mapCenter } = toRefs(leafletStore);
+	const textSizeStore = useTextSizeStore();
+	const { isTextSizeXl } = toRefs(textSizeStore);
 
 	const versionDialogRef = ref();
 

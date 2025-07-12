@@ -52,6 +52,16 @@
 	}
 }
 
+// Layout 功能按鈕集
+// 電腦版
+.q-fab {
+	&#layoutFeatureButton {
+		.q-fab__actions {
+			background-color: white;
+		}
+	}
+}
+
 .q-scrollarea {
 	&.cuScrollArea {
 		.q-scrollarea__content {
