@@ -26,11 +26,7 @@
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
 
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
-	import {
-		weatherDataDict,
-		getWeatherTypeWithCode_tomorrow,
-		getWeatherTypeWithoutCode_tomorrow,
-	} from './utils';
+	import { getWeatherTypeWithCode_tomorrow, getWeatherTypeWithoutCode_tomorrow } from './utils';
 	import { WeatherPanelInfo } from './types';
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 

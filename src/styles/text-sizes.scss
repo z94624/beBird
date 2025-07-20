@@ -50,6 +50,14 @@ $text-size-options: (
 			}
 		}
 
+		// Country Flag 國旗
+		.flag {
+			transform: scale(#{0.5 * $multiplier}) !important;
+			-ms-transform: scale(#{0.5 * $multiplier}) !important;
+			-webkit-transform: scale(#{0.5 * $multiplier}) !important;
+			-moz-transform: scale(#{0.5 * $multiplier}) !important;
+		}
+
 		/**
 		 * 自訂(原 VUE 檔裡)
 		 */
