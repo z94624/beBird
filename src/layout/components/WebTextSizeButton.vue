@@ -15,17 +15,22 @@
 					clickable
 					@click="onSelectWebsiteTextSize(value)"
 				>
-					<q-icon
-						:name="value.icon"
-						:size="`calc(2.4rem * ${value.multiplier})`"
-					/>
-					<span
-						:style="{
-							fontSize: `${value.multiplier}rem`,
-						}"
-					>
-						{{ $t(name) }}
-					</span>
+					<q-item-section avatar>
+						<q-icon
+							:name="value.icon"
+							:size="`calc(2.4rem * ${value.multiplier})`"
+						/>
+					</q-item-section>
+
+					<q-item-section>
+						<span
+							:style="{
+								fontSize: `${value.multiplier}rem`,
+							}"
+						>
+							{{ $t(name) }}
+						</span>
+					</q-item-section>
 				</q-item>
 			</q-list>
 		</q-menu>
