@@ -131,6 +131,11 @@ $text-size-options: (
 			font-size: #{1.5 * $multiplier}rem;
 		}
 
+		// Tooltip
+		.q-tooltip {
+			font-size: #{$multiplier}rem;
+		}
+
 		/**
 		 * Tailwind
 		 */
