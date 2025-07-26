@@ -84,11 +84,6 @@
 							</q-item-section>
 						</q-item>
 
-						<!-- 人次 -->
-						<q-item>
-							<VisitorsBillboard />
-						</q-item>
-
 						<!-- 網站語言 / 日夜模式 / 字體大小 -->
 						<q-item class="!p-0">
 							<WebLangButton
@@ -111,6 +106,11 @@
 								class="flex-1"
 								flat
 							/>
+						</q-item>
+
+						<!-- 人次 -->
+						<q-item>
+							<VisitorsBillboard />
 						</q-item>
 					</q-list>
 				</q-scroll-area>

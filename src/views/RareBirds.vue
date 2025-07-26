@@ -102,7 +102,6 @@
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
-	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
 	import { getDateDiffFromNow, getGoogleMapsPlaceURL } from '@/utils/ebird';
 
