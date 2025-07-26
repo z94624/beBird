@@ -22,7 +22,7 @@ export const useTaxonomyStore = defineStore('taxonomy', () => {
 	 * @returns 分類
 	 */
 	const getEbirdTaxonomyInfo = async (species: string) => {
-		$loading.on();
+		// $loading.on();
 		return getEbirdTaxonomyApi(
 			new REFTAXGetEbirdTaxonomyReq({
 				locale: locale.value as LocaleEnum,
@@ -43,7 +43,7 @@ export const useTaxonomyStore = defineStore('taxonomy', () => {
 				return Promise.reject(_msg);
 			})
 			.finally(() => {
-				$loading.off();
+				// $loading.off();
 			});
 	};
 

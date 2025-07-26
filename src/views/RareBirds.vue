@@ -216,7 +216,7 @@
 	 * 取得近期稀有鳥紀錄
 	 */
 	const getRecentNotableObsInRegionInfo = () => {
-		$loading.on();
+		// $loading.on();
 		// 資料更新按鈕
 		mapRef.value && mapRef.value.setUpdateLoadingState(true);
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
@@ -232,7 +232,7 @@
 				$notify.error('失敗：取得近期稀有鳥紀錄');
 			})
 			.finally(() => {
-				$loading.off();
+				// $loading.off();
 				// 資料更新按鈕
 				mapRef.value && mapRef.value.setUpdateLoadingState(false);
 			});

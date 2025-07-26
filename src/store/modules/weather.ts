@@ -36,7 +36,7 @@ export const useSunrisetStore = defineStore('sunriset', () => {
 	 * 取得特定日期的日出日落時間
 	 */
 	const getSunriseSunsetTimesInfo = (req: SUNRISETGetSunriseSunsetTimesReq) => {
-		$loading.on();
+		// $loading.on();
 		return getSunriseSunsetTimesApi(req)
 			.then((res) => {
 				sunResult.value = res.results;
@@ -48,7 +48,7 @@ export const useSunrisetStore = defineStore('sunriset', () => {
 				return Promise.reject(_msg);
 			})
 			.finally(() => {
-				$loading.off();
+				// $loading.off();
 			});
 	};
 
@@ -79,7 +79,7 @@ export const useTomorrowStore = defineStore('tomorrow', () => {
 			req.units = unitSystem;
 		}
 
-		$loading.on();
+		// $loading.on();
 		return getRealtimeWeatherApi(req)
 			.then((res) => {
 				obsTime.value = res.data.time;
@@ -91,7 +91,7 @@ export const useTomorrowStore = defineStore('tomorrow', () => {
 				return Promise.reject(_msg);
 			})
 			.finally(() => {
-				$loading.off();
+				// $loading.off();
 			});
 	};
 
