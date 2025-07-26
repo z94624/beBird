@@ -106,16 +106,19 @@ $text-size-options: (
 
 		// Select
 		.q-select {
-			.q-field__control-container {
-				padding-top: #{1.5 * $multiplier}rem !important;
+			&.q-field--labeled {
+				.q-field__control-container {
+					padding-top: #{1.5 * $multiplier}rem !important;
+				}
+				.q-field__label {
+					top: #{1.125 * $multiplier}rem;
+					font-size: #{$multiplier}rem;
+				}
 			}
+
 			.q-field__native {
 				font-size: #{$multiplier}rem;
 				line-height: #{1.125 * $multiplier}rem;
-			}
-			.q-field__label {
-				top: #{1.125 * $multiplier}rem;
-				font-size: #{$multiplier}rem;
 			}
 		}
 
