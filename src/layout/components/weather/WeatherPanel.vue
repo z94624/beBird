@@ -99,7 +99,7 @@
 					:weatherType="WeatherItemEnum.OBS_TIME"
 					class="w-[2.5rem]"
 				/>
-				<span>{{ getFormattedDateTime(data.observationDatetime) }}</span>
+				<span>{{ getFormattedDateTime(data.observationDatetime, 'MM/DD HH:mm') }}</span>
 			</div>
 		</q-card-actions>
 	</q-card>

@@ -131,6 +131,18 @@ $text-size-options: (
 			font-size: #{1.5 * $multiplier}rem;
 		}
 
+		// Dialog
+		.q-dialog {
+			font-size: #{$multiplier}rem;
+		}
+
+		// Toolbar
+		.q-toolbar {
+			& > .q-toolbar__title {
+				font-size: #{1.3125 * $multiplier}rem;
+			}
+		}
+
 		// Tooltip
 		.q-tooltip {
 			font-size: #{$multiplier}rem;
