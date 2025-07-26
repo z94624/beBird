@@ -106,6 +106,7 @@ $text-size-options: (
 
 		// Select
 		.q-select {
+			// 有標題的
 			&.q-field--labeled {
 				.q-field__control-container {
 					padding-top: #{1.5 * $multiplier}rem !important;
@@ -116,6 +117,7 @@ $text-size-options: (
 				}
 			}
 
+			// 無標題的
 			.q-field__native {
 				font-size: #{$multiplier}rem;
 				line-height: #{1.125 * $multiplier}rem;
