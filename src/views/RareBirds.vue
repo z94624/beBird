@@ -52,7 +52,10 @@
 					</template>
 
 					<template #content>
-						<HrefButton :href="`https://ebird.org/species/${obs.speciesCode}`">
+						<HrefButton
+							:href="`https://ebird.org/species/${obs.speciesCode}`"
+							class="!w-full"
+						>
 							<q-badge
 								:label="`×${obs.howMany}`"
 								color="warning"

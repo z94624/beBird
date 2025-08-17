@@ -59,7 +59,12 @@
 		/>
 
 		<!-- 右下功能區 -->
-		<div class="bottomRightToolbar flex flex-col gap-1">
+		<div
+			:style="{
+				bottom: `calc(${boundaryGap} + ${isTextSizeMd ? '5.525rem' : isTextSizeLg ? '6.05rem' : '6.575rem'})`,
+			}"
+			class="bottomRightToolbar flex flex-col gap-1"
+		>
 			<BaseButton
 				:color="locateColor.color"
 				:text-color="locateColor.textColor"
@@ -175,7 +180,7 @@
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
 	const textSizeStore = useTextSizeStore();
-	const { isTextSizeMd, isTextSizeLg, textSizeMultiplier } = toRefs(textSizeStore);
+	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
 
 	const boundaryGap = ref('0.625rem');
 	const updateLoading = ref(false);
@@ -406,7 +411,6 @@
 
 	.map-bottom-right {
 		position: absolute;
-		bottom: 5.8125rem;
 		right: v-bind(boundaryGap);
 		z-index: 401;
 	}

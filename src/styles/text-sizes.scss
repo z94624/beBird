@@ -58,6 +58,15 @@ $text-size-options: (
 			-moz-transform: scale(#{0.5 * $multiplier}) !important;
 		}
 
+		// Leaflet
+		.leaflet-popup {
+			.leaflet-popup-content-wrapper {
+				.leaflet-popup-content {
+					min-width: #{12.5 * $multiplier}rem;
+				}
+			}
+		}
+
 		/**
 		 * 自訂(原 VUE 檔裡)
 		 */
@@ -218,6 +227,13 @@ $text-size-options: (
 		.text-9xl {
 			font-size: #{8 * $multiplier}rem;
 			line-height: 1;
+		}
+
+		/**
+		 * Leaflet
+		 */
+		.leaflet-container {
+			font-size: #{0.75 * $multiplier}rem !important;
 		}
 	}
 }
