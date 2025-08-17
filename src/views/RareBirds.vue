@@ -57,7 +57,7 @@
 							class="!w-full"
 						>
 							<q-badge
-								:label="`×${obs.howMany}`"
+								:label="`×${obs.howMany ?? '???'}`"
 								color="warning"
 								floating
 								rounded

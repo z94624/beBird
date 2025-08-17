@@ -62,7 +62,7 @@ $text-size-options: (
 		.leaflet-popup {
 			.leaflet-popup-content-wrapper {
 				.leaflet-popup-content {
-					min-width: #{12.5 * $multiplier}rem;
+					width: min(#{12.5 * $multiplier}rem, 90vw) !important;
 				}
 			}
 		}
@@ -234,6 +234,13 @@ $text-size-options: (
 		 */
 		.leaflet-container {
 			font-size: #{0.75 * $multiplier}rem !important;
+		}
+
+		.leaflet-control-attribution {
+			max-width: 70vw;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 	}
 }

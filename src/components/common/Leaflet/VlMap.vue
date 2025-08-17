@@ -95,10 +95,10 @@
 				<l-tile-layer
 					v-for="tileProvider in tileProviders"
 					:key="tileProvider.name"
+					:attribution="isMobile && !isTextSizeMd ? '© smoBEE' : '© 2024 smoBEE & Cake'"
 					:name="tileProvider.name"
 					:url="tileProvider.url"
 					:visible="tileProvider.visible"
-					attribution="© 2024 smoBEE & Cake"
 					layer-type="base"
 					@update:visible="tileProvider.onUpdateVisibility"
 				/>
