@@ -228,6 +228,42 @@ $text-size-options: (
 			font-size: #{8 * $multiplier}rem;
 			line-height: 1;
 		}
+		.text-h1 {
+			font-size: #{6 * $multiplier}rem;
+			line-height: #{6 * $multiplier}rem;
+			font-weight: 300;
+			letter-spacing: -0.01562em;
+		}
+		.text-h2 {
+			font-size: #{3.75 * $multiplier}rem;
+			line-height: #{3.75 * $multiplier}rem;
+			font-weight: 300;
+			letter-spacing: -0.00833em;
+		}
+		.text-h3 {
+			font-size: #{3 * $multiplier}rem;
+			line-height: #{3.125 * $multiplier}rem;
+			font-weight: 400;
+			letter-spacing: normal;
+		}
+		.text-h4 {
+			font-size: #{2.125 * $multiplier}rem;
+			line-height: #{2.5 * $multiplier}rem;
+			font-weight: 400;
+			letter-spacing: 0.00735em;
+		}
+		.text-h5 {
+			font-size: #{1.5 * $multiplier}rem;
+			line-height: #{2 * $multiplier}rem;
+			font-weight: 400;
+			letter-spacing: normal;
+		}
+		.text-h6 {
+			font-size: #{1.25 * $multiplier}rem;
+			line-height: #{2 * $multiplier}rem;
+			font-weight: 500;
+			letter-spacing: 0.0125em;
+		}
 
 		/**
 		 * Leaflet
