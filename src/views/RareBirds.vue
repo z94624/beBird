@@ -22,7 +22,7 @@
 				/>
 
 				<div>
-					<span>{{ $t('back') }}</span>
+					<span class="text-base">{{ $t('back') }}</span>
 					<DaysBackSlider v-model="notableObsForm.back" />
 				</div>
 			</q-form>

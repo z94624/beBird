@@ -8,7 +8,7 @@ $text-size-options: (
 // variable text size classes
 @each $text-size, $multiplier in $text-size-options {
 	[data-text-size='#{$text-size}'] {
-		font-size: #{$multiplier}rem;
+		font-size: #{$multiplier}rem !important;
 
 		/**
 		 * 自訂(原 SCSS 檔裡)
@@ -81,6 +81,12 @@ $text-size-options: (
 			}
 		}
 
+		// VlMap
+		.searchMenuContainer {
+			min-width: #{15.625 * $multiplier}rem;
+			padding: #{$multiplier}rem;
+		}
+
 		/**
 		 * Quasar
 		 */
@@ -122,6 +128,11 @@ $text-size-options: (
 				font-size: #{$multiplier}rem;
 				line-height: #{1.125 * $multiplier}rem;
 			}
+		}
+
+		// Slider
+		.q-slider__text {
+			font-size: #{0.75 * $multiplier}rem;
 		}
 
 		// Tabs

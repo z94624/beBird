@@ -47,7 +47,7 @@
 				top:
 					birdMorph === 'btn'
 						? `calc(${boundaryGap} + 3.6rem + 0.25rem)`
-						: `calc(${boundaryGap} + 15.25rem + 0.25rem)`,
+						: `calc(${boundaryGap} + ${isTextSizeMd ? '15.75rem' : isTextSizeLg ? '19.1875rem' : '23.35rem'} + 0.25rem)`,
 			}"
 			class="researchBtn"
 			color="secondary"
@@ -157,6 +157,7 @@
 
 	import { usePlatform } from '@/hooks/platform';
 	import { useLeafletStore } from '@/store/modules/geodata';
+	import { useTextSizeStore } from '@/store/modules/style';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	const emit = defineEmits<{
@@ -173,6 +174,8 @@
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
+	const textSizeStore = useTextSizeStore();
+	const { isTextSizeMd, isTextSizeLg, textSizeMultiplier } = toRefs(textSizeStore);
 
 	const boundaryGap = ref('0.625rem');
 	const updateLoading = ref(false);
@@ -393,8 +396,6 @@
 	.searchMenuContainer {
 		@extend .map-top-right;
 
-		min-width: 15.625rem;
-		padding: 1rem;
 		background-color: rgba($color: #fff, $alpha: 0.75);
 	}
 	.researchBtn {
