@@ -22,7 +22,7 @@
 				/>
 
 				<div>
-					<span>{{ $t('back') }}</span>
+					<span class="text-base">{{ $t('back') }}</span>
 					<DaysBackSlider v-model="notableObsForm.back" />
 				</div>
 			</q-form>
@@ -52,9 +52,12 @@
 					</template>
 
 					<template #content>
-						<HrefButton :href="`https://ebird.org/species/${obs.speciesCode}`">
+						<HrefButton
+							:href="`https://ebird.org/species/${obs.speciesCode}`"
+							class="!w-full"
+						>
 							<q-badge
-								:label="`×${obs.howMany}`"
+								:label="`×${obs.howMany ?? '???'}`"
 								color="warning"
 								floating
 								rounded
@@ -102,7 +105,6 @@
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
-	import { LocaleEnum } from '@/models/enum/ebirdEnum';
 	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
 	import { getDateDiffFromNow, getGoogleMapsPlaceURL } from '@/utils/ebird';
 
@@ -217,7 +219,7 @@
 	 * 取得近期稀有鳥紀錄
 	 */
 	const getRecentNotableObsInRegionInfo = () => {
-		$loading.on();
+		// $loading.on();
 		// 資料更新按鈕
 		mapRef.value && mapRef.value.setUpdateLoadingState(true);
 		getRecentNotableObsInRegionApi(region.value || country.value, notableObsForm.value)
@@ -233,7 +235,7 @@
 				$notify.error('失敗：取得近期稀有鳥紀錄');
 			})
 			.finally(() => {
-				$loading.off();
+				// $loading.off();
 				// 資料更新按鈕
 				mapRef.value && mapRef.value.setUpdateLoadingState(false);
 			});

@@ -22,12 +22,12 @@
 			.q-tab__content {
 				.q-tab__label {
 					font-weight: 700;
-					font-size: 1.0625rem;
 				}
 			}
 		}
 	}
 }
+
 // 手機版
 .q-list {
 	&.layoutMenuList {
@@ -47,8 +47,17 @@
 
 			.q-item__section--main {
 				font-weight: 700;
-				font-size: 1.0625rem;
 			}
+		}
+	}
+}
+
+// Layout 功能按鈕集
+// 電腦版
+.q-fab {
+	&#layoutFeatureButton {
+		.q-fab__actions {
+			background-color: white;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import { App } from 'vue';
 import { createI18n } from 'vue-i18n';
 
-import { WebLangEnum } from '@/models/enum/language';
+import { WebLangEnum } from '@/models/enum/languageEnum';
 
 import commonEnUs from '@/locales/en-us/common.json';
 import commonZhTw from '@/locales/zh-tw/common.json';

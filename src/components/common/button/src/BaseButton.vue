@@ -63,10 +63,9 @@
 </script>
 
 <style lang="scss" scoped>
+	// 字體大小 text-sizes.scss
 	.baseButton {
 		font-weight: 700;
-		font-size: 0.9rem;
-		line-height: 1;
 		border: 0.0625rem solid transparent;
 	}
 </style>

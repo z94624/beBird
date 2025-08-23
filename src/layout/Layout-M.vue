@@ -65,7 +65,7 @@
 							<q-item-section avatar>
 								<WeatherIconVideo
 									:weatherType="weatherType"
-									class="w-[1.875rem]"
+									class="q-icon"
 								/>
 							</q-item-section>
 							<q-item-section>{{ $t(WeatherTypeEnum.UNKNOWN) }}</q-item-section>
@@ -82,11 +82,6 @@
 							<q-item-section>
 								{{ `v${versionList[0].version}` }}
 							</q-item-section>
-						</q-item>
-
-						<!-- 人次 -->
-						<q-item>
-							<VisitorsBillboard />
 						</q-item>
 
 						<!-- 網站語言 / 日夜模式 / 字體大小 -->
@@ -107,10 +102,15 @@
 								inset
 								vertical
 							/>
-							<BaseButton
+							<WebTextSizeButton
 								class="flex-1"
 								flat
 							/>
+						</q-item>
+
+						<!-- 人次 -->
+						<q-item>
+							<VisitorsBillboard />
 						</q-item>
 					</q-list>
 				</q-scroll-area>
@@ -136,6 +136,7 @@
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import WebLangButton from './components/WebLangButton.vue';
+	import WebTextSizeButton from './components/WebTextSizeButton.vue';
 
 	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
@@ -259,9 +260,8 @@
 </script>
 
 <style lang="scss" scoped>
+	// 字體大小 text-sizes.scss
 	.logoText {
-		font-size: 2.25rem;
-		line-height: 2.5rem;
 		font-weight: bold;
 	}
 </style>

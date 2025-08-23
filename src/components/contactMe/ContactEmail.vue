@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col justify-center gap-6">
-		<h3 class="text-white text-center">{{ $t('emailUs') }}</h3>
+		<div class="text-h3 text-white text-center">{{ $t('emailUs') }}</div>
 
 		<q-form
 			ref="formRef"

@@ -25,18 +25,18 @@
 					<slot name="buttons">
 						<BaseButton
 							:label="$t('detail')"
+							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 							class="flex-1"
 							color="info"
 							icon="o_info"
-							size="sm"
 							@click="emit('detail')"
 						/>
 						<HrefButton
 							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
 							:label="$t('navigation')"
+							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 							color="positive"
-							size="sm"
 						/>
 					</slot>
 				</q-card-actions>
@@ -54,10 +54,12 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, useAttrs, useSlots } from 'vue';
+	import { computed, toRefs, useAttrs, useSlots } from 'vue';
 	import { LPopup } from '@vue-leaflet/vue-leaflet';
 	import { PopupOptions } from 'leaflet';
 	import { mdiCarArrowRight } from '@quasar/extras/mdi-v7';
+
+	import { useTextSizeStore } from '@/store/modules/style';
 
 	const emit = defineEmits<{
 		(e: 'detail'): void;
@@ -70,6 +72,8 @@
 
 	const attrs = useAttrs();
 	const slots = useSlots();
+	const textSizeStore = useTextSizeStore();
+	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
 
 	const popupOptions = computed(() => ({
 		offset: [0, -25],
@@ -82,9 +86,8 @@
 	.popupCard {
 		border-radius: 0.75rem;
 
+		// 字體大小 text-sizes.scss
 		.remark {
-			font-size: 0.625rem;
-			line-height: 0.75rem;
 			color: var(--q-secondaryLight_e);
 		}
 	}

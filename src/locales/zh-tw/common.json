@@ -1,5 +1,6 @@
 {
 	"colon": "：",
+	"question": "？",
 
 	"copyToClipboard": "複製到剪貼簿",
 	"shareToApps": "分享至應用程式",
@@ -7,6 +8,11 @@
 	"visitorStatistics-online": "在線人次",
 	"visitorStatistics-today": "當日人次",
 	"visitorStatistics-total": "歷史人次",
+
+	"text-size-sm": "小",
+	"text-size-md": "正常 (預設)",
+	"text-size-lg": "大",
+	"text-size-xl": "極大",
 
 	"version": "版本",
 

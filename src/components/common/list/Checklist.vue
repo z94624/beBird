@@ -21,6 +21,8 @@
 					</div>
 				</div>
 			</q-item-section>
+
+			<q-item-section side></q-item-section>
 		</q-item>
 	</q-list>
 </template>

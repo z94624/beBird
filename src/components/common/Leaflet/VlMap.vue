@@ -47,7 +47,7 @@
 				top:
 					birdMorph === 'btn'
 						? `calc(${boundaryGap} + 3.6rem + 0.25rem)`
-						: `calc(${boundaryGap} + 15.25rem + 0.25rem)`,
+						: `calc(${boundaryGap} + ${isTextSizeMd ? '15.75rem' : isTextSizeLg ? '19.1875rem' : '23.35rem'} + 0.25rem)`,
 			}"
 			class="researchBtn"
 			color="secondary"
@@ -59,7 +59,12 @@
 		/>
 
 		<!-- 右下功能區 -->
-		<div class="bottomRightToolbar flex flex-col gap-1">
+		<div
+			:style="{
+				bottom: `calc(${boundaryGap} + ${isTextSizeMd ? '5.525rem' : isTextSizeLg ? '6.05rem' : '6.575rem'})`,
+			}"
+			class="bottomRightToolbar flex flex-col gap-1"
+		>
 			<BaseButton
 				:color="locateColor.color"
 				:text-color="locateColor.textColor"
@@ -90,10 +95,10 @@
 				<l-tile-layer
 					v-for="tileProvider in tileProviders"
 					:key="tileProvider.name"
+					:attribution="isMobile && !isTextSizeMd ? '© smoBEE' : '© 2024 smoBEE & Cake'"
 					:name="tileProvider.name"
 					:url="tileProvider.url"
 					:visible="tileProvider.visible"
-					attribution="© 2024 smoBEE & Cake"
 					layer-type="base"
 					@update:visible="tileProvider.onUpdateVisibility"
 				/>
@@ -157,6 +162,7 @@
 
 	import { usePlatform } from '@/hooks/platform';
 	import { useLeafletStore } from '@/store/modules/geodata';
+	import { useTextSizeStore } from '@/store/modules/style';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	const emit = defineEmits<{
@@ -173,6 +179,8 @@
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
+	const textSizeStore = useTextSizeStore();
+	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
 
 	const boundaryGap = ref('0.625rem');
 	const updateLoading = ref(false);
@@ -393,8 +401,6 @@
 	.searchMenuContainer {
 		@extend .map-top-right;
 
-		min-width: 15.625rem;
-		padding: 1rem;
 		background-color: rgba($color: #fff, $alpha: 0.75);
 	}
 	.researchBtn {
@@ -405,7 +411,6 @@
 
 	.map-bottom-right {
 		position: absolute;
-		bottom: 5.8125rem;
 		right: v-bind(boundaryGap);
 		z-index: 401;
 	}
