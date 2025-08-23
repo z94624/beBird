@@ -54,6 +54,17 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.7',
+		releaseDate: '2025/08/23',
+		features: [
+			'Website text size can be adjusted by switching the options of the text size button.',
+		],
+		perfs: [
+			'Buttons in the share tab of the detail dialog of rare-bird spot now works with the website language.',
+			'The loading mask are removed from where it will be shown on top of the map, so that user can use the map while loading.',
+		],
+	},
+	{
 		version: '1.1.6',
 		releaseDate: '2025/04/27',
 		features: [
