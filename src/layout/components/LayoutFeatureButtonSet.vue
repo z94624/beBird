@@ -36,6 +36,9 @@
 
 	<!-- 網站字體大小 -->
 	<WebTextSizeButton round />
+
+	<!-- 亮暗模式切換 -->
+	<j-mode-switch :width="jModeSwitchWidth" />
 </template>
 
 <script lang="ts" setup>
@@ -44,6 +47,7 @@
 	import VisitorsBillboard from './VisitorsBillboard.vue';
 	import WebLangButton from './WebLangButton.vue';
 	import WebTextSizeButton from './WebTextSizeButton.vue';
+	import JModeSwitch from '@/components/common/modeSwitch/JModeSwitch.vue';
 	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
 	import { useLeafletStore } from '@/store/modules/geodata';
@@ -81,6 +85,21 @@
 			return `0.75625rem ${0.75625 / 0.85}rem`;
 		} else if (isTextSizeXl.value) {
 			return `1.43125rem ${1.43125 / 0.85}rem`;
+		} else {
+			return undefined;
+		}
+	});
+
+	/**
+	 * 亮暗模式切換按鈕寬度
+	 */
+	const jModeSwitchWidth = computed(() => {
+		if (isTextSizeMd.value) {
+			return '7.2rem';
+		} else if (isTextSizeLg.value) {
+			return '9.5rem';
+		} else if (isTextSizeXl.value) {
+			return '11.8rem';
 		} else {
 			return undefined;
 		}
