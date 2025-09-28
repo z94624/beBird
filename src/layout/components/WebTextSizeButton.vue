@@ -67,7 +67,7 @@
 	watch(
 		textSizeInfo,
 		(nv) => {
-			document.querySelector('body')?.setAttribute('data-text-size', nv.nickName);
+			document.body.setAttribute('data-text-size', nv.nickName);
 		},
 		{
 			immediate: true,
