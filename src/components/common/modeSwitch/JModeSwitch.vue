@@ -682,6 +682,7 @@
 
 <script lang="ts" setup>
 	import { computed, toRefs, watch } from 'vue';
+	import { useQuasar } from 'quasar';
 
 	import { useModeStore } from '@/store/modules/style';
 	import { ModeEnum } from '@/models/enum/styleEnum';
@@ -695,6 +696,7 @@
 		}
 	);
 
+	const $q = useQuasar();
 	const modeStore = useModeStore();
 	const { mode } = toRefs(modeStore);
 
@@ -707,7 +709,10 @@
 	watch(
 		mode,
 		(nv) => {
+			// Global Attribute
 			document.body.setAttribute('data-mode', nv);
+			// Quasar Dark Plugin
+			$q.dark.set(nv === ModeEnum.DARK);
 		},
 		{ immediate: true }
 	);

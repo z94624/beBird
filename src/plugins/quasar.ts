@@ -23,6 +23,7 @@ export const setupQuasar = (app: App<Element>) => {
 		plugins: { LoadingBar, Notify, Loading, LocalStorage, SessionStorage }, // import Quasar plugins and add here
 		iconSet: MaterialIconSet,
 		config: {
+			dark: false, // default mode is light
 			brand: {
 				primaryDark_e: '#385b75',
 				primary_e: '#40718f',
