@@ -1,8 +1,8 @@
 <template>
 	<button
-		aria-pressed="false"
 		class="toggle"
 		title="Toggle Dark Mode"
+		@click="modeStore.toggleMode"
 	>
 		<span class="toggle__content">
 			<svg
@@ -681,6 +681,11 @@
 </template>
 
 <script lang="ts" setup>
+	import { computed, toRefs, watch } from 'vue';
+
+	import { useModeStore } from '@/store/modules/style';
+	import { ModeEnum } from '@/models/enum/styleEnum';
+
 	const props = withDefaults(
 		defineProps<{
 			width?: string;
@@ -688,6 +693,23 @@
 		{
 			width: 'clamp(200px, 45vmin, 500px)',
 		}
+	);
+
+	const modeStore = useModeStore();
+	const { mode } = toRefs(modeStore);
+
+	const dark = computed(() => (mode.value === ModeEnum.DARK ? 1 : 0));
+
+	/**
+	 * 監聽模式切換
+	 * 變更 body 'data-mode' attribute
+	 */
+	watch(
+		mode,
+		(nv) => {
+			document.body.setAttribute('data-mode', nv);
+		},
+		{ immediate: true }
 	);
 </script>
 
@@ -701,17 +723,13 @@
 	$moon: hsl(212, 13%, 82%);
 	$crater: hsl(221, 16%, 68%);
 	$bg: hsl(219, 30%, 88%);
+	$bg-dark: hsl(219, 30%, 12%);
 	$bear-speed: 10s;
 	$color: hsl(219 30% 20%);
+	$color-dark: hsl(219 30% 98%);
 
 	html {
 		color-scheme: light only;
-	}
-
-	[data-dark-mode='true'] {
-		--bg: hsl(219, 30%, 12%);
-		--color: hsl(219 30% 98%);
-		color-scheme: dark only;
 	}
 
 	body {
@@ -722,6 +740,12 @@
 		background: $bg;
 		transition: background $speed $easing;
 		font-family: sans-serif, system-ui;
+	}
+
+	[data-mode='dark'] {
+		background: $bg-dark;
+		color: $color-dark;
+		color-scheme: dark only;
 	}
 
 	.toggle__backdrop:first-of-type .clouds path:first-of-type {
@@ -745,12 +769,10 @@
 		overflow: hidden;
 		cursor: pointer;
 		transition: background $speed $easing;
-		--sky: hsl(204, 53%, 47%);
-		--night: hsl(229, 25%, 16%);
 		outline-color: transparent;
 		background: hsl(
-			calc(204 + (var(--dark, 0) * 25)) calc((53 - (var(--dark, 0) * 28)) * 1%)
-				calc((47 - (var(--dark, 0) * 31)) * 1%)
+			calc(204 + (v-bind(dark) * 25)) calc((53 - (v-bind(dark) * 28)) * 1%)
+				calc((47 - (v-bind(dark) * 31)) * 1%)
 		);
 		box-shadow:
 			calc(v-bind(width) * 0) calc(v-bind(width) * 0.02) calc(v-bind(width) * 0.01)
@@ -793,20 +815,20 @@
 		width: 100%;
 		left: 0;
 		transition: translate $speed $easing;
-		translate: 0 calc(var(--dark, 0) * (100% - (3 / 8 * v-bind(width))));
+		translate: 0 calc(v-bind(dark) * (100% - (3 / 8 * v-bind(width))));
 	}
 
-	[aria-pressed='false'] .toggle__backdrop:last-of-type {
+	[data-mode='light'] .toggle__backdrop:last-of-type {
 		transition-timing-function: cubic-bezier(0.2, -0.6, 0.7, 1.6);
 	}
-	[aria-pressed='false'] .stars path {
+	[data-mode='light'] .stars path {
 		transition-delay: 0s;
 	}
 
 	.stars path {
 		transform-box: fill-box;
 		transform-origin: 25% 50%;
-		scale: calc(0.25 + (var(--dark, 0) * 0.75));
+		scale: calc(0.25 + (v-bind(dark) * 0.75));
 		transition: scale $speed calc($speed * 0.5) $easing;
 	}
 
@@ -818,7 +840,7 @@
 		place-items: center;
 		padding: 3%;
 		transition: translate $speed $slide-ease;
-		translate: calc(var(--dark, 0) * (100cqi - 100%)) 0;
+		translate: calc(v-bind(dark) * (100cqi - 100%)) 0;
 	}
 
 	.pilot-bear {
@@ -832,8 +854,8 @@
 		border-radius: 50%;
 		position: relative;
 		transition: translate $speed $easing;
-		translate: calc((var(--dark, 0) * -10%) + 5%) 0;
-		/* 	translate: calc((var(--dark, 0) * -18%) + 5%) 0; */
+		translate: calc((v-bind(dark) * -10%) + 5%) 0;
+		/* 	translate: calc((v-bind(dark) * -18%) + 5%) 0; */
 	}
 
 	.sun {
@@ -854,7 +876,7 @@
 		border-radius: 50%;
 		background: $moon;
 		transition: translate $speed ease-in-out;
-		translate: calc((100 - (var(--dark, 0) * 100)) * 1%) 0%;
+		translate: calc((100 - (v-bind(dark) * 100)) * 1%) 0%;
 		box-shadow:
 			calc(v-bind(width) * 0.01) calc(v-bind(width) * 0.01) calc(v-bind(width) * 0.02) 0
 				hsl(210 10% 100% / 0.95) inset,
@@ -905,7 +927,7 @@
 		top: 50%;
 		left: 50%;
 		transition: translate $speed $easing;
-		translate: calc((50 - (var(--dark, 0) * 4)) * -1%) -50%;
+		translate: calc((50 - (v-bind(dark) * 4)) * -1%) -50%;
 	}
 
 	.toggle__star:after {
@@ -925,14 +947,8 @@
 		inset: 0;
 	}
 
-	[aria-pressed='true'] {
-		--dark: 1;
-	}
-
 	/* Fun stuff! */
-
 	/* We have 11 stars */
-
 	.stars g {
 		transform-box: fill-box;
 		transform-origin: 50% 50%;
@@ -966,17 +982,17 @@
 		position: absolute;
 		top: 100%;
 		left: 0%;
-		transition: translate calc($speed + (var(--dark, 0) * ($bear-speed - $speed)))
-			calc($bear-speed * (0.4 * var(--dark, 0))) linear;
-		translate: calc(var(--dark, 0) * 400%) calc(var(--dark, 0) * -350%);
+		transition: translate calc($speed + (v-bind(dark) * ($bear-speed - $speed)))
+			calc($bear-speed * (0.4 * v-bind(dark))) linear;
+		translate: calc(v-bind(dark) * 400%) calc(v-bind(dark) * -350%);
 	}
 
 	.astrobear svg {
 		transform-origin: 50% 75%;
-		scale: var(--dark, 0);
-		rotate: calc(var(--dark, 0) * 360deg);
+		scale: v-bind(dark);
+		rotate: calc(v-bind(dark) * 360deg);
 		transition:
-			rotate calc($speed + (var(--dark, 0) * ($bear-speed - $speed))) calc($bear-speed * 0.4)
+			rotate calc($speed + (v-bind(dark) * ($bear-speed - $speed))) calc($bear-speed * 0.4)
 				linear,
 			scale $speed ease-in-out;
 	}
@@ -986,8 +1002,8 @@
 		overflow: hidden;
 		inset: 0;
 		clip-path: inset(0 0 0 0);
-		opacity: var(--dark, 0);
-		translate: 0 calc(-200% + (var(--dark, 0) * 200%));
+		opacity: v-bind(dark);
+		translate: 0 calc(-200% + (v-bind(dark) * 200%));
 		transition:
 			opacity $speed $easing,
 			translate $speed $easing;
@@ -998,8 +1014,8 @@
 		overflow: hidden;
 		inset: 0;
 		clip-path: inset(0 0 0 0);
-		opacity: calc(1 - var(--dark, 0));
-		translate: 0 calc(var(--dark, 0) * 200%);
+		opacity: calc(1 - v-bind(dark));
+		translate: 0 calc(v-bind(dark) * 200%);
 		transition:
 			opacity $speed $easing,
 			translate $speed $easing;
@@ -1010,10 +1026,10 @@
 		position: absolute;
 		top: 70%;
 		left: 100%;
-		transition: translate calc($speed + ((1 - var(--dark, 0)) * (($bear-speed * 0.5) - $speed)))
-			calc(($bear-speed * 0.5) * ((1 - var(--dark, 0)) * 0.4)) linear;
-		translate: calc((0 - (1 - var(--dark, 0))) * (v-bind(width) + 100%))
-			calc((0 - (1 - var(--dark, 0))) * (200%));
+		transition: translate calc($speed + ((1 - v-bind(dark)) * (($bear-speed * 0.5) - $speed)))
+			calc(($bear-speed * 0.5) * ((1 - v-bind(dark)) * 0.4)) linear;
+		translate: calc((0 - (1 - v-bind(dark))) * (v-bind(width) + 100%))
+			calc((0 - (1 - v-bind(dark))) * (200%));
 	}
 
 	.pilot {

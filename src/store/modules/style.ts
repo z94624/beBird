@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 import { mdiSizeM, mdiSizeL, mdiSizeXl } from '@quasar/extras/mdi-v7';
 
 import { IMap } from '@/models/common/base';
-import { TextSizeEnum } from '@/models/enum/styleEnum';
+import { ModeEnum, TextSizeEnum } from '@/models/enum/styleEnum';
 
 /**
  * 字體大小
@@ -71,5 +71,27 @@ export const useTextSizeStore = defineStore('textSize', () => {
 		isTextSizeMd,
 		isTextSizeLg,
 		isTextSizeXl,
+	};
+});
+
+/**
+ * 亮暗模式
+ */
+export const useModeStore = defineStore('mode', () => {
+	// 現行模式
+	const userMode = localStorage.getItem('mode') as ModeEnum | null;
+	const mode = ref(userMode ?? ModeEnum.LIGHT);
+
+	/**
+	 * 切換模式
+	 */
+	const toggleMode = () => {
+		mode.value = mode.value === ModeEnum.LIGHT ? ModeEnum.DARK : ModeEnum.LIGHT;
+		localStorage.setItem('mode', mode.value);
+	};
+
+	return {
+		toggleMode,
+		mode,
 	};
 });
