@@ -25,7 +25,7 @@
 		:padding="versionBtnPadding"
 		rounded
 		text-color="primary"
-		@click="$emit('click-version-button')"
+		@click="emit('click-version-button')"
 	/>
 
 	<!-- 網站語言 -->
@@ -49,6 +49,10 @@
 	import { useLeafletStore } from '@/store/modules/geodata';
 	import { useTextSizeStore } from '@/store/modules/style';
 	import { versionList } from '@/layout/utils';
+
+	const emit = defineEmits<{
+		(e: 'click-version-button'): void;
+	}>();
 
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
