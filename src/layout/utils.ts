@@ -54,6 +54,11 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.8',
+		releaseDate: '2025/10/18',
+		changes: ['Redesign a new logo for the website.'],
+	},
+	{
 		version: '1.1.7',
 		releaseDate: '2025/08/23',
 		features: [
