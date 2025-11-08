@@ -2,7 +2,8 @@
 	<div>
 		<q-layout view="hHh lpR fFf">
 			<q-header
-				class="bg-white text-primary_e"
+				:class="[bg_mode]"
+				class="text-primary_e"
 				elevated
 			>
 				<q-toolbar>
@@ -70,13 +71,15 @@
 	import LayoutFeatureButtonSet from './components/LayoutFeatureButtonSet.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
 	import { PageEnum } from '@/models/enum/pageEnum';
 
 	const router = useRouter();
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeXl } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { bg_mode } = toRefs(modeStore);
 
 	const versionDialogRef = ref();
 

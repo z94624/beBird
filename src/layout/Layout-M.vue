@@ -2,7 +2,8 @@
 	<div>
 		<q-layout view="hHh lpR fFf">
 			<q-header
-				class="bg-white text-primary_e"
+				:class="[bg_mode]"
+				class="text-primary_e"
 				elevated
 				reveal
 			>
@@ -146,6 +147,7 @@
 
 	import { useLeafletStore } from '@/store/modules/geodata';
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
+	import { useModeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
 	import { versionList } from '@/layout/utils';
 	import {
@@ -164,6 +166,8 @@
 	const { sunResult, diel } = toRefs(sunrisetStore);
 	const tomorrowStore = useTomorrowStore();
 	const { obsResult, obsTime } = toRefs(tomorrowStore);
+	const modeStore = useModeStore();
+	const { bg_mode } = toRefs(modeStore);
 
 	const drawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');

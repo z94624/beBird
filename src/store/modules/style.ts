@@ -83,6 +83,12 @@ export const useModeStore = defineStore('mode', () => {
 	const mode = ref(userMode ?? ModeEnum.LIGHT);
 
 	/**
+	 * 給需要依據模式自訂樣式的
+	 */
+	// 背景色
+	const bg_mode = computed(() => (mode.value === ModeEnum.LIGHT ? 'bg-white' : 'bg-dark'));
+
+	/**
 	 * 切換模式
 	 */
 	const toggleMode = () => {
@@ -93,5 +99,6 @@ export const useModeStore = defineStore('mode', () => {
 	return {
 		toggleMode,
 		mode,
+		bg_mode,
 	};
 });
