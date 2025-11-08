@@ -94,10 +94,12 @@
 								inset
 								vertical
 							/>
-							<BaseButton
-								class="flex-1"
-								flat
-							/>
+							<div
+								class="flex justify-center items-center"
+								style="padding: 0.85em 1em"
+							>
+								<j-mode-switch width="4.39125rem" />
+							</div>
 							<q-separator
 								inset
 								vertical
@@ -137,6 +139,7 @@
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import WebLangButton from './components/WebLangButton.vue';
 	import WebTextSizeButton from './components/WebTextSizeButton.vue';
+	import JModeSwitch from '@/components/common/modeSwitch/JModeSwitch.vue';
 
 	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
