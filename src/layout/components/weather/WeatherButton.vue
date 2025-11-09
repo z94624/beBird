@@ -5,7 +5,7 @@
 		round
 		@click="onOpenWeatherDialog"
 	>
-		<WeatherIconVideo
+		<WeatherIcon
 			:weatherType="weatherType"
 			no-tooltip
 		/>
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 	import { computed, ref, toRefs, watch } from 'vue';
 	import { useDebounceFn } from '@vueuse/core';
-	import WeatherIconVideo from './WeatherIconVideo.vue';
+	import WeatherIcon from './WeatherIcon.vue';
 	import WeatherDialog from './WeatherDialog.vue';
 
 	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';

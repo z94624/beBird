@@ -11,30 +11,30 @@
 				<TomorrowIcon only-icon />
 			</HrefButton>
 
-			<div class="archContainer">
+			<div class="archContainer flex flex-col justify-center items-center gap-4">
 				<!-- 天氣圖示 -->
 				<div class="flex justify-center items-center">
-					<WeatherIconVideo
+					<WeatherIcon
 						:tooltip-props="{
 							offset: [0, 0],
 						}"
 						:weatherType="data.weatherType"
-						class="h-[9.375rem]"
+						size="8rem"
 					/>
 				</div>
 				<!-- 日出落 -->
 				<div class="flex justify-center gap-4">
 					<div class="flex items-center gap-1">
-						<WeatherIconVideo
+						<WeatherIcon
 							:weatherType="WeatherItemEnum.SUNRISE"
-							class="w-[2.5rem]"
+							size="2rem"
 						/>
 						<span>{{ data.sunriseTime.slice(0, -3) }}</span>
 					</div>
 					<div class="flex items-center gap-1">
-						<WeatherIconVideo
+						<WeatherIcon
 							:weatherType="WeatherItemEnum.SUNSET"
-							class="w-[2.5rem]"
+							size="2rem"
 						/>
 						<span>{{ data.sunsetTime.slice(0, -3) }}</span>
 					</div>
@@ -47,28 +47,40 @@
 				<!-- 溫度 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.TEMP" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.TEMP"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.temperatureApparent }}{{ isMetric ? '℃' : '℉' }}</span>
 				</div>
 				<!-- 機率 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.PRECIP" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.PRECIP"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.precipitationProbability }}%</span>
 				</div>
 				<!-- 濕度 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.HUMID" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.HUMID"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.humidity }}%</span>
 				</div>
 				<!-- 風速 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.WIND_SPEED" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.WIND_SPEED"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.windSpeed }}{{ isMetric ? 'm/s' : 'mph' }}</span>
 				</div>
@@ -88,16 +100,16 @@
 				left-label
 				@update:model-value="onUpdateUnitSystem"
 			>
-				<WeatherIconVideo
+				<WeatherIcon
 					:weatherType="isMetric ? WeatherItemEnum.C : WeatherItemEnum.F"
-					class="w-[2.5rem]"
+					size="2rem"
 				/>
 			</BaseToggle>
 			<!-- 觀測時間 -->
 			<div class="flex items-center gap-1">
-				<WeatherIconVideo
+				<WeatherIcon
 					:weatherType="WeatherItemEnum.OBS_TIME"
-					class="w-[2.5rem]"
+					size="2rem"
 				/>
 				<span>{{
 					data.observationDatetime
@@ -111,7 +123,7 @@
 
 <script lang="ts" setup>
 	import { computed, ref, watch } from 'vue';
-	import WeatherIconVideo from './WeatherIconVideo.vue';
+	import WeatherIcon from './WeatherIcon.vue';
 	import TomorrowIcon from '@/assets/icons/weather/providers/TomorrowIcon.vue';
 
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
@@ -184,14 +196,14 @@
 
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
-		padding: 2.5rem 0 0.9375rem 0;
+		padding: 2rem 0 1rem 0;
 	}
 
 	.weatherItemIconContainer {
 		@extend %top-right-inset-shadow;
 
 		width: 3.6875rem;
-		padding: 0.9375rem;
+		padding: 1.0796875rem;
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;

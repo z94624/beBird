@@ -67,7 +67,7 @@
 							@click="onOpenWeatherDialog"
 						>
 							<q-item-section avatar>
-								<WeatherIconVideo
+								<WeatherIcon
 									:weatherType="weatherType"
 									class="q-icon"
 								/>
@@ -137,7 +137,7 @@
 	import { computed, ref, toRefs, watch } from 'vue';
 	import { useRouter } from 'vue-router';
 	import { useDebounceFn } from '@vueuse/core';
-	import WeatherIconVideo from './components/weather/WeatherIconVideo.vue';
+	import WeatherIcon from './components/weather/WeatherIcon.vue';
 	import WeatherDialog from './components/weather/WeatherDialog.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';

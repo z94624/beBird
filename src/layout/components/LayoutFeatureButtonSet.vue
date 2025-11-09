@@ -1,11 +1,9 @@
 <template>
 	<!-- 天氣 -->
 	<WeatherButton
-		:height="`${2.6 * textSizeMultiplier}rem`"
 		:lat="mapCenter.lat.toString()"
 		:lng="mapCenter.lng.toString()"
-		:padding="`${0.4375 * textSizeMultiplier}rem`"
-		:width="`${2.6 * textSizeMultiplier}rem`"
+		:padding="weatherBtnPadding"
 	/>
 
 	<!-- 人次 -->
@@ -63,6 +61,21 @@
 	const { mapCenter } = toRefs(leafletStore);
 	const textSizeStore = useTextSizeStore();
 	const { textSizeMultiplier, isTextSizeMd, isTextSizeLg, isTextSizeXl } = toRefs(textSizeStore);
+
+	/**
+	 * 天氣按鈕 Padding
+	 */
+	const weatherBtnPadding = computed(() => {
+		if (isTextSizeMd.value) {
+			return '0.52925rem';
+		} else if (isTextSizeLg.value) {
+			return '0.8175rem';
+		} else if (isTextSizeXl.value) {
+			return '1.1065625rem';
+		} else {
+			return undefined;
+		}
+	});
 
 	/**
 	 * 版本按鈕 Padding
