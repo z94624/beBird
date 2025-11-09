@@ -5,12 +5,6 @@
 
 	.q-tabs__content {
 		overflow: auto;
-
-		.q-tab {
-			&.q-tab--inactive {
-				background-color: white;
-			}
-		}
 	}
 
 	&.layoutHeaderTabs {

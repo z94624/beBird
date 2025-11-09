@@ -87,6 +87,10 @@ export const useModeStore = defineStore('mode', () => {
 	 */
 	// 背景色
 	const bg_mode = computed(() => (mode.value === ModeEnum.LIGHT ? 'bg-white' : 'bg-dark'));
+	// 文字色
+	const text_mode = computed(() =>
+		mode.value === ModeEnum.LIGHT ? 'text-secondaryDark_e' : 'text-white'
+	);
 
 	/**
 	 * 切換模式
@@ -100,5 +104,6 @@ export const useModeStore = defineStore('mode', () => {
 		toggleMode,
 		mode,
 		bg_mode,
+		text_mode,
 	};
 });
