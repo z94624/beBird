@@ -2,7 +2,7 @@
 	<div>
 		<q-layout view="hHh lpR fFf">
 			<q-header
-				:class="[bg_mode, text_mode]"
+				:class="[bg_class_mode, text_class_mode]"
 				elevated
 				reveal
 			>
@@ -18,7 +18,7 @@
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-accent">e</span>
 						<span
-							:class="[text_mode]"
+							:class="[text_class_mode]"
 							class="logoText"
 							>Bird</span
 						>
@@ -28,7 +28,7 @@
 
 			<q-drawer
 				v-model="drawerOpen"
-				:class="[text_mode]"
+				:class="[text_class_mode]"
 				behavior="mobile"
 				bordered
 				overlay
@@ -170,7 +170,7 @@
 	const tomorrowStore = useTomorrowStore();
 	const { obsResult, obsTime } = toRefs(tomorrowStore);
 	const modeStore = useModeStore();
-	const { bg_mode, text_mode } = toRefs(modeStore);
+	const { bg_class_mode, text_class_mode } = toRefs(modeStore);
 
 	const drawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');

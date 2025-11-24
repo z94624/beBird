@@ -2,7 +2,7 @@
 	<div>
 		<q-layout view="hHh lpR fFf">
 			<q-header
-				:class="[bg_mode, text_mode]"
+				:class="[bg_class_mode, text_class_mode]"
 				elevated
 			>
 				<q-toolbar>
@@ -13,7 +13,7 @@
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-accent">e</span>
 						<span
-							:class="[text_mode]"
+							:class="[text_class_mode]"
 							class="logoText"
 							>Bird</span
 						>
@@ -82,7 +82,7 @@
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeXl } = toRefs(textSizeStore);
 	const modeStore = useModeStore();
-	const { bg_mode, text_mode } = toRefs(modeStore);
+	const { bg_class_mode, text_class_mode } = toRefs(modeStore);
 
 	const versionDialogRef = ref();
 

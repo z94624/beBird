@@ -86,11 +86,14 @@ export const useModeStore = defineStore('mode', () => {
 	 * 給需要依據模式自訂樣式的
 	 */
 	// 背景色
-	const bg_mode = computed(() => (mode.value === ModeEnum.LIGHT ? 'bg-white' : 'bg-dark'));
+	const bg_class_mode = computed(() => (mode.value === ModeEnum.LIGHT ? 'bg-white' : 'bg-dark'));
+	const bg_name_mode = computed(() => bg_class_mode.value.split('-')[1]);
+
 	// 文字色
-	const text_mode = computed(() =>
+	const text_class_mode = computed(() =>
 		mode.value === ModeEnum.LIGHT ? 'text-secondaryDark_e' : 'text-white'
 	);
+	const text_name_mode = computed(() => text_class_mode.value.split('-')[1]);
 
 	/**
 	 * 切換模式
@@ -103,7 +106,9 @@ export const useModeStore = defineStore('mode', () => {
 	return {
 		toggleMode,
 		mode,
-		bg_mode,
-		text_mode,
+		bg_class_mode,
+		bg_name_mode,
+		text_class_mode,
+		text_name_mode,
 	};
 });
