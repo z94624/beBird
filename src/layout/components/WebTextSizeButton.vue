@@ -2,7 +2,7 @@
 	<BaseButton
 		:="attrs"
 		:icon="textSizeInfo.icon"
-		text-color="primary"
+		:text-color="text_name_mode"
 	>
 		<q-menu class="!max-w-none">
 			<q-list>
@@ -41,11 +41,13 @@
 	import { toRefs, useAttrs, watch } from 'vue';
 	import { QBtnProps } from 'quasar';
 
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 
 	const attrs: Partial<QBtnProps> = useAttrs();
 	const textSizeStore = useTextSizeStore();
 	const { textSizeDict, textSizeMultiplier, textSizeInfo } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { text_name_mode } = toRefs(modeStore);
 
 	/**
 	 * 選擇網站字體大小

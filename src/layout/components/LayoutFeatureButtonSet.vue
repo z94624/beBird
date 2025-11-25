@@ -9,10 +9,10 @@
 	<!-- 人次 -->
 	<BaseButton
 		:icon="fasUsers"
+		:text-color="text_name_mode"
 		round
-		text-color="primary"
 	>
-		<q-tooltip class="bg-white">
+		<q-tooltip :class="[bg_class_mode, text_class_mode]">
 			<VisitorsBillboard />
 		</q-tooltip>
 	</BaseButton>
@@ -21,8 +21,8 @@
 	<BaseButton
 		:label="`v${versionList[0].version}`"
 		:padding="versionBtnPadding"
+		:text-color="text_name_mode"
 		rounded
-		text-color="primary"
 		@click="emit('click-version-button')"
 	/>
 
@@ -49,7 +49,7 @@
 	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
 	import { useLeafletStore } from '@/store/modules/geodata';
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { versionList } from '@/layout/utils';
 
 	const emit = defineEmits<{
@@ -61,6 +61,8 @@
 	const { mapCenter } = toRefs(leafletStore);
 	const textSizeStore = useTextSizeStore();
 	const { textSizeMultiplier, isTextSizeMd, isTextSizeLg, isTextSizeXl } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { bg_class_mode, text_class_mode, text_name_mode } = toRefs(modeStore);
 
 	/**
 	 * 天氣按鈕 Padding
