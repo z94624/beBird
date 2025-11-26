@@ -26,7 +26,7 @@
 						:key="uIdx"
 					>
 						<div v-if="updates">
-							<h4 class="text-primary">
+							<h4>
 								{{ ['Features', 'Fixes', 'Changes', 'Perfs'][uIdx] }}
 							</h4>
 

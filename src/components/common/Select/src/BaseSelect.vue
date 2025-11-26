@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { QSelect, QSelectProps } from 'quasar';
 	import { ref, useAttrs, useSlots } from 'vue';
+	import { QSelect, QSelectProps } from 'quasar';
 
 	const emit = defineEmits<{
 		(e: 'update:model-value', v: any): void;
@@ -34,7 +34,7 @@
 			standout?: boolean | string;
 		}>(),
 		{
-			standout: 'bg-secondary text-primary',
+			standout: true,
 		}
 	);
 
