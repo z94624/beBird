@@ -162,7 +162,7 @@
 
 	import { usePlatform } from '@/hooks/platform';
 	import { useLeafletStore } from '@/store/modules/geodata';
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 
 	const emit = defineEmits<{
@@ -181,6 +181,8 @@
 	const { mapCenter } = toRefs(leafletStore);
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { bg_name_mode, text_name_mode } = toRefs(modeStore);
 
 	const boundaryGap = ref('0.625rem');
 	const updateLoading = ref(false);
@@ -194,9 +196,22 @@
 	const birdMorph = ref('btn');
 	const searchDrawerOpen = ref(false);
 	const locateStatus = ref(false);
-	const locateColor = ref({
-		textColor: 'black',
-		color: 'white',
+
+	// 定位按鈕配色
+	const locateColor = computed(() => {
+		if (locateStatus.value) {
+			// 啟用
+			return {
+				textColor: 'white',
+				color: 'primary',
+			};
+		} else {
+			// 停用
+			return {
+				textColor: text_name_mode.value,
+				color: bg_name_mode.value,
+			};
+		}
 	});
 
 	// 使用者經緯座標
@@ -291,20 +306,12 @@
 	 * 開啟定位
 	 */
 	const resumeLocating = () => {
-		locateColor.value = {
-			textColor: 'white',
-			color: 'primary',
-		};
 		resume();
 	};
 	/**
 	 * 停止定位
 	 */
 	const pauseLocating = () => {
-		locateColor.value = {
-			textColor: 'black',
-			color: 'white',
-		};
 		pause();
 	};
 
