@@ -35,6 +35,14 @@ $mode-options: $LIGHT, $DARK;
 @each $mode in $mode-options {
 	[data-mode='#{$mode}'] {
 		/**
+		 * 自訂(原 VUE 檔裡)
+		 */
+		// VlMap
+		.searchMenuContainer {
+			background: rgba(get-mode-bg-color($mode), 0.75);
+		}
+
+		/**
 		 * Leaflet
 		 */
 		// 圖層
