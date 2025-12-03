@@ -24,19 +24,21 @@
 				>
 					<slot name="buttons">
 						<BaseButton
+							:color="bg_name_mode"
 							:label="$t('detail')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
+							:text-color="text_name_mode"
 							class="flex-1"
-							color="info"
 							icon="o_info"
 							@click="emit('detail')"
 						/>
 						<HrefButton
+							:color="bg_name_mode"
 							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
 							:label="$t('navigation')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
-							color="positive"
+							:text-color="text_name_mode"
 						/>
 					</slot>
 				</q-card-actions>
@@ -59,7 +61,7 @@
 	import { PopupOptions } from 'leaflet';
 	import { mdiCarArrowRight } from '@quasar/extras/mdi-v7';
 
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 
 	const emit = defineEmits<{
 		(e: 'detail'): void;
@@ -74,6 +76,8 @@
 	const slots = useSlots();
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { bg_name_mode, text_name_mode } = toRefs(modeStore);
 
 	const popupOptions = computed(() => ({
 		offset: [0, -25],
@@ -88,7 +92,6 @@
 
 		// 字體大小 text-sizes.scss
 		.remark {
-			color: var(--q-secondaryLight_e);
 		}
 	}
 </style>
