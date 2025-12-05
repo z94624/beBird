@@ -4,8 +4,8 @@
 			v-for="(bird, bIdx) in info.obs"
 			:key="bIdx"
 			:active="isNotable(bird.speciesCode)"
-			:class="[`${isNotable(bird.speciesCode) ? 'notableItem' : 'normalItem'}`]"
 			:href="`https://ebird.org/species/${bird.speciesCode}`"
+			active-class="notableItem"
 			class="birdItem"
 			target="_blank"
 		>
@@ -50,7 +50,7 @@
 		border-radius: 0.4375rem;
 
 		&.notableItem {
-			border: 0.125rem solid $secondary;
+			border: 0.125rem solid $primary;
 		}
 	}
 </style>
