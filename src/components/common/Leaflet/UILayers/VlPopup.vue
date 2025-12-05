@@ -8,7 +8,7 @@
 				class="popupCard flex flex-col gap-2"
 				flat
 			>
-				<q-card-section class="w-full !px-2 !pt-2 !pb-0">
+				<q-card-section class="!px-2 !pt-2 !pb-0">
 					<div class="ellipsis-2-lines break-all">
 						<slot name="location"></slot>
 					</div>
