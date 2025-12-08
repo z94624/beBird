@@ -25,15 +25,7 @@ export const setupQuasar = (app: App<Element>) => {
 		config: {
 			dark: false, // default mode is light
 			brand: {
-				primaryDark_e: '#385b75',
-				primary_e: '#40718f',
-				'primary-bg_e': '#f2fafd',
-				primaryLight_e: '#b4cfe1',
-				secondaryDark_e: '#2e261f',
-				secondary_e: '#6f6e67',
-				secondaryLight_e: '#dcdcd5',
-				line_e: '#f4f3f1',
-				'accent-bg': '#ecf9eb',
+				line: '#f4f3f1',
 			},
 			loadingBar: {
 				size: '0.1875rem',

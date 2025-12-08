@@ -22,7 +22,7 @@ body {
 		Helvetica, Arial, sans-serif !important;
 	font-size: 1rem !important;
 	font-weight: 400;
-	color: var(--q-secondaryDark_e);
+	color: var(--q-dark);
 	background: #f8f8f8;
 	text-rendering: optimizeLegibility;
 }

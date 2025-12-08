@@ -4,7 +4,7 @@
  */
 
 @mixin border($thick: 0.0625rem, $style: solid) {
-	border: $thick $style var(--q-line_e);
+	border: $thick $style var(--q-line);
 }
 
 /**

@@ -91,7 +91,7 @@ export const useModeStore = defineStore('mode', () => {
 
 	// 文字色
 	const text_class_mode = computed(() =>
-		mode.value === ModeEnum.LIGHT ? 'text-secondaryDark_e' : 'text-white'
+		mode.value === ModeEnum.LIGHT ? 'text-dark' : 'text-white'
 	);
 	const text_name_mode = computed(() => text_class_mode.value.split('-')[1]);
 

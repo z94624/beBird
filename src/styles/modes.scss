@@ -2,7 +2,7 @@
 $LIGHT: 'light';
 $DARK: 'dark';
 
-$light-color: var(--q-secondaryDark_e);
+$light-color: $dark;
 $light-bg-color: white;
 $dark-color: white;
 $dark-bg-color: $dark;
@@ -53,6 +53,18 @@ $mode-options: $LIGHT, $DARK;
 		// 學名字體
 		.sciName-font {
 			color: get-mode-color($mode);
+		}
+
+		// Layout Header 選單
+		// 手機版
+		.q-list {
+			&.layoutMenuList {
+				.q-item {
+					&.q-item--active {
+						border-left: 0.125rem solid get-mode-color($mode);
+					}
+				}
+			}
 		}
 
 		/**
