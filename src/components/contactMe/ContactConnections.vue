@@ -4,7 +4,7 @@
 			<img :src="Logo" />
 		</q-avatar>
 
-		<span class="text-white">{{ $t('email') }}：z94624@gmail.com</span>
+		<span class="text-darkText">{{ $t('email') }}：z94624@gmail.com</span>
 
 		<div class="flex gap-4">
 			<Facebook
