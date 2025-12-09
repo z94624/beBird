@@ -11,7 +11,7 @@
 						style="flex: 0 0 auto"
 					>
 						<span class="logoText text-primary">b</span>
-						<span class="logoText text-accent">e</span>
+						<span class="logoText text-secondary">e</span>
 						<span
 							:class="[text_class_mode]"
 							class="logoText"

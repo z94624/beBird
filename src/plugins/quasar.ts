@@ -25,6 +25,9 @@ export const setupQuasar = (app: App<Element>) => {
 		config: {
 			dark: false, // default mode is light
 			brand: {
+				lightText: '#101010',
+				lightBg: '#f5f5f5',
+				darkText: '#f2f2f2',
 				line: '#f4f3f1',
 			},
 			loadingBar: {

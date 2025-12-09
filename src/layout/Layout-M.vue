@@ -16,7 +16,7 @@
 
 					<div class="flex-1 pr-[2.625rem] text-center cursor-pointer">
 						<span class="logoText text-primary">b</span>
-						<span class="logoText text-accent">e</span>
+						<span class="logoText text-secondary">e</span>
 						<span
 							:class="[text_class_mode]"
 							class="logoText"

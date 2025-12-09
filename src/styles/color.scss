@@ -1,3 +1,20 @@
+/**
+ * 亮暗模式
+ */
+// 淺色主題：字色
+.text-lightText {
+	color: var(--q-lightText) !important;
+}
+// 淺色主題：背景色
+.bg-lightBg {
+	background-color: var(--q-lightBg) !important;
+}
+// 深色主題：字色
+.text-darkText {
+	color: var(--q-darkText) !important;
+}
+
+// 邊緣、邊界、分隔線用
 .text-line {
 	color: var(--q-line) !important;
 }

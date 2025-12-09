@@ -2,9 +2,9 @@
 $LIGHT: 'light';
 $DARK: 'dark';
 
-$light-color: $dark;
-$light-bg-color: white;
-$dark-color: white;
+$light-color: var(--q-lightText);
+$light-bg-color: var(--q-lightBg);
+$dark-color: var(--q-darkText);
 $dark-bg-color: $dark;
 /**
  * 亮暗模式樣式方法
