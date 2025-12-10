@@ -42,7 +42,6 @@
 						>
 							<q-item
 								:active="menuItem.name === selectedMenu"
-								:class="[`${menuItem.name === 'rareBirds' ? 'rareBirdsItem' : ''}`]"
 								:to="menuItem.to"
 								clickable
 								@click="() => onSelectMenu(menuItem.name)"

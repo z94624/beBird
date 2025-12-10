@@ -30,7 +30,6 @@
 						<q-route-tab
 							v-for="(menuItem, mIdx) in menuList"
 							:key="mIdx"
-							:class="[`${menuItem.name === 'rareBirds' ? 'rareBirdsTab' : ''}`]"
 							:label="$t(menuItem.name)"
 							:name="menuItem.name"
 							:to="menuItem.to"

@@ -55,18 +55,6 @@ $mode-options: $LIGHT, $DARK;
 			color: get-mode-color($mode);
 		}
 
-		// Layout Header 選單
-		// 手機版
-		.q-list {
-			&.layoutMenuList {
-				.q-item {
-					&.q-item--active {
-						border-left: 0.125rem solid get-mode-color($mode);
-					}
-				}
-			}
-		}
-
 		/**
 		 * 自訂(原 VUE 檔裡)
 		 */
