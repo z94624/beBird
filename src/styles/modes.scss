@@ -10,12 +10,12 @@ $dark-bg-color: $dark;
  * 亮暗模式樣式方法
  */
 @mixin light-style {
-	color: $light-color;
-	background-color: $light-bg-color;
+	color: $light-color !important;
+	background-color: $light-bg-color !important;
 }
 @mixin dark-style {
-	color: $dark-color;
-	background-color: $dark-bg-color;
+	color: $dark-color !important;
+	background-color: $dark-bg-color !important;
 }
 
 @mixin get-mode-style($mode) {
