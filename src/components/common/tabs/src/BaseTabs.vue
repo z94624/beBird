@@ -17,10 +17,15 @@
 	import { computed, useAttrs, useSlots } from 'vue';
 	import { QTabs, QTabsProps } from 'quasar';
 
-	const props = defineProps<{
-		activeColor?: string;
-		activeBgColor?: string;
-	}>();
+	const props = withDefaults(
+		defineProps<{
+			activeColor?: string;
+			activeBgColor?: string;
+		}>(),
+		{
+			activeColor: 'primary',
+		}
+	);
 
 	const attrs: Partial<QTabsProps> = useAttrs();
 	const slots: Partial<QTabs> = useSlots();

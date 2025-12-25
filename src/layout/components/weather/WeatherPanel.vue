@@ -92,7 +92,7 @@
 		<q-card-actions align="between">
 			<!-- 天氣單位系統 -->
 			<BaseToggle
-				:color="isMetric ? 'positive' : 'negative'"
+				:color="isMetric ? 'secondary' : 'accent'"
 				:false-value="UnitSystemEnum.IMPERIAL"
 				:model-value="unitSystem"
 				:true-value="UnitSystemEnum.METRIC"
