@@ -50,7 +50,7 @@
 		border-radius: 0.4375rem;
 
 		&.notableItem {
-			border: 0.125rem solid $primary;
+			@include border($thick: 0.125rem, $color: $primary);
 		}
 	}
 </style>

@@ -3,8 +3,8 @@
  * Only for defining SCSS Variables, @mixin and @extend...
  */
 
-@mixin border($thick: 0.0625rem, $style: solid) {
-	border: $thick $style var(--q-line);
+@mixin border($thick: 0.0625rem, $style: solid, $color: var(--q-line)) {
+	border: $thick $style $color;
 }
 
 /**

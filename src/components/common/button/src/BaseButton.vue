@@ -66,6 +66,6 @@
 	// 字體大小 text-sizes.scss
 	.baseButton {
 		font-weight: 700;
-		border: 0.0625rem solid transparent;
+		@include border($color: transparent);
 	}
 </style>
