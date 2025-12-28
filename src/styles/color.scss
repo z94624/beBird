@@ -9,6 +9,10 @@
 .bg-lightBg {
 	background-color: var(--q-lightBg) !important;
 }
+// 主題按鈕：字色依據亮暗模式背景色
+.text-lightBg {
+	color: var(--q-lightBg) !important;
+}
 // 深色主題：字色
 .text-darkText {
 	color: var(--q-darkText) !important;

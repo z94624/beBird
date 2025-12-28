@@ -79,6 +79,11 @@ $mode-options: $LIGHT, $DARK;
 		// 縮放
 		.leaflet-control-zoom a {
 			@include get-mode-style($mode);
+
+			&:focus {
+				background-color: $primary !important;
+				color: get-mode-bg-color($mode) !important;
+			}
 		}
 		// Attribution
 		.leaflet-control-attribution {

@@ -203,7 +203,7 @@
 		if (locateStatus.value) {
 			// 啟用
 			return {
-				textColor: 'white',
+				textColor: bg_name_mode.value,
 				color: 'primary',
 			};
 		} else {
