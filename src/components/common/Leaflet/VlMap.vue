@@ -4,9 +4,9 @@
 		<!-- 搜尋功能 -->
 		<BaseButton
 			v-morph:btn.resize="birdMorph"
-			:color="bg_name_mode"
-			:text-color="text_name_mode"
+			:text-color="bg_name_mode"
 			class="map-top-right"
+			color="primary"
 			fab
 			icon="search"
 			round
@@ -19,9 +19,9 @@
 			class="searchMenuContainer w-[33%] shadow-3 rounded-borders relative"
 		>
 			<BaseButton
-				:color="bg_name_mode"
-				:text-color="text_name_mode"
+				:text-color="bg_name_mode"
 				class="absolute -left-2 -bottom-2"
+				color="primary"
 				icon="arrow_outward"
 				round
 				size="sm"
@@ -51,11 +51,11 @@
 						? `calc(${boundaryGap} + 3.6rem + 0.25rem)`
 						: `calc(${boundaryGap} + ${isTextSizeMd ? '15.75rem' : isTextSizeLg ? '19.1875rem' : '23.35rem'} + 0.25rem)`,
 			}"
-			:text-color="text_name_mode"
 			class="researchBtn"
 			fab
 			round
 			size="lg"
+			text-color="primary"
 			@click="emit('research')"
 		/>
 
