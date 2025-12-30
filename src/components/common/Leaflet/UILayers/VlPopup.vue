@@ -24,21 +24,19 @@
 				>
 					<slot name="buttons">
 						<BaseButton
-							:color="bg_name_mode"
 							:label="$t('detail')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
-							:text-color="text_name_mode"
 							class="flex-1"
+							color="primary"
 							icon="o_info"
 							@click="emit('detail')"
 						/>
 						<HrefButton
-							:color="bg_name_mode"
 							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
 							:label="$t('navigation')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
-							:text-color="text_name_mode"
+							color="secondary"
 						/>
 					</slot>
 				</q-card-actions>

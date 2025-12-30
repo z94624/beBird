@@ -46,14 +46,6 @@ $mode-options: $LIGHT, $DARK;
 		/**
 		 * 自訂(原 SCSS 檔裡)
 		 */
-		// 俗名字體
-		.comName-font {
-			color: get-mode-color($mode);
-		}
-		// 學名字體
-		.sciName-font {
-			color: get-mode-color($mode);
-		}
 
 		/**
 		 * 自訂(原 VUE 檔裡)

@@ -57,9 +57,8 @@
 							class="!w-full"
 						>
 							<q-badge
-								:color="bg_name_mode"
 								:label="`×${obs.howMany ?? '???'}`"
-								:text-color="text_name_mode"
+								color="secondary"
 								floating
 								rounded
 							/>
