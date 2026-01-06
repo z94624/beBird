@@ -18,7 +18,6 @@
 				v-model="tab"
 				align="justify"
 				dense
-				style="position: sticky; top: 3.125rem; z-index: 1"
 			>
 				<q-tab
 					icon="list_alt"
@@ -34,6 +33,7 @@
 				v-model="tab"
 				animated
 				keep-alive
+				style="max-height: 75vh; overflow: auto"
 			>
 				<q-tab-panel name="list">
 					<RbMarkerDetailList :notableObs="obs" />

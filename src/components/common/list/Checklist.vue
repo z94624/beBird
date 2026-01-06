@@ -9,7 +9,9 @@
 			class="birdItem"
 			target="_blank"
 		>
-			<q-item-section avatar>{{ bird.howManyStr }}</q-item-section>
+			<q-item-section avatar>
+				{{ bird.howManyStr }}
+			</q-item-section>
 
 			<q-item-section>
 				<div class="flex items-center gap-1">
@@ -50,7 +52,9 @@
 		border-radius: 0.4375rem;
 
 		&.notableItem {
-			@include border($thick: 0.125rem, $color: $primary);
+			@include border($thick: 0.125rem, $color: $accent);
+			color: $accent;
+			background-color: rgba($accent, 0.05);
 		}
 	}
 </style>
