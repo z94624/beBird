@@ -104,7 +104,6 @@
 
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
-	import { useModeStore } from '@/store/modules/style';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
 	import { getDateDiffFromNow, getGoogleMapsPlaceURL } from '@/utils/ebird';
@@ -113,8 +112,6 @@
 	const { $notify, $loading } = useQuasarTool();
 	const taxonomyStore = useTaxonomyStore();
 	const { taxInfoDict } = toRefs(taxonomyStore);
-	const modeStore = useModeStore();
-	const { bg_name_mode, text_name_mode } = toRefs(modeStore);
 
 	const loading = ref(false);
 	const country = ref<string>(GeoDataEnum.COUNTRYCODE_OF_TAIWAN);

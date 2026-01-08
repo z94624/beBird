@@ -59,7 +59,7 @@
 	import { PopupOptions } from 'leaflet';
 	import { mdiCarArrowRight } from '@quasar/extras/mdi-v7';
 
-	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
+	import { useTextSizeStore } from '@/store/modules/style';
 
 	const emit = defineEmits<{
 		(e: 'detail'): void;
@@ -74,8 +74,6 @@
 	const slots = useSlots();
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
-	const modeStore = useModeStore();
-	const { bg_name_mode, text_name_mode } = toRefs(modeStore);
 
 	const popupOptions = computed(() => ({
 		offset: [0, -25],

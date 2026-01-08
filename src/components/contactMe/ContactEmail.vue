@@ -49,10 +49,9 @@
 			/>
 
 			<BaseButton
-				:color="bg_name_mode"
 				:label="$t('send')"
 				:loading="sendLoading"
-				:text-color="text_name_mode"
+				color="primary"
 				type="submit"
 			/>
 		</q-form>
@@ -60,20 +59,17 @@
 </template>
 
 <script lang="ts" setup>
-	import { ref, toRefs } from 'vue';
+	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
 	import { sendEmailWithFormDataApi } from '@/api/emailjs/v1.0/email';
 	import { EMAILJSSendEmailReq } from '@/models/emailjs/v1.0/email';
 
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
-	import { useModeStore } from '@/store/modules/style';
 	import { requiredValid, emailValid } from '@/utils/validation';
 
 	const { t } = useI18n();
 	const { $notify } = useQuasarTool();
-	const modeStore = useModeStore();
-	const { bg_name_mode, text_name_mode } = toRefs(modeStore);
 
 	const sendLoading = ref(false);
 	const formRef = ref();
