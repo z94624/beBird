@@ -186,6 +186,9 @@
 	const modeStore = useModeStore();
 	const { mode, bg_name_mode, text_name_mode } = toRefs(modeStore);
 
+	// LocalStorage: 地圖圖層
+	const PROVIDER_STORAGE_KEY = 'leaflet-tileProvider';
+
 	// 地圖佈局響應式變數
 	const boundaryGap = ref('0.625rem'); // 邊界間距
 	const updateLoading = ref(false); // 更新按鈕 Loading 狀態
@@ -199,6 +202,11 @@
 	const birdMorph = ref('btn'); // Morph 動畫狀態
 	const searchDrawerOpen = ref(false); // 移動端抽屜狀態
 	const locateStatus = ref(false); // 目前是否開啟定位追蹤狀態
+
+	// 深淺模式偏好的地圖圖層
+	const modeProvider = computed(() =>
+		mode.value === ModeEnum.DARK ? 'CartoDB_DarkMatter' : 'CartoDB_Voyager'
+	);
 
 	// 計算定位按鈕顏色 (啟用時與停用時的配色切換)
 	const locateColor = computed(() => {
@@ -311,23 +319,25 @@
 	]);
 
 	/**
+	 * 切換地圖圖層
+	 * @param targetProvider 目標圖層
+	 */
+	const changeTileProvider = (targetProvider: string) => {
+		tileProviders.forEach((provider) => {
+			provider.visible = provider.name === targetProvider;
+		});
+	};
+
+	/**
 	 * 監聽深淺色模式切換，自動變更底圖
 	 * 確保地圖底圖風格能與應用程式 UI 主題同步
 	 */
-	watch(
-		mode,
-		(newMode) => {
-			// 根據深色/淺色模式指定對應底圖名稱
-			const targetLayerName =
-				newMode === ModeEnum.DARK ? 'CartoDB_DarkMatter' : 'CartoDB_Voyager';
+	watch(mode, () => {
+		changeTileProvider(modeProvider.value);
 
-			// 更新 tileProviders 中的 visible 狀態以切換地圖
-			tileProviders.forEach((provider) => {
-				provider.visible = provider.name === targetLayerName;
-			});
-		},
-		{ immediate: true } // 確保初始化時即執行一次
-	);
+		// 強制覆蓋儲存的設定
+		localStorage.setItem(PROVIDER_STORAGE_KEY, modeProvider.value);
+	});
 
 	// 監聽定位座標變化，自動更新地圖中心
 	watch(
@@ -413,10 +423,11 @@
 	 * 用於保持 tileProviders 資料與 Leaflet 內部狀態同步
 	 */
 	const onBaseLayerChange = (e: LayersControlEvent) => {
-		const selectedLayerName = e.name;
-		tileProviders.forEach((provider) => {
-			provider.visible = provider.name === selectedLayerName;
-		});
+		const selectedProvider = e.name;
+		changeTileProvider(selectedProvider);
+
+		// 儲存使用者手動選擇的結果
+		localStorage.setItem(PROVIDER_STORAGE_KEY, selectedProvider);
 	};
 
 	/**
@@ -442,6 +453,13 @@
 	// 組件掛載前預設停止定位追蹤，節省資源
 	onBeforeMount(() => {
 		pause();
+
+		/**
+		 * 初始化時嘗試載入使用者上次選擇的圖層
+		 * 若無則根據深淺色模式指定預設圖層
+		 */
+		const userProvider = localStorage.getItem(PROVIDER_STORAGE_KEY);
+		changeTileProvider(userProvider || modeProvider.value);
 	});
 
 	// 暴露 API 供父組件使用
