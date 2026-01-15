@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<IconVideo
-			v-if="!videoLoading"
+		<!-- <IconVideo
+			v-if="!loading"
 			:="attrs"
 		>
 			<source
@@ -12,7 +12,12 @@
 				:src="weatherDataDict[weatherType].video"
 				type="video/mp4"
 			/>
-		</IconVideo>
+		</IconVideo> -->
+		<q-icon
+			v-if="!loading"
+			:="attrs"
+			:name="`img:${weatherDataDict[weatherType].image}`"
+		/>
 
 		<q-tooltip
 			v-if="!noTooltip"
@@ -41,14 +46,14 @@
 
 	const attrs = useAttrs();
 
-	const videoLoading = ref(false);
+	const loading = ref(false);
 
 	watch(
 		() => props.weatherType,
 		() => {
 			// 強迫更新影片：從 UNKNOWN 類型更新為正確類型
-			videoLoading.value = true;
-			setTimeout(() => (videoLoading.value = false), 1);
+			loading.value = true;
+			setTimeout(() => (loading.value = false), 1);
 		}
 	);
 </script>

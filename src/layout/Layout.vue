@@ -2,7 +2,7 @@
 	<div>
 		<q-layout view="hHh lpR fFf">
 			<q-header
-				class="bg-white text-primary_e"
+				:class="[bg_class_mode, text_class_mode]"
 				elevated
 			>
 				<q-toolbar>
@@ -11,8 +11,12 @@
 						style="flex: 0 0 auto"
 					>
 						<span class="logoText text-primary">b</span>
-						<span class="logoText text-accent">e</span>
-						<span class="logoText text-secondaryDark_e">Bird</span>
+						<span class="logoText text-secondary">e</span>
+						<span
+							:class="[text_class_mode]"
+							class="logoText"
+							>Bird</span
+						>
 					</q-toolbar-title>
 
 					<q-tabs
@@ -26,7 +30,6 @@
 						<q-route-tab
 							v-for="(menuItem, mIdx) in menuList"
 							:key="mIdx"
-							:class="[`${menuItem.name === 'rareBirds' ? 'rareBirdsTab' : ''}`]"
 							:label="$t(menuItem.name)"
 							:name="menuItem.name"
 							:to="menuItem.to"
@@ -70,13 +73,15 @@
 	import LayoutFeatureButtonSet from './components/LayoutFeatureButtonSet.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
 	import { PageEnum } from '@/models/enum/pageEnum';
 
 	const router = useRouter();
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeXl } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { bg_class_mode, text_class_mode } = toRefs(modeStore);
 
 	const versionDialogRef = ref();
 

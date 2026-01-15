@@ -23,16 +23,12 @@ export const setupQuasar = (app: App<Element>) => {
 		plugins: { LoadingBar, Notify, Loading, LocalStorage, SessionStorage }, // import Quasar plugins and add here
 		iconSet: MaterialIconSet,
 		config: {
+			dark: false, // default mode is light
 			brand: {
-				primaryDark_e: '#385b75',
-				primary_e: '#40718f',
-				'primary-bg_e': '#f2fafd',
-				primaryLight_e: '#b4cfe1',
-				secondaryDark_e: '#2e261f',
-				secondary_e: '#6f6e67',
-				secondaryLight_e: '#dcdcd5',
-				line_e: '#f4f3f1',
-				'accent-bg': '#ecf9eb',
+				lightText: '#101010', // 淺色主題文字色
+				lightBg: '#f5f5f5', // 淺色主題背景色
+				darkText: '#f2f2f2', // 深色主題文字色
+				line: '#f4f3f1',
 			},
 			loadingBar: {
 				size: '0.1875rem',
@@ -40,7 +36,7 @@ export const setupQuasar = (app: App<Element>) => {
 			},
 			loading: {
 				delay: 300,
-				spinnerColor: 'secondary',
+				spinnerColor: 'primary',
 				spinner: QSpinnerHourglass,
 			},
 		},

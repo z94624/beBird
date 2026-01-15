@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col justify-center gap-6">
-		<div class="text-h3 text-white text-center">{{ $t('emailUs') }}</div>
+		<div class="text-h3 text-darkText text-center">{{ $t('emailUs') }}</div>
 
 		<q-form
 			ref="formRef"
@@ -14,7 +14,7 @@
 				dark
 				dense
 				for="contactEmailName"
-				titleColor="white"
+				titleColor="darkText"
 			/>
 
 			<FormInput
@@ -24,7 +24,7 @@
 				dark
 				dense
 				for="contactEmailEmail"
-				titleColor="white"
+				titleColor="darkText"
 				type="email"
 			/>
 
@@ -34,7 +34,7 @@
 				dark
 				dense
 				for="contactEmailSubject"
-				titleColor="white"
+				titleColor="darkText"
 			/>
 
 			<FormInput
@@ -44,7 +44,7 @@
 				dark
 				dense
 				for="contactEmailMessage"
-				titleColor="white"
+				titleColor="darkText"
 				type="textarea"
 			/>
 

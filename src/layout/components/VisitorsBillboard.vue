@@ -9,7 +9,7 @@
 			:class="[isMobile ? 'flex-col gap-2' : 'justify-between items-center gap-8']"
 			class="flex"
 		>
-			<div class="text-primary text-bold text-base">{{ item.name }}</div>
+			<div class="text-bold text-base">{{ item.name }}</div>
 			<FlipNumber
 				:fontSize="1.875 * textSizeMultiplier"
 				:height="2.5 * textSizeMultiplier"

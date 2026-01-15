@@ -1,20 +1,18 @@
 <template>
 	<!-- 天氣 -->
 	<WeatherButton
-		:height="`${2.6 * textSizeMultiplier}rem`"
 		:lat="mapCenter.lat.toString()"
 		:lng="mapCenter.lng.toString()"
-		:padding="`${0.4375 * textSizeMultiplier}rem`"
-		:width="`${2.6 * textSizeMultiplier}rem`"
+		:padding="weatherBtnPadding"
 	/>
 
 	<!-- 人次 -->
 	<BaseButton
 		:icon="fasUsers"
+		:text-color="text_name_mode"
 		round
-		text-color="primary"
 	>
-		<q-tooltip class="bg-white">
+		<q-tooltip :class="[bg_class_mode, text_class_mode]">
 			<VisitorsBillboard />
 		</q-tooltip>
 	</BaseButton>
@@ -23,8 +21,8 @@
 	<BaseButton
 		:label="`v${versionList[0].version}`"
 		:padding="versionBtnPadding"
+		:text-color="text_name_mode"
 		rounded
-		text-color="primary"
 		@click="emit('click-version-button')"
 	/>
 
@@ -36,6 +34,9 @@
 
 	<!-- 網站字體大小 -->
 	<WebTextSizeButton round />
+
+	<!-- 亮暗模式切換 -->
+	<j-mode-switch :width="jModeSwitchWidth" />
 </template>
 
 <script lang="ts" setup>
@@ -44,10 +45,11 @@
 	import VisitorsBillboard from './VisitorsBillboard.vue';
 	import WebLangButton from './WebLangButton.vue';
 	import WebTextSizeButton from './WebTextSizeButton.vue';
+	import JModeSwitch from '@/components/common/modeSwitch/JModeSwitch.vue';
 	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
 	import { useLeafletStore } from '@/store/modules/geodata';
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { versionList } from '@/layout/utils';
 
 	const emit = defineEmits<{
@@ -59,6 +61,23 @@
 	const { mapCenter } = toRefs(leafletStore);
 	const textSizeStore = useTextSizeStore();
 	const { textSizeMultiplier, isTextSizeMd, isTextSizeLg, isTextSizeXl } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { bg_class_mode, text_class_mode, text_name_mode } = toRefs(modeStore);
+
+	/**
+	 * 天氣按鈕 Padding
+	 */
+	const weatherBtnPadding = computed(() => {
+		if (isTextSizeMd.value) {
+			return '0.52925rem';
+		} else if (isTextSizeLg.value) {
+			return '0.8175rem';
+		} else if (isTextSizeXl.value) {
+			return '1.1065625rem';
+		} else {
+			return undefined;
+		}
+	});
 
 	/**
 	 * 版本按鈕 Padding
@@ -85,6 +104,21 @@
 			return `0.75625rem ${0.75625 / 0.85}rem`;
 		} else if (isTextSizeXl.value) {
 			return `1.43125rem ${1.43125 / 0.85}rem`;
+		} else {
+			return undefined;
+		}
+	});
+
+	/**
+	 * 亮暗模式切換按鈕寬度
+	 */
+	const jModeSwitchWidth = computed(() => {
+		if (isTextSizeMd.value) {
+			return '7.2rem';
+		} else if (isTextSizeLg.value) {
+			return '9.5rem';
+		} else if (isTextSizeXl.value) {
+			return '11.8rem';
 		} else {
 			return undefined;
 		}

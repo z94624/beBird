@@ -5,18 +5,12 @@
 
 	.q-tabs__content {
 		overflow: auto;
-
-		.q-tab {
-			&.q-tab--inactive {
-				background-color: white;
-			}
-		}
 	}
 
 	&.layoutHeaderTabs {
 		.q-tab {
-			&.rareBirdsTab {
-				color: $negative;
+			&.q-router-link--active {
+				color: $primary;
 			}
 
 			.q-tab__content {
@@ -33,16 +27,8 @@
 	&.layoutMenuList {
 		.q-item {
 			&.q-item--active {
-				color: unset;
-				border-left: 0.125rem solid var(--q-primary_e);
-				margin-left: 0.125rem;
-			}
-			&.rareBirdsItem {
-				color: $negative;
-
-				&.q-item--active {
-					border-left: 0.125rem solid $negative;
-				}
+				color: $primary;
+				border-left: 0.1875rem solid $primary;
 			}
 
 			.q-item__section--main {

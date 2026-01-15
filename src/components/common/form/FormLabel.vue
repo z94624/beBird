@@ -4,9 +4,7 @@
 			<div class="formLabel__top-left">
 				<span
 					v-if="title"
-					:style="{
-						color: titleColor,
-					}"
+					:class="[`text-${titleColor}`]"
 				>
 					{{ title }}
 				</span>

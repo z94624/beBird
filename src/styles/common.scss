@@ -1,14 +1,14 @@
 // 俗名字體
 .comName-font {
 	font-weight: 700;
-	color: var(--q-primary_e);
+	color: $primary;
 	text-wrap: pretty;
 	text-align: left;
 }
 // 學名字體
 .sciName-font {
-	color: var(--q-secondary_e);
 	font-style: italic;
+	color: $grey-6;
 	text-wrap: pretty;
 	text-align: left;
 }

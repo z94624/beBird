@@ -54,6 +54,13 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.9',
+		releaseDate: '2026/01/15',
+		features: ['Added support for dark/light mode toggle.'],
+		changes: ['All the weather GIFs are replaced with static PNG icons.'],
+		perfs: ['Layout of the location shown in the detail dialog of rare-bird spot is adjusted.'],
+	},
+	{
 		version: '1.1.8',
 		releaseDate: '2025/10/18',
 		changes: ['Redesign a new logo for the website.'],

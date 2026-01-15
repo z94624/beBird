@@ -32,6 +32,7 @@ declare module 'vue' {
     HrefButton: typeof import('./src/components/common/button/HrefButton.vue')['default']
     IconVideo: typeof import('./src/components/common/media/IconVideo.vue')['default']
     Instagram: typeof import('./src/components/common/socialMedia/Instagram.vue')['default']
+    JModeSwitch: typeof import('./src/components/common/modeSwitch/JModeSwitch.vue')['default']
     Line: typeof import('./src/components/common/socialMedia/Line.vue')['default']
     MigrationIndicator: typeof import('./src/components/common/badge/MigrationIndicator.vue')['default']
     RarityIndicator: typeof import('./src/components/common/badge/RarityIndicator.vue')['default']

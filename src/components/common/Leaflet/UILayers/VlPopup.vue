@@ -9,7 +9,7 @@
 				flat
 			>
 				<q-card-section class="!px-2 !pt-2 !pb-0">
-					<div class="ellipsis-2-lines">
+					<div class="ellipsis-2-lines break-all">
 						<slot name="location"></slot>
 					</div>
 				</q-card-section>
@@ -27,7 +27,7 @@
 							:label="$t('detail')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 							class="flex-1"
-							color="info"
+							color="primary"
 							icon="o_info"
 							@click="emit('detail')"
 						/>
@@ -36,7 +36,7 @@
 							:icon="mdiCarArrowRight"
 							:label="$t('navigation')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
-							color="positive"
+							color="secondary"
 						/>
 					</slot>
 				</q-card-actions>
@@ -88,7 +88,6 @@
 
 		// 字體大小 text-sizes.scss
 		.remark {
-			color: var(--q-secondaryLight_e);
 		}
 	}
 </style>

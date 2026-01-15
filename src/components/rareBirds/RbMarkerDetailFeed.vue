@@ -15,12 +15,12 @@
 			>
 				<div class="w-full flex no-wrap items-center gap-4">
 					<div
-						class="bg-secondary w-[2.083125rem] h-[2.083125rem] m-[0.2084375rem] flex justify-center items-center"
+						class="bg-primary w-[2.083125rem] h-[2.083125rem] m-[0.2084375rem] flex justify-center items-center"
 						style="border-radius: 50%"
 					>
 						<q-icon
 							:name="media.customIcon ? `img:${media.icon}` : media.icon"
-							color="primary"
+							color="white"
 							size="xs"
 						/>
 					</div>

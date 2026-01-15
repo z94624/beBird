@@ -7,7 +7,7 @@
 			style="min-width: 50vw"
 		>
 			<slot name="header">
-				<q-toolbar class="dialogHeader text-white bg-primaryDark_e">
+				<q-toolbar class="dialogHeader">
 					<slot name="title-before"></slot>
 					<q-toolbar-title>
 						<slot name="title"></slot>
@@ -15,6 +15,7 @@
 					<slot name="title-after"></slot>
 
 					<BaseButton
+						:text-color="text_name_mode"
 						flat
 						icon="close"
 						round
@@ -37,8 +38,10 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, useAttrs, useSlots } from 'vue';
+	import { computed, toRefs, useAttrs, useSlots } from 'vue';
 	import { QDialog, QDialogProps } from 'quasar';
+
+	import { useModeStore } from '@/store/modules/style';
 
 	const emit = defineEmits<{
 		(e: 'close'): void;
@@ -52,6 +55,8 @@
 
 	const attrs: Partial<QDialogProps> = useAttrs();
 	const slots: Partial<QDialog> = useSlots();
+	const modeStore = useModeStore();
+	const { text_name_mode } = toRefs(modeStore);
 
 	const getBindingValues = computed(() => {
 		return {
@@ -67,8 +72,6 @@
 
 <style lang="scss" scoped>
 	.dialogHeader {
-		position: sticky;
-		top: 0;
-		z-index: 1;
+		background-color: $primary;
 	}
 </style>
