@@ -57,7 +57,10 @@ export const versionList: {
 		version: '1.1.9',
 		releaseDate: '2026/01/15',
 		features: ['Added support for dark/light mode toggle.'],
-		changes: ['All the weather GIFs are replaced with static PNG icons.'],
+		changes: [
+			'All the weather GIFs are replaced with static PNG icons.',
+			'The color palette of the website is adjusted for better visual experience.',
+		],
 		perfs: ['Layout of the location shown in the detail dialog of rare-bird spot is adjusted.'],
 	},
 	{
