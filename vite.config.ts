@@ -18,7 +18,7 @@ const vitePWAOptions: Partial<VitePWAOptions> = {
 		name: 'beBird - 賞鳥世界走透透...',
 		short_name: 'beBird',
 		description: 'Today the birds, tomorrow the Human.',
-		theme_color: '#1c1bd6',
+		theme_color: '#6d6ae4',
 		background_color: '#ffffff',
 		display: 'standalone',
 		scope: 'https://z94624.github.io/beBird/',
