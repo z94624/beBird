@@ -97,12 +97,20 @@ export const useModeStore = defineStore('mode', () => {
 	);
 	const text_name_mode = computed(() => text_class_mode.value.split('-')[1]);
 
+	// 地圖圖層
+	const leaflet_provider_mode = computed(() =>
+		mode.value === ModeEnum.DARK ? 'CartoDB_DarkMatter' : 'CartoDB_Voyager'
+	);
+
 	/**
 	 * 切換模式
 	 */
 	const toggleMode = () => {
 		mode.value = mode.value === ModeEnum.LIGHT ? ModeEnum.DARK : ModeEnum.LIGHT;
 		localStorage.setItem('mode', mode.value);
+
+		// 更換符合模式的地圖圖層
+		localStorage.setItem('leaflet-tileProvider', leaflet_provider_mode.value);
 	};
 
 	return {
@@ -112,5 +120,6 @@ export const useModeStore = defineStore('mode', () => {
 		bg_name_mode,
 		text_class_mode,
 		text_name_mode,
+		leaflet_provider_mode,
 	};
 });

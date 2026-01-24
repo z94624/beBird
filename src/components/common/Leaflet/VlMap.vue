@@ -184,7 +184,7 @@
 
 	// 主題模式 Store (控制深淺色)
 	const modeStore = useModeStore();
-	const { mode, bg_name_mode, text_name_mode } = toRefs(modeStore);
+	const { mode, bg_name_mode, text_name_mode, leaflet_provider_mode } = toRefs(modeStore);
 
 	// LocalStorage: 地圖圖層
 	const PROVIDER_STORAGE_KEY = 'leaflet-tileProvider';
@@ -202,11 +202,6 @@
 	const birdMorph = ref('btn'); // Morph 動畫狀態
 	const searchDrawerOpen = ref(false); // 移動端抽屜狀態
 	const locateStatus = ref(false); // 目前是否開啟定位追蹤狀態
-
-	// 深淺模式偏好的地圖圖層
-	const modeProvider = computed(() =>
-		mode.value === ModeEnum.DARK ? 'CartoDB_DarkMatter' : 'CartoDB_Voyager'
-	);
 
 	// 計算定位按鈕顏色 (啟用時與停用時的配色切換)
 	const locateColor = computed(() => {
@@ -333,10 +328,7 @@
 	 * 確保地圖底圖風格能與應用程式 UI 主題同步
 	 */
 	watch(mode, () => {
-		changeTileProvider(modeProvider.value);
-
-		// 強制覆蓋儲存的設定
-		localStorage.setItem(PROVIDER_STORAGE_KEY, modeProvider.value);
+		changeTileProvider(leaflet_provider_mode.value);
 	});
 
 	// 監聽定位座標變化，自動更新地圖中心
@@ -459,7 +451,7 @@
 		 * 若無則根據深淺色模式指定預設圖層
 		 */
 		const userProvider = localStorage.getItem(PROVIDER_STORAGE_KEY);
-		changeTileProvider(userProvider || modeProvider.value);
+		changeTileProvider(userProvider || leaflet_provider_mode.value);
 	});
 
 	// 暴露 API 供父組件使用
