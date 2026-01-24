@@ -10,10 +10,11 @@
 			class="flex"
 		>
 			<div class="text-bold text-base">{{ item.name }}</div>
-			<FlipNumber
-				:fontSize="1.875 * textSizeMultiplier"
-				:height="2.5 * textSizeMultiplier"
-				:value="item.to"
+			<NumberFlow
+				:style="{
+					fontSize: `${1.875 * textSizeMultiplier}rem`,
+				}"
+				:value="item.to ?? 0"
 			/>
 		</div>
 	</div>
@@ -24,7 +25,7 @@
 	import { useI18n } from 'vue-i18n';
 	import { useCookies } from '@vueuse/integrations/useCookies';
 	import dayjs from 'dayjs';
-	import FlipNumber from '@/components/common/flipNumber';
+	import NumberFlow from '@number-flow/vue';
 
 	import { usePlatform } from '@/hooks/platform';
 	import { useVisitorsStatisticsStore } from '@/store/modules/firebase';
