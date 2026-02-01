@@ -54,6 +54,17 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.0',
+		releaseDate: '2026/02/01',
+		fixes: [
+			'Fix the map layer at the condition that user switches the mode of dark/light theme not at the map page.',
+		],
+		changes: [
+			'Update the theme color of the PWA to match the new website color scheme.',
+			'Change the Visitors Statistics display style which is more minimalist than the previous one.(FlipNumber → NumberFlow)',
+		],
+	},
+	{
 		version: '1.1.9',
 		releaseDate: '2026/01/15',
 		features: ['Added support for dark/light mode toggle.'],
