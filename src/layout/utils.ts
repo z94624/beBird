@@ -54,7 +54,7 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
-		version: '1.2.0',
+		version: '1.1.10',
 		releaseDate: '2026/02/01',
 		fixes: [
 			'Fix the map layer at the condition that user switches the mode of dark/light theme not at the map page.',
