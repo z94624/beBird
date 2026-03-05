@@ -1,10 +1,10 @@
 import { Platform } from 'quasar';
 
 export const usePlatform = () => {
-    const { mobile } = Platform.is;
+	const { mobile, android } = Platform.is;
 
-    // 是否為手機版
-    const isMobile = !!mobile;
-
-    return { isMobile };
+	return {
+		isMobile: mobile, // 是否為手機版
+		isAndroid: android, // 是否為 Android 裝置
+	};
 };

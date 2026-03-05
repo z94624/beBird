@@ -5,5 +5,7 @@
 	"birdComposition": "Bird Composition Map",
 	"routineRoute": "Routine Route Map",
 
-	"contactUs": "Contact Us"
+	"contactUs": "Contact Us",
+
+	"backExit": "Press back again to exit the system"
 }

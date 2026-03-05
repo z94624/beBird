@@ -19,9 +19,12 @@
 	import LayoutM from '@/layout/Layout-M.vue';
 
 	import { usePlatform } from '@/hooks/platform';
+	import { useBackExit } from '@/hooks/useBackExit';
 	import { checkIsInChristmasSeason } from './utils/date';
 
 	const { isMobile } = usePlatform();
+	// 再按一次返回鍵離開本系統 Press back again to exit
+	useBackExit();
 </script>
 
 <style lang="scss">
