@@ -20,37 +20,37 @@ const routes: RouteRecordRaw[] = [
 	{
 		path: '/rare-birds-map',
 		name: 'RareBirds',
-		meta: {},
+		meta: { titleKey: 'rareBirds' },
 		component: () => import('@/views/RareBirds.vue'),
 	},
 	{
 		path: '/bird-watching-map',
 		name: 'BirdWatching',
-		meta: {},
+		meta: { titleKey: 'birdWatching' },
 		component: () => import('@/views/Home.vue'),
 	},
 	{
 		path: '/bird-distribution-map',
 		name: 'BirdDistribution',
-		meta: {},
+		meta: { titleKey: 'birdDistribution' },
 		component: () => import('@/views/Home.vue'),
 	},
 	{
 		path: '/bird-composition-map',
 		name: 'BirdComposition',
-		meta: {},
+		meta: { titleKey: 'birdComposition' },
 		component: () => import('@/views/Home.vue'),
 	},
 	{
 		path: '/routine-route-map',
 		name: 'RoutineRoute',
-		meta: {},
+		meta: { titleKey: 'routineRoute' },
 		component: () => import('@/views/Home.vue'),
 	},
 	{
 		path: '/contact-us',
 		name: 'ContactUs',
-		meta: {},
+		meta: { titleKey: 'contactUs' },
 		component: () => import('@/views/ContactUs.vue'),
 	},
 ];
