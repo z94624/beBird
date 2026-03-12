@@ -53,6 +53,12 @@ const routes: RouteRecordRaw[] = [
 		meta: { titleKey: 'contactUs' },
 		component: () => import('@/views/ContactUs.vue'),
 	},
+	{
+		path: '/attributions',
+		name: 'Attributions',
+		meta: { titleKey: 'attributions' },
+		component: () => import('@/views/Attributions.vue'),
+	},
 ];
 
 const router = createRouter({
