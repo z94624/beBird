@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BackgroundVideo: typeof import('./src/components/common/media/BackgroundVideo.vue')['default']
     BaseButton: typeof import('./src/components/common/button/src/BaseButton.vue')['default']
+    BaseChip: typeof import('./src/components/common/chip/src/BaseChip.vue')['default']
     BaseDialog: typeof import('./src/components/common/dialog/BaseDialog.vue')['default']
     BaseDialogTemplate: typeof import('./src/components/common/dialog/_template/BaseDialogTemplate.vue')['default']
     BaseIndicator: typeof import('./src/components/common/badge/src/BaseIndicator.vue')['default']

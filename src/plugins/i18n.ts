@@ -13,6 +13,8 @@ import ebirdEnUs from '@/locales/en-us/ebird.json';
 import ebirdZhTw from '@/locales/zh-tw/ebird.json';
 import contactEnUs from '@/locales/en-us/contact.json';
 import contactZhTw from '@/locales/zh-tw/contact.json';
+import attributionEnUs from '@/locales/en-us/attribution.json';
+import attributionZhTw from '@/locales/zh-tw/attribution.json';
 import socialMediaEnUs from '@/locales/en-us/socialMedia.json';
 import socialMediaZhTw from '@/locales/zh-tw/socialMedia.json';
 
@@ -43,6 +45,7 @@ const i18n = createI18n({
 			weatherEnUs,
 			ebirdEnUs,
 			contactEnUs,
+			attributionEnUs,
 			socialMediaEnUs
 		),
 		[WebLangEnum.TAIWAN]: mergeDictionaries(
@@ -51,6 +54,7 @@ const i18n = createI18n({
 			weatherZhTw,
 			ebirdZhTw,
 			contactZhTw,
+			attributionZhTw,
 			socialMediaZhTw
 		),
 	},
