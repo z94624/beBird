@@ -18,6 +18,7 @@ declare module 'vue' {
     BaseTabs: typeof import('./src/components/common/tabs/src/BaseTabs.vue')['default']
     BaseToggle: typeof import('./src/components/common/toggle/src/BaseToggle.vue')['default']
     Checklist: typeof import('./src/components/common/list/Checklist.vue')['default']
+    ClickableChip: typeof import('./src/components/common/chip/ClickableChip.vue')['default']
     ContactConnections: typeof import('./src/components/contactMe/ContactConnections.vue')['default']
     ContactEmail: typeof import('./src/components/contactMe/ContactEmail.vue')['default']
     ContactFanPage: typeof import('./src/components/contactMe/ContactFanPage.vue')['default']
