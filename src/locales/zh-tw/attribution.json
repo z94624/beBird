@@ -4,5 +4,12 @@
 	"mapGeo": "地圖與地理",
 	"apiService": "資料與後端服務",
 	"vueEcosystem": "Vue 生態套件",
-	"designUi": "視覺與介面"
+	"designUi": "視覺與介面",
+
+	"leafletQuote": "驅動 beBird 互動式地圖體驗的核心開源 JavaScript 引擎，輕量且效能卓越。",
+	"ebirdQuote": "提供本站最核心的全球鳥類觀測數據，為生態探索的基石。",
+	"tomorrowQuote": "提供高精度的即時天氣與預報資料，協助鳥友在最佳的天候狀況下規劃行程。",
+	"sunriseQuote": "輕量且可靠的日出與日落時間推算服務，讓晨昏的觀測計畫更精準。",
+	"flaticonQuote": "為天氣資訊面板增添生命力的動態圖示。",
+	"lovartQuote": "賦予網站獨特視覺風格與質感的優質藝術設計素材來源。"
 }

@@ -4,5 +4,12 @@
 	"mapGeo": "Map & Geo",
 	"apiService": "API & Service",
 	"vueEcosystem": "Vue Ecosystem",
-	"designUi": "Design & UI"
+	"designUi": "Design & UI",
+
+	"leafletQuote": "The core open-source JavaScript engine powering beBird's interactive map experience, lightweight and highly performant.",
+	"ebirdQuote": "Provides the core global bird observation data for our site, serving as the cornerstone for ecological exploration.",
+	"tomorrowQuote": "Delivers high-precision real-time weather and forecast data, helping birders plan trips under optimal weather conditions.",
+	"sunriseQuote": "A lightweight and reliable sunrise and sunset time calculation service, making dawn and dusk observation plans more precise.",
+	"flaticonQuote": "Animated icons that add vitality to the weather information panel.",
+	"lovartQuote": "A high-quality source of artistic design assets that gives the website its unique visual style and texture."
 }
