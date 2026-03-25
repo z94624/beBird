@@ -36,7 +36,7 @@
 	// 定義分類
 	const categories = ['mapGeo', 'apiService', 'designUi'];
 
-	// 資源清單資料結構更新
+	// 資源清單資料
 	interface IAttributionItem {
 		id: number;
 		title: string;
