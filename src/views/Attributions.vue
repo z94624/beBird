@@ -23,6 +23,26 @@
 			<div
 				class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4"
 			>
+				<template
+					v-for="item in filteredAttributions"
+					:key="item.id"
+				>
+					<IntersectedCard
+						class="attributionCard cursor-pointer"
+						@click="openUrl(item.url)"
+					>
+						<q-card-section>
+							<h6>{{ item.title }}</h6>
+							<div class="text-sm text-grey-8">{{ item.author }}</div>
+						</q-card-section>
+
+						<q-separator inset />
+
+						<q-card-section>
+							{{ $t(item.quoteKey) }}
+						</q-card-section>
+					</IntersectedCard>
+				</template>
 			</div>
 		</div>
 	</q-page>
@@ -31,6 +51,7 @@
 <script lang="ts" setup>
 	import { computed, reactive, ref } from 'vue';
 
+	import { openUrl } from '@/utils/common';
 	import { IMap } from '@/models/common/base';
 
 	// 定義分類
@@ -116,4 +137,11 @@
 	);
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.attributionCard {
+		&:hover {
+			@include boxShadow;
+			transform: translateY(-5px);
+		}
+	}
+</style>
