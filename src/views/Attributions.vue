@@ -27,10 +27,7 @@
 					v-for="item in filteredAttributions"
 					:key="item.id"
 				>
-					<IntersectedCard
-						class="attributionCard cursor-pointer"
-						@click="openUrl(item.url)"
-					>
+					<IntersectedCard @click="openUrl(item.url)">
 						<q-card-section>
 							<h6>{{ item.title }}</h6>
 							<div class="text-sm text-grey-8">{{ item.author }}</div>
@@ -137,11 +134,4 @@
 	);
 </script>
 
-<style lang="scss" scoped>
-	.attributionCard {
-		&:hover {
-			@include boxShadow;
-			transform: translateY(-5px);
-		}
-	}
-</style>
+<style lang="scss" scoped></style>

@@ -1,10 +1,12 @@
 <template>
 	<div
 		v-intersection="onIntersection"
-		:class="[props.class]"
 		class="reveal-card"
 	>
-		<q-card :="attrs">
+		<q-card
+			:="attrs"
+			class="intersectedCard cursor-pointer"
+		>
 			<template
 				#[slot]
 				v-for="(slot, sIdx) in Object.keys(slots)"
@@ -19,10 +21,6 @@
 <script lang="ts" setup>
 	import { useAttrs, useSlots } from 'vue';
 	import { QCard, QCardProps } from 'quasar';
-
-	const props = defineProps<{
-		class?: string;
-	}>();
 
 	const attrs: Partial<QCardProps> = useAttrs();
 	const slots: Partial<QCard> = useSlots();
@@ -51,5 +49,14 @@
 	.reveal-active {
 		opacity: 1;
 		transform: translateY(0);
+	}
+
+	.intersectedCard {
+		transition: all 0.3s ease;
+
+		&:hover {
+			@include boxShadow;
+			transform: translateY(-5px);
+		}
 	}
 </style>
