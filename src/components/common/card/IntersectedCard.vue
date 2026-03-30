@@ -1,28 +1,22 @@
 <template>
-	<div
+	<q-card
 		v-intersection="onIntersection"
-		:class="[props.class]"
+		:="attrs"
 		class="reveal-card"
 	>
-		<q-card :="attrs">
-			<template
-				#[slot]
-				v-for="(slot, sIdx) in Object.keys(slots)"
-				:key="sIdx"
-			>
-				<slot :name="slot"></slot>
-			</template>
-		</q-card>
-	</div>
+		<template
+			#[slot]
+			v-for="(slot, sIdx) in Object.keys(slots)"
+			:key="sIdx"
+		>
+			<slot :name="slot"></slot>
+		</template>
+	</q-card>
 </template>
 
 <script lang="ts" setup>
 	import { useAttrs, useSlots } from 'vue';
 	import { QCard, QCardProps } from 'quasar';
-
-	const props = defineProps<{
-		class?: string;
-	}>();
 
 	const attrs: Partial<QCardProps> = useAttrs();
 	const slots: Partial<QCard> = useSlots();
