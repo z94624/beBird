@@ -1,15 +1,16 @@
 <template>
-	<q-page padding>
-		<div class="page-content-container flex flex-col items-center gap-4">
-			<!-- Quote -->
-			<div class="text-center p-4">
+	<q-page
+		class="flex flex-col h-full overflow-hidden"
+		padding
+	>
+		<div class="page-content-container flex flex-col flex-1 w-full max-h-full">
+			<div class="text-center p-4 shrink-0">
 				<blockquote>
 					<p>{{ $t('attrQuote') }}</p>
 				</blockquote>
 			</div>
 
-			<!-- Category Chips -->
-			<div class="flex justify-center items-center gap-2 p-4">
+			<div class="flex justify-center items-center gap-2 p-4 shrink-0">
 				<ClickableChip
 					v-for="category in categories"
 					v-model:selected="categoryActiveDict[category]"
@@ -19,27 +20,28 @@
 				</ClickableChip>
 			</div>
 
-			<!-- Attribution Cards -->
-			<div
-				class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4"
-			>
-				<template
-					v-for="item in filteredAttributions"
-					:key="item.id"
+			<div class="flex-1 overflow-y-auto w-full p-4">
+				<div
+					class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
 				>
-					<IntersectedCard @click="openUrl(item.url)">
-						<q-card-section>
-							<h6>{{ item.title }}</h6>
-							<div class="text-sm text-grey-8">{{ item.author }}</div>
-						</q-card-section>
+					<template
+						v-for="item in filteredAttributions"
+						:key="item.id"
+					>
+						<IntersectedCard @click="openUrl(item.url)">
+							<q-card-section>
+								<h6>{{ item.title }}</h6>
+								<div class="text-sm text-grey-8">{{ item.author }}</div>
+							</q-card-section>
 
-						<q-separator inset />
+							<q-separator inset />
 
-						<q-card-section>
-							{{ $t(item.quoteKey) }}
-						</q-card-section>
-					</IntersectedCard>
-				</template>
+							<q-card-section>
+								{{ $t(item.quoteKey) }}
+							</q-card-section>
+						</IntersectedCard>
+					</template>
+				</div>
 			</div>
 		</div>
 	</q-page>

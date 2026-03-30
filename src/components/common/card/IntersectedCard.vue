@@ -43,19 +43,29 @@
 	/* --- 捲動進場動畫 (Scroll Reveal) --- */
 	.reveal-card {
 		opacity: 0;
-		transform: translateY(30px);
-		transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+		/* 初始狀態：往下位移 30px，並縮小至 80% */
+		transform: translateY(30px) scale(0.8);
+
+		/* opacity 使用一般的 ease-out 讓淡入自然。
+      transform 使用客製化的 cubic-bezier，
+      其中大於 1 的數值 (1.56) 會讓元素放大超過 scale(1) 再彈回，形成果凍般的彈性效果 
+    */
+		transition:
+			opacity 0.4s ease-out,
+			transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
+
 	.reveal-active {
 		opacity: 1;
-		transform: translateY(0);
+		/* 目標狀態：回到原始位置與 100% 大小 */
+		transform: translateY(0) scale(1);
 	}
 
 	.intersectedCard {
 		transition: all 0.3s ease;
 
 		&:hover {
-			@include boxShadow;
+			@include boxShadow; /* 沿用您原本的 mixin 或寫法 */
 			transform: translateY(-5px);
 		}
 	}
