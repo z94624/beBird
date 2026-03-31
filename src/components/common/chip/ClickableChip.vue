@@ -2,6 +2,7 @@
 	<BaseChip
 		:="attrs"
 		clickable
+		outline
 	>
 		<template
 			#[slot]
