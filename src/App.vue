@@ -4,6 +4,8 @@
 		影片：https://www.youtube.com/watch?v=yUUdhCpOCFY&t=750s
 	-->
 	<div>
+		<GlobalBackgroundEx />
+
 		<!-- 下雪公元 -->
 		<Snow v-if="checkIsInChristmasSeason()" />
 
@@ -20,6 +22,7 @@
 	import { useI18n } from 'vue-i18n';
 	import Layout from '@/layout/Layout.vue';
 	import LayoutM from '@/layout/Layout-M.vue';
+	import GlobalBackgroundEx from './components/common/background/GlobalBackgroundEx.vue';
 
 	import { usePlatform } from '@/hooks/platform';
 	import { checkIsInChristmasSeason } from './utils/date';
