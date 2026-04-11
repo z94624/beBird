@@ -1,15 +1,20 @@
 <template>
-	<div class="flex flex-col !flex-nowrap gap-1 w-full">
+	<div
+		:class="[isMobile ? 'gap-4' : 'gap-1']"
+		class="flex flex-col !flex-nowrap w-full"
+	>
 		<div
 			v-for="item in visitorStatList"
 			:key="item.name"
-			class="flex justify-between items-center gap-8"
+			:class="[isMobile ? 'flex-col gap-2' : 'justify-between items-center gap-8']"
+			class="flex"
 		>
-			<div class="text-primary text-bold">{{ item.name }}</div>
-			<FlipNumber
-				:fontSize="30"
-				:height="40"
-				:value="item.to"
+			<div class="text-bold text-base">{{ item.name }}</div>
+			<NumberFlow
+				:style="{
+					fontSize: `${1.875 * textSizeMultiplier}rem`,
+				}"
+				:value="item.to ?? 0"
 			/>
 		</div>
 	</div>
@@ -20,18 +25,23 @@
 	import { useI18n } from 'vue-i18n';
 	import { useCookies } from '@vueuse/integrations/useCookies';
 	import dayjs from 'dayjs';
-	import FlipNumber from '@/components/common/flipNumber';
+	import NumberFlow from '@number-flow/vue';
 
+	import { usePlatform } from '@/hooks/platform';
 	import { useVisitorsStatisticsStore } from '@/store/modules/firebase';
+	import { useTextSizeStore } from '@/store/modules/style';
 	import { standardDateTimeFormatString } from '@/utils/common';
 	import { VisitorsStatisticsInfo } from '@/types/firebase';
 	import { VisitorStatEnum } from '@/models/enum/firebaseEnum';
 
 	const cookies = useCookies();
 	const { t } = useI18n();
+	const { isMobile } = usePlatform();
 	const visitorsStatisticsStore = useVisitorsStatisticsStore();
 	const { onlineNumber, todayNumber, todayUpdatedTime, totalNumber } =
 		toRefs(visitorsStatisticsStore);
+	const textSizeStore = useTextSizeStore();
+	const { textSizeMultiplier } = toRefs(textSizeStore);
 
 	/**
 	 * 拜訪人次統計資訊

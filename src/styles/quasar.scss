@@ -5,50 +5,45 @@
 
 	.q-tabs__content {
 		overflow: auto;
-
-		.q-tab {
-			&.q-tab--inactive {
-				background-color: white;
-			}
-		}
 	}
 
 	&.layoutHeaderTabs {
 		.q-tab {
-			&.rareBirdsTab {
-				color: $negative;
+			&.q-router-link--active {
+				color: $primary;
 			}
 
 			.q-tab__content {
 				.q-tab__label {
 					font-weight: 700;
-					font-size: 17px;
 				}
 			}
 		}
 	}
 }
+
 // 手機版
 .q-list {
 	&.layoutMenuList {
 		.q-item {
 			&.q-item--active {
-				color: unset;
-				border-left: 2px solid var(--q-primary_e);
-				margin-left: 2px;
-			}
-			&.rareBirdsItem {
-				color: $negative;
-
-				&.q-item--active {
-					border-left: 2px solid $negative;
-				}
+				color: $primary;
+				border-left: 0.1875rem solid $primary;
 			}
 
 			.q-item__section--main {
 				font-weight: 700;
-				font-size: 17px;
 			}
+		}
+	}
+}
+
+// Layout 功能按鈕集
+// 電腦版
+.q-fab {
+	&#layoutFeatureButton {
+		.q-fab__actions {
+			background-color: white;
 		}
 	}
 }

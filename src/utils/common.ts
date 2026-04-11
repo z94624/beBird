@@ -26,6 +26,7 @@ export const isHexColor = (code?: string): boolean => {
 
 // 統一使用的日期時間格式
 export const standardDateTimeFormatString = 'YYYY/MM/DD HH:mm:ss';
+export const standardDateTimeNoSecondFormatString = 'YYYY/MM/DD HH:mm';
 
 /**
  * 取得以 'YYYY/MM/DD HH:mm:ss' 為預設格式或其他格式的現在時間

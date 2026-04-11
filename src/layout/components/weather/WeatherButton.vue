@@ -5,7 +5,7 @@
 		round
 		@click="onOpenWeatherDialog"
 	>
-		<WeatherIconVideo
+		<WeatherIcon
 			:weatherType="weatherType"
 			no-tooltip
 		/>
@@ -19,18 +19,14 @@
 <script lang="ts" setup>
 	import { computed, ref, toRefs, watch } from 'vue';
 	import { useDebounceFn } from '@vueuse/core';
-	import WeatherIconVideo from './WeatherIconVideo.vue';
+	import WeatherIcon from './WeatherIcon.vue';
 	import WeatherDialog from './WeatherDialog.vue';
 
 	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
 
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
-	import {
-		weatherDataDict,
-		getWeatherTypeWithCode_tomorrow,
-		getWeatherTypeWithoutCode_tomorrow,
-	} from './utils';
+	import { getWeatherTypeWithCode_tomorrow, getWeatherTypeWithoutCode_tomorrow } from './utils';
 	import { WeatherPanelInfo } from './types';
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 

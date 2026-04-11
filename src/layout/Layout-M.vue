@@ -2,7 +2,7 @@
 	<div>
 		<q-layout view="hHh lpR fFf">
 			<q-header
-				class="bg-white text-primary_e"
+				:class="[bg_class_mode, text_class_mode]"
 				elevated
 				reveal
 			>
@@ -14,19 +14,23 @@
 						@click="toggleDrawer"
 					/>
 
-					<div class="flex-1 pr-[42px] text-center cursor-pointer">
+					<div class="flex-1 pr-[2.625rem] text-center cursor-pointer">
 						<span class="logoText text-primary">b</span>
-						<span class="logoText text-accent">e</span>
-						<span class="logoText text-secondaryDark_e">Bird</span>
+						<span class="logoText text-secondary">e</span>
+						<span
+							:class="[text_class_mode]"
+							class="logoText"
+							>Bird</span
+						>
 					</div>
 				</q-toolbar>
 			</q-header>
 
 			<q-drawer
 				v-model="drawerOpen"
+				:class="[text_class_mode]"
 				behavior="mobile"
 				bordered
-				class="text-primary_e"
 				overlay
 				side="left"
 			>
@@ -38,7 +42,6 @@
 						>
 							<q-item
 								:active="menuItem.name === selectedMenu"
-								:class="[`${menuItem.name === 'rareBirds' ? 'rareBirdsItem' : ''}`]"
 								:to="menuItem.to"
 								clickable
 								@click="() => onSelectMenu(menuItem.name)"
@@ -63,12 +66,12 @@
 							@click="onOpenWeatherDialog"
 						>
 							<q-item-section avatar>
-								<WeatherIconVideo
+								<WeatherIcon
 									:weatherType="weatherType"
-									width="30px"
+									class="q-icon"
 								/>
 							</q-item-section>
-							<q-item-section>Weather</q-item-section>
+							<q-item-section>{{ $t(WeatherTypeEnum.UNKNOWN) }}</q-item-section>
 						</q-item>
 
 						<!-- 版本 -->
@@ -84,11 +87,6 @@
 							</q-item-section>
 						</q-item>
 
-						<!-- 人次 -->
-						<q-item>
-							<VisitorsBillboard />
-						</q-item>
-
 						<!-- 網站語言 / 日夜模式 / 字體大小 -->
 						<q-item class="!p-0">
 							<WebLangButton
@@ -99,18 +97,25 @@
 								inset
 								vertical
 							/>
-							<BaseButton
-								class="flex-1"
-								flat
-							/>
+							<div
+								class="flex justify-center items-center"
+								style="padding: 0.85em 1em"
+							>
+								<j-mode-switch width="4.39125rem" />
+							</div>
 							<q-separator
 								inset
 								vertical
 							/>
-							<BaseButton
+							<WebTextSizeButton
 								class="flex-1"
 								flat
 							/>
+						</q-item>
+
+						<!-- 人次 -->
+						<q-item>
+							<VisitorsBillboard />
 						</q-item>
 					</q-list>
 				</q-scroll-area>
@@ -131,17 +136,20 @@
 	import { computed, ref, toRefs, watch } from 'vue';
 	import { useRouter } from 'vue-router';
 	import { useDebounceFn } from '@vueuse/core';
-	import WeatherIconVideo from './components/weather/WeatherIconVideo.vue';
+	import WeatherIcon from './components/weather/WeatherIcon.vue';
 	import WeatherDialog from './components/weather/WeatherDialog.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
 	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
 	import WebLangButton from './components/WebLangButton.vue';
+	import WebTextSizeButton from './components/WebTextSizeButton.vue';
+	import JModeSwitch from '@/components/common/modeSwitch/JModeSwitch.vue';
 
 	import { SUNRISETGetSunriseSunsetTimesReq } from '@/models/sunriset/diel';
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
 
 	import { useLeafletStore } from '@/store/modules/geodata';
 	import { useSunrisetStore, useTomorrowStore } from '@/store/modules/weather';
+	import { useModeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
 	import { versionList } from '@/layout/utils';
 	import {
@@ -160,6 +168,8 @@
 	const { sunResult, diel } = toRefs(sunrisetStore);
 	const tomorrowStore = useTomorrowStore();
 	const { obsResult, obsTime } = toRefs(tomorrowStore);
+	const modeStore = useModeStore();
+	const { bg_class_mode, text_class_mode } = toRefs(modeStore);
 
 	const drawerOpen = ref(false);
 	const selectedMenu = ref('rareBirds');
@@ -259,9 +269,8 @@
 </script>
 
 <style lang="scss" scoped>
+	// 字體大小 text-sizes.scss
 	.logoText {
-		font-size: 2.25rem;
-		line-height: 2.5rem;
 		font-weight: bold;
 	}
 </style>

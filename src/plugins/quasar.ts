@@ -1,6 +1,14 @@
 import { App } from 'vue';
 
-import { Quasar, LoadingBar, Notify, Loading, QSpinnerHourglass } from 'quasar';
+import {
+	Quasar,
+	LoadingBar,
+	Notify,
+	Loading,
+	QSpinnerHourglass,
+	LocalStorage,
+	SessionStorage,
+} from 'quasar';
 // Import Quasar css
 import 'quasar/src/css/index.sass';
 import MaterialIconSet from 'quasar/icon-set/material-icons';
@@ -12,27 +20,23 @@ import '@quasar/extras/material-icons-sharp/material-icons-sharp.css';
 
 export const setupQuasar = (app: App<Element>) => {
 	app.use(Quasar, {
-		plugins: { LoadingBar, Notify, Loading }, // import Quasar plugins and add here
+		plugins: { LoadingBar, Notify, Loading, LocalStorage, SessionStorage }, // import Quasar plugins and add here
 		iconSet: MaterialIconSet,
 		config: {
+			dark: false, // default mode is light
 			brand: {
-				primaryDark_e: '#385b75',
-				primary_e: '#40718f',
-				'primary-bg_e': '#f2fafd',
-				primaryLight_e: '#b4cfe1',
-				secondaryDark_e: '#2e261f',
-				secondary_e: '#6f6e67',
-				secondaryLight_e: '#dcdcd5',
-				line_e: '#f4f3f1',
-				'accent-bg': '#ecf9eb',
+				lightText: '#101010', // 淺色主題文字色
+				lightBg: '#f5f5f5', // 淺色主題背景色
+				darkText: '#f2f2f2', // 深色主題文字色
+				line: '#f4f3f1',
 			},
 			loadingBar: {
-				size: '3px',
+				size: '0.1875rem',
 				color: 'primary',
 			},
 			loading: {
 				delay: 300,
-				spinnerColor: 'secondary',
+				spinnerColor: 'primary',
 				spinner: QSpinnerHourglass,
 			},
 		},

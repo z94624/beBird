@@ -4,7 +4,7 @@
 		@close="close"
 	>
 		<template #title>
-			<div class="flex no-wrap gap-1">
+			<div class="flex no-wrap items-center gap-1">
 				<div class="text-3xl">{{ userComName }}</div>
 				<div class="flex flex-col">
 					<div class="text-xs italic">{{ obs?.sciName ?? '' }}</div>
@@ -18,7 +18,6 @@
 				v-model="tab"
 				align="justify"
 				dense
-				style="position: sticky; top: 50px; z-index: 1"
 			>
 				<q-tab
 					icon="list_alt"
@@ -34,6 +33,7 @@
 				v-model="tab"
 				animated
 				keep-alive
+				style="max-height: 75vh; overflow: auto"
 			>
 				<q-tab-panel name="list">
 					<RbMarkerDetailList :notableObs="obs" />
@@ -50,34 +50,32 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, ref } from 'vue';
+	import { computed, ref, toRefs } from 'vue';
 
 	import { IDATAOBSGetRecentNotableObsInRegionItem } from '@/models/data/obs';
-	import { IREFTAXGetEbirdTaxonomyRes } from '@/models/ref/taxonomy';
 
 	import { useDialog } from '@/hooks/dialog';
-	import { IMap } from '@/models/common/base';
+	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 
 	const { isOpen, open, onOpen, close, onClose } = useDialog();
+	const taxonomyStore = useTaxonomyStore();
+	const { taxInfoDict } = toRefs(taxonomyStore);
 
 	const obs = ref<IDATAOBSGetRecentNotableObsInRegionItem>();
-	const userComNameDict = ref<IMap<IREFTAXGetEbirdTaxonomyRes>>();
 	const tab = ref('list');
 
 	// 當地俗名
 	const userComName = computed(() => {
-		if (!obs.value || !userComNameDict.value) return;
-		return userComNameDict.value[obs.value.speciesCode]?.comName ?? obs.value.comName;
+		if (!obs.value || !taxInfoDict.value) return;
+		return taxInfoDict.value[obs.value.speciesCode]?.comName ?? obs.value.comName;
 	});
 
-	onOpen((o: IDATAOBSGetRecentNotableObsInRegionItem, ucnd: IMap<IREFTAXGetEbirdTaxonomyRes>) => {
+	onOpen((o: IDATAOBSGetRecentNotableObsInRegionItem) => {
 		obs.value = o;
-		userComNameDict.value = ucnd;
 	});
 
 	onClose(() => {
 		obs.value = undefined;
-		userComNameDict.value = undefined;
 		tab.value = 'list';
 	});
 

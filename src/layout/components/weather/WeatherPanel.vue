@@ -6,35 +6,35 @@
 				class="absolute top-4 right-4"
 				href="https://weather.tomorrow.io/"
 				round
-				size="11px"
+				size="0.6875rem"
 			>
 				<TomorrowIcon only-icon />
 			</HrefButton>
 
-			<div class="archContainer">
+			<div class="archContainer flex flex-col justify-center items-center gap-4">
 				<!-- 天氣圖示 -->
 				<div class="flex justify-center items-center">
-					<WeatherIconVideo
+					<WeatherIcon
 						:tooltip-props="{
 							offset: [0, 0],
 						}"
 						:weatherType="data.weatherType"
-						class="h-[150px]"
+						size="8rem"
 					/>
 				</div>
 				<!-- 日出落 -->
 				<div class="flex justify-center gap-4">
 					<div class="flex items-center gap-1">
-						<WeatherIconVideo
+						<WeatherIcon
 							:weatherType="WeatherItemEnum.SUNRISE"
-							width="40px"
+							size="2rem"
 						/>
 						<span>{{ data.sunriseTime.slice(0, -3) }}</span>
 					</div>
 					<div class="flex items-center gap-1">
-						<WeatherIconVideo
+						<WeatherIcon
 							:weatherType="WeatherItemEnum.SUNSET"
-							width="40px"
+							size="2rem"
 						/>
 						<span>{{ data.sunsetTime.slice(0, -3) }}</span>
 					</div>
@@ -47,28 +47,40 @@
 				<!-- 溫度 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.TEMP" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.TEMP"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.temperatureApparent }}{{ isMetric ? '℃' : '℉' }}</span>
 				</div>
 				<!-- 機率 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.PRECIP" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.PRECIP"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.precipitationProbability }}%</span>
 				</div>
 				<!-- 濕度 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.HUMID" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.HUMID"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.humidity }}%</span>
 				</div>
 				<!-- 風速 -->
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
-						<WeatherIconVideo :weatherType="WeatherItemEnum.WIND_SPEED" />
+						<WeatherIcon
+							:weatherType="WeatherItemEnum.WIND_SPEED"
+							size="1.5rem"
+						/>
 					</div>
 					<span>{{ data.windSpeed }}{{ isMetric ? 'm/s' : 'mph' }}</span>
 				</div>
@@ -88,18 +100,22 @@
 				left-label
 				@update:model-value="onUpdateUnitSystem"
 			>
-				<WeatherIconVideo
+				<WeatherIcon
 					:weatherType="isMetric ? WeatherItemEnum.C : WeatherItemEnum.F"
-					width="40px"
+					size="2rem"
 				/>
 			</BaseToggle>
 			<!-- 觀測時間 -->
 			<div class="flex items-center gap-1">
-				<WeatherIconVideo
+				<WeatherIcon
 					:weatherType="WeatherItemEnum.OBS_TIME"
-					width="40px"
+					size="2rem"
 				/>
-				<span>{{ getFormattedDateTime(data.observationDatetime) }}</span>
+				<span>{{
+					data.observationDatetime
+						? getFormattedDateTime(data.observationDatetime, 'MM/DD HH:mm')
+						: '-'
+				}}</span>
 			</div>
 		</q-card-actions>
 	</q-card>
@@ -107,7 +123,7 @@
 
 <script lang="ts" setup>
 	import { computed, ref, watch } from 'vue';
-	import WeatherIconVideo from './WeatherIconVideo.vue';
+	import WeatherIcon from './WeatherIcon.vue';
 	import TomorrowIcon from '@/assets/icons/weather/providers/TomorrowIcon.vue';
 
 	import { TOMORROWGetRealtimeWeatherReq } from '@/models/tomorrow/v4/weather';
@@ -171,8 +187,8 @@
 <style lang="scss" scoped>
 	%top-right-inset-shadow {
 		box-shadow:
-			rgb(0, 0, 0) -3px 3px 6px 0px inset,
-			rgba(255, 255, 255, 0.5) 3px -3px 6px 1px inset;
+			rgb(0, 0, 0) -0.1875rem 0.1875rem 0.375rem 0 inset,
+			rgba(255, 255, 255, 0.5) 0.1875rem -0.1875rem 0.375rem 0.0625rem inset;
 	}
 
 	.archContainer {
@@ -180,14 +196,14 @@
 
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
-		padding: 40px 0 15px 0;
+		padding: 2rem 0 1rem 0;
 	}
 
 	.weatherItemIconContainer {
 		@extend %top-right-inset-shadow;
 
-		width: 59px;
-		padding: 15px;
+		width: 3.6875rem;
+		padding: 1.0796875rem;
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;

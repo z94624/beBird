@@ -2,6 +2,7 @@
 	<BaseSlider
 		ref="sliderRef"
 		:="getBindingValues"
+		:thumb-size="`${textSizeMultiplier}rem`"
 		@update:model-value="(value: number | null) => emit('update:model-value', value)"
 	>
 		<template
@@ -16,7 +17,9 @@
 
 <script lang="ts" setup>
 	import { QSlider, QSliderProps } from 'quasar';
-	import { computed, ref, useAttrs, useSlots } from 'vue';
+	import { computed, ref, toRefs, useAttrs, useSlots } from 'vue';
+
+	import { useTextSizeStore } from '@/store/modules/style';
 
 	const emit = defineEmits<{
 		(e: 'update:model-value', v: number | null): void;
@@ -48,6 +51,8 @@
 
 	const attrs: Partial<QSliderProps> = useAttrs();
 	const slots: Partial<QSlider> = useSlots();
+	const textSizeStore = useTextSizeStore();
+	const { textSizeMultiplier } = toRefs(textSizeStore);
 
 	const sliderRef = ref();
 

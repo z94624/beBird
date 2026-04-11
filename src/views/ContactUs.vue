@@ -2,7 +2,7 @@
 	<div class="h-full">
 		<BackgroundVideo
 			:src="TaiwanBirds"
-			style="padding-top: 50px; filter: brightness(50%) saturate(125%) contrast(125%)"
+			style="padding-top: 3.125rem; filter: brightness(50%) saturate(125%) contrast(125%)"
 		/>
 
 		<q-scroll-area class="cuScrollArea h-full">

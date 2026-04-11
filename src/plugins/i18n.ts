@@ -1,7 +1,7 @@
 import { App } from 'vue';
 import { createI18n } from 'vue-i18n';
 
-import { WebLangEnum } from '@/models/enum/language';
+import { WebLangEnum } from '@/models/enum/languageEnum';
 
 import commonEnUs from '@/locales/en-us/common.json';
 import commonZhTw from '@/locales/zh-tw/common.json';
@@ -9,12 +9,12 @@ import routerEnUs from '@/locales/en-us/router.json';
 import routerZhTw from '@/locales/zh-tw/router.json';
 import weatherEnUs from '@/locales/en-us/weather.json';
 import weatherZhTw from '@/locales/zh-tw/weather.json';
-import visitorEnUs from '@/locales/en-us/visitor.json';
-import visitorZhTw from '@/locales/zh-tw/visitor.json';
 import ebirdEnUs from '@/locales/en-us/ebird.json';
 import ebirdZhTw from '@/locales/zh-tw/ebird.json';
 import contactEnUs from '@/locales/en-us/contact.json';
 import contactZhTw from '@/locales/zh-tw/contact.json';
+import socialMediaEnUs from '@/locales/en-us/socialMedia.json';
+import socialMediaZhTw from '@/locales/zh-tw/socialMedia.json';
 
 /**
  * 取得國家語系代碼
@@ -41,17 +41,17 @@ const i18n = createI18n({
 			commonEnUs,
 			routerEnUs,
 			weatherEnUs,
-			visitorEnUs,
 			ebirdEnUs,
-			contactEnUs
+			contactEnUs,
+			socialMediaEnUs
 		),
 		[WebLangEnum.TAIWAN]: mergeDictionaries(
 			commonZhTw,
 			routerZhTw,
 			weatherZhTw,
-			visitorZhTw,
 			ebirdZhTw,
-			contactZhTw
+			contactZhTw,
+			socialMediaZhTw
 		),
 	},
 });

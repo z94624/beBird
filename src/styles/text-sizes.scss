@@ -1,0 +1,282 @@
+// text size options & multipliers
+$text-size-options: (
+	'md': 1,
+	'lg': 1.5,
+	'xl': 2,
+);
+
+// variable text size classes
+@each $text-size, $multiplier in $text-size-options {
+	[data-text-size='#{$text-size}'] {
+		font-size: #{$multiplier}rem !important;
+
+		/**
+		 * 自訂(原 SCSS 檔裡)
+		 */
+		// 俗名字體
+		.comName-font {
+			// Tailwind: text-lg
+			font-size: #{1.125 * $multiplier}rem;
+			line-height: #{1.75 * $multiplier}rem;
+		}
+		// 學名字體
+		.sciName-font {
+			// Tailwind: text-xs
+			font-size: #{0.75 * $multiplier}rem;
+			line-height: #{$multiplier}rem;
+		}
+
+		// Layout Header 選單
+		// 電腦版
+		.q-tabs {
+			&.layoutHeaderTabs {
+				.q-tab {
+					.q-tab__content {
+						.q-tab__label {
+							font-size: #{1.0625 * $multiplier}rem;
+						}
+					}
+				}
+			}
+		}
+		// 手機版
+		.q-list {
+			&.layoutMenuList {
+				.q-item {
+					.q-item__section--main {
+						font-size: #{1.0625 * $multiplier}rem;
+					}
+				}
+			}
+		}
+
+		// Country Flag 國旗
+		.flag {
+			transform: scale(#{0.5 * $multiplier}) !important;
+			-ms-transform: scale(#{0.5 * $multiplier}) !important;
+			-webkit-transform: scale(#{0.5 * $multiplier}) !important;
+			-moz-transform: scale(#{0.5 * $multiplier}) !important;
+		}
+
+		// Leaflet
+		.leaflet-popup {
+			.leaflet-popup-content-wrapper {
+				.leaflet-popup-content {
+					width: min(#{12.5 * $multiplier}rem, 90vw) !important;
+				}
+			}
+		}
+
+		/**
+		 * 自訂(原 VUE 檔裡)
+		 */
+		// Layout/Layout-M
+		.logoText {
+			font-size: #{2.25 * $multiplier}rem;
+			line-height: #{2.5 * $multiplier}rem;
+		}
+
+		// BaseButton
+		.baseButton {
+			font-size: #{0.9 * $multiplier}rem;
+			line-height: #{$multiplier}rem;
+		}
+
+		// VlPopup
+		.popupCard {
+			.remark {
+				font-size: #{0.625 * $multiplier}rem;
+				line-height: #{0.75 * $multiplier}rem;
+			}
+		}
+
+		// VlMap
+		.searchMenuContainer {
+			min-width: #{15.625 * $multiplier}rem;
+			padding: #{$multiplier}rem;
+		}
+
+		/**
+		 * Quasar
+		 */
+		// Input
+		.q-input {
+			.q-field__control {
+				min-height: 2.5rem;
+				height: unset;
+			}
+			.q-field__native {
+				font-size: #{$multiplier}rem;
+				line-height: #{1.75 * $multiplier}rem;
+			}
+		}
+
+		// Textarea
+		.q-textarea {
+			.q-field__native {
+				font-size: #{$multiplier}rem;
+				line-height: #{1.125 * $multiplier}rem;
+			}
+		}
+
+		// Select
+		.q-select {
+			// 有標題的
+			&.q-field--labeled {
+				.q-field__control-container {
+					padding-top: #{1.5 * $multiplier}rem !important;
+				}
+				.q-field__label {
+					top: #{1.125 * $multiplier}rem;
+					font-size: #{$multiplier}rem;
+				}
+			}
+
+			// 無標題的
+			.q-field__native {
+				font-size: #{$multiplier}rem;
+				line-height: #{1.125 * $multiplier}rem;
+			}
+		}
+
+		// Slider
+		.q-slider__text {
+			font-size: #{0.75 * $multiplier}rem;
+		}
+
+		// Tabs
+		// 電腦版：分頁箭頭
+		.q-tabs__arrow {
+			font-size: #{2 * $multiplier}rem;
+		}
+
+		// List and List Items
+		// 手機版：分頁圖示
+		.q-item__section--side > .q-icon {
+			font-size: #{1.5 * $multiplier}rem;
+		}
+
+		// Dialog
+		.q-dialog {
+			font-size: #{$multiplier}rem;
+		}
+
+		// Toolbar
+		.q-toolbar {
+			& > .q-toolbar__title {
+				font-size: #{1.3125 * $multiplier}rem;
+			}
+		}
+
+		// Tooltip
+		.q-tooltip {
+			font-size: #{$multiplier}rem;
+		}
+
+		/**
+		 * Tailwind
+		 */
+		.text-xs {
+			font-size: #{0.75 * $multiplier}rem;
+			line-height: #{$multiplier}rem;
+		}
+		.text-sm {
+			font-size: #{0.875 * $multiplier}rem;
+			line-height: #{1.25 * $multiplier}rem;
+		}
+		.text-base {
+			font-size: #{$multiplier}rem;
+			line-height: #{1.5 * $multiplier}rem;
+		}
+		.text-lg {
+			font-size: #{1.125 * $multiplier}rem;
+			line-height: #{1.75 * $multiplier}rem;
+		}
+		.text-xl {
+			font-size: #{1.25 * $multiplier}rem;
+			line-height: #{1.75 * $multiplier}rem;
+		}
+		.text-2xl {
+			font-size: #{1.5 * $multiplier}rem;
+			line-height: #{2 * $multiplier}rem;
+		}
+		.text-3xl {
+			font-size: #{1.875 * $multiplier}rem;
+			line-height: #{2.25 * $multiplier}rem;
+		}
+		.text-4xl {
+			font-size: #{2.25 * $multiplier}rem;
+			line-height: #{2.5 * $multiplier}rem;
+		}
+		.text-5xl {
+			font-size: #{3 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-6xl {
+			font-size: #{3.75 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-7xl {
+			font-size: #{4.5 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-8xl {
+			font-size: #{6 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-9xl {
+			font-size: #{8 * $multiplier}rem;
+			line-height: 1;
+		}
+		.text-h1 {
+			font-size: #{6 * $multiplier}rem;
+			line-height: #{6 * $multiplier}rem;
+			font-weight: 300;
+			letter-spacing: -0.01562em;
+		}
+		.text-h2 {
+			font-size: #{3.75 * $multiplier}rem;
+			line-height: #{3.75 * $multiplier}rem;
+			font-weight: 300;
+			letter-spacing: -0.00833em;
+		}
+		.text-h3 {
+			font-size: #{3 * $multiplier}rem;
+			line-height: #{3.125 * $multiplier}rem;
+			font-weight: 400;
+			letter-spacing: normal;
+		}
+		.text-h4 {
+			font-size: #{2.125 * $multiplier}rem;
+			line-height: #{2.5 * $multiplier}rem;
+			font-weight: 400;
+			letter-spacing: 0.00735em;
+		}
+		.text-h5 {
+			font-size: #{1.5 * $multiplier}rem;
+			line-height: #{2 * $multiplier}rem;
+			font-weight: 400;
+			letter-spacing: normal;
+		}
+		.text-h6 {
+			font-size: #{1.25 * $multiplier}rem;
+			line-height: #{2 * $multiplier}rem;
+			font-weight: 500;
+			letter-spacing: 0.0125em;
+		}
+
+		/**
+		 * Leaflet
+		 */
+		.leaflet-container {
+			font-size: #{0.75 * $multiplier}rem !important;
+		}
+
+		.leaflet-control-attribution {
+			max-width: 70vw;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	}
+}

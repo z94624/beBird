@@ -1,0 +1,91 @@
+// 與 ModeEnum 同步變數名稱
+$LIGHT: 'light';
+$DARK: 'dark';
+
+$light-color: var(--q-lightText);
+$light-bg-color: var(--q-lightBg);
+$dark-color: var(--q-darkText);
+$dark-bg-color: $dark;
+/**
+ * 亮暗模式樣式方法
+ */
+@mixin light-style {
+	color: $light-color !important;
+	background-color: $light-bg-color !important;
+}
+@mixin dark-style {
+	color: $dark-color !important;
+	background-color: $dark-bg-color !important;
+}
+
+@mixin get-mode-style($mode) {
+	@if $mode == $LIGHT {
+		@include light-style;
+	} @else if $mode == $DARK {
+		@include dark-style;
+	}
+}
+@function get-mode-color($mode) {
+	@if $mode == $LIGHT {
+		@return $light-color;
+	} @else if $mode == $DARK {
+		@return $dark-color;
+	}
+}
+@function get-mode-bg-color($mode) {
+	@if $mode == $LIGHT {
+		@return $light-bg-color;
+	} @else if $mode == $DARK {
+		@return $dark-bg-color;
+	}
+}
+
+$mode-options: $LIGHT, $DARK;
+@each $mode in $mode-options {
+	[data-mode='#{$mode}'] {
+		/**
+		 * 自訂(原 SCSS 檔裡)
+		 */
+
+		/**
+		 * 自訂(原 VUE 檔裡)
+		 */
+		// VlMap
+		.searchMenuContainer {
+			background: get-mode-bg-color($mode);
+			opacity: 0.75;
+		}
+
+		/**
+		 * Leaflet
+		 */
+		// 圖層
+		.leaflet-control-layers {
+			@include get-mode-style($mode);
+		}
+		// 比例尺
+		.leaflet-control-scale-line {
+			@include get-mode-style($mode);
+			opacity: 0.8;
+		}
+		// 縮放
+		.leaflet-control-zoom a {
+			@include get-mode-style($mode);
+
+			&:focus {
+				background-color: $primary !important;
+				color: get-mode-bg-color($mode) !important;
+			}
+		}
+		// Attribution
+		.leaflet-control-attribution {
+			@include get-mode-style($mode);
+			opacity: 0.8;
+		}
+
+		// 圖釘提示
+		.leaflet-tooltip {
+			@include get-mode-style($mode);
+		}
+	}
+}

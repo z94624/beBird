@@ -15,12 +15,12 @@
 			>
 				<div class="w-full flex no-wrap items-center gap-4">
 					<div
-						class="bg-secondary w-[33.33px] h-[33.33px] m-[3.335px] flex justify-center items-center"
+						class="bg-primary w-[2.083125rem] h-[2.083125rem] m-[0.2084375rem] flex justify-center items-center"
 						style="border-radius: 50%"
 					>
 						<q-icon
 							:name="media.customIcon ? `img:${media.icon}` : media.icon"
-							color="primary"
+							color="white"
 							size="xs"
 						/>
 					</div>
@@ -42,9 +42,9 @@
 					class="w-full flex no-wrap items-center gap-4"
 				>
 					<q-icon
-						:class="[media.customIcon ? 'm-[3.335px]' : '']"
+						:class="[media.customIcon ? 'm-[0.2084375rem]' : '']"
 						:name="media.customIcon ? `img:${media.icon}` : media.icon"
-						:size="media.customIcon ? '33.33px' : '40px'"
+						:size="media.customIcon ? '2.083125rem' : '2.5rem'"
 						:style="{
 							color: media.iconColor,
 						}"
@@ -74,13 +74,14 @@
 	import { useProductStore } from '@/store/modules/product';
 	import { extractTextFromHtml } from '@/utils/convert';
 	import { getGoogleMapsPlaceURL } from '@/utils/ebird';
+	import { WebLangEnum } from '@/models/enum/languageEnum';
 
 	const props = defineProps<{
 		notableObs?: IDATAOBSGetRecentNotableObsInRegionItem;
 		userComName?: string;
 	}>();
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
 	const { copy } = useClipboard();
 	const { $notify } = useQuasarTool();
 	const productStore = useProductStore();
@@ -101,13 +102,13 @@
 		if (!obs.value) return '';
 		const { comName, howMany, obsDt, locName, lat, lng } = obs.value;
 		const mapUrl = getGoogleMapsPlaceURL(lat, lng);
-		return `${props.userComName} (${comName}) (${howMany})<br />
+		return `${locale.value === WebLangEnum.AMERICA ? comName : `${props.userComName} (${comName})`} (${howMany})<br />
 - ${obsDt} by ${checklistInfo.value?.userDisplayName}<br />
 - ${locName}<br />
-- Map: <a href="${mapUrl}">${mapUrl}</a><br />
-- checklist: <a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
-- Note: ${notableDetail.value?.comments}<br />
-(Source: <a href="https://z94624.github.io/beBird/">https://z94624.github.io/beBird/</a>)`;
+- ${t('info_map')}${t('colon')}<a href="${mapUrl}">${mapUrl}</a><br />
+- ${t('info_checklist')}${t('colon')}<a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
+- ${t('info_note')}${t('colon')}${notableDetail.value?.comments}<br />
+(${t('info_source')}${t('colon')}<a href="https://z94624.github.io/beBird/">https://z94624.github.io/beBird</a>)`;
 	});
 	const descTEXT = computed(() => extractTextFromHtml(descHTML.value));
 
@@ -147,54 +148,54 @@
 	const mediaList: IMedia[] = [
 		{
 			icon: 'content_copy',
-			name: 'Copy',
+			name: t('copyToClipboard'),
 			onClick: onCopyToClipboard,
 		},
 		{
 			icon: mdiGmail,
 			iconColor: '#d44638',
-			name: 'Email',
+			name: t('email'),
 			network: 'email',
 		},
 		{
 			icon: mdiFacebook,
 			iconColor: '#1877F2',
-			name: 'Facebook',
+			name: t('facebook'),
 			network: 'facebook',
 		},
 		{
 			icon: MessengerLogo,
 			customIcon: true,
-			name: 'Messenger',
+			name: t('messenger'),
 			network: 'messenger',
 		},
 		{
 			icon: LineLogo,
 			customIcon: true,
-			name: 'LINE',
+			name: t('line'),
 			network: 'line',
 		},
 		{
 			icon: TwitterLogo,
 			customIcon: true,
-			name: 'Twitter',
+			name: t('twitter'),
 			network: 'twitter',
 		},
 		{
 			icon: TelegramLogo,
 			customIcon: true,
-			name: 'Telegram',
+			name: t('telegram'),
 			network: 'telegram',
 		},
 		{
 			icon: SkypeLogo,
 			customIcon: true,
-			name: 'Skype',
+			name: t('skype'),
 			network: 'skype',
 		},
 		{
 			icon: 'more_horiz',
-			name: 'More',
+			name: t('shareToApps'),
 			onClick: activateWebShareAPI,
 		},
 	];

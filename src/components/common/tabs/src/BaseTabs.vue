@@ -24,7 +24,6 @@
 		}>(),
 		{
 			activeColor: 'primary',
-			activeBgColor: 'secondary',
 		}
 	);
 

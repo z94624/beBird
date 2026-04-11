@@ -54,6 +54,43 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.1.10',
+		releaseDate: '2026/02/01',
+		fixes: [
+			'Fix the map layer at the condition that user switches the mode of dark/light theme not at the map page.',
+		],
+		changes: [
+			'Update the theme color of the PWA to match the new website color scheme.',
+			'Change the Visitors Statistics display style which is more minimalist than the previous one.(FlipNumber → NumberFlow)',
+		],
+	},
+	{
+		version: '1.1.9',
+		releaseDate: '2026/01/15',
+		features: ['Added support for dark/light mode toggle.'],
+		changes: [
+			'All the weather GIFs are replaced with static PNG icons.',
+			'The color palette of the website is adjusted for better visual experience.',
+		],
+		perfs: ['Layout of the location shown in the detail dialog of rare-bird spot is adjusted.'],
+	},
+	{
+		version: '1.1.8',
+		releaseDate: '2025/10/18',
+		changes: ['Redesign a new logo for the website.'],
+	},
+	{
+		version: '1.1.7',
+		releaseDate: '2025/08/23',
+		features: [
+			'Website text size can be adjusted by switching the options of the text size button.',
+		],
+		perfs: [
+			'Buttons in the share tab of the detail dialog of rare-bird spot now works with the website language.',
+			'The loading mask are removed from where it will be shown on top of the map, so that user can use the map while loading.',
+		],
+	},
+	{
 		version: '1.1.6',
 		releaseDate: '2025/04/27',
 		features: [

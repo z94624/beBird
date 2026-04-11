@@ -2,28 +2,34 @@
 	<div>
 		<q-layout view="hHh lpR fFf">
 			<q-header
-				class="bg-white text-primary_e"
+				:class="[bg_class_mode, text_class_mode]"
 				elevated
 			>
 				<q-toolbar>
 					<q-toolbar-title
-						:shrink="true"
 						class="cursor-pointer"
+						style="flex: 0 0 auto"
 					>
 						<span class="logoText text-primary">b</span>
-						<span class="logoText text-accent">e</span>
-						<span class="logoText text-secondaryDark_e">Bird</span>
+						<span class="logoText text-secondary">e</span>
+						<span
+							:class="[text_class_mode]"
+							class="logoText"
+							>Bird</span
+						>
 					</q-toolbar-title>
 
 					<q-tabs
 						align="left"
 						class="layoutHeaderTabs"
 						inline-label
+						no-caps
+						outside-arrows
+						stretch
 					>
 						<q-route-tab
 							v-for="(menuItem, mIdx) in menuList"
 							:key="mIdx"
-							:class="[`${menuItem.name === 'rareBirds' ? 'rareBirdsTab' : ''}`]"
 							:label="$t(menuItem.name)"
 							:name="menuItem.name"
 							:to="menuItem.to"
@@ -32,40 +38,22 @@
 
 					<q-space />
 
-					<div class="flex no-wrap items-center gap-1">
-						<!-- 天氣 -->
-						<WeatherButton
-							:lat="mapCenter.lat.toString()"
-							:lng="mapCenter.lng.toString()"
-							height="41.6px"
-							padding="7px"
-							width="41.6px"
-						/>
-
-						<!-- 人次 -->
-						<BaseButton
-							:icon="fasUsers"
-							round
-							text-color="primary"
-						>
-							<q-tooltip class="bg-white">
-								<VisitorsBillboard />
-							</q-tooltip>
-						</BaseButton>
-
-						<!-- 版本 -->
-						<BaseButton
-							:label="`v${versionList[0].version}`"
-							rounded
-							text-color="primary"
-							@click="onOpenVersionDialog"
-						/>
-
-						<!-- 網站語言 -->
-						<WebLangButton
-							padding="0"
-							rounded
-						/>
+					<!-- 功能按鈕集 -->
+					<!-- 字體極大時，以 Floating Action Button 顯示 -->
+					<q-fab
+						v-if="isTextSizeXl"
+						id="layoutFeatureButton"
+						direction="left"
+						icon="extension"
+					>
+						<LayoutFeatureButtonSet @click-version-button="onOpenVersionDialog" />
+					</q-fab>
+					<!-- 字體非極大時，以展開顯示 -->
+					<div
+						v-else
+						class="flex no-wrap items-center gap-1"
+					>
+						<LayoutFeatureButtonSet @click-version-button="onOpenVersionDialog" />
 					</div>
 				</q-toolbar>
 			</q-header>
@@ -82,21 +70,18 @@
 <script lang="ts" setup>
 	import { ref, toRefs } from 'vue';
 	import { useRouter } from 'vue-router';
-	import WeatherButton from './components/weather/WeatherButton.vue';
-	import VisitorsBillboard from '@/layout/components/VisitorsBillboard.vue';
+	import LayoutFeatureButtonSet from './components/LayoutFeatureButtonSet.vue';
 	import VersionDialog from '@/layout/components/VersionDialog.vue';
-	import WebLangButton from './components/WebLangButton.vue';
-	import { fasUsers } from '@quasar/extras/fontawesome-v6';
 
-	import { useLeafletStore } from '@/store/modules/geodata';
-	import { PageEnum } from '@/models/enum/pageEnum';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { menuList } from './utils';
-	import { versionList } from '@/layout/utils';
+	import { PageEnum } from '@/models/enum/pageEnum';
 
 	const router = useRouter();
-	// Leaflet Store
-	const leafletStore = useLeafletStore();
-	const { mapCenter } = toRefs(leafletStore);
+	const textSizeStore = useTextSizeStore();
+	const { isTextSizeXl } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { bg_class_mode, text_class_mode } = toRefs(modeStore);
 
 	const versionDialogRef = ref();
 
@@ -116,9 +101,8 @@
 </script>
 
 <style lang="scss" scoped>
+	// 字體大小 text-sizes.scss
 	.logoText {
-		font-size: 2.25rem;
-		line-height: 2.5rem;
 		font-weight: bold;
 	}
 </style>

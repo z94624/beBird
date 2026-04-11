@@ -1,7 +1,7 @@
 /**
  * 字串在有限寬度下換行的列數
  * @param text 字串
- * @param width 限制寬度
+ * @param width 限制寬度(rem)
  * @returns 換行共幾列
  */
 export const getLineCount = (text: string, width: number | string): number => {
@@ -10,7 +10,7 @@ export const getLineCount = (text: string, width: number | string): number => {
 	for (const sentence of sentences) {
 		// 創建虛擬容器
 		const container = document.createElement('div');
-		container.style.width = `${width}px`;
+		container.style.width = `${width}rem`;
 		container.style.visibility = 'hidden';
 		container.style.position = 'absolute';
 		container.style.whiteSpace = 'normal';

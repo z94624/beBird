@@ -1,7 +1,7 @@
 import { QSelectOption } from 'quasar';
 
 import { enumKeysToArray, enumToMap } from './convert';
-import { WebLangEnum } from '@/models/enum/language';
+import { WebLangEnum } from '@/models/enum/languageEnum';
 
 /**
  * 網站語言

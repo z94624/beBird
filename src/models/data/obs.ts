@@ -86,7 +86,7 @@ export class DATAOBSGetRecentObsOfSpeciesInRegionReq extends DATAOBSCommon {
 }
 export interface IDATAOBSGetRecentObsOfSpeciesInRegionItem {
 	comName: string;
-	howMany: number;
+	howMany?: number;
 	lat: number;
 	lng: number;
 	locId: string;
