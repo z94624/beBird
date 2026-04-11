@@ -1,73 +1,80 @@
-## 文檔
+# 🦅 beBird 嚮鳥
 
-- [v1 文檔地址](https://docs.naiveadmin.com)
-- [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -項目開發環境
-- [Vite](https://vitejs.dev/) - 熟悉 vite 特性
-- [Vue3](https://v3.vuejs.org/) - 熟悉 Vue 基礎語法
-- [TypeScript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本語法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本語法
-- [Vue-Router-Next](https://next.router.vuejs.org/) - 熟悉 vue-router 基本使用
-- [Naive-ui-admin](https://www.naiveui.com/) - ui 基本使用
-- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本語法
-- [xicons](https://xicons.org/#/zh-CN) - 此專案的圖標引入
+> 結合地理資訊與生態數據的現代化賞鳥輔助平台
 
-## 安裝開發用擴充工具
+[beBird 嚮鳥](https://github.com/z94624/beBird) 是一個專為賞鳥愛好者與生態觀察者打造的 Web 應用程式。透過直覺的操作介面與豐富的數據整合，協助使用者探索周遭的鳥類生態、追蹤稀有鳥種，並掌握最佳的觀測時機。
 
-套件市集中的輸入框輸入 @recommended 逐一安裝
+## ✨ 核心特色 (Features)
 
-## 使用
+-   **🗺️ 互動式生態地圖**：整合地理圖資，視覺化呈現鳥類觀測熱點與稀有鳥種出沒位置。
+-   **☁️ 即時氣象與日地動態**：結合即時天氣資料、日出日落時間，輔助規劃最佳賞鳥行程。
+-   **🌓 現代化 UI/UX 設計**：支援深淺色模式（Dark/Light Mode）無縫切換，並針對電腦與行動裝置提供流暢的響應式體驗 (RWD)。
+-   **🌐 多語系支援**：內建 i18n 多國語系架構，提供更友善的在地化操作介面。
+-   **🎨 動態視覺回饋**：自訂的高質感過場動畫與「等高羽紋」動態幾何背景，提升探索時的沉浸感。
 
-- 安裝依賴
+## 🛠️ 技術棧 (Tech Stack)
 
-```bash
-yarn install
+-   **前端框架**：[Vue 3](https://vuejs.org/) (Composition API, `<script setup>`)
+-   **UI 框架**：[Quasar Framework](https://quasar.dev/)
+-   **樣式處理**：[Tailwind CSS](https://tailwindcss.com/) + SCSS
+-   **狀態管理**：Pinia
+-   **路由管理**：Vue Router
+-   **地圖引擎**：[Leaflet](https://leafletjs.com/)
 
-```
+## 🚀 快速開始 (Getting Started)
 
-- 運行
+請確認您的開發環境已安裝 [Node.js](https://nodejs.org/) (建議 v18+)。
 
-```bash
-yarn dev
-```
-
-- 打包
+### 1. 複製專案
 
 ```bash
-yarn build
+git clone [https://github.com/z94624/beBird.git](https://github.com/z94624/beBird.git)
+cd beBird
 ```
 
-## Git 貢獻提交規範
+### 2. 安裝依賴套件
 
-- 參考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 規範 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
+```bash
+npm install
+# 或是使用 yarn / pnpm
+```
 
-  - `feat` 增加新功能
-  - `fix` 修復問題/BUG
-  - `style` 代碼風格相關無影響運行結果的
-  - `perf` 優化/性能提升
-  - `refactor` 重構
-  - `revert` 撤銷修改
-  - `test` 測試相關
-  - `docs` 文檔/註釋
-  - `chore` 依賴更新/腳手架配置修改等
-  - `workflow` 工作流改進
-  - `ci` 持續集成
-  - `types` 類型定義文件更改
-  - `wip` 開發中
+### 3. 環境變數設定
 
-## 權限相關組件
+請複製根目錄下的 `.env.example` 並重新命名為 `.env`，然後填入您專屬的 API Keys：
 
-- 權限的構成是由"機構可不可以使用該模組" 與 "使用者有沒有該模組的權限" 與 "是否為超級使用者" 三個值取交集判斷
-- 權限相關組件會依照當前的頁面判斷是否有權限去做對應的限制，其功能都是由原先的 naive UI 做擴充，相關邏輯如下
+```env
+# 範例
+VITE_EBIRD_API_KEY=your_ebird_api_key
+VITE_TOMORROW_API_KEY=your_tomorrow_io_api_key
+```
 
-#按鈕類 擴充自 n-button
+### 4. 啟動開發伺服器
 
-- nv-button 必須要有查看以上的權限，否則 disable
-- ne-button 必須要有修改以上的權限，否則 disable
+```bash
+npm run dev
+```
 
-#輸入框類 擴充自 n-input
+### 5. 建置正式環境版本
 
-- 待補
+```bash
+npm run build
+```
 
-#選擇器類 擴充自 n-select
+## 📡 資源與資料來源 (Attributions)
 
-- 待補
+本專案的順利運作仰賴以下優質的開源專案與第三方資料服務，特此致謝：
+
+-   **地圖與地理 (Map & Geo)**
+    -   [Leaflet](https://leafletjs.com/) - 互動式地圖核心
+-   **資料與服務 (API & Service)**
+    -   [eBird API 2.0](https://ebird.org/home) (Cornell Lab of Ornithology) - 核心鳥類觀測數據
+    -   [Tomorrow.io](https://www.tomorrow.io/) - 即時天氣 API
+    -   [SunriseSunset.io](https://sunrisesunset.io/) - 日出日落時間 API
+-   **視覺設計 (Design & UI)**
+    -   Weather Animated Icons by [Freepik - Flaticon](https://www.flaticon.com/animated-icons)
+    -   [Lovart.ai](https://www.lovart.ai/)
+
+## 📄 授權條款 (License)
+
+This project is licensed under the AGPL-3.0 license - see the [LICENSE](LICENSE) file for details.
