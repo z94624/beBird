@@ -25,7 +25,7 @@
 			<div class="flex-1 overflow-y-auto w-full p-4">
 				<div class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 					<template
-						v-for="item in []"
+						v-for="item in filteredAttributions"
 						:key="item.id"
 					>
 						<IntersectedCard @click="openUrl(item.url)">
