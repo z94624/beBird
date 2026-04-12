@@ -1,238 +1,414 @@
 <template>
 	<div class="global-background fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-		<div class="svg-container">
-			<svg
-				class="observation-starfield-canvas"
-				preserveAspectRatio="xMidYMid slice"
-				viewBox="0 0 1920 1080"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<defs>
-					<radialGradient
-						id="sighting-glow"
-						cx="50%"
-						cy="50%"
-						fx="50%"
-						fy="50%"
-						r="50%"
+		<div class="pure-vignette-overlay absolute inset-0 z-10"></div>
+
+		<div
+			ref="hologramContainerRef"
+			class="hologram-container absolute inset-0 w-full h-full flex items-center justify-center"
+		>
+			<div class="svg-wrapper w-full h-full">
+				<svg
+					class="observation-starfield-canvas w-full h-full"
+					preserveAspectRatio="xMidYMid slice"
+					viewBox="0 0 1920 1080"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<defs>
+						<radialGradient
+							id="sighting-glow"
+							cx="50%"
+							cy="50%"
+							r="50%"
+						>
+							<stop
+								offset="0%"
+								stop-color="var(--sighting-point-color)"
+								stop-opacity="1"
+							/>
+							<stop
+								offset="40%"
+								stop-color="var(--sighting-point-color)"
+								stop-opacity="0.8"
+							/>
+							<stop
+								offset="100%"
+								stop-color="var(--sighting-point-color)"
+								stop-opacity="0"
+							/>
+						</radialGradient>
+
+						<filter
+							id="wind-blur"
+							height="140%"
+							width="140%"
+							x="-20%"
+							y="-20%"
+						>
+							<feGaussianBlur stdDeviation="8" />
+						</filter>
+					</defs>
+
+					<g
+						class="globe-grid"
+						fill="none"
+						stroke="var(--bg-line-color)"
+						stroke-width="1.5"
 					>
-						<stop
-							offset="0%"
-							stop-color="var(--sighting-point-color)"
-							stop-opacity="0.9"
+						<circle
+							class="globe-outline"
+							cx="960"
+							cy="540"
+							r="1200"
 						/>
-						<stop
-							offset="50%"
-							stop-color="var(--sighting-point-color)"
-							stop-opacity="0.4"
+						<ellipse
+							v-for="i in 11"
+							:key="`lat-${i}`"
+							:ry="i * 100"
+							class="globe-line"
+							cx="960"
+							cy="540"
+							rx="1200"
 						/>
-						<stop
-							offset="100%"
-							stop-color="var(--sighting-point-color)"
-							stop-opacity="0"
+						<ellipse
+							v-for="i in 11"
+							:key="`lon-${i}`"
+							:rx="i * 100"
+							class="globe-line"
+							cx="960"
+							cy="540"
+							ry="1200"
 						/>
-					</radialGradient>
-				</defs>
+					</g>
 
-				<g
-					class="map-grid"
-					fill="none"
-					stroke="var(--bg-line-color)"
-					stroke-width="0.8"
-				>
-					<path
-						v-for="i in 12"
-						:key="`lat-${i}`"
-						:d="`M -100,${i * 100 - 50} H 2020`"
-						class="grid-line"
-					/>
-					<path
-						v-for="i in 21"
-						:key="`lon-${i}`"
-						:d="`M ${i * 100 - 50},-100 V 1180`"
-						class="grid-line"
-					/>
-				</g>
+					<g
+						v-for="route in migrationRoutes"
+						:key="route.renderKey"
+						class="migration-system"
+					>
+						<path
+							:d="route.pathData"
+							:style="{
+								animationDuration: `${route.duration}s`,
+								animationDelay: `${route.delay}s`,
+							}"
+							class="flyway-stream"
+							fill="none"
+							filter="url(#wind-blur)"
+							pathLength="100"
+							@animationend="regenerateRoute(route)"
+						/>
 
-				<g fill="none">
-					<path
-						class="line-flight"
-						d="M -100,750 C 400,550 800,950 1400,650 S 1900,800 2100,700"
-					/>
-					<path
-						class="line-flight-secondary"
-						d="M -100,350 C 500,150 900,450 1500,250 S 1800,450 2100,350"
-					/>
-				</g>
-
-				<g
-					class="sighting-points"
-					fill="url(#sighting-glow)"
-				>
-					<circle
-						v-for="point in observationPoints"
-						:key="point.id"
-						:cx="point.x"
-						:cy="point.y"
-						:r="point.r"
-						:style="{
-							animationDelay: `${point.delay}s`,
-							animationDuration: `${point.duration}s`,
-						}"
-						class="observation-circle"
-						@animationiteration="randomizePosition(point)"
-					/>
-				</g>
-			</svg>
+						<g class="sighting-points">
+							<g
+								v-for="point in route.points"
+								:key="point.id"
+								:style="{
+									transform: `translate(${point.x}px, ${point.y}px)`,
+									animationDelay: `${route.delay + route.duration * point.triggerRatio}s`,
+								}"
+								class="observation-group"
+							>
+								<circle
+									:r="point.r"
+									class="echo-ring"
+									cx="0"
+									cy="0"
+									fill="none"
+									stroke="var(--sighting-point-color)"
+									stroke-width="2"
+								/>
+								<circle
+									:r="point.r"
+									class="core-point"
+									cx="0"
+									cy="0"
+									fill="url(#sighting-glow)"
+								/>
+							</g>
+						</g>
+					</g>
+				</svg>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import { ref, onMounted } from 'vue';
+	import { ref, onMounted, onUnmounted } from 'vue';
 
-	// 定義觀測點的資料結構
 	interface Point {
-		id: number;
+		id: string;
 		x: number;
 		y: number;
 		r: number;
-		delay: number;
+		triggerRatio: number;
+	}
+	interface MigrationRoute {
+		id: number;
+		renderKey: number;
+		pathData: string;
 		duration: number;
+		delay: number;
+		points: Point[];
 	}
 
-	// 改為響應式 ref，才能動態更新座標
-	const observationPoints = ref<Point[]>([]);
-	const totalPoints = 45; // 數量稍微調降，因為位置會一直變換，避免畫面過於躁動
+	const migrationRoutes = ref<MigrationRoute[]>([]);
+	const totalRoutes = 8;
 
-	// 初始化圓點
-	onMounted(() => {
+	// --- 真 3D 透視與平移控制 ---
+	const hologramContainerRef = ref<HTMLDivElement | null>(null);
+
+	let normX = 0;
+	let normY = 0;
+	let smoothX = 0;
+	let smoothY = 0;
+	let animationFrameId: number;
+
+	const handleMouseMove = (e: MouseEvent) => {
+		// 取得 -1 到 1 的座標
+		normX = (e.clientX / window.innerWidth) * 2 - 1;
+		normY = (e.clientY / window.innerHeight) * 2 - 1;
+	};
+
+	const smoothPan = () => {
+		// 1. Lerp 插值：保持如同奶油般的滑順跟隨
+		smoothX += (normX - smoothX) * 0.08;
+		smoothY += (normY - smoothY) * 0.08;
+
+		if (hologramContainerRef.value) {
+			// 2. CSS 3D Transforms
+			// translate: 基礎的反向平移 (推鏡頭)
+			const translateX = smoothX * -30;
+			const translateY = smoothY * -30;
+
+			// rotateX/Y: 真正的 3D 傾斜，讓畫面像是一塊漂浮的螢幕
+			// 滑鼠往右，螢幕右側往後退 (rotateY)；滑鼠往下，螢幕下方往後退 (rotateX)
+			const rotateX = smoothY * 4; // 上下傾斜 4 度
+			const rotateY = smoothX * -4; // 左右傾斜 4 度
+
+			// 將 perspective (透視深度) 與 transform 結合
+			hologramContainerRef.value.style.transform = `scale(1.1) perspective(1500px) translate3d(${translateX}px, ${translateY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+		}
+
+		animationFrameId = requestAnimationFrame(smoothPan);
+	};
+
+	// --- 路線邏輯 (保持不變) ---
+	const getPointOnBezier = (
+		p0: { x: number; y: number },
+		p1: { x: number; y: number },
+		p2: { x: number; y: number },
+		t: number
+	) => {
+		const x = Math.pow(1 - t, 2) * p0.x + 2 * (1 - t) * t * p1.x + Math.pow(t, 2) * p2.x;
+		const y = Math.pow(1 - t, 2) * p0.y + 2 * (1 - t) * t * p1.y + Math.pow(t, 2) * p2.y;
+		return { x, y };
+	};
+
+	const generateRouteData = (id: number): MigrationRoute => {
+		const startX = Math.random() * 2120 - 100;
+		const startY = Math.random() * 1280 - 100;
+		const angle = Math.random() * Math.PI * 2;
+		const distance = 500 + Math.random() * 1000;
+		const endX = startX + Math.cos(angle) * distance;
+		const endY = startY + Math.sin(angle) * distance;
+		const cpX = (startX + endX) / 2 + (Math.random() - 0.5) * 800;
+		const cpY = (startY + endY) / 2 + (Math.random() - 0.5) * 800;
+		const pathData = `M ${startX},${startY} Q ${cpX},${cpY} ${endX},${endY}`;
+
 		const points: Point[] = [];
-		for (let i = 0; i < totalPoints; i++) {
+		const numPoints = Math.floor(Math.random() * 3) + 1;
+		const pathTravelSpan = 120;
+
+		for (let i = 0; i < numPoints; i++) {
+			const t = 0.15 + Math.random() * 0.7;
+			const coords = getPointOnBezier(
+				{ x: startX, y: startY },
+				{ x: cpX, y: cpY },
+				{ x: endX, y: endY },
+				t
+			);
+			const scatterRange = 80;
+			const offsetX = (Math.random() - 0.5) * scatterRange;
+			const offsetY = (Math.random() - 0.5) * scatterRange;
 			points.push({
-				id: i,
-				x: Math.random() * 2120 - 100,
-				y: Math.random() * 1280 - 100,
-				r: Math.random() * 10 + 6, // 半徑 6~16px
-				delay: Math.random() * 5,
-				duration: Math.random() * 3 + 4, // 呼吸週期 4~7 秒
+				id: `${id}-pt-${i}-${Date.now()}`,
+				x: coords.x + offsetX,
+				y: coords.y + offsetY,
+				r: Math.random() * 4 + 4,
+				triggerRatio: (t * 100) / pathTravelSpan,
 			});
 		}
-		observationPoints.value = points;
+		return {
+			id,
+			renderKey: Date.now() + Math.random(),
+			pathData,
+			duration: 6 + Math.random() * 8,
+			delay: Math.random() * 4,
+			points,
+		};
+	};
+
+	const regenerateRoute = (route: MigrationRoute) => {
+		Object.assign(route, generateRouteData(route.id));
+	};
+
+	onMounted(() => {
+		const routes: MigrationRoute[] = [];
+		for (let i = 0; i < totalRoutes; i++) {
+			routes.push(generateRouteData(i));
+		}
+		migrationRoutes.value = routes;
+		window.addEventListener('mousemove', handleMouseMove);
+		smoothPan();
 	});
 
-	// 核心魔法：當某個圓點的 CSS 動畫完成一次循環（此時透明度剛好為 0）時觸發。
-	// 我們在這個瞬間將它移動到新的隨機座標，使用者完全不會看到「瞬間移動」的破綻！
-	const randomizePosition = (point: Point) => {
-		point.x = Math.random() * 2120 - 100;
-		point.y = Math.random() * 1280 - 100;
-	};
+	onUnmounted(() => {
+		window.removeEventListener('mousemove', handleMouseMove);
+		cancelAnimationFrame(animationFrameId);
+	});
 </script>
 
 <style lang="scss" scoped>
-	/* --- 顏色與深淺色模式適配 --- */
-
+	/* --- 1. 基礎背景與品牌色變數綁定 --- */
 	.global-background {
+		/* 對齊 quasar.ts 中的 lightBg: '#f5f5f5' */
 		background-color: var(--q-lightBg, #f5f5f5);
-		/* 淺色模式：加深網格顏色，讓其清晰可見但不刺眼 */
-		--bg-line-color: rgba(0, 0, 0, 0.08);
-		--sighting-point-color: #6d6ae4;
+
+		/* 背景網格線，維持原本的低調對比 */
+		--bg-line-color: rgba(100, 110, 120, 0.08);
+
+		/* 對齊 quasar-variables.scss 中的 $primary (紫嘯鶇主題色) */
+		--sighting-point-color: var(--q-primary);
+
 		transition: background-color 0.6s ease;
 	}
 
 	.body--dark .global-background {
+		/* 對齊 quasar-variables.scss 中的 $dark-page: '#121212' */
 		background-color: var(--q-dark-page, #121212);
-		/* 深色模式：提高白色的透明度 */
-		--bg-line-color: rgba(255, 255, 255, 0.06);
-		--sighting-point-color: #9e9cf2;
+
+		--bg-line-color: rgba(255, 255, 255, 0.04);
+
+		/* 深色模式下，若 var(--q-primary) 太暗，可使用 CSS color-mix 提亮，
+       或保留你原本設計的輕柔紫色 (#8b88f8)。這裡我們用原生變數確保切換主題時的統一性。 */
+		--sighting-point-color: var(--q-primary);
 	}
 
-	/* --- 畫布設定 --- */
+	/* --- 2. 純淨漸層光暈 --- */
+	.pure-vignette-overlay {
+		background: radial-gradient(
+			circle at center,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 0.01) 40%,
+			rgba(0, 0, 0, 0.02) 60%,
+			rgba(0, 0, 0, 0.04) 80%,
+			rgba(0, 0, 0, 0.06) 100%
+		);
+		pointer-events: none;
+	}
 
-	.svg-container {
-		width: 100%;
-		height: 100%;
+	.body--dark .pure-vignette-overlay {
+		background: radial-gradient(
+			circle at center,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 0.05) 30%,
+			rgba(0, 0, 0, 0.15) 50%,
+			rgba(0, 0, 0, 0.3) 75%,
+			rgba(0, 0, 0, 0.6) 100%
+		);
+	}
+
+	/* --- 3. 真 3D 容器設定 --- */
+	.hologram-container {
+		will-change: transform;
+		transform-origin: center center;
+		transform: scale(1.1) perspective(1500px) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+	}
+
+	.svg-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.observation-starfield-canvas {
 		width: 100%;
 		height: 100%;
-		animation: canvas-drift 60s linear infinite alternate;
 	}
 
-	/* 網格線條：加大間距使其更像地圖座標 */
-	.grid-line {
-		stroke-dasharray: 4 12;
-		transition: stroke 0.6s ease;
-	}
-
-	/* --- 飛行軌跡 (強調賞鳥主題) --- */
-
-	.line-flight,
-	.line-flight-secondary {
-		stroke-width: 2.5px;
-		stroke-dasharray: 8 16;
+	.globe-line,
+	.globe-outline {
+		stroke-dasharray: 2 6;
 		stroke-linecap: round;
-		/* 淺色模式使用 eBird 綠色加強版 */
-		stroke: rgba(54, 130, 75, 0.35);
-		animation: track-forward 40s linear infinite;
 	}
 
-	.line-flight-secondary {
-		stroke-width: 1.5px;
-		stroke-dasharray: 4 12;
-		animation-duration: 60s;
-		opacity: 0.7;
+	/* --- 4. 遷徙流與動畫 (輔助色對齊) --- */
+	.flyway-stream {
+		stroke-width: 22px;
+		stroke-linecap: round;
+		/* 這裡的 54, 130, 75 正好是 $secondary (#36824b) 的 RGB 值。
+       使用現代 CSS 的 color-mix 直接引用 Quasar 的 secondary 變數並設定 25% 透明度！*/
+		stroke: color-mix(in srgb, var(--q-secondary) 25%, transparent);
+		stroke-dasharray: 20 120;
+		animation: fly-across linear both;
 	}
 
-	.body--dark .line-flight,
-	.body--dark .line-flight-secondary {
-		/* 深色模式使用亮紫色 */
-		stroke: rgba(158, 156, 242, 0.35);
+	.body--dark .flyway-stream {
+		/* 深色模式下的氣流，如果你希望維持偏紫色的光澤，可以混入 primary 色 */
+		stroke: color-mix(in srgb, var(--q-primary) 20%, transparent);
 	}
 
-	/* --- 觀測點呼吸動畫 --- */
-
-	.observation-circle {
-		/* 使用 ease-in-out 讓淡入淡出更柔和 */
-		animation: point-breathe infinite ease-in-out;
-		transform-origin: center;
-		transform-box: fill-box;
+	.observation-group {
+		animation: trigger-point 3s ease-out both;
+	}
+	.core-point {
+		animation: core-pulse 1s infinite ease-in-out alternate;
+	}
+	.echo-ring {
+		animation: echo-expand 3s ease-out forwards;
 	}
 
-	/* --- 動畫 Keyframes --- */
-
-	@keyframes canvas-drift {
+	@keyframes fly-across {
 		0% {
-			transform: translate(-0.5%, -0.5%) scale(1);
+			stroke-dashoffset: 20;
 		}
 		100% {
-			transform: translate(0.5%, 0.5%) scale(1.02);
+			stroke-dashoffset: -100;
 		}
 	}
-
-	@keyframes track-forward {
-		0% {
-			stroke-dashoffset: 1000;
-		}
-		100% {
-			stroke-dashoffset: 0;
-		}
-	}
-
-	/* 呼吸動畫：0% 與 100% 必須完全透明 (opacity: 0)，這樣改變座標時才不會閃爍跳動 */
-	@keyframes point-breathe {
+	@keyframes trigger-point {
 		0% {
 			opacity: 0;
-			transform: scale(0.5);
 		}
-		50% {
+		15% {
 			opacity: 1;
-			transform: scale(1.2); /* 呼吸變大 */
+		}
+		60% {
+			opacity: 0.7;
 		}
 		100% {
 			opacity: 0;
+		}
+	}
+	@keyframes core-pulse {
+		0% {
+			transform: scale(0.8);
+		}
+		100% {
+			transform: scale(1.4);
+		}
+	}
+	@keyframes echo-expand {
+		0% {
 			transform: scale(0.5);
+			opacity: 1;
+			stroke-width: 2px;
+		}
+		100% {
+			transform: scale(4);
+			opacity: 0;
+			stroke-width: 0.5px;
 		}
 	}
 </style>
