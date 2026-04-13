@@ -113,7 +113,8 @@
 									cy="0"
 									fill="none"
 									stroke="var(--sighting-point-color)"
-									stroke-width="2"
+									stroke-width="1.5"
+									vector-effect="non-scaling-stroke"
 								/>
 								<circle
 									:r="point.r"
@@ -389,7 +390,7 @@
 		animation: core-pulse 1s infinite ease-in-out alternate;
 	}
 	.echo-ring {
-		animation: echo-expand 3s ease-out forwards;
+		animation: echo-expand 7s ease-out forwards;
 	}
 
 	@keyframes fly-across {
@@ -427,14 +428,13 @@
 
 	@keyframes echo-expand {
 		0% {
-			transform: scale(0.5);
+			transform: scale(1);
 			opacity: 1;
-			stroke-width: 2px;
 		}
 		100% {
-			transform: scale(4);
+			/* 修正：增加 scale 放大倍率至 3，讓擴散感更明顯 */
+			transform: scale(3);
 			opacity: 0;
-			stroke-width: 0.5px;
 		}
 	}
 </style>
