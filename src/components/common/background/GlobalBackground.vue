@@ -1,7 +1,5 @@
 <template>
 	<div class="global-background fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-		<div class="pure-vignette-overlay absolute inset-0 z-10"></div>
-
 		<div
 			ref="hologramContainerRef"
 			class="hologram-container absolute inset-0 w-full h-full flex items-center justify-center"
@@ -334,34 +332,7 @@
 	}
 
 	/**
-   * 2. 純淨漸層光暈
-   * 避免使用 SVG 雜訊，透過多階漸層保持玻璃般的乾淨透亮
-   */
-	.pure-vignette-overlay {
-		background: radial-gradient(
-			circle at center,
-			rgba(0, 0, 0, 0) 0%,
-			rgba(0, 0, 0, 0.01) 40%,
-			rgba(0, 0, 0, 0.02) 60%,
-			rgba(0, 0, 0, 0.04) 80%,
-			rgba(0, 0, 0, 0.06) 100%
-		);
-		pointer-events: none;
-	}
-
-	.body--dark .pure-vignette-overlay {
-		background: radial-gradient(
-			circle at center,
-			rgba(0, 0, 0, 0) 0%,
-			rgba(0, 0, 0, 0.05) 30%,
-			rgba(0, 0, 0, 0.15) 50%,
-			rgba(0, 0, 0, 0.3) 75%,
-			rgba(0, 0, 0, 0.6) 100%
-		);
-	}
-
-	/**
-   * 3. 真 3D 容器設定
+   * 2. 真 3D 容器設定
    * 啟用 hardware acceleration 並設定透視中心點
    */
 	.hologram-container {
@@ -388,7 +359,7 @@
 	}
 
 	/**
-   * 4. 遷徙流與動畫
+   * 3. 遷徙流與動畫
    */
 	.flyway-stream {
 		stroke-width: 22px;
