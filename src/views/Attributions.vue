@@ -31,12 +31,12 @@
 						<IntersectedCard @click="openUrl(item.url)">
 							<q-card-section class="flex justify-between items-start no-wrap gap-2">
 								<div class="min-w-0">
-									<h6
+									<div
 										:class="`text-${$q.dark.isActive ? categoryMap[item.category].colorDark : categoryMap[item.category].colorLight}`"
-										class="ellipsis"
+										class="text-h6 ellipsis"
 									>
 										{{ item.title }}
-									</h6>
+									</div>
 									<div
 										:class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-8'"
 										class="text-sm"
