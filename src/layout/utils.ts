@@ -59,6 +59,15 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.1,',
+		releaseDate: '2026/04/17',
+		features: [
+			'Added "Press back again to exit the system" prompt when user tries to exit the website by pressing the back button on mobile device(only for Android system).',
+			'Dynamic change of the browser tab title according to the current page.',
+			'Added a new tab named "Attributions", which contains the attributions of the website.',
+		],
+	},
+	{
 		version: '1.1.10',
 		releaseDate: '2026/02/01',
 		fixes: [
