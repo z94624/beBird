@@ -59,7 +59,7 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
-		version: '1.2.1,',
+		version: '1.2.1',
 		releaseDate: '2026/04/17',
 		features: [
 			'Added "Press back again to exit the system" prompt when user tries to exit the website by pressing the back button on mobile device(only for Android system).',
