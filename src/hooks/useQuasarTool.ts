@@ -1,4 +1,4 @@
-import { Loading, Notify, QLoadingShowOptions } from 'quasar';
+import { Loading, Notify, QLoadingShowOptions, QNotifyCreateOptions } from 'quasar';
 import { IMap } from '@/models/common/base';
 
 const notificationMap: IMap<number> = {};
@@ -16,53 +16,53 @@ export const useQuasarTool = () => {
 	 * https://quasar.dev/quasar-plugins/notify
 	 */
 	const $notify = {
-		success: (msg: string) => {
+		success: (msg: string, pos?: QNotifyCreateOptions['position']) => {
 			if (notificationMap[msg]) return;
 			_setTimer(msg);
 			Notify.create({
 				type: 'positive',
 				message: msg,
-				position: 'top',
+				position: pos || 'top',
 				timeout,
 			});
 		},
-		error: (msg: string) => {
+		error: (msg: string, pos?: QNotifyCreateOptions['position']) => {
 			if (notificationMap[msg]) return;
 			_setTimer(msg);
 			Notify.create({
 				type: 'negative',
 				message: msg,
-				position: 'top',
+				position: pos || 'top',
 				timeout,
 			});
 		},
-		info: (msg: string) => {
+		info: (msg: string, pos?: QNotifyCreateOptions['position']) => {
 			if (notificationMap[msg]) return;
 			_setTimer(msg);
 			Notify.create({
 				type: 'info',
 				message: msg,
-				position: 'top',
+				position: pos || 'top',
 				timeout,
 			});
 		},
-		warning: (msg: string) => {
+		warning: (msg: string, pos?: QNotifyCreateOptions['position']) => {
 			if (notificationMap[msg]) return;
 			_setTimer(msg);
 			Notify.create({
 				type: 'warning',
 				message: msg,
-				position: 'top',
+				position: pos || 'top',
 				timeout,
 			});
 		},
-		loading: (msg: string) => {
+		loading: (msg: string, pos?: QNotifyCreateOptions['position']) => {
 			if (notificationMap[msg]) return;
 			_setTimer(msg);
 			Notify.create({
 				type: 'ongoing',
 				message: msg,
-				position: 'top',
+				position: pos || 'top',
 				timeout,
 			});
 		},

@@ -22,6 +22,7 @@ const vitePWAOptions: Partial<VitePWAOptions> = {
 		background_color: '#ffffff',
 		display: 'standalone',
 		scope: 'https://z94624.github.io/beBird/',
+		// start_url：改動的話，記得改 useBackExit.ts
 		start_url: 'https://z94624.github.io/beBird/#/rare-birds-map',
 		icons: [
 			{

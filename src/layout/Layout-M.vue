@@ -41,7 +41,7 @@
 							:key="mIdx"
 						>
 							<q-item
-								:active="menuItem.name === selectedMenu"
+								:active="route.path === menuItem.to"
 								:to="menuItem.to"
 								clickable
 								@click="() => onSelectMenu(menuItem.name)"
@@ -134,7 +134,7 @@
 
 <script lang="ts" setup>
 	import { computed, ref, toRefs, watch } from 'vue';
-	import { useRouter } from 'vue-router';
+	import { useRoute, useRouter } from 'vue-router';
 	import { useDebounceFn } from '@vueuse/core';
 	import WeatherIcon from './components/weather/WeatherIcon.vue';
 	import WeatherDialog from './components/weather/WeatherDialog.vue';
@@ -161,6 +161,7 @@
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const router = useRouter();
+	const route = useRoute();
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
