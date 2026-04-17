@@ -7,6 +7,11 @@
 	border: $thick $style $color;
 }
 
+@mixin boxShadow($shadows: 0 12px 40px 0) {
+	box-shadow: $shadows rgb(from var(--q-primaryOld) r g b / 12%);
+	// box-shadow: $shadows color-mix(in srgb, var(--q-primaryOld), transparent 88%);
+}
+
 /**
  * 社群媒體圖示元件
  * Hover 顏色動畫

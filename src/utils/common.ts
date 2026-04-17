@@ -48,3 +48,8 @@ export const getFormattedDateTime = (
 ) => {
 	return dayjs(dateTime).format(format);
 };
+
+// 打開外部連結
+export const openUrl = (url: string, target: string = '_blank') => {
+	window.open(url, target);
+};

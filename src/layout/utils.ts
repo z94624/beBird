@@ -38,6 +38,11 @@ export const menuList: {
 		name: 'contactUs',
 		icon: 'o_alternate_email',
 		to: '/contact-us',
+	},
+	{
+		name: 'attributions',
+		icon: 'o_hub',
+		to: '/attributions',
 		separator: true,
 	},
 ];
