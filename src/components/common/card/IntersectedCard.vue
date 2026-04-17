@@ -40,8 +40,8 @@
 			entry.target.classList.remove('reveal-active');
 		}
 
-		// 這裡回傳 false，讓元素離開畫面再回來時，動畫可以再次觸發
-		return false;
+		// 這裡回傳 true，讓元素離開畫面再回來時，動畫可以再次觸發
+		return true;
 	};
 </script>
 
