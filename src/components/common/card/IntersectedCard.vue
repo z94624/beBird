@@ -27,15 +27,21 @@
 
 	/**
 	 * 處理捲動進場動畫
-	 * 當元素進入可視範圍 (isIntersecting 為 true) 時加入顯示用 class
+	 * 當元素進入可視範圍 (isIntersecting 為 true) 時加入顯示用 class。
+	 * * @note Quasar v-intersection 規範必須回傳 boolean 值：
+	 * - 回傳 false: 持續監聽該元素的交集狀態。
+	 * - 回傳 true: 觸發後即註銷監聽器 (Unobserve)，提升效能。
 	 */
-	const onIntersection = (entry: IntersectionObserverEntry) => {
+	const onIntersection = (entry: IntersectionObserverEntry): boolean => {
 		if (entry.isIntersecting) {
 			entry.target.classList.add('reveal-active');
 		} else {
 			// 若希望往上滑動時能再次觸發動畫，可保留以下這行；若希望只動畫一次則註解掉
 			entry.target.classList.remove('reveal-active');
 		}
+
+		// 這裡回傳 false，讓元素離開畫面再回來時，動畫可以再次觸發
+		return false;
 	};
 </script>
 
