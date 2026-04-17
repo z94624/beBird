@@ -12,6 +12,7 @@ declare module 'vue' {
     BaseChip: typeof import('./src/components/common/chip/src/BaseChip.vue')['default']
     BaseDialog: typeof import('./src/components/common/dialog/BaseDialog.vue')['default']
     BaseDialogTemplate: typeof import('./src/components/common/dialog/_template/BaseDialogTemplate.vue')['default']
+    BaseIcon: typeof import('./src/components/common/icon/src/BaseIcon.vue')['default']
     BaseIndicator: typeof import('./src/components/common/badge/src/BaseIndicator.vue')['default']
     BaseSelect: typeof import('./src/components/common/Select/src/BaseSelect.vue')['default']
     BaseSlider: typeof import('./src/components/common/Slider/src/BaseSlider.vue')['default']

@@ -45,7 +45,7 @@
 									</div>
 								</div>
 
-								<q-icon
+								<BaseIcon
 									:color="
 										$q.dark.isActive
 											? categoryMap[item.category].colorDark
