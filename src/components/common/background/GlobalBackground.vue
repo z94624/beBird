@@ -83,16 +83,16 @@
 						:key="route.renderKey"
 						class="migration-system"
 					>
-					<!-- 手機版關閉高斯模糊濾鏡 -->
+						<!-- 手機版關閉高斯模糊濾鏡 -->
 						<path
 							:d="route.pathData"
+							:filter="!isMobile ? 'url(#wind-blur)' : ''"
 							:style="{
 								animationDuration: `${route.duration}s`,
 								animationDelay: `${route.delay}s`,
 							}"
 							class="flyway-stream"
 							fill="none"
-							:filter="!isMobile ? 'url(#wind-blur)' : ''"
 							pathLength="100"
 							@animationend="regenerateRoute(route)"
 						/>
@@ -134,9 +134,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+	import { ref, onMounted, onUnmounted } from 'vue';
 
-import { usePlatform } from '@/hooks/platform';
+	import { usePlatform } from '@/hooks/platform';
 
 	interface Point {
 		id: string;
@@ -153,13 +153,13 @@ import { usePlatform } from '@/hooks/platform';
 		duration: number;
 		delay: number;
 		points: Point[];
-}
+	}
 
-const { isMobile } = usePlatform();
+	const { isMobile } = usePlatform();
 
 	const migrationRoutes = ref<MigrationRoute[]>([]);
 	// 手機版減少路線數量，減輕 DOM 節點壓力
-const totalRoutes = isMobile ? 2 : 8;
+	const totalRoutes = isMobile ? 3 : 8;
 
 	/**
 	 * 真 3D 透視與平移控制

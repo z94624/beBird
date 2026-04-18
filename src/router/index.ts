@@ -56,7 +56,10 @@ const routes: RouteRecordRaw[] = [
 	{
 		path: '/attributions',
 		name: 'Attributions',
-		meta: { titleKey: 'attributions' },
+		meta: {
+			titleKey: 'attributions',
+			showBackground: true,
+		},
 		component: () => import('@/views/Attributions.vue'),
 	},
 ];

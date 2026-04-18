@@ -4,7 +4,7 @@
 		影片：https://www.youtube.com/watch?v=yUUdhCpOCFY&t=750s
 	-->
 	<div>
-		<GlobalBackground />
+		<GlobalBackground v-if="route.meta.showBackground" />
 
 		<!-- 下雪公元 -->
 		<Snow v-if="checkIsInChristmasSeason()" />
