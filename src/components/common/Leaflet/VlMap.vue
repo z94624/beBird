@@ -84,6 +84,7 @@
 				:use-global-leaflet="true"
 				class="map"
 				@baselayerchange="onBaseLayerChange"
+				@click="onClickMap"
 				@ready="(obj: Map) => (leafletMap = obj)"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
@@ -125,6 +126,17 @@
 					/>
 				</template>
 
+				<!-- 使用者選定地圖目標地點 -->
+				<l-circle-marker
+					v-if="targetPoint"
+					:fillOpacity="0.8"
+					:lat-lng="[targetPoint.lat, targetPoint.lng]"
+					:radius="8"
+					:weight="2"
+					color="#f56c6c"
+					fillColor="#f56c6c"
+				></l-circle-marker>
+
 				<slot
 					v-if="markersNumber <= 100"
 					name="markers"
@@ -140,7 +152,14 @@
 <script lang="ts" setup>
 	import { computed, onBeforeMount, reactive, ref, toRefs, watch } from 'vue';
 	import { useGeolocation } from '@vueuse/core';
-	import { LatLng, LatLngExpression, LayersControlEvent, Map, PointExpression } from 'leaflet';
+	import {
+		LatLng,
+		LatLngExpression,
+		LayersControlEvent,
+		LeafletMouseEvent,
+		Map,
+		PointExpression,
+	} from 'leaflet';
 	import {
 		LMap,
 		LTileLayer,
@@ -162,6 +181,7 @@
 	// 定義事件發送
 	const emit = defineEmits<{
 		(e: 'research'): void; // 點擊重新搜尋事件
+		(e: 'click', evt: LeafletMouseEvent): void; // 點擊地圖事件
 	}>();
 
 	// 定義組件接收屬性
@@ -199,6 +219,7 @@
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,
 	] as PointExpression); // 預設地圖中心點
 	const zoom = ref(8); // 預設縮放層級
+	const targetPoint = ref<{ lat: number; lng: number } | null>(null);
 	const birdMorph = ref('btn'); // Morph 動畫狀態
 	const searchDrawerOpen = ref(false); // 移動端抽屜狀態
 	const locateStatus = ref(false); // 目前是否開啟定位追蹤狀態
@@ -409,6 +430,14 @@
 	 * 地圖邊界更新回調事件
 	 */
 	const onUpdateBounds = () => {};
+
+	/**
+	 * 地圖點擊事件
+	 */
+	const onClickMap = (e: LeafletMouseEvent) => {
+		targetPoint.value = e.latlng;
+		emit('click', e);
+	};
 
 	/**
 	 * 當使用者手動透過 Leaflet Control 切換底圖時觸發
