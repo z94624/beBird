@@ -157,7 +157,7 @@ export class NOMINATIMReverseReq extends NOMINATIMBaseReq {
 		const {
 			lat = 0,
 			lon = 0,
-			zoom = undefined,
+			zoom = 5,
 			polygon_geojson = undefined,
 			polygon_kml = undefined,
 			polygon_svg = undefined,
@@ -175,7 +175,7 @@ export class NOMINATIMReverseReq extends NOMINATIMBaseReq {
 	}
 	lat: number = 0;
 	lon: number = 0;
-	zoom?: number = undefined;
+	zoom?: number = 5;
 	polygon_geojson?: 0 | 1 = undefined;
 	polygon_kml?: 0 | 1 = undefined;
 	polygon_svg?: 0 | 1 = undefined;
