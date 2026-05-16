@@ -3,6 +3,7 @@
 		ref="mapRef"
 		:markers-number="pureObsList.length"
 		@research="getRecentNotableObsInRegionInfo"
+		@reverse-geocoding="onReverseGeocoding"
 	>
 		<template #search-menu>
 			<q-form
@@ -91,7 +92,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+	import { computed, nextTick, onBeforeMount, ref, toRefs, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import { useDebounceFn } from '@vueuse/core';
 	import { LMarker } from '@vue-leaflet/vue-leaflet';
@@ -212,6 +213,30 @@
 		// 調整地圖縮放
 		if (val) {
 			mapRef.value.updateZoom(8);
+		}
+	};
+
+	/**
+	 * 使用者點擊地圖的反向地理編碼
+	 */
+	const onReverseGeocoding = async (countryCode?: string, subnationalCode?: string) => {
+		if (countryCode) {
+			const clickedCountry = countryCode.toUpperCase();
+
+			if (country.value !== clickedCountry) {
+				country.value = clickedCountry;
+				// 等待 Vue re-render UpdateRegionOptions (避免 Race condition)
+				await nextTick();
+			}
+
+			if (subnationalCode) {
+				region.value = subnationalCode;
+			} else {
+				// 如果只點擊到國家沒有具體行政區，就會是 null
+				region.value = null;
+			}
+		} else {
+			$notify.warning(t('geocodingTargetFailed'));
 		}
 	};
 

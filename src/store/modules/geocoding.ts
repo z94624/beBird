@@ -8,7 +8,7 @@ export const useGeocodingStore = defineStore('geocoding', () => {
 	 * Reverse queries
 	 * reverse geocoding generates an address from a latitude and longitude
 	 */
-	const reverseGeocoding = (req: NOMINATIMReverseReq) => {
+	const nominatimReverse = (req: NOMINATIMReverseReq) => {
 		// $loading.on();
 		return reverseApi(req)
 			.then((res) => {
@@ -23,6 +23,6 @@ export const useGeocodingStore = defineStore('geocoding', () => {
 	};
 
 	return {
-		reverseGeocoding,
+		nominatimReverse,
 	};
 });

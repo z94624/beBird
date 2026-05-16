@@ -1,0 +1,6 @@
+{
+	"geocodingDataFailed": "無法解析該地點",
+	"geocodingTargetFailed": "找不到該座標的地點資訊",
+
+	"reverseAPIFailed": "反向地理編碼失敗"
+}

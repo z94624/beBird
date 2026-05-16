@@ -150,7 +150,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, reactive, ref, toRefs, watch } from 'vue';
+	import { computed, onBeforeMount, reactive, ref, toRefs, useAttrs, watch } from 'vue';
+	import { useI18n } from 'vue-i18n';
 	import { useGeolocation } from '@vueuse/core';
 	import {
 		LatLng,
@@ -172,11 +173,14 @@
 	import { LMarkerClusterGroup } from 'vue-leaflet-markercluster';
 	import { fasRotateRight } from '@quasar/extras/fontawesome-v6';
 
+	import { NOMINATIMReverseReq } from '@/models/nominatim/v1/geocoding';
+
+	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { usePlatform } from '@/hooks/platform';
 	import { useLeafletStore } from '@/store/modules/geodata';
+	import { useGeocodingStore } from '@/store/modules/geocoding';
 	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
-	import { ModeEnum } from '@/models/enum/styleEnum';
 
 	// 定義事件發送
 	const emit = defineEmits<{
@@ -189,6 +193,10 @@
 		markersNumber: number; // 外部傳入的標記總數
 	}>();
 
+	const attrs = useAttrs();
+	const { $notify } = useQuasarTool();
+	const { t } = useI18n();
+
 	// 裝置定位 Hook
 	const { coords, locatedAt, error, resume, pause } = useGeolocation();
 	// 判斷裝置類型 Hook
@@ -197,6 +205,8 @@
 	// 地圖資料 Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
+
+	const geocodingStore = useGeocodingStore();
 
 	// 字體大小 Store (控制 UI 排版)
 	const textSizeStore = useTextSizeStore();
@@ -223,6 +233,10 @@
 	const birdMorph = ref('btn'); // Morph 動畫狀態
 	const searchDrawerOpen = ref(false); // 移動端抽屜狀態
 	const locateStatus = ref(false); // 目前是否開啟定位追蹤狀態
+
+	const hasReverseGeocodingListener = computed(
+		() => typeof attrs.onReverseGeocoding === 'function'
+	);
 
 	// 計算定位按鈕顏色 (啟用時與停用時的配色切換)
 	const locateColor = computed(() => {
@@ -435,8 +449,39 @@
 	 * 地圖點擊事件
 	 */
 	const onClickMap = (e: LeafletMouseEvent) => {
-		targetPoint.value = e.latlng;
+		const { latlng } = e;
+
 		emit('click', e);
+		targetPoint.value = latlng;
+
+		// 有綁定反向地理編碼事件
+		if (hasReverseGeocodingListener.value) {
+			geocodingStore
+				.nominatimReverse(
+					new NOMINATIMReverseReq({
+						lat: latlng.lat,
+						lon: latlng.lng,
+					})
+				)
+				.then((data) => {
+					if (data && data.address) {
+						const { country_code } = data.address;
+						// Nominatim 可能給出 lvl4 或是 lvl6 的區域名稱，我們盡量取得 ISO3166-2
+						const subnational_code =
+							data.address['ISO3166-2-lvl4'] || data.address['ISO3166-2-lvl6'];
+
+						(attrs.onReverseGeocoding as Function)(country_code, subnational_code);
+					} else {
+						$notify.warning(t('geocodingDataFailed'));
+						targetPoint.value = null;
+					}
+				})
+				.catch((err) => {
+					console.error(err);
+					$notify.error(t('reverseAPIFailed'));
+					targetPoint.value = null;
+				});
+		}
 	};
 
 	/**

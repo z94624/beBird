@@ -1,0 +1,6 @@
+{
+	"geocodingDataFailed": "Unable to resolve location",
+	"geocodingTargetFailed": "No location info found for these coordinates",
+
+	"reverseAPIFailed": "Reverse geocoding failed"
+}

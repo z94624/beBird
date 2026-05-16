@@ -17,6 +17,8 @@ import attributionEnUs from '@/locales/en-us/attribution.json';
 import attributionZhTw from '@/locales/zh-tw/attribution.json';
 import socialMediaEnUs from '@/locales/en-us/socialMedia.json';
 import socialMediaZhTw from '@/locales/zh-tw/socialMedia.json';
+import geocodingEnUs from '@/locales/en-us/geocoding.json';
+import geocodingZhTw from '@/locales/zh-tw/geocoding.json';
 
 /**
  * 取得國家語系代碼
@@ -46,7 +48,8 @@ const i18n = createI18n({
 			ebirdEnUs,
 			contactEnUs,
 			attributionEnUs,
-			socialMediaEnUs
+			socialMediaEnUs,
+			geocodingEnUs
 		),
 		[WebLangEnum.TAIWAN]: mergeDictionaries(
 			commonZhTw,
@@ -55,7 +58,8 @@ const i18n = createI18n({
 			ebirdZhTw,
 			contactZhTw,
 			attributionZhTw,
-			socialMediaZhTw
+			socialMediaZhTw,
+			geocodingZhTw
 		),
 	},
 });
