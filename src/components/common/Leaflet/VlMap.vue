@@ -127,15 +127,21 @@
 				</template>
 
 				<!-- 使用者選定地圖目標地點 -->
-				<l-circle-marker
+				<l-marker
 					v-if="targetPoint"
-					:fillOpacity="0.8"
 					:lat-lng="[targetPoint.lat, targetPoint.lng]"
-					:radius="8"
-					:weight="2"
-					color="#f56c6c"
-					fillColor="#f56c6c"
-				></l-circle-marker>
+				>
+					<l-icon
+						:icon-anchor="[18, 18]"
+						:icon-size="[36, 36]"
+						class-name="target-crosshair-icon"
+					>
+						<BaseIcon
+							:name="fasLocationCrosshairs"
+							color="mapTarget"
+						/>
+					</l-icon>
+				</l-marker>
 
 				<slot
 					v-if="markersNumber <= 100"
@@ -169,9 +175,11 @@
 		LControlZoom,
 		LCircle,
 		LCircleMarker,
+		LMarker,
+		LIcon,
 	} from '@vue-leaflet/vue-leaflet';
 	import { LMarkerClusterGroup } from 'vue-leaflet-markercluster';
-	import { fasRotateRight } from '@quasar/extras/fontawesome-v6';
+	import { fasRotateRight, fasLocationCrosshairs } from '@quasar/extras/fontawesome-v6';
 
 	import { NOMINATIMReverseReq } from '@/models/nominatim/v1/geocoding';
 
