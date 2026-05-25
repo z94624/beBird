@@ -10,6 +10,7 @@
 	"ebirdQuote": "Provides the core global bird observation data for our site, serving as the cornerstone for ecological exploration.",
 	"tomorrowQuote": "Delivers high-precision real-time weather and forecast data, helping birders plan trips under optimal weather conditions.",
 	"sunriseQuote": "A lightweight and reliable sunrise and sunset time calculation service, making dawn and dusk observation plans more precise.",
+	"nominatimQuote": "Provides reliable reverse geocoding services, converting coordinates into detailed address and region information.",
 	"flaticonQuote": "Animated icons that add vitality to the weather information panel.",
 	"lovartQuote": "A high-quality source of artistic design assets that gives the website its unique visual style and texture."
 }

@@ -156,10 +156,18 @@
 			category: 'apiService',
 			quoteKey: 'sunriseQuote',
 		},
+		{
+			id: 5,
+			title: 'Nominatim API',
+			author: 'OpenStreetMap',
+			url: 'https://nominatim.org/',
+			category: 'apiService',
+			quoteKey: 'nominatimQuote',
+		},
 
 		// 🎨 Design & UI
 		{
-			id: 5,
+			id: 6,
 			title: 'Weather Animated Icons',
 			author: 'Freepik - Flaticon',
 			url: 'https://www.flaticon.com/animated-icons',
@@ -167,7 +175,7 @@
 			quoteKey: 'flaticonQuote',
 		},
 		{
-			id: 6,
+			id: 7,
 			title: 'Lovart',
 			author: 'Lovart',
 			url: 'https://www.lovart.ai/',
