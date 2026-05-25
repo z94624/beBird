@@ -457,18 +457,22 @@
 	 * 地圖點擊事件
 	 */
 	const onClickMap = (e: LeafletMouseEvent) => {
-		const { latlng } = e;
+		// 將點擊的經緯度折疊回標準範圍
+		const wrappedLatLng = e.latlng.wrap();
 
+		// 將傳遞給父組件的事件也覆蓋為 wrappedLatLng 以防有其他依賴
+		e.latlng = wrappedLatLng;
 		emit('click', e);
-		targetPoint.value = latlng;
+
+		targetPoint.value = wrappedLatLng;
 
 		// 有綁定反向地理編碼事件
 		if (hasReverseGeocodingListener.value) {
 			geocodingStore
 				.nominatimReverse(
 					new NOMINATIMReverseReq({
-						lat: latlng.lat,
-						lon: latlng.lng,
+						lat: wrappedLatLng.lat,
+						lon: wrappedLatLng.lng,
 					})
 				)
 				.then((data) => {
