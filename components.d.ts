@@ -49,7 +49,6 @@ declare module 'vue' {
     SubLoading: typeof import('./src/components/common/Loading/SubLoading.vue')['default']
     VlIcon: typeof import('./src/components/common/Leaflet/BasicTypes/VlIcon.vue')['default']
     VlMap: typeof import('./src/components/common/Leaflet/VlMap.vue')['default']
-    VlMapEx: typeof import('./src/components/common/Leaflet/VlMapEx.vue')['default']
     VlPopup: typeof import('./src/components/common/Leaflet/UILayers/VlPopup.vue')['default']
     VlTooltip: typeof import('./src/components/common/Leaflet/UILayers/VlTooltip.vue')['default']
     YouTube: typeof import('./src/components/common/socialMedia/YouTube.vue')['default']
