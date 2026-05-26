@@ -158,7 +158,7 @@
 <script lang="ts" setup>
 	import { computed, onBeforeMount, reactive, ref, toRefs, useAttrs, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
-	import { useGeolocation } from '@vueuse/core';
+	import { useGeolocation, useDebounceFn } from '@vueuse/core';
 	import {
 		LatLng,
 		LatLngExpression,
@@ -453,6 +453,30 @@
 	 */
 	const onUpdateBounds = () => {};
 
+	// 建立帶有防抖效果的反向地理編碼 API 呼叫函式
+	const debouncedReverseGeocoding = useDebounceFn((lat: number, lon: number) => {
+		geocodingStore
+			.nominatimReverse(new NOMINATIMReverseReq({ lat, lon }))
+			.then((data) => {
+				if (data && data.address) {
+					const { country_code } = data.address;
+					// Nominatim 可能給出 lvl4 或是 lvl6 的區域名稱，我們盡量取得 ISO3166-2
+					const subnational_code =
+						data.address['ISO3166-2-lvl4'] || data.address['ISO3166-2-lvl6'];
+
+					(attrs.onReverseGeocoding as Function)(country_code, subnational_code);
+				} else {
+					$notify.warning(t('geocodingDataFailed'));
+					targetPoint.value = null;
+				}
+			})
+			.catch((err) => {
+				console.error(err);
+				$notify.error(t('reverseAPIFailed'));
+				targetPoint.value = null;
+			});
+	}, 500);
+
 	/**
 	 * 地圖點擊事件
 	 */
@@ -468,31 +492,7 @@
 
 		// 有綁定反向地理編碼事件
 		if (hasReverseGeocodingListener.value) {
-			geocodingStore
-				.nominatimReverse(
-					new NOMINATIMReverseReq({
-						lat: wrappedLatLng.lat,
-						lon: wrappedLatLng.lng,
-					})
-				)
-				.then((data) => {
-					if (data && data.address) {
-						const { country_code } = data.address;
-						// Nominatim 可能給出 lvl4 或是 lvl6 的區域名稱，我們盡量取得 ISO3166-2
-						const subnational_code =
-							data.address['ISO3166-2-lvl4'] || data.address['ISO3166-2-lvl6'];
-
-						(attrs.onReverseGeocoding as Function)(country_code, subnational_code);
-					} else {
-						$notify.warning(t('geocodingDataFailed'));
-						targetPoint.value = null;
-					}
-				})
-				.catch((err) => {
-					console.error(err);
-					$notify.error(t('reverseAPIFailed'));
-					targetPoint.value = null;
-				});
+			debouncedReverseGeocoding(wrappedLatLng.lat, wrappedLatLng.lng);
 		}
 	};
 
