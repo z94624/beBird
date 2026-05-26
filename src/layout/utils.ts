@@ -59,6 +59,13 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.2',
+		releaseDate: '2026/05/26',
+		features: [
+			'Implemented interactive reverse geocoding on the map, allowing users to retrieve address details by clicking on specific locations.',
+		],
+	},
+	{
 		version: '1.2.1',
 		releaseDate: '2026/04/17',
 		features: [
