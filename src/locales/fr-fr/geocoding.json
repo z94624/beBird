@@ -1,0 +1,7 @@
+{
+	"error": {
+		"dataFailed": "Impossible de résoudre l'emplacement",
+		"targetFailed": "Aucune information de lieu trouvée pour ces coordonnées",
+		"reverseAPIFailed": "Échec du géocodage inversé"
+	}
+}

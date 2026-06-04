@@ -1,0 +1,18 @@
+{
+	"quote": "La naissance de beBird repose sur les épaules de nombreux géants de l'open-source. Nous sommes reconnaissants pour les contributions des ressources et communautés exceptionnelles suivantes.",
+	"category": {
+		"mapGeo": "Carte & Géo",
+		"apiService": "Données & Service",
+		"vueEcosystem": "Écosystème Vue",
+		"designUi": "Design & Interface"
+	},
+	"itemQuote": {
+		"leaflet": "Le moteur JavaScript open-source central qui propulse l'expérience cartographique interactive de beBird, léger et très performant.",
+		"ebird": "Fournit les données d'observation mondiales des oiseaux fondamentales de notre site, servant de pierre angulaire à l'exploration écologique.",
+		"tomorrow": "Fournit des données météorologiques et des prévisions en temps réel de haute précision, aidant les ornithologues à planifier leurs excursions dans des conditions optimales.",
+		"sunrise": "Un service léger et fiable de calcul des heures de lever et de coucher du soleil, rendant les plans d'observation à l'aube et au crépuscule plus précis.",
+		"nominatim": "Fournit des services de géocodage inversé fiables, convertissant les coordonnées en informations détaillées sur les adresses et les régions.",
+		"flaticon": "Des icônes animées qui ajoutent de la vitalité au panneau d'informations météorologiques.",
+		"lovart": "Une source de haute qualité d'éléments de conception artistique qui confère au site Web son style visuel et sa texture uniques."
+	}
+}

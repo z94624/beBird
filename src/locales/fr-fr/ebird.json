@@ -1,0 +1,13 @@
+{
+	"time": {
+		"ago": "jours plus tôt",
+		"today": "Aujourd'hui"
+	},
+	"info": {
+		"map": "Carte",
+		"checklist": "Liste de contrôle",
+		"note": "Note",
+		"source": "Source",
+		"listInfoCopied": "Informations de la liste copiées"
+	}
+}
