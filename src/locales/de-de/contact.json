@@ -1,0 +1,13 @@
+{
+	"emailUs": "Sende uns eine E-Mail",
+	"form": {
+		"name": "Name",
+		"email": "E-Mail",
+		"subject": "Betreff",
+		"message": "Nachricht",
+		"send": "SENDEN"
+	},
+	"message": {
+		"sendError": "Senden fehlgeschlagen! Bitte versuche es später noch einmal..."
+	}
+}

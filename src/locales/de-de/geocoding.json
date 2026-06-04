@@ -1,0 +1,7 @@
+{
+	"error": {
+		"dataFailed": "Standort kann nicht aufgelöst werden",
+		"targetFailed": "Keine Standortinformationen für diese Koordinaten gefunden",
+		"reverseAPIFailed": "Reverse-Geocoding fehlgeschlagen"
+	}
+}

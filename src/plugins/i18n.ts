@@ -39,6 +39,15 @@ import attributionEsEs from '@/locales/es-es/attribution.json';
 import socialMediaEsEs from '@/locales/es-es/socialMedia.json';
 import geocodingEsEs from '@/locales/es-es/geocoding.json';
 
+import commonDeDe from '@/locales/de-de/common.json';
+import routerDeDe from '@/locales/de-de/router.json';
+import weatherDeDe from '@/locales/de-de/weather.json';
+import ebirdDeDe from '@/locales/de-de/ebird.json';
+import contactDeDe from '@/locales/de-de/contact.json';
+import attributionDeDe from '@/locales/de-de/attribution.json';
+import socialMediaDeDe from '@/locales/de-de/socialMedia.json';
+import geocodingDeDe from '@/locales/de-de/geocoding.json';
+
 /**
  * 取得國家語系代碼
  */
@@ -91,6 +100,16 @@ const i18n = createI18n({
 			attribution: attributionEsEs,
 			socialMedia: socialMediaEsEs,
 			geocoding: geocodingEsEs,
+		},
+		[WebLangEnum.GERMANY]: {
+			common: commonDeDe,
+			router: routerDeDe,
+			weather: weatherDeDe,
+			ebird: ebirdDeDe,
+			contact: contactDeDe,
+			attribution: attributionDeDe,
+			socialMedia: socialMediaDeDe,
+			geocoding: geocodingDeDe,
 		},
 	},
 });

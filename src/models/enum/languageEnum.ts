@@ -6,4 +6,5 @@ export enum WebLangEnum {
 	AMERICA = 'en-us',
 	FRANCE = 'fr-fr',
 	SPAIN = 'es-es',
+	GERMANY = 'de-de',
 }

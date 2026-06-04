@@ -13,12 +13,14 @@ export const webLangCountryNameMap = {
 	[WebLangEnum.AMERICA]: 'United States',
 	[WebLangEnum.FRANCE]: 'France',
 	[WebLangEnum.SPAIN]: 'España',
+	[WebLangEnum.GERMANY]: 'Deutschland',
 };
 export const webLangNameMap = {
 	[WebLangEnum.TAIWAN]: '繁體中文',
 	[WebLangEnum.AMERICA]: 'English',
 	[WebLangEnum.FRANCE]: 'Français',
 	[WebLangEnum.SPAIN]: 'Español',
+	[WebLangEnum.GERMANY]: 'Deutsch',
 };
 export const webLangOptions = webLangKeys.reduce((arr: QSelectOption[], key) => {
 	arr.push({

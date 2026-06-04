@@ -1,0 +1,13 @@
+{
+	"time": {
+		"ago": "Tage zuvor",
+		"today": "Heute"
+	},
+	"info": {
+		"map": "Karte",
+		"checklist": "Checkliste",
+		"note": "Hinweis",
+		"source": "Quelle",
+		"listInfoCopied": "Checklisten-Info kopiert"
+	}
+}
