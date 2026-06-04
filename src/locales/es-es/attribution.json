@@ -1,0 +1,18 @@
+{
+	"quote": "El nacimiento de beBird se apoya en los hombros de muchos gigantes de código abierto. Agradecemos las contribuciones de los siguientes recursos y comunidades sobresalientes.",
+	"category": {
+		"mapGeo": "Mapa y Geo",
+		"apiService": "Datos y Servicio",
+		"vueEcosystem": "Ecosistema Vue",
+		"designUi": "Diseño e Interfaz"
+	},
+	"itemQuote": {
+		"leaflet": "El motor JavaScript de código abierto central que impulsa la experiencia de mapa interactivo de beBird, ligero y de alto rendimiento.",
+		"ebird": "Proporciona los datos de observación de aves mundiales principales para nuestro sitio, sirviendo como piedra angular para la exploración ecológica.",
+		"tomorrow": "Proporciona datos meteorológicos y pronósticos en tiempo real de alta precisión, ayudando a los observadores de aves a planificar viajes en condiciones climáticas óptimas.",
+		"sunrise": "Un servicio de cálculo de la hora del amanecer y atardecer ligero y confiable, que hace más precisos los planes de observación al amanecer y al anochecer.",
+		"nominatim": "Proporciona servicios de geocodificación inversa confiables, convirtiendo coordenadas en información detallada de direcciones y regiones.",
+		"flaticon": "Iconos animados que añaden vitalidad al panel de información meteorológica.",
+		"lovart": "Una fuente de alta calidad de activos de diseño artístico que le da al sitio web su estilo visual y textura únicos."
+	}
+}

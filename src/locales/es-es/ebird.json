@@ -1,0 +1,13 @@
+{
+	"time": {
+		"ago": "hace días",
+		"today": "Hoy"
+	},
+	"info": {
+		"map": "Mapa",
+		"checklist": "Lista de verificación",
+		"note": "Nota",
+		"source": "Fuente",
+		"listInfoCopied": "Información de la lista de verificación copiada"
+	}
+}

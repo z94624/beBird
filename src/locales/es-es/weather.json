@@ -1,0 +1,30 @@
+{
+	"items": {
+		"sunrise": "Amanecer",
+		"sunset": "Atardecer",
+		"temperature": "Sensación Térmica",
+		"precipitation": "Probabilidad de precipitación",
+		"humidity": "Humedad",
+		"wind_speed": "Velocidad del viento",
+		"celsius": "Sistema métrico",
+		"fahrenheit": "Sistema imperial",
+		"observation_time": "Hora de observación"
+	},
+	"types": {
+		"unknown": "Clima",
+		"blizzard": "Tormenta de nieve",
+		"clear": "Despejado",
+		"clear_night": "Noche despejada",
+		"cloudy": "Nublado",
+		"cloudy_night": "Noche nublada",
+		"cold": "Frío",
+		"drizzle": "Llovizna",
+		"fog": "Niebla",
+		"hot": "Calor",
+		"partly_cloudy": "Parcialmente nublado",
+		"rain": "Lluvia",
+		"sleet": "Aguanieve",
+		"snow": "Nieve",
+		"thunderstorm": "Tormenta eléctrica"
+	}
+}

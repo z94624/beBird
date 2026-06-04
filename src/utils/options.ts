@@ -12,11 +12,13 @@ export const webLangCountryNameMap = {
 	[WebLangEnum.TAIWAN]: '臺灣',
 	[WebLangEnum.AMERICA]: 'United States',
 	[WebLangEnum.FRANCE]: 'France',
+	[WebLangEnum.SPAIN]: 'España',
 };
 export const webLangNameMap = {
 	[WebLangEnum.TAIWAN]: '繁體中文',
 	[WebLangEnum.AMERICA]: 'English',
 	[WebLangEnum.FRANCE]: 'Français',
+	[WebLangEnum.SPAIN]: 'Español',
 };
 export const webLangOptions = webLangKeys.reduce((arr: QSelectOption[], key) => {
 	arr.push({

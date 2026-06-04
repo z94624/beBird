@@ -30,6 +30,15 @@ import attributionFrFr from '@/locales/fr-fr/attribution.json';
 import socialMediaFrFr from '@/locales/fr-fr/socialMedia.json';
 import geocodingFrFr from '@/locales/fr-fr/geocoding.json';
 
+import commonEsEs from '@/locales/es-es/common.json';
+import routerEsEs from '@/locales/es-es/router.json';
+import weatherEsEs from '@/locales/es-es/weather.json';
+import ebirdEsEs from '@/locales/es-es/ebird.json';
+import contactEsEs from '@/locales/es-es/contact.json';
+import attributionEsEs from '@/locales/es-es/attribution.json';
+import socialMediaEsEs from '@/locales/es-es/socialMedia.json';
+import geocodingEsEs from '@/locales/es-es/geocoding.json';
+
 /**
  * 取得國家語系代碼
  */
@@ -72,6 +81,16 @@ const i18n = createI18n({
 			attribution: attributionFrFr,
 			socialMedia: socialMediaFrFr,
 			geocoding: geocodingFrFr,
+		},
+		[WebLangEnum.SPAIN]: {
+			common: commonEsEs,
+			router: routerEsEs,
+			weather: weatherEsEs,
+			ebird: ebirdEsEs,
+			contact: contactEsEs,
+			attribution: attributionEsEs,
+			socialMedia: socialMediaEsEs,
+			geocoding: geocodingEsEs,
 		},
 	},
 });
