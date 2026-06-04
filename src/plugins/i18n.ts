@@ -57,6 +57,15 @@ import attributionJaJp from '@/locales/ja-jp/attribution.json';
 import socialMediaJaJp from '@/locales/ja-jp/socialMedia.json';
 import geocodingJaJp from '@/locales/ja-jp/geocoding.json';
 
+import commonArSa from '@/locales/ar-sa/common.json';
+import routerArSa from '@/locales/ar-sa/router.json';
+import weatherArSa from '@/locales/ar-sa/weather.json';
+import ebirdArSa from '@/locales/ar-sa/ebird.json';
+import contactArSa from '@/locales/ar-sa/contact.json';
+import attributionArSa from '@/locales/ar-sa/attribution.json';
+import socialMediaArSa from '@/locales/ar-sa/socialMedia.json';
+import geocodingArSa from '@/locales/ar-sa/geocoding.json';
+
 /**
  * 取得國家語系代碼
  */
@@ -129,6 +138,16 @@ const i18n = createI18n({
 			attribution: attributionJaJp,
 			socialMedia: socialMediaJaJp,
 			geocoding: geocodingJaJp,
+		},
+		[WebLangEnum.SAUDI_ARABIA]: {
+			common: commonArSa,
+			router: routerArSa,
+			weather: weatherArSa,
+			ebird: ebirdArSa,
+			contact: contactArSa,
+			attribution: attributionArSa,
+			socialMedia: socialMediaArSa,
+			geocoding: geocodingArSa,
 		},
 	},
 });

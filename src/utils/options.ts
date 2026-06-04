@@ -15,6 +15,7 @@ export const webLangCountryNameMap = {
 	[WebLangEnum.SPAIN]: 'España',
 	[WebLangEnum.GERMANY]: 'Deutschland',
 	[WebLangEnum.JAPAN]: '日本',
+	[WebLangEnum.SAUDI_ARABIA]: 'السعودية',
 };
 export const webLangNameMap = {
 	[WebLangEnum.TAIWAN]: '繁體中文',
@@ -23,6 +24,7 @@ export const webLangNameMap = {
 	[WebLangEnum.SPAIN]: 'Español',
 	[WebLangEnum.GERMANY]: 'Deutsch',
 	[WebLangEnum.JAPAN]: '日本語',
+	[WebLangEnum.SAUDI_ARABIA]: 'العربية',
 };
 export const webLangOptions = webLangKeys.reduce((arr: QSelectOption[], key) => {
 	arr.push({

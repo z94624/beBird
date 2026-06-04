@@ -1,0 +1,30 @@
+{
+	"items": {
+		"sunrise": "شروق الشمس",
+		"sunset": "غروب الشمس",
+		"temperature": "درجة الحرارة المحسوسة",
+		"precipitation": "احتمالية هطول الأمطار",
+		"humidity": "الرطوبة",
+		"wind_speed": "سرعة الرياح",
+		"celsius": "النظام المتري",
+		"fahrenheit": "النظام الإمبراطوري",
+		"observation_time": "وقت الرصد"
+	},
+	"types": {
+		"unknown": "الطقس",
+		"blizzard": "عاصفة ثلجية",
+		"clear": "صحو",
+		"clear_night": "ليلة صافية",
+		"cloudy": "غائم",
+		"cloudy_night": "ليلة غائمة",
+		"cold": "بارد",
+		"drizzle": "رذاذ",
+		"fog": "ضبابي",
+		"hot": "حار",
+		"partly_cloudy": "غائم جزئياً",
+		"rain": "ممطر",
+		"sleet": "مطر ثلجي",
+		"snow": "ثلج",
+		"thunderstorm": "عاصفة رعدية"
+	}
+}

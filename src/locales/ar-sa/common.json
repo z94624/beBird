@@ -1,0 +1,27 @@
+{
+	"punctuation": {
+		"colon": ": ",
+		"question": "؟"
+	},
+	"action": {
+		"copyToClipboard": "نسخ",
+		"shareToApps": "مشاركة"
+	},
+	"visitorStatistics": {
+		"online": "متصل",
+		"today": "اليوم",
+		"total": "الإجمالي"
+	},
+	"textSize": {
+		"sm": "صغير",
+		"md": "متوسط (الافتراضي)",
+		"lg": "كبير",
+		"xl": "كبير جداً"
+	},
+	"version": "ملاحظات الإصدار",
+	"country": "الدولة",
+	"region": "المنطقة",
+	"back": "الفترة (أيام سابقة)",
+	"detail": "التفاصيل",
+	"navigation": "التنقل"
+}

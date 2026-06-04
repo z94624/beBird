@@ -8,4 +8,5 @@ export enum WebLangEnum {
 	SPAIN = 'es-es',
 	GERMANY = 'de-de',
 	JAPAN = 'ja-jp',
+	SAUDI_ARABIA = 'ar-sa',
 }
