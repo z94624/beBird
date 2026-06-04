@@ -1,0 +1,30 @@
+{
+	"items": {
+		"sunrise": "日の出",
+		"sunset": "日の入り",
+		"temperature": "体感温度",
+		"precipitation": "降水確率",
+		"humidity": "湿度",
+		"wind_speed": "風速",
+		"celsius": "メートル法",
+		"fahrenheit": "ヤード・ポンド法",
+		"observation_time": "観測時間"
+	},
+	"types": {
+		"unknown": "天気",
+		"blizzard": "吹雪",
+		"clear": "晴れ",
+		"clear_night": "快晴の夜",
+		"cloudy": "曇り",
+		"cloudy_night": "曇りの夜",
+		"cold": "寒い",
+		"drizzle": "霧雨",
+		"fog": "霧",
+		"hot": "暑い",
+		"partly_cloudy": "晴れ時々曇り",
+		"rain": "雨",
+		"sleet": "みぞれ",
+		"snow": "雪",
+		"thunderstorm": "雷雨"
+	}
+}

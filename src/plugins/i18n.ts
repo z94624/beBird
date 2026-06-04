@@ -48,6 +48,15 @@ import attributionDeDe from '@/locales/de-de/attribution.json';
 import socialMediaDeDe from '@/locales/de-de/socialMedia.json';
 import geocodingDeDe from '@/locales/de-de/geocoding.json';
 
+import commonJaJp from '@/locales/ja-jp/common.json';
+import routerJaJp from '@/locales/ja-jp/router.json';
+import weatherJaJp from '@/locales/ja-jp/weather.json';
+import ebirdJaJp from '@/locales/ja-jp/ebird.json';
+import contactJaJp from '@/locales/ja-jp/contact.json';
+import attributionJaJp from '@/locales/ja-jp/attribution.json';
+import socialMediaJaJp from '@/locales/ja-jp/socialMedia.json';
+import geocodingJaJp from '@/locales/ja-jp/geocoding.json';
+
 /**
  * 取得國家語系代碼
  */
@@ -110,6 +119,16 @@ const i18n = createI18n({
 			attribution: attributionDeDe,
 			socialMedia: socialMediaDeDe,
 			geocoding: geocodingDeDe,
+		},
+		[WebLangEnum.JAPAN]: {
+			common: commonJaJp,
+			router: routerJaJp,
+			weather: weatherJaJp,
+			ebird: ebirdJaJp,
+			contact: contactJaJp,
+			attribution: attributionJaJp,
+			socialMedia: socialMediaJaJp,
+			geocoding: geocodingJaJp,
 		},
 	},
 });

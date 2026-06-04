@@ -1,0 +1,27 @@
+{
+	"punctuation": {
+		"colon": "：",
+		"question": "？"
+	},
+	"action": {
+		"copyToClipboard": "コピーする",
+		"shareToApps": "共有する"
+	},
+	"visitorStatistics": {
+		"online": "オンライン",
+		"today": "今日",
+		"total": "累計"
+	},
+	"textSize": {
+		"sm": "小",
+		"md": "中 (デフォルト)",
+		"lg": "大",
+		"xl": "特大"
+	},
+	"version": "リリースノート",
+	"country": "国",
+	"region": "地域",
+	"back": "期間 (日前)",
+	"detail": "詳細",
+	"navigation": "ナビゲーション"
+}

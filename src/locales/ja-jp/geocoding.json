@@ -1,0 +1,7 @@
+{
+	"error": {
+		"dataFailed": "場所を解決できません",
+		"targetFailed": "この座標の場所情報が見つかりません",
+		"reverseAPIFailed": "リバースジオコーディングに失敗しました"
+	}
+}
