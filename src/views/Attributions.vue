@@ -6,7 +6,7 @@
 		<div class="page-content-container flex flex-col flex-1 w-full max-h-full">
 			<div class="text-center p-4 shrink-0">
 				<blockquote>
-					<p>{{ $t('attrQuote') }}</p>
+					<p>{{ $t('attribution.quote') }}</p>
 				</blockquote>
 			</div>
 
@@ -18,7 +18,7 @@
 					:color="$q.dark.isActive ? category.colorDark : category.colorLight"
 					:icon="category.icon"
 				>
-					{{ $t(category.name) }}
+					{{ $t(`attribution.category.${category.name}`) }}
 				</ClickableChip>
 			</div>
 
@@ -60,7 +60,7 @@
 							<q-separator inset />
 
 							<q-card-section>
-								{{ $t(item.quoteKey) }}
+								{{ $t(`attribution.itemQuote.${item.quoteKey}`) }}
 							</q-card-section>
 						</IntersectedCard>
 					</template>
@@ -128,7 +128,7 @@
 			author: 'Volodymyr Agafonkin & Contributors',
 			url: 'https://leafletjs.com/',
 			category: 'mapGeo',
-			quoteKey: 'leafletQuote',
+			quoteKey: 'leaflet',
 		},
 
 		// ☁️ API & Service
@@ -138,7 +138,7 @@
 			author: 'Cornell Lab of Ornithology',
 			url: 'https://ebird.org/home',
 			category: 'apiService',
-			quoteKey: 'ebirdQuote',
+			quoteKey: 'ebird',
 		},
 		{
 			id: 3,
@@ -146,7 +146,7 @@
 			author: 'Tomorrow.io',
 			url: 'https://www.tomorrow.io/',
 			category: 'apiService',
-			quoteKey: 'tomorrowQuote',
+			quoteKey: 'tomorrow',
 		},
 		{
 			id: 4,
@@ -154,7 +154,7 @@
 			author: 'SunriseSunset.io',
 			url: 'https://sunrisesunset.io/',
 			category: 'apiService',
-			quoteKey: 'sunriseQuote',
+			quoteKey: 'sunrise',
 		},
 		{
 			id: 5,
@@ -162,7 +162,7 @@
 			author: 'OpenStreetMap',
 			url: 'https://nominatim.org/',
 			category: 'apiService',
-			quoteKey: 'nominatimQuote',
+			quoteKey: 'nominatim',
 		},
 
 		// 🎨 Design & UI
@@ -172,7 +172,7 @@
 			author: 'Freepik - Flaticon',
 			url: 'https://www.flaticon.com/animated-icons',
 			category: 'designUi',
-			quoteKey: 'flaticonQuote',
+			quoteKey: 'flaticon',
 		},
 		{
 			id: 7,
@@ -180,7 +180,7 @@
 			author: 'Lovart',
 			url: 'https://www.lovart.ai/',
 			category: 'designUi',
-			quoteKey: 'lovartQuote',
+			quoteKey: 'lovart',
 		},
 	]);
 

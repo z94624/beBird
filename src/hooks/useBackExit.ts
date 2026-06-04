@@ -91,7 +91,7 @@ export const useBackExit = () => {
 			 * 第一次嘗試退出：更新時間、彈出提示、並將使用者「推回」哨兵狀態
 			 */
 			backPressTime = currentTime;
-			$notify.info(t('backExit'), 'bottom');
+			$notify.info(t('router.backExit'), 'bottom');
 
 			/**
 			 * 由於 PopState 已經讓指標移動，我們必須立即補回哨兵防止使用者連續回退過頭

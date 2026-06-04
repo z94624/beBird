@@ -1,10 +1,13 @@
 {
-	"ago": "天前",
-	"today": "今天",
-
-	"info_map": "地圖定位",
-	"info_checklist": "紀錄清單",
-	"info_note": "註",
-	"info_source": "資料來源",
-	"info_listInfoCopied": "已複製紀錄清單資訊"
+	"time": {
+		"ago": "天前",
+		"today": "今天"
+	},
+	"info": {
+		"map": "地圖定位",
+		"checklist": "紀錄清單",
+		"note": "註",
+		"source": "資料來源",
+		"listInfoCopied": "已複製紀錄清單資訊"
+	}
 }

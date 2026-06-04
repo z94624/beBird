@@ -23,7 +23,7 @@
 				/>
 
 				<div>
-					<span class="text-base">{{ $t('back') }}</span>
+					<span class="text-base">{{ $t('common.back') }}</span>
 					<DaysBackSlider v-model="notableObsForm.back" />
 				</div>
 			</q-form>
@@ -236,7 +236,7 @@
 				region.value = null;
 			}
 		} else {
-			$notify.warning(t('geocodingTargetFailed'));
+			$notify.warning(t('geocoding.error.targetFailed'));
 		}
 	};
 
@@ -285,7 +285,7 @@
 	 */
 	const getDateDiffStr = (obsDt: string): string => {
 		const days = getDateDiffFromNow(obsDt);
-		return days ? `${days} ${t('ago')}` : t('today');
+		return days ? `${days} ${t('ebird.time.ago')}` : t('ebird.time.today');
 	};
 
 	/**

@@ -30,7 +30,7 @@
 						<q-route-tab
 							v-for="(menuItem, mIdx) in menuList"
 							:key="mIdx"
-							:label="$t(menuItem.name)"
+							:label="$t(`router.${menuItem.name}`)"
 							:name="menuItem.name"
 							:to="menuItem.to"
 						/>

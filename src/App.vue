@@ -44,9 +44,9 @@
 		const titleKey = route.meta?.titleKey as string;
 
 		if (titleKey) {
-			document.title = `${t(titleKey)} | ${t('home')}`;
+			document.title = `${t(`router.${titleKey}`)} | ${t('router.home')}`;
 		} else {
-			document.title = t('home');
+			document.title = t('router.home');
 		}
 	});
 </script>

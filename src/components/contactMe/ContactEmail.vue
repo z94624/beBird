@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col justify-center gap-6">
-		<div class="text-h3 text-darkText text-center">{{ $t('emailUs') }}</div>
+		<div class="text-h3 text-darkText text-center">{{ $t('contact.emailUs') }}</div>
 
 		<q-form
 			ref="formRef"
@@ -10,7 +10,7 @@
 			<FormInput
 				v-model="form.name"
 				:rules="[requiredValid]"
-				:title="$t('name')"
+				:title="$t('contact.form.name')"
 				dark
 				dense
 				for="contactEmailName"
@@ -20,7 +20,7 @@
 			<FormInput
 				v-model="form.email"
 				:rules="[requiredValid, emailValid]"
-				:title="$t('email')"
+				:title="$t('contact.form.email')"
 				dark
 				dense
 				for="contactEmailEmail"
@@ -30,7 +30,7 @@
 
 			<FormInput
 				v-model="form.subject"
-				:title="$t('subject')"
+				:title="$t('contact.form.subject')"
 				dark
 				dense
 				for="contactEmailSubject"
@@ -40,7 +40,7 @@
 			<FormInput
 				v-model="form.message"
 				:rules="[requiredValid]"
-				:title="$t('message')"
+				:title="$t('contact.form.message')"
 				dark
 				dense
 				for="contactEmailMessage"
@@ -49,7 +49,7 @@
 			/>
 
 			<BaseButton
-				:label="$t('send')"
+				:label="$t('contact.form.send')"
 				:loading="sendLoading"
 				color="primary"
 				type="submit"
@@ -84,7 +84,7 @@
 			})
 			.catch(() => {
 				// 寄送失敗
-				$notify.error(t('sendError'));
+				$notify.error(t('contact.message.sendError'));
 			})
 			.finally(() => {
 				sendLoading.value = false;

@@ -24,7 +24,7 @@
 				>
 					<slot name="buttons">
 						<BaseButton
-							:label="$t('detail')"
+							:label="$t('common.detail')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 							class="flex-1"
 							color="primary"
@@ -34,7 +34,7 @@
 						<HrefButton
 							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
-							:label="$t('navigation')"
+							:label="$t('common.navigation')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 							color="secondary"
 						/>

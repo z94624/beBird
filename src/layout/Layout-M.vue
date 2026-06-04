@@ -50,7 +50,7 @@
 									<q-icon :name="menuItem.icon" />
 								</q-item-section>
 								<q-item-section>
-									{{ $t(menuItem.name) }}
+									{{ $t(`router.${menuItem.name}`) }}
 								</q-item-section>
 							</q-item>
 							<q-separator
@@ -71,7 +71,9 @@
 									class="q-icon"
 								/>
 							</q-item-section>
-							<q-item-section>{{ $t(WeatherTypeEnum.UNKNOWN) }}</q-item-section>
+							<q-item-section>{{
+								$t(`weather.types.${WeatherTypeEnum.UNKNOWN}`)
+							}}</q-item-section>
 						</q-item>
 
 						<!-- 版本 -->

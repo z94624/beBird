@@ -26,14 +26,14 @@
 				<div class="flex justify-center gap-4">
 					<div class="flex items-center gap-1">
 						<WeatherIcon
-							:weatherType="WeatherItemEnum.SUNRISE"
+							:weatherItem="WeatherItemEnum.SUNRISE"
 							size="2rem"
 						/>
 						<span>{{ data.sunriseTime.slice(0, -3) }}</span>
 					</div>
 					<div class="flex items-center gap-1">
 						<WeatherIcon
-							:weatherType="WeatherItemEnum.SUNSET"
+							:weatherItem="WeatherItemEnum.SUNSET"
 							size="2rem"
 						/>
 						<span>{{ data.sunsetTime.slice(0, -3) }}</span>
@@ -48,7 +48,7 @@
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
 						<WeatherIcon
-							:weatherType="WeatherItemEnum.TEMP"
+							:weatherItem="WeatherItemEnum.TEMP"
 							size="1.5rem"
 						/>
 					</div>
@@ -58,7 +58,7 @@
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
 						<WeatherIcon
-							:weatherType="WeatherItemEnum.PRECIP"
+							:weatherItem="WeatherItemEnum.PRECIP"
 							size="1.5rem"
 						/>
 					</div>
@@ -68,7 +68,7 @@
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
 						<WeatherIcon
-							:weatherType="WeatherItemEnum.HUMID"
+							:weatherItem="WeatherItemEnum.HUMID"
 							size="1.5rem"
 						/>
 					</div>
@@ -78,7 +78,7 @@
 				<div class="flex flex-col items-center gap-1">
 					<div class="weatherItemIconContainer">
 						<WeatherIcon
-							:weatherType="WeatherItemEnum.WIND_SPEED"
+							:weatherItem="WeatherItemEnum.WIND_SPEED"
 							size="1.5rem"
 						/>
 					</div>
@@ -101,14 +101,14 @@
 				@update:model-value="onUpdateUnitSystem"
 			>
 				<WeatherIcon
-					:weatherType="isMetric ? WeatherItemEnum.C : WeatherItemEnum.F"
+					:weatherItem="isMetric ? WeatherItemEnum.C : WeatherItemEnum.F"
 					size="2rem"
 				/>
 			</BaseToggle>
 			<!-- 觀測時間 -->
 			<div class="flex items-center gap-1">
 				<WeatherIcon
-					:weatherType="WeatherItemEnum.OBS_TIME"
+					:weatherItem="WeatherItemEnum.OBS_TIME"
 					size="2rem"
 				/>
 				<span>{{

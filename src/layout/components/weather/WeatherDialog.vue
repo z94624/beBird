@@ -4,7 +4,7 @@
 		:full-width="isMobile"
 		@close="close"
 	>
-		<template #title>{{ $t('unknown') }}</template>
+		<template #title>{{ $t('weather.types.unknown') }}</template>
 
 		<template #content>
 			<!-- 手機版 -->

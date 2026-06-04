@@ -466,13 +466,13 @@
 
 					(attrs.onReverseGeocoding as Function)(country_code, subnational_code);
 				} else {
-					$notify.warning(t('geocodingDataFailed'));
+					$notify.warning(t('geocoding.error.dataFailed'));
 					targetPoint.value = null;
 				}
 			})
 			.catch((err) => {
 				console.error(err);
-				$notify.error(t('reverseAPIFailed'));
+				$notify.error(t('geocoding.error.reverseAPIFailed'));
 				targetPoint.value = null;
 			});
 	}, 500);

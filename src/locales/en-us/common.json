@@ -1,25 +1,27 @@
 {
-	"colon": ": ",
-	"question": "?",
-
-	"copyToClipboard": "Copy",
-	"shareToApps": "More",
-
-	"visitorStatistics-online": "Online",
-	"visitorStatistics-today": "Today",
-	"visitorStatistics-total": "Total",
-
-	"text-size-sm": "Small",
-	"text-size-md": "Medium (Default)",
-	"text-size-lg": "Large",
-	"text-size-xl": "Extra Large",
-
+	"punctuation": {
+		"colon": ": ",
+		"question": "?"
+	},
+	"action": {
+		"copyToClipboard": "Copy",
+		"shareToApps": "More"
+	},
+	"visitorStatistics": {
+		"online": "Online",
+		"today": "Today",
+		"total": "Total"
+	},
+	"textSize": {
+		"sm": "Small",
+		"md": "Medium (Default)",
+		"lg": "Large",
+		"xl": "Extra Large"
+	},
 	"version": "Release Notes",
-
 	"country": "Country",
 	"region": "Region",
 	"back": "Time Interval (days ago)",
-
 	"detail": "Detail",
 	"navigation": "Navigation"
 }

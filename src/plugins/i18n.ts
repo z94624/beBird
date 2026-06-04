@@ -28,39 +28,31 @@ const getLocale = () => {
 	return userLocale ?? WebLangEnum.TAIWAN;
 };
 
-/**
- * 合併譯本檔案
- */
-type transDictionary = Record<string, string>;
-const mergeDictionaries = (...dicts: transDictionary[]): transDictionary => {
-	return Object.assign({}, ...dicts);
-};
-
 const i18n = createI18n({
 	legacy: false, // you must set `false`, to use Composition API
 	locale: getLocale(),
 	fallbackLocale: WebLangEnum.AMERICA,
 	messages: {
-		[WebLangEnum.AMERICA]: mergeDictionaries(
-			commonEnUs,
-			routerEnUs,
-			weatherEnUs,
-			ebirdEnUs,
-			contactEnUs,
-			attributionEnUs,
-			socialMediaEnUs,
-			geocodingEnUs
-		),
-		[WebLangEnum.TAIWAN]: mergeDictionaries(
-			commonZhTw,
-			routerZhTw,
-			weatherZhTw,
-			ebirdZhTw,
-			contactZhTw,
-			attributionZhTw,
-			socialMediaZhTw,
-			geocodingZhTw
-		),
+		[WebLangEnum.AMERICA]: {
+			common: commonEnUs,
+			router: routerEnUs,
+			weather: weatherEnUs,
+			ebird: ebirdEnUs,
+			contact: contactEnUs,
+			attribution: attributionEnUs,
+			socialMedia: socialMediaEnUs,
+			geocoding: geocodingEnUs,
+		},
+		[WebLangEnum.TAIWAN]: {
+			common: commonZhTw,
+			router: routerZhTw,
+			weather: weatherZhTw,
+			ebird: ebirdZhTw,
+			contact: contactZhTw,
+			attribution: attributionZhTw,
+			socialMedia: socialMediaZhTw,
+			geocoding: geocodingZhTw,
+		},
 	},
 });
 

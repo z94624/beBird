@@ -49,16 +49,16 @@
 	const visitorStatList = computed(() => {
 		return {
 			// [VisitorStatEnum.ONLINE]: {
-			// 	name: t('visitorStatistics-online'),
+			// 	name: t('common.visitorStatistics.online'),
 			// 	ref: onlineRef,
 			// 	to: onlineNumber.value,
 			// },
 			[VisitorStatEnum.TODAY]: {
-				name: t('visitorStatistics-today'),
+				name: t('common.visitorStatistics.today'),
 				to: todayNumber.value,
 			},
 			[VisitorStatEnum.TOTAL]: {
-				name: t('visitorStatistics-total'),
+				name: t('common.visitorStatistics.total'),
 				to: totalNumber.value,
 			},
 		};
