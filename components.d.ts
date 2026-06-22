@@ -47,6 +47,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Snow: typeof import('./src/components/common/snow/Snow.vue')['default']
     SubLoading: typeof import('./src/components/common/Loading/SubLoading.vue')['default']
+    VlCanvasMarkerLayer: typeof import('./src/components/common/Leaflet/VlCanvasMarkerLayer.vue')['default']
     VlIcon: typeof import('./src/components/common/Leaflet/BasicTypes/VlIcon.vue')['default']
     VlMap: typeof import('./src/components/common/Leaflet/VlMap.vue')['default']
     VlPopup: typeof import('./src/components/common/Leaflet/UILayers/VlPopup.vue')['default']

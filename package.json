@@ -21,6 +21,7 @@
         "dayjs": "^1.11.13",
         "dotenv": "^16.4.5",
         "firebase": "^10.13.0",
+        "leaflet-canvas-marker": "^0.2.0",
         "pinia": "^2.1.7",
         "quasar": "^2.15.1",
         "universal-cookie": "^7.2.0",
@@ -60,7 +61,6 @@
         "vite-plugin-eslint": "^1.8.1",
         "vite-plugin-pwa": "^0.20.1",
         "vite-plugin-vue-devtools": "^7.7.2",
-        "vue-leaflet-markercluster": "^0.6.1",
         "vue-tsc": "^2.1.6"
     }
 }

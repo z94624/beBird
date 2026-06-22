@@ -143,13 +143,10 @@
 					</l-icon>
 				</l-marker>
 
-				<slot
-					v-if="markersNumber <= 100"
-					name="markers"
-				></slot>
-				<l-marker-cluster-group v-else>
+				<!-- 所有標記皆交由 Canvas 繪製以提升效能，不再區分數量多寡 -->
+				<VlCanvasMarkerLayer>
 					<slot name="markers"></slot>
-				</l-marker-cluster-group>
+				</VlCanvasMarkerLayer>
 			</l-map>
 		</div>
 	</div>
@@ -178,7 +175,7 @@
 		LMarker,
 		LIcon,
 	} from '@vue-leaflet/vue-leaflet';
-	import { LMarkerClusterGroup } from 'vue-leaflet-markercluster';
+	import VlCanvasMarkerLayer from './VlCanvasMarkerLayer.vue';
 	import { fasRotateRight, fasLocationCrosshairs } from '@quasar/extras/fontawesome-v6';
 
 	import { NOMINATIMReverseReq } from '@/models/nominatim/v1/geocoding';
