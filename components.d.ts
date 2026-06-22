@@ -36,6 +36,7 @@ declare module 'vue' {
     Instagram: typeof import('./src/components/common/socialMedia/Instagram.vue')['default']
     IntersectedCard: typeof import('./src/components/common/card/IntersectedCard.vue')['default']
     JModeSwitch: typeof import('./src/components/common/modeSwitch/JModeSwitch.vue')['default']
+    LeafletCanvasMarkerLayer: typeof import('./src/components/common/Leaflet/LeafletCanvasMarkerLayer.vue')['default']
     Line: typeof import('./src/components/common/socialMedia/Line.vue')['default']
     MigrationIndicator: typeof import('./src/components/common/badge/MigrationIndicator.vue')['default']
     RarityIndicator: typeof import('./src/components/common/badge/RarityIndicator.vue')['default']

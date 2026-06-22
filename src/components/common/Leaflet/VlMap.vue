@@ -144,9 +144,9 @@
 				</l-marker>
 
 				<!-- 所有標記皆交由 Canvas 繪製以提升效能，不再區分數量多寡 -->
-				<VlCanvasMarkerLayer>
+				<LeafletCanvasMarkerLayer>
 					<slot name="markers"></slot>
-				</VlCanvasMarkerLayer>
+				</LeafletCanvasMarkerLayer>
 			</l-map>
 		</div>
 	</div>
@@ -175,7 +175,7 @@
 		LMarker,
 		LIcon,
 	} from '@vue-leaflet/vue-leaflet';
-	import VlCanvasMarkerLayer from './VlCanvasMarkerLayer.vue';
+	import LeafletCanvasMarkerLayer from './LeafletCanvasMarkerLayer.vue';
 	import { fasRotateRight, fasLocationCrosshairs } from '@quasar/extras/fontawesome-v6';
 
 	import { NOMINATIMReverseReq } from '@/models/nominatim/v1/geocoding';
