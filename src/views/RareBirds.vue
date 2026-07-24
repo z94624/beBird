@@ -66,7 +66,7 @@
 
 							<q-tooltip anchor="top middle">{{ obs.comName }}</q-tooltip>
 
-							<div class="flex justify-center items-baseline gap-1">
+							<div class="flex items-baseline justify-center gap-1">
 								<div class="comName-font">
 									{{ taxInfoDict[obs.speciesCode]?.comName ?? obs.comName }}
 								</div>

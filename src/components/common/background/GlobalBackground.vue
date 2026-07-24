@@ -1,12 +1,12 @@
 <template>
-	<div class="global-background fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+	<div class="global-background pointer-events-none fixed inset-0 z-[-1] overflow-hidden">
 		<div
 			ref="hologramContainerRef"
-			class="hologram-container absolute inset-0 w-full h-full flex items-center justify-center"
+			class="hologram-container absolute inset-0 flex h-full w-full items-center justify-center"
 		>
-			<div class="svg-wrapper w-full h-full">
+			<div class="svg-wrapper h-full w-full">
 				<svg
-					class="observation-starfield-canvas w-full h-full"
+					class="observation-starfield-canvas h-full w-full"
 					preserveAspectRatio="xMidYMid slice"
 					viewBox="0 0 1920 1080"
 					xmlns="http://www.w3.org/2000/svg"

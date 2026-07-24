@@ -201,9 +201,7 @@ export default defineConfig({
 
 			// Custom resolvers, compatible with `unplugin-vue-components`
 			// see https://github.com/antfu/unplugin-auto-import/pull/23/
-			resolvers: [
-				/* ... */
-			],
+			resolvers: [/* ... */],
 
 			// Inject the imports at the end of other imports
 			injectAtEnd: true,

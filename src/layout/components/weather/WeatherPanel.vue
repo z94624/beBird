@@ -3,7 +3,7 @@
 		<q-card-section class="!pb-1">
 			<!-- 官方網站 -->
 			<HrefButton
-				class="absolute top-4 right-4"
+				class="absolute right-4 top-4"
 				href="https://weather.tomorrow.io/"
 				round
 				size="0.6875rem"
@@ -11,9 +11,9 @@
 				<TomorrowIcon only-icon />
 			</HrefButton>
 
-			<div class="archContainer flex flex-col justify-center items-center gap-4">
+			<div class="archContainer flex flex-col items-center justify-center gap-4">
 				<!-- 天氣圖示 -->
-				<div class="flex justify-center items-center">
+				<div class="flex items-center justify-center">
 					<WeatherIcon
 						:tooltip-props="{
 							offset: [0, 0],

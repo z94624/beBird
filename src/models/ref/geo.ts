@@ -2,6 +2,6 @@
  * Adjacent Regions
  */
 export interface IREFGEOGetAdjacentRegionsItem {
-    code: string;
-    name: string;
+	code: string;
+	name: string;
 }

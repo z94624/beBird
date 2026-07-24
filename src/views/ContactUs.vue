@@ -6,7 +6,7 @@
 		/>
 
 		<q-scroll-area class="cuScrollArea h-full">
-			<div class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8">
+			<div class="grid w-full grid-flow-row grid-cols-1 gap-8 lg:grid-cols-2">
 				<!-- 聯絡管道 -->
 				<ContactConnections
 					:step="step"
@@ -18,7 +18,7 @@
 					v-else
 					v-model="step"
 					animated
-					class="bg-transparent flex flex-col justify-center"
+					class="flex flex-col justify-center bg-transparent"
 					flat
 					header-class="hidden"
 					infinite

@@ -1,34 +1,34 @@
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "useDefineForClassFields": true,
-        "module": "ESNext",
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
-        "skipLibCheck": true,
-        "types": ["vite/client", "node", "vite-plugin-pwa/client"],
+	"compilerOptions": {
+		"target": "ES2020",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"skipLibCheck": true,
+		"types": ["vite/client", "node", "vite-plugin-pwa/client"],
 
-        /* Bundler mode */
-        "moduleResolution": "bundler",
-        "allowImportingTsExtensions": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "preserve",
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "preserve",
 
-        /* Linting */
-        "strict": true,
-        "noUnusedLocals": false,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
 
-        "paths": {
-            "@/*": ["./src/*", "./dist/*"],
-            "@assets/*": ["./src/assets/*"],
-            "@cmp/*": ["./src/cmp/*"],
-            "@stores/*": ["./src/stores/*"],
-            "@use/*": ["./src/use/*"]
-        }
-    },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+		"paths": {
+			"@/*": ["./src/*", "./dist/*"],
+			"@assets/*": ["./src/assets/*"],
+			"@cmp/*": ["./src/cmp/*"],
+			"@stores/*": ["./src/stores/*"],
+			"@use/*": ["./src/use/*"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+	"references": [{ "path": "./tsconfig.node.json" }]
 }

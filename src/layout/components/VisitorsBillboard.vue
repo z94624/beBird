@@ -1,12 +1,12 @@
 <template>
 	<div
 		:class="[isMobile ? 'gap-4' : 'gap-1']"
-		class="flex flex-col !flex-nowrap w-full"
+		class="flex w-full flex-col !flex-nowrap"
 	>
 		<div
 			v-for="item in visitorStatList"
 			:key="item.name"
-			:class="[isMobile ? 'flex-col gap-2' : 'justify-between items-center gap-8']"
+			:class="[isMobile ? 'flex-col gap-2' : 'items-center justify-between gap-8']"
 			class="flex"
 		>
 			<div class="text-bold text-base">{{ item.name }}</div>

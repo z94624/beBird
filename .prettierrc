@@ -19,7 +19,7 @@
 	"rangeStart": 0,
 	"singleAttributePerLine": true,
 
-	"plugins": ["prettier-plugin-organize-attributes"],
+	"plugins": ["prettier-plugin-organize-attributes", "prettier-plugin-tailwindcss"],
 	"attributeSort": "ASC",
 	"attributeGroups": [
 		"^((v-bind)?:|v-)is$",

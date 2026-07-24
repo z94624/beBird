@@ -13,9 +13,9 @@
 				clickable
 				@click="media.onClick"
 			>
-				<div class="w-full flex no-wrap items-center gap-4">
+				<div class="no-wrap flex w-full items-center gap-4">
 					<div
-						class="bg-primary w-[2.083125rem] h-[2.083125rem] m-[0.2084375rem] flex justify-center items-center"
+						class="bg-primary m-[0.2084375rem] flex h-[2.083125rem] w-[2.083125rem] items-center justify-center"
 						style="border-radius: 50%"
 					>
 						<q-icon
@@ -39,7 +39,7 @@
 					:network="media.network"
 					:title="`${userComName} [${obs?.sciName ?? '{sciName}'}]`"
 					:url="checklistUrl"
-					class="w-full flex no-wrap items-center gap-4"
+					class="no-wrap flex w-full items-center gap-4"
 				>
 					<q-icon
 						:class="[media.customIcon ? 'm-[0.2084375rem]' : '']"

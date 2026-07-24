@@ -1,16 +1,16 @@
 <template>
 	<q-page
-		class="flex flex-col h-full overflow-hidden"
+		class="flex h-full flex-col overflow-hidden"
 		padding
 	>
-		<div class="page-content-container flex flex-col flex-1 w-full max-h-full">
-			<div class="text-center p-4 shrink-0">
+		<div class="page-content-container flex max-h-full w-full flex-1 flex-col">
+			<div class="shrink-0 p-4 text-center">
 				<blockquote>
 					<p>{{ $t('attribution.quote') }}</p>
 				</blockquote>
 			</div>
 
-			<div class="flex justify-center items-center gap-2 p-4 shrink-0">
+			<div class="flex shrink-0 items-center justify-center gap-2 p-4">
 				<ClickableChip
 					v-for="category in categoryList"
 					v-model:selected="categoryActiveDict[category.name]"
@@ -22,14 +22,14 @@
 				</ClickableChip>
 			</div>
 
-			<div class="flex-1 overflow-y-auto w-full p-4">
-				<div class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div class="w-full flex-1 overflow-y-auto p-4">
+				<div class="grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					<template
 						v-for="item in filteredAttributions"
 						:key="item.id"
 					>
 						<IntersectedCard @click="openUrl(item.url)">
-							<q-card-section class="flex justify-between items-start no-wrap gap-2">
+							<q-card-section class="no-wrap flex items-start justify-between gap-2">
 								<div class="min-w-0">
 									<div
 										:class="`text-${$q.dark.isActive ? categoryMap[item.category].colorDark : categoryMap[item.category].colorLight}`"

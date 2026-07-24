@@ -14,7 +14,7 @@
 						@click="toggleDrawer"
 					/>
 
-					<div class="flex-1 pr-[2.625rem] text-center cursor-pointer">
+					<div class="flex-1 cursor-pointer pr-[2.625rem] text-center">
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-secondary">e</span>
 						<span
@@ -100,7 +100,7 @@
 								vertical
 							/>
 							<div
-								class="flex justify-center items-center"
+								class="flex items-center justify-center"
 								style="padding: 0.85em 1em"
 							>
 								<j-mode-switch width="4.39125rem" />

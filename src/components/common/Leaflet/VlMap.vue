@@ -14,11 +14,11 @@
 		<div
 			v-if="!isMobile"
 			v-morph:panel.resize="birdMorph"
-			class="searchMenuContainer w-[33%] shadow-3 rounded-borders relative"
+			class="searchMenuContainer shadow-3 rounded-borders relative w-[33%]"
 		>
 			<BaseButton
 				:text-color="bg_name_mode"
-				class="absolute -left-2 -bottom-2"
+				class="absolute -bottom-2 -left-2"
 				color="primary"
 				icon="arrow_outward"
 				round
@@ -262,9 +262,10 @@
 	});
 
 	// 使用者目前地理位置計算屬性
-	const userGeoLocation = computed(
-		(): PointExpression => [coords.value.latitude, coords.value.longitude]
-	);
+	const userGeoLocation = computed((): PointExpression => [
+		coords.value.latitude,
+		coords.value.longitude,
+	]);
 
 	// 用於記錄各種地圖變更事件的觸發源，避免無窮迴圈或邏輯混亂
 	const triggerSrcDict = reactive({
