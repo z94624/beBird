@@ -59,6 +59,13 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.3',
+		releaseDate: '2026/07/28',
+		features: [
+			'Added support for multiple languages in addition to Traditional Chinese (French, Spanish, German, Japanese, and Modern Standard Arabic).',
+		],
+	},
+	{
 		version: '1.2.2',
 		releaseDate: '2026/05/26',
 		features: [
