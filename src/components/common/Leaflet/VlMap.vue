@@ -85,6 +85,7 @@
 				class="map"
 				@baselayerchange="onBaseLayerChange"
 				@click="onClickMap"
+				@contextmenu="onContextMenuMap"
 				@ready="(obj: Map) => (leafletMap = obj)"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
@@ -479,7 +480,10 @@
 	}, 500);
 
 	/**
-	 * 地圖點擊事件
+	 * 地圖單擊事件 (Single Click)
+	 *
+	 * 單擊地圖的行為回歸純粹的「地圖互動」：
+	 * 關閉任何開啟中的彈窗 (Popup)
 	 */
 	const onClickMap = (e: LeafletMouseEvent) => {
 		// 將點擊的經緯度折疊回標準範圍
@@ -488,11 +492,31 @@
 		// 將傳遞給父組件的事件也覆蓋為 wrappedLatLng 以防有其他依賴
 		e.latlng = wrappedLatLng;
 		emit('click', e);
+	};
 
+	/*
+	 * ==========================================
+	 * 反向地理編碼觸發事件 (依據裝置動態對應)
+	 *
+	 * 利用 Leaflet 原生的 contextmenu 事件特性，
+	 * 完美實現不同平台下的直覺互動：
+	 * - 電腦版：滑鼠右鍵觸發 (Right-click)
+	 * - 手機版：螢幕長按觸發 (Long-press)
+	 * ==========================================
+	 */
+	const onContextMenuMap = (e: LeafletMouseEvent) => {
+		// 將點擊的經緯度折疊回標準範圍
+		const wrappedLatLng = e.latlng.wrap();
+
+		/*
+		 * 更新目標圖釘位置 (targetPoint)
+		 * 無論是電腦右鍵還是手機長按，都在觸發處立即顯示十字圖示，給予即時視覺回饋
+		 */
 		targetPoint.value = wrappedLatLng;
 
-		// 有綁定反向地理編碼事件
+		// 檢查是否綁定了反向地理編碼事件
 		if (hasReverseGeocodingListener.value) {
+			// 呼叫防抖處理過的反向地理編碼 API (延遲 500ms)
 			debouncedReverseGeocoding(wrappedLatLng.lat, wrappedLatLng.lng);
 		}
 	};
