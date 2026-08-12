@@ -3,5 +3,9 @@
 		"dataFailed": "無法解析該地點",
 		"targetFailed": "找不到該座標的地點資訊",
 		"reverseAPIFailed": "反向地理編碼失敗"
+	},
+	"hint": {
+		"longPress": "長按地圖任意位置以查詢地址",
+		"rightClick": "點擊滑鼠右鍵以查詢地址"
 	}
 }

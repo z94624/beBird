@@ -3,5 +3,9 @@
 		"dataFailed": "Impossible de résoudre l'emplacement",
 		"targetFailed": "Aucune information de lieu trouvée pour ces coordonnées",
 		"reverseAPIFailed": "Échec du géocodage inversé"
+	},
+	"hint": {
+		"longPress": "Appuyez longuement n'importe où sur la carte pour interroger l'adresse",
+		"rightClick": "Faites un clic droit n'importe où sur la carte pour interroger l'adresse"
 	}
 }

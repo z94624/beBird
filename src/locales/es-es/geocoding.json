@@ -3,5 +3,9 @@
 		"dataFailed": "No se puede resolver la ubicación",
 		"targetFailed": "No se encontró información de ubicación para estas coordenadas",
 		"reverseAPIFailed": "Falló la geocodificación inversa"
+	},
+	"hint": {
+		"longPress": "Mantenga presionado cualquier lugar del mapa para consultar la dirección",
+		"rightClick": "Haga clic derecho en cualquier lugar del mapa para consultar la dirección"
 	}
 }
