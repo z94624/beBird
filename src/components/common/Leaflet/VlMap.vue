@@ -1,5 +1,13 @@
 <template>
 	<div class="fullContainer relative">
+		<!-- 地圖正上方區域 -->
+		<div class="topHintContainer flex items-center justify-center gap-1">
+			<GoogleChip>
+				<div class="no-wrap flex"></div>
+			</GoogleChip>
+		</div>
+
+		<!-- 地圖右上區域 -->
 		<BaseButton
 			v-morph:btn.resize="birdMorph"
 			:text-color="bg_name_mode"
@@ -57,6 +65,7 @@
 			@click="emit('research')"
 		/>
 
+		<!-- 地圖右下區域 -->
 		<div
 			:style="{
 				bottom: `calc(${boundaryGap} + ${isTextSizeMd ? '5.525rem' : isTextSizeLg ? '6.05rem' : '6.575rem'})`,
@@ -75,6 +84,7 @@
 			/>
 		</div>
 
+		<!-- 地圖本體 -->
 		<div class="mapContainer">
 			<l-map
 				v-model:center="center"
@@ -585,12 +595,26 @@
 		@extend .fullContainer;
 	}
 
+	/* 正上方 UI 組件位置定義 */
+	.map-top {
+		position: absolute;
+		top: v-bind(boundaryGap);
+		left: 50%;
+		z-index: 401; // 需高於 Leaflet 預設層級 (400)
+		transform: translateX(-50%);
+	}
+
+	/* 正上方互動提示容器 */
+	.topHintContainer {
+		@extend .map-top;
+	}
+
 	/* 右上角 UI 組件位置定義 */
 	.map-top-right {
 		position: absolute;
 		top: v-bind(boundaryGap);
 		right: v-bind(boundaryGap);
-		z-index: 401; // 需高於 Leaflet 預設層級 (400)
+		z-index: 401;
 	}
 
 	/* 搜尋選單容器 */
