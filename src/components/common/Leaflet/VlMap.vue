@@ -2,8 +2,20 @@
 	<div class="fullContainer relative">
 		<!-- 地圖正上方區域 -->
 		<div class="topHintContainer flex items-center justify-center gap-1">
-			<GoogleChip>
-				<div class="no-wrap flex"></div>
+			<GoogleChip v-if="hasReverseGeocodingListener">
+				<div class="no-wrap flex items-center justify-center gap-1">
+					<BaseIcon
+						:name="isMobile ? mdiGestureTapHold : mdiMouseRightClickOutline"
+						size="xs"
+					/>
+					<span>
+						{{
+							isMobile
+								? $t('geocoding.hint.longPress')
+								: $t('geocoding.hint.rightClick')
+						}}
+					</span>
+				</div>
 			</GoogleChip>
 		</div>
 
@@ -191,6 +203,7 @@
 	} from '@vue-leaflet/vue-leaflet';
 	import { LMarkerClusterGroup } from 'vue-leaflet-markercluster';
 	import { fasRotateRight, fasLocationCrosshairs } from '@quasar/extras/fontawesome-v6';
+	import { mdiGestureTapHold, mdiMouseRightClickOutline } from '@quasar/extras/mdi-v7';
 
 	import { NOMINATIMReverseReq } from '@/models/nominatim/v1/geocoding';
 

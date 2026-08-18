@@ -1,6 +1,8 @@
 <template>
 	<BaseChip
 		:="attrs"
+		:color="bg_name_mode"
+		:text-color="text_name_mode"
 		class="googleChip"
 	>
 		<template
@@ -14,11 +16,17 @@
 </template>
 
 <script lang="ts" setup>
-	import { useAttrs, useSlots } from 'vue';
+	import { toRefs, useAttrs, useSlots } from 'vue';
 	import { QChip, QChipProps } from 'quasar';
+
+	import { useModeStore } from '@/store/modules/style';
 
 	const attrs: Partial<QChipProps> = useAttrs();
 	const slots: Partial<QChip> = useSlots();
+
+	// 主題模式 Store (控制深淺色)
+	const modeStore = useModeStore();
+	const { bg_name_mode, text_name_mode } = toRefs(modeStore);
 </script>
 
 <style lang="scss" scoped>
