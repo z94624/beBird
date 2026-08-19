@@ -5,7 +5,9 @@
 			<!-- 反向地理編碼互動提示：移動地圖後 300ms 漸顯，停止後 2s 漸隱 -->
 			<GoogleChip
 				v-if="hasReverseGeocodingListener"
+				:color="bg_name_mode"
 				:style="{ opacity: isGeocodingHintVisible ? 1 : 0 }"
+				:text-color="text_name_mode"
 				class="geocoding-hint"
 			>
 				<div class="no-wrap flex items-center justify-center gap-1">
