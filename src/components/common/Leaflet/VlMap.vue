@@ -2,7 +2,12 @@
 	<div class="fullContainer relative">
 		<!-- 地圖正上方區域 -->
 		<div class="topHintContainer flex items-center justify-center gap-1">
-			<GoogleChip v-if="hasReverseGeocodingListener">
+			<!-- 反向地理編碼互動提示：移動地圖後 300ms 漸顯，停止後 2s 漸隱 -->
+			<GoogleChip
+				v-if="hasReverseGeocodingListener"
+				:style="{ opacity: isGeocodingHintVisible ? 1 : 0 }"
+				class="geocoding-hint"
+			>
 				<div class="no-wrap flex items-center justify-center gap-1">
 					<BaseIcon
 						:name="isMobile ? mdiGestureTapHold : mdiMouseRightClickOutline"
@@ -108,6 +113,8 @@
 				@baselayerchange="onBaseLayerChange"
 				@click="onClickMap"
 				@contextmenu="onContextMenuMap"
+				@moveend="onMoveEnd"
+				@movestart="onMoveStart"
 				@ready="(obj: Map) => (leafletMap = obj)"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
@@ -265,6 +272,11 @@
 	const birdMorph = ref('btn'); // Morph 動畫狀態
 	const searchDrawerOpen = ref(false); // 移動端抽屜狀態
 	const locateStatus = ref(false); // 目前是否開啟定位追蹤狀態
+
+	// 反向地理編碼提示的顯示狀態與計時器
+	const isGeocodingHintVisible = ref(false);
+	let geocodingHintShowTimer: ReturnType<typeof setTimeout> | null = null; // 顯示延遲計時器
+	let geocodingHintHideTimer: ReturnType<typeof setTimeout> | null = null; // 隱藏延遲計時器
 
 	const hasReverseGeocodingListener = computed(
 		() => typeof attrs.onReverseGeocoding === 'function'
@@ -478,6 +490,54 @@
 	 */
 	const onUpdateBounds = () => {};
 
+	/**
+	 * 地圖開始移動時觸發
+	 */
+	const onMoveStart = () => {
+		/**
+		 * 反向地理編碼提示
+		 * 清除先前的計時器，並在 300ms 後漸漸顯示提示
+		 */
+		if (!hasReverseGeocodingListener.value) return;
+
+		// 取消尚未執行的「隱藏」計時器，避免在移動中途提示消失
+		if (geocodingHintHideTimer) {
+			clearTimeout(geocodingHintHideTimer);
+			geocodingHintHideTimer = null;
+		}
+
+		// 若尚未排程顯示，則在 300ms 後顯示提示
+		if (!geocodingHintShowTimer) {
+			geocodingHintShowTimer = setTimeout(() => {
+				isGeocodingHintVisible.value = true;
+				geocodingHintShowTimer = null;
+			}, 300);
+		}
+	};
+
+	/**
+	 * 地圖停止移動時觸發
+	 */
+	const onMoveEnd = () => {
+		/**
+		 * 反向地理編碼提示
+		 * 清除顯示計時器，並在 2s 後漸漸隱藏提示
+		 */
+		if (!hasReverseGeocodingListener.value) return;
+
+		// 取消尚未執行的「顯示」計時器
+		if (geocodingHintShowTimer) {
+			clearTimeout(geocodingHintShowTimer);
+			geocodingHintShowTimer = null;
+		}
+
+		// 2s 後漸漸隱藏
+		geocodingHintHideTimer = setTimeout(() => {
+			isGeocodingHintVisible.value = false;
+			geocodingHintHideTimer = null;
+		}, 2000);
+	};
+
 	// 建立帶有防抖效果的反向地理編碼 API 呼叫函式
 	const debouncedReverseGeocoding = useDebounceFn((lat: number, lon: number) => {
 		geocodingStore
@@ -620,6 +680,12 @@
 	/* 正上方互動提示容器 */
 	.topHintContainer {
 		@extend .map-top;
+	}
+
+	/* 反向地理編碼提示 chip：opacity transition 動畫 */
+	.geocoding-hint {
+		transition: opacity 0.3s ease;
+		pointer-events: none; // 隱藏時不攔截點擊事件
 	}
 
 	/* 右上角 UI 組件位置定義 */
