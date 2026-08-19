@@ -273,6 +273,7 @@
 	const searchDrawerOpen = ref(false); // 移動端抽屜狀態
 	const locateStatus = ref(false); // 目前是否開啟定位追蹤狀態
 
+	let isMapMoving = false; // 追蹤地圖是否仍在移動中（解決斷斷續續移動的顯示問題）
 	// 反向地理編碼提示的顯示狀態與計時器
 	const isGeocodingHintVisible = ref(false);
 	let geocodingHintShowTimer: ReturnType<typeof setTimeout> | null = null; // 顯示延遲計時器
@@ -494,9 +495,12 @@
 	 * 地圖開始移動時觸發
 	 */
 	const onMoveStart = () => {
+		isMapMoving = true;
+
 		/**
 		 * 反向地理編碼提示
-		 * 清除先前的計時器，並在 300ms 後漸漸顯示提示
+		 * 標記移動中，取消隱藏計時器，並在 300ms 後漸漸顯示提示。
+		 * 注意：不取消 show timer，讓它自然執行並在執行時判斷是否仍在移動。
 		 */
 		if (!hasReverseGeocodingListener.value) return;
 
@@ -506,11 +510,18 @@
 			geocodingHintHideTimer = null;
 		}
 
-		// 若尚未排程顯示，則在 300ms 後顯示提示
-		if (!geocodingHintShowTimer) {
+		// 若尚未排程顯示（且尚未顯示），則在 300ms 後顯示提示
+		if (!isGeocodingHintVisible.value && !geocodingHintShowTimer) {
 			geocodingHintShowTimer = setTimeout(() => {
 				isGeocodingHintVisible.value = true;
 				geocodingHintShowTimer = null;
+				// show timer 執行時若地圖已停止移動，立即接著排程 hide timer
+				if (!isMapMoving) {
+					geocodingHintHideTimer = setTimeout(() => {
+						isGeocodingHintVisible.value = false;
+						geocodingHintHideTimer = null;
+					}, 2000);
+				}
 			}, 300);
 		}
 	};
@@ -519,23 +530,22 @@
 	 * 地圖停止移動時觸發
 	 */
 	const onMoveEnd = () => {
+		isMapMoving = false;
+
 		/**
 		 * 反向地理編碼提示
-		 * 清除顯示計時器，並在 2s 後漸漸隱藏提示
+		 * 標記停止移動。若提示已可見則排程 2s 後隱藏；
+		 * 若 show timer 仍在執行中，讓它執行完畢後自行接著排程隱藏。
 		 */
 		if (!hasReverseGeocodingListener.value) return;
 
-		// 取消尚未執行的「顯示」計時器
-		if (geocodingHintShowTimer) {
-			clearTimeout(geocodingHintShowTimer);
-			geocodingHintShowTimer = null;
+		// 提示已顯示才排程隱藏（show timer 未執行完則由 timer 內部接手）
+		if (isGeocodingHintVisible.value) {
+			geocodingHintHideTimer = setTimeout(() => {
+				isGeocodingHintVisible.value = false;
+				geocodingHintHideTimer = null;
+			}, 2000);
 		}
-
-		// 2s 後漸漸隱藏
-		geocodingHintHideTimer = setTimeout(() => {
-			isGeocodingHintVisible.value = false;
-			geocodingHintHideTimer = null;
-		}, 2000);
 	};
 
 	// 建立帶有防抖效果的反向地理編碼 API 呼叫函式
