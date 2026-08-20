@@ -1,0 +1,11 @@
+{
+	"error": {
+		"dataFailed": "Standort kann nicht aufgelöst werden",
+		"targetFailed": "Keine Standortinformationen für diese Koordinaten gefunden",
+		"reverseAPIFailed": "Reverse-Geocoding fehlgeschlagen"
+	},
+	"hint": {
+		"longPress": "Drücken Sie lange irgendwo auf die Karte, um die Adresse abzufragen",
+		"rightClick": "Klicken Sie mit der rechten Maustaste irgendwo auf die Karte, um die Adresse abzufragen"
+	}
+}

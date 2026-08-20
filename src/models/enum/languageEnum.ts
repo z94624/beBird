@@ -4,4 +4,9 @@
 export enum WebLangEnum {
 	TAIWAN = 'zh-tw',
 	AMERICA = 'en-us',
+	FRANCE = 'fr-fr',
+	SPAIN = 'es-es',
+	GERMANY = 'de-de',
+	JAPAN = 'ja-jp',
+	SAUDI_ARABIA = 'ar-sa',
 }

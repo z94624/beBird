@@ -5,18 +5,18 @@
 			:="attrs"
 		>
 			<source
-				:src="weatherDataDict[weatherType].videoUrl"
+				:src="weatherDataDict[(weatherType || weatherItem)!].videoUrl"
 				type="video/mp4"
 			/>
 			<source
-				:src="weatherDataDict[weatherType].video"
+				:src="weatherDataDict[(weatherType || weatherItem)!].video"
 				type="video/mp4"
 			/>
 		</IconVideo> -->
 		<q-icon
 			v-if="!loading"
 			:="attrs"
-			:name="`img:${weatherDataDict[weatherType].image}`"
+			:name="`img:${weatherDataDict[(weatherType || weatherItem)!].image}`"
 		/>
 
 		<q-tooltip
@@ -26,7 +26,7 @@
 			:offset="tooltipProps?.offset ?? undefined"
 			:self="tooltipProps?.self ?? 'center middle'"
 		>
-			{{ $t(weatherType) }}
+			{{ $t(weatherType ? `weather.types.${weatherType}` : `weather.items.${weatherItem}`) }}
 		</q-tooltip>
 	</div>
 </template>
@@ -39,7 +39,8 @@
 	import { QTooltipProps } from 'quasar';
 
 	const props = defineProps<{
-		weatherType: WeatherTypeEnum | WeatherItemEnum; // 天氣類型
+		weatherType?: WeatherTypeEnum; // 天氣類型
+		weatherItem?: WeatherItemEnum; // 天氣項目
 		noTooltip?: boolean; // 是否不顯示 Tooltip
 		tooltipProps?: QTooltipProps; // Tooltip 的屬性
 	}>();

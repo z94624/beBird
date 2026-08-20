@@ -1,0 +1,13 @@
+{
+	"time": {
+		"ago": "日前",
+		"today": "今日"
+	},
+	"info": {
+		"map": "地図",
+		"checklist": "チェックリスト",
+		"note": "備考",
+		"source": "出典",
+		"listInfoCopied": "チェックリスト情報をコピーしました"
+	}
+}

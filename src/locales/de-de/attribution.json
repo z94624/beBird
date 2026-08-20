@@ -1,0 +1,18 @@
+{
+	"quote": "Die Entstehung von beBird ruht auf den Schultern vieler Open-Source-Giganten. Wir sind dankbar für die Beiträge der folgenden herausragenden Ressourcen und Communitys.",
+	"category": {
+		"mapGeo": "Karte & Geo",
+		"apiService": "Daten & Service",
+		"vueEcosystem": "Vue-Ökosystem",
+		"designUi": "Design & Benutzeroberfläche"
+	},
+	"itemQuote": {
+		"leaflet": "Die quelloffene Kern-JavaScript-Engine, die die interaktive Kartenfunktion von beBird antreibt – leichtgewichtig und hochleistungsfähig.",
+		"ebird": "Liefert die wichtigsten globalen Vogelbeobachtungsdaten für unsere Seite und dient als Grundstein für die ökologische Erforschung.",
+		"tomorrow": "Liefert hochpräzise Echtzeit-Wetter- und Vorhersagedaten, die Vogelbeobachtern helfen, Ausflüge unter optimalen Wetterbedingungen zu planen.",
+		"sunrise": "Ein leichter und zuverlässiger Service zur Berechnung von Sonnenaufgangs- und Sonnenuntergangszeiten, der Beobachtungspläne in der Dämmerung präziser macht.",
+		"nominatim": "Bietet zuverlässige Reverse-Geocoding-Dienste und wandelt Koordinaten in detaillierte Adress- und Regionsinformationen um.",
+		"flaticon": "Animierte Icons, die dem Wetterinformationsbereich Leben einhauchen.",
+		"lovart": "Eine hochwertige Quelle für künstlerische Designressourcen, die der Website ihren einzigartigen visuellen Stil und ihre Textur verleiht."
+	}
+}

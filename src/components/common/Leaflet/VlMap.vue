@@ -1,5 +1,32 @@
 <template>
 	<div class="fullContainer relative">
+		<!-- 地圖正上方區域 -->
+		<div class="topHintContainer flex items-center justify-center gap-1">
+			<!-- 反向地理編碼互動提示：移動地圖後 300ms 漸顯，停止後 2s 漸隱 -->
+			<GoogleChip
+				v-if="hasReverseGeocodingListener"
+				:color="bg_name_mode"
+				:style="{ opacity: isGeocodingHintVisible ? 1 : 0 }"
+				:text-color="text_name_mode"
+				class="geocoding-hint"
+			>
+				<div class="no-wrap flex items-center justify-center gap-1">
+					<BaseIcon
+						:name="isMobile ? mdiGestureTapHold : mdiMouseRightClickOutline"
+						size="xs"
+					/>
+					<span>
+						{{
+							isMobile
+								? $t('geocoding.hint.longPress')
+								: $t('geocoding.hint.rightClick')
+						}}
+					</span>
+				</div>
+			</GoogleChip>
+		</div>
+
+		<!-- 地圖右上區域 -->
 		<BaseButton
 			v-morph:btn.resize="birdMorph"
 			:text-color="bg_name_mode"
@@ -14,11 +41,11 @@
 		<div
 			v-if="!isMobile"
 			v-morph:panel.resize="birdMorph"
-			class="searchMenuContainer w-[33%] shadow-3 rounded-borders relative"
+			class="searchMenuContainer shadow-3 rounded-borders relative w-[33%]"
 		>
 			<BaseButton
 				:text-color="bg_name_mode"
-				class="absolute -left-2 -bottom-2"
+				class="absolute -bottom-2 -left-2"
 				color="primary"
 				icon="arrow_outward"
 				round
@@ -57,6 +84,7 @@
 			@click="emit('research')"
 		/>
 
+		<!-- 地圖右下區域 -->
 		<div
 			:style="{
 				bottom: `calc(${boundaryGap} + ${isTextSizeMd ? '5.525rem' : isTextSizeLg ? '6.05rem' : '6.575rem'})`,
@@ -75,6 +103,7 @@
 			/>
 		</div>
 
+		<!-- 地圖本體 -->
 		<div class="mapContainer">
 			<l-map
 				v-model:center="center"
@@ -84,6 +113,10 @@
 				:use-global-leaflet="true"
 				class="map"
 				@baselayerchange="onBaseLayerChange"
+				@click="onClickMap"
+				@contextmenu="onContextMenuMap"
+				@moveend="onMoveEnd"
+				@movestart="onMoveStart"
 				@ready="(obj: Map) => (leafletMap = obj)"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
@@ -125,6 +158,23 @@
 					/>
 				</template>
 
+				<!-- 使用者選定地圖目標地點 -->
+				<l-marker
+					v-if="targetPoint"
+					:lat-lng="[targetPoint.lat, targetPoint.lng]"
+				>
+					<l-icon
+						:icon-anchor="[18, 18]"
+						:icon-size="[36, 36]"
+						class-name="target-crosshair-icon"
+					>
+						<BaseIcon
+							:name="fasLocationCrosshairs"
+							color="mapTarget"
+						/>
+					</l-icon>
+				</l-marker>
+
 				<slot
 					v-if="markersNumber <= 100"
 					name="markers"
@@ -138,9 +188,17 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, reactive, ref, toRefs, watch } from 'vue';
-	import { useGeolocation } from '@vueuse/core';
-	import { LatLng, LatLngExpression, LayersControlEvent, Map, PointExpression } from 'leaflet';
+	import { computed, onBeforeMount, reactive, ref, toRefs, useAttrs, watch } from 'vue';
+	import { useI18n } from 'vue-i18n';
+	import { useGeolocation, useDebounceFn } from '@vueuse/core';
+	import {
+		LatLng,
+		LatLngExpression,
+		LayersControlEvent,
+		LeafletMouseEvent,
+		Map,
+		PointExpression,
+	} from 'leaflet';
 	import {
 		LMap,
 		LTileLayer,
@@ -149,25 +207,36 @@
 		LControlZoom,
 		LCircle,
 		LCircleMarker,
+		LMarker,
+		LIcon,
 	} from '@vue-leaflet/vue-leaflet';
 	import { LMarkerClusterGroup } from 'vue-leaflet-markercluster';
-	import { fasRotateRight } from '@quasar/extras/fontawesome-v6';
+	import { fasRotateRight, fasLocationCrosshairs } from '@quasar/extras/fontawesome-v6';
+	import { mdiGestureTapHold, mdiMouseRightClickOutline } from '@quasar/extras/mdi-v7';
 
+	import { NOMINATIMReverseReq } from '@/models/nominatim/v1/geocoding';
+
+	import { useQuasarTool } from '@/hooks/useQuasarTool';
 	import { usePlatform } from '@/hooks/platform';
 	import { useLeafletStore } from '@/store/modules/geodata';
+	import { useGeocodingStore } from '@/store/modules/geocoding';
 	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
-	import { ModeEnum } from '@/models/enum/styleEnum';
 
 	// 定義事件發送
 	const emit = defineEmits<{
 		(e: 'research'): void; // 點擊重新搜尋事件
+		(e: 'click', evt: LeafletMouseEvent): void; // 點擊地圖事件
 	}>();
 
 	// 定義組件接收屬性
 	const props = defineProps<{
 		markersNumber: number; // 外部傳入的標記總數
 	}>();
+
+	const attrs = useAttrs();
+	const { $notify } = useQuasarTool();
+	const { t } = useI18n();
 
 	// 裝置定位 Hook
 	const { coords, locatedAt, error, resume, pause } = useGeolocation();
@@ -177,6 +246,8 @@
 	// 地圖資料 Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);
+
+	const geocodingStore = useGeocodingStore();
 
 	// 字體大小 Store (控制 UI 排版)
 	const textSizeStore = useTextSizeStore();
@@ -199,9 +270,17 @@
 		GeoDataEnum.LONGITUDE_OF_TAIWAN,
 	] as PointExpression); // 預設地圖中心點
 	const zoom = ref(8); // 預設縮放層級
+	const targetPoint = ref<{ lat: number; lng: number } | null>(null);
 	const birdMorph = ref('btn'); // Morph 動畫狀態
 	const searchDrawerOpen = ref(false); // 移動端抽屜狀態
 	const locateStatus = ref(false); // 目前是否開啟定位追蹤狀態
+
+	// 反向地理編碼提示的顯示狀態（由 CSS transition 負責淡入淡出效果）
+	const isGeocodingHintVisible = ref(false);
+
+	const hasReverseGeocodingListener = computed(
+		() => typeof attrs.onReverseGeocoding === 'function'
+	);
 
 	// 計算定位按鈕顏色 (啟用時與停用時的配色切換)
 	const locateColor = computed(() => {
@@ -219,9 +298,10 @@
 	});
 
 	// 使用者目前地理位置計算屬性
-	const userGeoLocation = computed(
-		(): PointExpression => [coords.value.latitude, coords.value.longitude]
-	);
+	const userGeoLocation = computed((): PointExpression => [
+		coords.value.latitude,
+		coords.value.longitude,
+	]);
 
 	// 用於記錄各種地圖變更事件的觸發源，避免無窮迴圈或邏輯混亂
 	const triggerSrcDict = reactive({
@@ -411,6 +491,96 @@
 	const onUpdateBounds = () => {};
 
 	/**
+	 * 地圖開始移動時觸發
+	 */
+	const onMoveStart = () => {
+		/**
+		 * 反向地理編碼提示
+		 * 立即顯示，淡入效果由 CSS transition 處理
+		 */
+		if (!hasReverseGeocodingListener.value) return;
+		isGeocodingHintVisible.value = true;
+	};
+
+	/**
+	 * 地圖停止移動時觸發
+	 */
+	const onMoveEnd = () => {
+		/**
+		 * 反向地理編碼提示
+		 * 立即隱藏，淡出效果由 CSS transition 處理
+		 */
+		if (!hasReverseGeocodingListener.value) return;
+		isGeocodingHintVisible.value = false;
+	};
+
+	// 建立帶有防抖效果的反向地理編碼 API 呼叫函式
+	const debouncedReverseGeocoding = useDebounceFn((lat: number, lon: number) => {
+		geocodingStore
+			.nominatimReverse(new NOMINATIMReverseReq({ lat, lon }))
+			.then((data) => {
+				if (data && data.address) {
+					const { country_code } = data.address;
+					// Nominatim 可能給出 lvl4 或是 lvl6 的區域名稱，我們盡量取得 ISO3166-2
+					const subnational_code =
+						data.address['ISO3166-2-lvl4'] || data.address['ISO3166-2-lvl6'];
+
+					(attrs.onReverseGeocoding as Function)(country_code, subnational_code);
+				} else {
+					$notify.warning(t('geocoding.error.dataFailed'));
+					targetPoint.value = null;
+				}
+			})
+			.catch((err) => {
+				console.error(err);
+				$notify.error(t('geocoding.error.reverseAPIFailed'));
+				targetPoint.value = null;
+			});
+	}, 500);
+
+	/**
+	 * 地圖單擊事件 (Single Click)
+	 *
+	 * 單擊地圖的行為回歸純粹的「地圖互動」：
+	 * 關閉任何開啟中的彈窗 (Popup)
+	 */
+	const onClickMap = (e: LeafletMouseEvent) => {
+		// 將點擊的經緯度折疊回標準範圍
+		const wrappedLatLng = e.latlng.wrap();
+
+		// 將傳遞給父組件的事件也覆蓋為 wrappedLatLng 以防有其他依賴
+		e.latlng = wrappedLatLng;
+		emit('click', e);
+	};
+
+	/*
+	 * ==========================================
+	 * 反向地理編碼觸發事件 (依據裝置動態對應)
+	 *
+	 * 利用 Leaflet 原生的 contextmenu 事件特性，
+	 * 完美實現不同平台下的直覺互動：
+	 * - 電腦版：滑鼠右鍵觸發 (Right-click)
+	 * - 手機版：螢幕長按觸發 (Long-press)
+	 * ==========================================
+	 */
+	const onContextMenuMap = (e: LeafletMouseEvent) => {
+		// 將點擊的經緯度折疊回標準範圍
+		const wrappedLatLng = e.latlng.wrap();
+
+		/*
+		 * 更新目標圖釘位置 (targetPoint)
+		 * 無論是電腦右鍵還是手機長按，都在觸發處立即顯示十字圖示，給予即時視覺回饋
+		 */
+		targetPoint.value = wrappedLatLng;
+
+		// 檢查是否綁定了反向地理編碼事件
+		if (hasReverseGeocodingListener.value) {
+			// 呼叫防抖處理過的反向地理編碼 API (延遲 500ms)
+			debouncedReverseGeocoding(wrappedLatLng.lat, wrappedLatLng.lng);
+		}
+	};
+
+	/**
 	 * 當使用者手動透過 Leaflet Control 切換底圖時觸發
 	 * 用於保持 tileProviders 資料與 Leaflet 內部狀態同步
 	 */
@@ -474,12 +644,32 @@
 		@extend .fullContainer;
 	}
 
+	/* 正上方 UI 組件位置定義 */
+	.map-top {
+		position: absolute;
+		top: v-bind(boundaryGap);
+		left: 50%;
+		z-index: 401; // 需高於 Leaflet 預設層級 (400)
+		transform: translateX(-50%);
+	}
+
+	/* 正上方互動提示容器 */
+	.topHintContainer {
+		@extend .map-top;
+	}
+
+	/* 反向地理編碼提示 chip：opacity transition 動畫 */
+	.geocoding-hint {
+		transition: opacity 0.3s ease-in-out;
+		pointer-events: none; // 隱藏時不攔截點擊事件
+	}
+
 	/* 右上角 UI 組件位置定義 */
 	.map-top-right {
 		position: absolute;
 		top: v-bind(boundaryGap);
 		right: v-bind(boundaryGap);
-		z-index: 401; // 需高於 Leaflet 預設層級 (400)
+		z-index: 401;
 	}
 
 	/* 搜尋選單容器 */

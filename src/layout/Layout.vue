@@ -30,7 +30,7 @@
 						<q-route-tab
 							v-for="(menuItem, mIdx) in menuList"
 							:key="mIdx"
-							:label="$t(menuItem.name)"
+							:label="$t(`router.${menuItem.name}`)"
 							:name="menuItem.name"
 							:to="menuItem.to"
 						/>
@@ -51,7 +51,7 @@
 					<!-- 字體非極大時，以展開顯示 -->
 					<div
 						v-else
-						class="flex no-wrap items-center gap-1"
+						class="no-wrap flex items-center gap-1"
 					>
 						<LayoutFeatureButtonSet @click-version-button="onOpenVersionDialog" />
 					</div>

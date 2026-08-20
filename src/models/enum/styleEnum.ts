@@ -3,10 +3,10 @@
  * 大小種類
  */
 export enum TextSizeEnum {
-	// SM = 'text-size-sm', // 小
-	MD = 'text-size-md', // 正常
-	LG = 'text-size-lg', // 大
-	XL = 'text-size-xl', // 極大
+	// SM = 'sm', // 小
+	MD = 'md', // 正常
+	LG = 'lg', // 大
+	XL = 'xl', // 極大
 }
 
 /**

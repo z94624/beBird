@@ -1,6 +1,6 @@
 <template>
 	<label :="attrs">
-		<div class="formLabel flex justify-between items-center gap-2">
+		<div class="formLabel flex items-center justify-between gap-2">
 			<div class="formLabel__top-left">
 				<span
 					v-if="title"

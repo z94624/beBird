@@ -4,10 +4,10 @@
 		fullscreen
 		@close="close"
 	>
-		<template #title>{{ $t('version') }}</template>
+		<template #title>{{ $t('common.version') }}</template>
 
 		<template #content>
-			<div class="p-4 flex flex-col gap-4">
+			<div class="flex flex-col gap-4 p-4">
 				<BaseSelect
 					v-model="selectedVersion"
 					:options="versionOptions"
@@ -30,7 +30,7 @@
 								{{ ['Features', 'Fixes', 'Changes', 'Perfs'][uIdx] }}
 							</h4>
 
-							<div class="pl-7 mt-2">
+							<div class="mt-2 pl-7">
 								<li
 									v-for="(item, iIdx) in updates"
 									:key="iIdx"
@@ -56,8 +56,8 @@
 
 	const selectedVersion = ref(versionOptions[0].value);
 
-	const selectedVersionItem = computed(
-		() => versionList.find((vi) => vi.version === selectedVersion.value)!
+	const selectedVersionItem = computed(() =>
+		versionList.find((vi) => vi.version === selectedVersion.value)!
 	);
 
 	onOpen(() => {});

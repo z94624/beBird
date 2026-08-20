@@ -1,0 +1,30 @@
+{
+	"items": {
+		"sunrise": "Sonnenaufgang",
+		"sunset": "Sonnenuntergang",
+		"temperature": "Gefühlte Temperatur",
+		"precipitation": "Niederschlagswahrscheinlichkeit",
+		"humidity": "Luftfeuchtigkeit",
+		"wind_speed": "Windgeschwindigkeit",
+		"celsius": "Metrisches System",
+		"fahrenheit": "Imperiales System",
+		"observation_time": "Beobachtungszeit"
+	},
+	"types": {
+		"unknown": "Wetter",
+		"blizzard": "Schneesturm",
+		"clear": "Klar",
+		"clear_night": "Klare Nacht",
+		"cloudy": "Bewölkt",
+		"cloudy_night": "Bewölkte Nacht",
+		"cold": "Kalt",
+		"drizzle": "Nieselregen",
+		"fog": "Nebel",
+		"hot": "Heiß",
+		"partly_cloudy": "Teilweise bewölkt",
+		"rain": "Regnerisch",
+		"sleet": "Graupel",
+		"snow": "Schnee",
+		"thunderstorm": "Gewitter"
+	}
+}

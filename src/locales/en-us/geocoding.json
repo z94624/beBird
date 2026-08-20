@@ -1,0 +1,11 @@
+{
+	"error": {
+		"dataFailed": "Unable to resolve location",
+		"targetFailed": "No location info found for these coordinates",
+		"reverseAPIFailed": "Reverse geocoding failed"
+	},
+	"hint": {
+		"longPress": "Long press anywhere on the map to query address",
+		"rightClick": "Right click anywhere on the map to query address"
+	}
+}

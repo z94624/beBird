@@ -45,8 +45,7 @@ export class DATAOBSGetRecentObsInRegionReq extends DATAOBSCommon {
 	includeProvisional?: boolean = false; // Include observations which have not yet been reviewed.
 	r?: string[] = undefined; // Fetch observations from up to 10 locations.
 }
-export interface IDATAOBSGetRecentObsInRegionItem
-	extends IDATAOBSGetRecentObsOfSpeciesInRegionItem {
+export interface IDATAOBSGetRecentObsInRegionItem extends IDATAOBSGetRecentObsOfSpeciesInRegionItem {
 	subId: string;
 }
 
@@ -64,8 +63,7 @@ export class DATAOBSGetRecentNotableObsInRegionReq extends DATAOBSCommon {
 	detail?: DetailEnum = DetailEnum.SUBSET; // Include a subset (simple), or all (full), of the fields available.
 	r?: string[] = undefined; // Fetch observations from up to 10 locations.
 }
-export interface IDATAOBSGetRecentNotableObsInRegionItem
-	extends IDATAOBSGetRecentObsOfSpeciesInRegionItem {
+export interface IDATAOBSGetRecentNotableObsInRegionItem extends IDATAOBSGetRecentObsOfSpeciesInRegionItem {
 	subId: string;
 	exoticCategory: string;
 }

@@ -14,7 +14,7 @@
 						@click="toggleDrawer"
 					/>
 
-					<div class="flex-1 pr-[2.625rem] text-center cursor-pointer">
+					<div class="flex-1 cursor-pointer pr-[2.625rem] text-center">
 						<span class="logoText text-primary">b</span>
 						<span class="logoText text-secondary">e</span>
 						<span
@@ -41,7 +41,7 @@
 							:key="mIdx"
 						>
 							<q-item
-								:active="menuItem.name === selectedMenu"
+								:active="route.path === menuItem.to"
 								:to="menuItem.to"
 								clickable
 								@click="() => onSelectMenu(menuItem.name)"
@@ -50,7 +50,7 @@
 									<q-icon :name="menuItem.icon" />
 								</q-item-section>
 								<q-item-section>
-									{{ $t(menuItem.name) }}
+									{{ $t(`router.${menuItem.name}`) }}
 								</q-item-section>
 							</q-item>
 							<q-separator
@@ -71,7 +71,9 @@
 									class="q-icon"
 								/>
 							</q-item-section>
-							<q-item-section>{{ $t(WeatherTypeEnum.UNKNOWN) }}</q-item-section>
+							<q-item-section>{{
+								$t(`weather.types.${WeatherTypeEnum.UNKNOWN}`)
+							}}</q-item-section>
 						</q-item>
 
 						<!-- 版本 -->
@@ -98,7 +100,7 @@
 								vertical
 							/>
 							<div
-								class="flex justify-center items-center"
+								class="flex items-center justify-center"
 								style="padding: 0.85em 1em"
 							>
 								<j-mode-switch width="4.39125rem" />
@@ -134,7 +136,7 @@
 
 <script lang="ts" setup>
 	import { computed, ref, toRefs, watch } from 'vue';
-	import { useRouter } from 'vue-router';
+	import { useRoute, useRouter } from 'vue-router';
 	import { useDebounceFn } from '@vueuse/core';
 	import WeatherIcon from './components/weather/WeatherIcon.vue';
 	import WeatherDialog from './components/weather/WeatherDialog.vue';
@@ -161,6 +163,7 @@
 	import { WeatherTypeEnum } from '@/models/enum/weatherEnum';
 
 	const router = useRouter();
+	const route = useRoute();
 	// Leaflet Store
 	const leafletStore = useLeafletStore();
 	const { mapCenter } = toRefs(leafletStore);

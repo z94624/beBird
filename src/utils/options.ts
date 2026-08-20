@@ -11,10 +11,20 @@ export const webLangMap = enumToMap(WebLangEnum);
 export const webLangCountryNameMap = {
 	[WebLangEnum.TAIWAN]: '臺灣',
 	[WebLangEnum.AMERICA]: 'United States',
+	[WebLangEnum.FRANCE]: 'France',
+	[WebLangEnum.SPAIN]: 'España',
+	[WebLangEnum.GERMANY]: 'Deutschland',
+	[WebLangEnum.JAPAN]: '日本',
+	[WebLangEnum.SAUDI_ARABIA]: 'السعودية',
 };
 export const webLangNameMap = {
 	[WebLangEnum.TAIWAN]: '繁體中文',
 	[WebLangEnum.AMERICA]: 'English',
+	[WebLangEnum.FRANCE]: 'Français',
+	[WebLangEnum.SPAIN]: 'Español',
+	[WebLangEnum.GERMANY]: 'Deutsch',
+	[WebLangEnum.JAPAN]: '日本語',
+	[WebLangEnum.SAUDI_ARABIA]: 'العربية',
 };
 export const webLangOptions = webLangKeys.reduce((arr: QSelectOption[], key) => {
 	arr.push({

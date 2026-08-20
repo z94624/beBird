@@ -28,7 +28,7 @@
 								fontSize: `${value.multiplier}rem`,
 							}"
 						>
-							{{ $t(name) }}
+							{{ $t(`common.textSize.${name}`) }}
 						</span>
 					</q-item-section>
 				</q-item>

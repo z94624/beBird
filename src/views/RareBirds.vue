@@ -3,6 +3,7 @@
 		ref="mapRef"
 		:markers-number="pureObsList.length"
 		@research="getRecentNotableObsInRegionInfo"
+		@reverse-geocoding="onReverseGeocoding"
 	>
 		<template #search-menu>
 			<q-form
@@ -22,7 +23,7 @@
 				/>
 
 				<div>
-					<span class="text-base">{{ $t('back') }}</span>
+					<span class="text-base">{{ $t('common.back') }}</span>
 					<DaysBackSlider v-model="notableObsForm.back" />
 				</div>
 			</q-form>
@@ -65,7 +66,7 @@
 
 							<q-tooltip anchor="top middle">{{ obs.comName }}</q-tooltip>
 
-							<div class="flex justify-center items-baseline gap-1">
+							<div class="flex items-baseline justify-center gap-1">
 								<div class="comName-font">
 									{{ taxInfoDict[obs.speciesCode]?.comName ?? obs.comName }}
 								</div>
@@ -91,7 +92,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+	import { computed, nextTick, onBeforeMount, ref, toRefs, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import { useDebounceFn } from '@vueuse/core';
 	import { LMarker } from '@vue-leaflet/vue-leaflet';
@@ -216,6 +217,30 @@
 	};
 
 	/**
+	 * 使用者點擊地圖的反向地理編碼
+	 */
+	const onReverseGeocoding = async (countryCode?: string, subnationalCode?: string) => {
+		if (countryCode) {
+			const clickedCountry = countryCode.toUpperCase();
+
+			if (country.value !== clickedCountry) {
+				country.value = clickedCountry;
+				// 等待 Vue re-render UpdateRegionOptions (避免 Race condition)
+				await nextTick();
+			}
+
+			if (subnationalCode) {
+				region.value = subnationalCode;
+			} else {
+				// 如果只點擊到國家沒有具體行政區，就會是 null
+				region.value = null;
+			}
+		} else {
+			$notify.warning(t('geocoding.error.targetFailed'));
+		}
+	};
+
+	/**
 	 * 取得近期稀有鳥紀錄
 	 */
 	const getRecentNotableObsInRegionInfo = () => {
@@ -260,7 +285,7 @@
 	 */
 	const getDateDiffStr = (obsDt: string): string => {
 		const days = getDateDiffFromNow(obsDt);
-		return days ? `${days} ${t('ago')}` : t('today');
+		return days ? `${days} ${t('ebird.time.ago')}` : t('ebird.time.today');
 	};
 
 	/**

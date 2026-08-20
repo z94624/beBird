@@ -1,9 +1,14 @@
 {
+	"home": "beBird",
+
 	"rareBirds": "Rare Birds Map",
 	"birdWatching": "Bird Watching Map",
 	"birdDistribution": "Bird Distribution Map",
 	"birdComposition": "Bird Composition Map",
 	"routineRoute": "Routine Route Map",
 
-	"contactUs": "Contact Us"
+	"contactUs": "Contact Us",
+	"attributions": "Attributions",
+
+	"backExit": "Press back again to exit the system"
 }

@@ -8,7 +8,7 @@
 				class="popupCard flex flex-col gap-2"
 				flat
 			>
-				<q-card-section class="!px-2 !pt-2 !pb-0">
+				<q-card-section class="!px-2 !pb-0 !pt-2">
 					<div class="ellipsis-2-lines break-all">
 						<slot name="location"></slot>
 					</div>
@@ -20,11 +20,11 @@
 
 				<q-card-actions
 					align="center"
-					class="!px-2 !py-0 no-wrap"
+					class="no-wrap !px-2 !py-0"
 				>
 					<slot name="buttons">
 						<BaseButton
-							:label="$t('detail')"
+							:label="$t('common.detail')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 							class="flex-1"
 							color="primary"
@@ -34,7 +34,7 @@
 						<HrefButton
 							:href="navigationUrl"
 							:icon="mdiCarArrowRight"
-							:label="$t('navigation')"
+							:label="$t('common.navigation')"
 							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 							color="secondary"
 						/>
@@ -43,7 +43,7 @@
 
 				<q-separator />
 
-				<q-card-section class="!px-2 !pt-0 !pb-2">
+				<q-card-section class="!px-2 !pb-2 !pt-0">
 					<div class="remark">
 						<slot name="remark"></slot>
 					</div>

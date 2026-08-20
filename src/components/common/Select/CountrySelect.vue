@@ -1,7 +1,7 @@
 <template>
 	<BaseSelect
 		v-model="selectedCountry"
-		:label="$t('country')"
+		:label="$t('common.country')"
 		:options="filteredOptions"
 		input-debounce="0"
 		use-input

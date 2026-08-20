@@ -25,3 +25,38 @@
 .bg-line {
 	background: var(--line) !important;
 }
+
+// 舊版紫嘯鶇主題色
+.text-primaryOld {
+	color: var(--q-primaryOld) !important;
+}
+.bg-primaryOld {
+	background-color: var(--q-primaryOld) !important;
+}
+
+// 地圖標記色
+.text-mapTarget {
+	color: var(--q-mapTarget) !important;
+}
+.bg-mapTarget {
+	background-color: var(--q-mapTarget) !important;
+}
+
+/**
+ * Quasar Brand Colors
+ * 速產範例
+ */
+// $custom-colors: (
+// 	'primary': var(--q-primary),
+// 	'primary2': var(--q-primary2),
+// 	'primary3': var(--q-primary3),
+// );
+
+// @each $name, $value in $custom-colors {
+// 	.text-#{$name} {
+// 		color: #{$value} !important;
+// 	}
+// 	.bg-#{$name} {
+// 		background-color: #{$value} !important;
+// 	}
+// }

@@ -13,9 +13,9 @@
 				clickable
 				@click="media.onClick"
 			>
-				<div class="w-full flex no-wrap items-center gap-4">
+				<div class="no-wrap flex w-full items-center gap-4">
 					<div
-						class="bg-primary w-[2.083125rem] h-[2.083125rem] m-[0.2084375rem] flex justify-center items-center"
+						class="bg-primary m-[0.2084375rem] flex h-[2.083125rem] w-[2.083125rem] items-center justify-center"
 						style="border-radius: 50%"
 					>
 						<q-icon
@@ -39,7 +39,7 @@
 					:network="media.network"
 					:title="`${userComName} [${obs?.sciName ?? '{sciName}'}]`"
 					:url="checklistUrl"
-					class="w-full flex no-wrap items-center gap-4"
+					class="no-wrap flex w-full items-center gap-4"
 				>
 					<q-icon
 						:class="[media.customIcon ? 'm-[0.2084375rem]' : '']"
@@ -105,10 +105,10 @@
 		return `${locale.value === WebLangEnum.AMERICA ? comName : `${props.userComName} (${comName})`} (${howMany})<br />
 - ${obsDt} by ${checklistInfo.value?.userDisplayName}<br />
 - ${locName}<br />
-- ${t('info_map')}${t('colon')}<a href="${mapUrl}">${mapUrl}</a><br />
-- ${t('info_checklist')}${t('colon')}<a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
-- ${t('info_note')}${t('colon')}${notableDetail.value?.comments}<br />
-(${t('info_source')}${t('colon')}<a href="https://z94624.github.io/beBird/">https://z94624.github.io/beBird</a>)`;
+- ${t('ebird.info.map')}${t('common.punctuation.colon')}<a href="${mapUrl}">${mapUrl}</a><br />
+- ${t('ebird.info.checklist')}${t('common.punctuation.colon')}<a href="${checklistUrl.value}">${checklistUrl.value}</a><br />
+- ${t('ebird.info.note')}${t('common.punctuation.colon')}${notableDetail.value?.comments}<br />
+(${t('ebird.info.source')}${t('common.punctuation.colon')}<a href="https://z94624.github.io/beBird/">https://z94624.github.io/beBird</a>)`;
 	});
 	const descTEXT = computed(() => extractTextFromHtml(descHTML.value));
 
@@ -117,7 +117,7 @@
 	 */
 	const onCopyToClipboard = () => {
 		copy(descTEXT.value || checklistUrl.value).then(() => {
-			$notify.info(t('info_listInfoCopied'));
+			$notify.info(t('ebird.info.listInfoCopied'));
 		});
 	};
 
@@ -148,54 +148,54 @@
 	const mediaList: IMedia[] = [
 		{
 			icon: 'content_copy',
-			name: t('copyToClipboard'),
+			name: t('common.action.copyToClipboard'),
 			onClick: onCopyToClipboard,
 		},
 		{
 			icon: mdiGmail,
 			iconColor: '#d44638',
-			name: t('email'),
+			name: t('socialMedia.email'),
 			network: 'email',
 		},
 		{
 			icon: mdiFacebook,
 			iconColor: '#1877F2',
-			name: t('facebook'),
+			name: t('socialMedia.facebook'),
 			network: 'facebook',
 		},
 		{
 			icon: MessengerLogo,
 			customIcon: true,
-			name: t('messenger'),
+			name: t('socialMedia.messenger'),
 			network: 'messenger',
 		},
 		{
 			icon: LineLogo,
 			customIcon: true,
-			name: t('line'),
+			name: t('socialMedia.line'),
 			network: 'line',
 		},
 		{
 			icon: TwitterLogo,
 			customIcon: true,
-			name: t('twitter'),
+			name: t('socialMedia.twitter'),
 			network: 'twitter',
 		},
 		{
 			icon: TelegramLogo,
 			customIcon: true,
-			name: t('telegram'),
+			name: t('socialMedia.telegram'),
 			network: 'telegram',
 		},
 		{
 			icon: SkypeLogo,
 			customIcon: true,
-			name: t('skype'),
+			name: t('socialMedia.skype'),
 			network: 'skype',
 		},
 		{
 			icon: 'more_horiz',
-			name: t('shareToApps'),
+			name: t('common.action.shareToApps'),
 			onClick: activateWebShareAPI,
 		},
 	];

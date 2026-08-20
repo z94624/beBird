@@ -29,6 +29,8 @@ export const setupQuasar = (app: App<Element>) => {
 				lightBg: '#f5f5f5', // 淺色主題背景色
 				darkText: '#f2f2f2', // 深色主題文字色
 				line: '#f4f3f1',
+				primaryOld: '#1c1bd6', // 舊版紫嘯鶇主題色
+				mapTarget: '#f56c6c', // 紅珊瑚色；地圖標記最經典且最不易與底圖混淆的顏色
 			},
 			loadingBar: {
 				size: '0.1875rem',

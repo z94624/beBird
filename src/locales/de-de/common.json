@@ -1,0 +1,27 @@
+{
+	"punctuation": {
+		"colon": ": ",
+		"question": "?"
+	},
+	"action": {
+		"copyToClipboard": "Kopieren",
+		"shareToApps": "Teilen"
+	},
+	"visitorStatistics": {
+		"online": "Online",
+		"today": "Heute",
+		"total": "Gesamt"
+	},
+	"textSize": {
+		"sm": "Klein",
+		"md": "Mittel (Standard)",
+		"lg": "Groß",
+		"xl": "Sehr groß"
+	},
+	"version": "Versionshinweise",
+	"country": "Land",
+	"region": "Region",
+	"back": "Zeitraum (Tage zurück)",
+	"detail": "Details",
+	"navigation": "Navigation"
+}

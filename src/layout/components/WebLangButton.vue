@@ -9,7 +9,7 @@
 					v-close-popup
 					:key="webLang"
 					:active="webLang === locale"
-					:class="[isTextSizeMd ? '!pl-0 !pr-3 !py-0' : isTextSizeLg ? 'gap-1' : 'gap-2']"
+					:class="[isTextSizeMd ? '!py-0 !pl-0 !pr-3' : isTextSizeLg ? 'gap-1' : 'gap-2']"
 					class="items-center"
 					clickable
 					@click="onSelectWebsiteLanguage(webLang)"
@@ -18,7 +18,7 @@
 						:country="webLang.split('-')[1]"
 						shadow
 					/>
-					<div class="text-base ellipsis">
+					<div class="ellipsis text-base">
 						{{ webLangCountryNameMap[webLang] }} ({{ webLangNameMap[webLang] }})
 					</div>
 				</q-item>

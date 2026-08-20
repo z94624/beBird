@@ -1,0 +1,30 @@
+{
+	"items": {
+		"sunrise": "Lever du soleil",
+		"sunset": "Coucher du soleil",
+		"temperature": "Température ressentie",
+		"precipitation": "Probabilité de précipitations",
+		"humidity": "Humidité",
+		"wind_speed": "Vitesse du vent",
+		"celsius": "Système métrique",
+		"fahrenheit": "Système impérial",
+		"observation_time": "Heure d'observation"
+	},
+	"types": {
+		"unknown": "Météo",
+		"blizzard": "Blizzard",
+		"clear": "Dégagé",
+		"clear_night": "Nuit claire",
+		"cloudy": "Nuageux",
+		"cloudy_night": "Nuit nuageuse",
+		"cold": "Froid",
+		"drizzle": "Bruine",
+		"fog": "Brouillard",
+		"hot": "Chaud",
+		"partly_cloudy": "Partiellement nuageux",
+		"rain": "Pluie",
+		"sleet": "Grésil",
+		"snow": "Neige",
+		"thunderstorm": "Orage"
+	}
+}

@@ -38,6 +38,11 @@ export const menuList: {
 		name: 'contactUs',
 		icon: 'o_alternate_email',
 		to: '/contact-us',
+	},
+	{
+		name: 'attributions',
+		icon: 'o_hub',
+		to: '/attributions',
 		separator: true,
 	},
 ];
@@ -53,6 +58,29 @@ export const versionList: {
 	changes?: string[]; // 變更；change
 	perfs?: string[]; // 優化；perf
 }[] = [
+	{
+		version: '1.2.3',
+		releaseDate: '2026/07/28',
+		features: [
+			'Added support for multiple languages in addition to Traditional Chinese (French, Spanish, German, Japanese, and Modern Standard Arabic).',
+		],
+	},
+	{
+		version: '1.2.2',
+		releaseDate: '2026/05/26',
+		features: [
+			'Implemented interactive reverse geocoding on the map, allowing users to retrieve address details by clicking on specific locations.',
+		],
+	},
+	{
+		version: '1.2.1',
+		releaseDate: '2026/04/17',
+		features: [
+			'Added "Press back again to exit the system" prompt when user tries to exit the website by pressing the back button on mobile device(only for Android system).',
+			'Dynamic change of the browser tab title according to the current page.',
+			'Added a new tab named "Attributions", which contains the attributions of the website.',
+		],
+	},
 	{
 		version: '1.1.10',
 		releaseDate: '2026/02/01',

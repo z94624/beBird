@@ -64,7 +64,20 @@ export const useTextSizeStore = defineStore('textSize', () => {
 	const isTextSizeLg = computed(() => textSizeInfo.value.name === TextSizeEnum.LG);
 	const isTextSizeXl = computed(() => textSizeInfo.value.name === TextSizeEnum.XL);
 
+	/**
+	 * Quasar 元件的 Size 參數
+	 * 如果是自訂大小，將其乘上放大倍率并回傳新的字串
+	 */
+	const dynamicSize = (baseSize: string) =>
+		computed(() =>
+			baseSize.replace(
+				/([0-9.]+)([a-z%]+)/i,
+				(_, num, unit) => `${parseFloat(num) * textSizeMultiplier.value}${unit}`
+			)
+		);
+
 	return {
+		dynamicSize,
 		textSizeDict,
 		textSizeMultiplier,
 		textSizeInfo,
