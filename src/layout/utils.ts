@@ -59,6 +59,16 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.4',
+		releaseDate: '2026/08/20',
+		features: [
+			'Added dynamic interaction hints that fade in during map panning to guide users on reverse geocoding controls.',
+		],
+		changes: [
+			'Updated reverse geocoding trigger from single click to contextmenu (right-click on desktop and long-press on mobile) for more precise point selection.',
+		],
+	},
+	{
 		version: '1.2.3',
 		releaseDate: '2026/07/28',
 		features: [
