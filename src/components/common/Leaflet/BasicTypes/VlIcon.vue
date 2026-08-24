@@ -1,9 +1,10 @@
 <template>
 	<l-icon
 		:="attrs"
+		:class-name="hasDefaultSlot ? 'bg-transparent border-none' : ''"
 		:icon-anchor="[7, 35]"
 		:icon-size="[14, 35]"
-		:icon-url="TWT"
+		:icon-url="hasDefaultSlot ? undefined : TWT"
 	>
 		<template
 			#[slot]
@@ -16,12 +17,15 @@
 </template>
 
 <script lang="ts" setup>
-	import { useAttrs, useSlots } from 'vue';
+	import { computed, useAttrs, useSlots } from 'vue';
 	import { LIcon } from '@vue-leaflet/vue-leaflet';
 	import TWT from '@/assets/images/twt.svg';
 
 	const attrs = useAttrs();
 	const slots = useSlots();
+
+	// 判斷父層是否有傳入 default slot
+	const hasDefaultSlot = computed(() => !!slots.default);
 </script>
 
 <style lang="scss" scoped></style>
