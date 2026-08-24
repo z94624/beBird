@@ -32,6 +32,7 @@ declare module 'vue' {
     Github: typeof import('./src/components/common/socialMedia/Github.vue')['default']
     GlobalBackground: typeof import('./src/components/common/background/GlobalBackground.vue')['default']
     GoogleChip: typeof import('./src/components/common/chip/GoogleChip.vue')['default']
+    GoogleMarkerIcon: typeof import('./src/components/common/icon/GoogleMarkerIcon.vue')['default']
     HrefButton: typeof import('./src/components/common/button/HrefButton.vue')['default']
     IconVideo: typeof import('./src/components/common/media/IconVideo.vue')['default']
     Instagram: typeof import('./src/components/common/socialMedia/Instagram.vue')['default']

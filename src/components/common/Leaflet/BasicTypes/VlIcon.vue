@@ -2,8 +2,8 @@
 	<l-icon
 		:="attrs"
 		:class-name="hasDefaultSlot ? 'bg-transparent border-none' : ''"
-		:icon-anchor="[7, 35]"
-		:icon-size="[14, 35]"
+		:icon-anchor="[14, 32]"
+		:icon-size="[28, 28]"
 		:icon-url="hasDefaultSlot ? undefined : TWT"
 	>
 		<template

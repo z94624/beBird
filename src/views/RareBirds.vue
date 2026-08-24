@@ -38,7 +38,9 @@
 				:lat-lng="[obs.lat, obs.lng]"
 				@click="onClickMarker"
 			>
-				<VlIcon />
+				<VlIcon>
+					<GoogleMarkerIcon />
+				</VlIcon>
 
 				<VlTooltip permanent>
 					{{ taxInfoDict[obs.speciesCode]?.comName ?? obs.comName }}
