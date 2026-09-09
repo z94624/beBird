@@ -11,6 +11,7 @@
 		"format": "prettier --ignore-path .gitignore --write \"**/*.+(html|vue|ts|js|json|cjs)\""
 	},
 	"dependencies": {
+		"@maplibre/maplibre-gl-leaflet": "^0.1.4",
 		"@number-flow/vue": "^0.4.9",
 		"@quasar/extras": "^1.16.9",
 		"@vueuse/components": "^12.8.2",
@@ -21,6 +22,7 @@
 		"dayjs": "^1.11.13",
 		"dotenv": "^16.4.5",
 		"firebase": "^10.13.0",
+		"maplibre-gl": "^6.9.0",
 		"pinia": "^2.1.7",
 		"quasar": "^2.15.1",
 		"universal-cookie": "^7.2.0",
