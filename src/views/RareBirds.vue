@@ -39,7 +39,14 @@
 				@click="onClickMarker"
 			>
 				<VlIcon>
-					<GoogleMarkerIcon />
+					<GoogleMarkerIcon
+						:bg-color="
+							getMarkerColor(
+								taxInfoDict[obs.speciesCode]?.familyCode,
+								getDateDiffFromNow(obs.obsDt)
+							)
+						"
+					/>
 				</VlIcon>
 
 				<VlTooltip permanent>
@@ -106,6 +113,7 @@
 	} from '@/models/data/obs';
 
 	import { useQuasarTool } from '@/hooks/useQuasarTool';
+	import { useMarkerColor } from '@/hooks/useMarkerColor';
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
@@ -124,6 +132,10 @@
 
 	const mapRef = ref();
 	const rbMarkerDetailDialogRef = ref();
+
+	// 將 back 包為 computed ref 傳入 composable，響應使用者調整
+	const backRef = computed(() => notableObsForm.value.back ?? 5);
+	const { getMarkerColor } = useMarkerColor(backRef);
 
 	// 不重複座標清單
 	const pureObsList = computed(() => {
