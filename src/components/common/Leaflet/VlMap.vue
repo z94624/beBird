@@ -112,25 +112,23 @@
 				:options="{ zoomControl: false, preferCanvas: true }"
 				:use-global-leaflet="true"
 				class="map"
-				@baselayerchange="onBaseLayerChange"
 				@click="onClickMap"
 				@contextmenu="onContextMenuMap"
 				@moveend="onMoveEnd"
 				@movestart="onMoveStart"
-				@ready="(obj: Map) => (leafletMap = obj)"
+				@ready="onMapReady"
 				@update:bounds="onUpdateBounds"
 				@update:center="onUpdateCenter"
 				@update:zoom="onUpdateZoom"
 			>
-				<l-control-layers position="bottomleft" />
-
+				<!-- Raster tile layers (非 CARTO): 繼續使用 l-tile-layer -->
 				<l-tile-layer
-					v-for="tileProvider in tileProviders"
+					v-for="tileProvider in rasterTileProviders"
 					:key="tileProvider.name"
 					:attribution="`${isMobile && !isTextSizeMd ? '© smoBEE' : '© 2024 smoBEE & Cake'} | ${tileProvider.attribution}`"
 					:name="tileProvider.name"
 					:url="tileProvider.url"
-					:visible="tileProvider.visible"
+					:visible="false"
 					layer-type="base"
 				/>
 
@@ -191,7 +189,7 @@
 	import { computed, onBeforeMount, reactive, ref, toRefs, useAttrs, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import { useGeolocation, useDebounceFn } from '@vueuse/core';
-	import {
+	import L, {
 		LatLng,
 		LatLngExpression,
 		LayersControlEvent,
@@ -199,10 +197,11 @@
 		Map,
 		PointExpression,
 	} from 'leaflet';
+	import { maplibreGL } from '@maplibre/maplibre-gl-leaflet';
+	import 'maplibre-gl/dist/maplibre-gl.css';
 	import {
 		LMap,
 		LTileLayer,
-		LControlLayers,
 		LControlScale,
 		LControlZoom,
 		LCircle,
@@ -320,87 +319,151 @@
 		panel: 'btn',
 	};
 
-	// 可用的地圖底圖供應商列表
-	const tileProviders = reactive([
-		// --- 1. 標準現代化風格 (適合淺色模式預設) ---
+	// CARTO API Key
+	const CARTO_KEY = import.meta.env.VITE_CARTO_API_KEY;
+
+	/**
+	 * CARTO Vector Basemap 供應商定義 (使用 MapLibre GL style.json)
+	 * 依官方遷移表：rastertiles/voyager → voyager-gl-style, light_all → positron-gl-style, dark_all → dark-matter-gl-style
+	 */
+	const vectorProviders = [
 		{
 			name: 'CartoDB_Voyager',
-			url: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY}`,
+			styleUrl: `https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json?key=${CARTO_KEY}`,
 			attribution:
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-			visible: false,
-			// 特色：視覺現代化且乾淨，顏色比 OSM 輕盈，非常適合作為 Web App 的預設底圖，能讓上方的圖釘（Marker）更顯眼。
+			// 特色：視覺現代化且乾淨，非常適合作為 Web App 的預設底圖，Vector 版本畫質更銳利。
 		},
+		{
+			name: 'CartoDB_Positron',
+			styleUrl: `https://basemaps.cartocdn.com/gl/positron-gl-style/style.json?key=${CARTO_KEY}`,
+			attribution:
+				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+			// 特色：極簡灰白底圖，最適合「數據視覺化」，能極大化突出彩色圖釘。
+		},
+		{
+			name: 'CartoDB_DarkMatter',
+			styleUrl: `https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json?key=${CARTO_KEY}`,
+			attribution:
+				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+			// 特色：經典深色地圖，與螢光色系的圖釘配合效果極佳。
+		},
+	];
+
+	/**
+	 * Raster Tile 供應商列表 (非 CARTO，繼續使用 l-tile-layer)
+	 * 順序同原有設計
+	 */
+	const rasterTileProviders = reactive([
+		// --- 1. 標準現代化風格 ---
 		{
 			name: 'OpenStreetMap',
 			url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 			attribution:
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			visible: false,
-			// 特色：全球最知名的開源地圖，資訊量最完整（含門牌、小徑），但視覺配色較為繽紛，適合導航或資訊查詢。
+			// 特色：全球最知名的開源地圖，資訊量最完整（含門牌、小徑）。
 		},
-		{
-			name: 'CartoDB_Positron',
-			url: `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY}`,
-			attribution:
-				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-			visible: false,
-			// 特色：極簡主義的灰白底圖，幾乎濾掉了所有鮮豔色彩，最適合用於「數據視覺化」，能極大化突出熱點圖或彩色圖釘。
-		},
-
-		// --- 2. 深色質感風格 (適合深色模式預設) ---
-		{
-			name: 'CartoDB_DarkMatter',
-			url: `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY}`,
-			attribution:
-				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-			visible: false,
-			// 特色：最經典的深色地圖，以黑灰色調為主，能減輕長時間閱讀的視覺疲勞，與螢光色系的圖釘配合效果極佳。
-		},
+		// --- 2. 深色質感風格 ---
 		{
 			name: 'Stadia_AlidadeSmoothDark',
 			url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
 			attribution:
 				'&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			visible: false,
-			// 特色：比 DarkMatter 稍微帶一點深藍感，標籤印刷感較強，層次分明，是極具質感的深色底圖選擇。
+			// 特色：帶深藍感，標籤印刷感較強，層次分明。
 		},
-
-		// --- 3. 地理與功能性風格 (特殊需求) ---
+		// --- 3. 地理與功能性風格 ---
 		{
 			name: 'OpenTopoMap',
 			url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
 			attribution:
 				'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
-			visible: false,
-			// 特色：強調「等高線」與「地形渲染」，風格偏向傳統紙本地圖，非常適合戶外活動、登山或地理特徵分析。
+			// 特色：強調等高線與地形渲染，適合戶外活動。
 		},
 		{
 			name: 'Esri_WorldImagery',
 			url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 			attribution:
 				'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EBP, and the GIS User Community',
-			visible: false,
-			// 特色：高解析度衛星影像，能看到真實的建物屋頂與植被，通常用於輔助確認具體位置的周邊實景。
+			// 特色：高解析度衛星影像。
 		},
 		{
 			name: 'CyclOSM',
 			url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
 			attribution:
 				'<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - OpenStreetMap bicycle layer">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			visible: false,
-			// 特色：專為「單車騎士」設計，會特別標註單車道、修車店、坡度等資訊，若 App 與運動相關則非常實用。
+			// 特色：專為單車騎士設計。
 		},
 	]);
 
+	// 用於儲存 maplibreGL layer 實例（key = provider name）
+	const glLayers = new Map<string, ReturnType<typeof maplibreGL>>();
+	// 用於儲存 raster layer 實例（key = provider name）
+	const rasterLayers = new Map<string, L.TileLayer>();
+	// 原生 Leaflet layers control 實例
+	let nativeLayersControl: L.Control.Layers | null = null;
+	// 目前顯示中的 provider name
+	const currentProvider = ref<string>('');
+
 	/**
-	 * 切換地圖圖層
-	 * @param targetProvider 目標圖層
+	 * 初始化所有地圖圖層並建立原生 Layers Control
+	 * 在 map @ready 後呼叫，統一管理 raster + vector GL layers
+	 */
+	const initLayersControl = (map: Map) => {
+		const appAttribution = isMobile.value && !isTextSizeMd.value ? '© smoBEE' : '© 2024 smoBEE & Cake';
+		const baseLayers: Record<string, L.Layer> = {};
+
+		// 建立 Raster layers
+		rasterTileProviders.forEach((provider) => {
+			const layer = L.tileLayer(provider.url, {
+				attribution: `${appAttribution} | ${provider.attribution}`,
+			});
+			rasterLayers.set(provider.name, layer);
+			baseLayers[provider.name] = layer;
+		});
+
+		// 建立 CARTO Vector GL layers
+		vectorProviders.forEach((provider) => {
+			const glLayer = maplibreGL({
+				style: provider.styleUrl,
+				attribution: `${appAttribution} | ${provider.attribution}`,
+			});
+			glLayers.set(provider.name, glLayer);
+			baseLayers[provider.name] = glLayer as unknown as L.Layer;
+		});
+
+		// 建立原生 Leaflet layers control，掛到 bottomleft
+		nativeLayersControl = L.control.layers(baseLayers, undefined, { position: 'bottomleft' });
+		nativeLayersControl.addTo(map);
+
+		// 監聽 baselayerchange 以同步 currentProvider 狀態
+		map.on('baselayerchange', (e: L.LayersControlEvent) => {
+			onBaseLayerChange(e);
+		});
+	};
+
+	/**
+	 * 切換地圖圖層（需在 initLayersControl 後才可使用）
+	 * @param targetProvider 目標圖層名稱
 	 */
 	const changeTileProvider = (targetProvider: string) => {
-		tileProviders.forEach((provider) => {
-			provider.visible = provider.name === targetProvider;
-		});
+		if (!leafletMap.value) return;
+		const map = leafletMap.value;
+
+		// 移除目前顯示中的 layer
+		if (currentProvider.value) {
+			const prevGl = glLayers.get(currentProvider.value);
+			const prevRaster = rasterLayers.get(currentProvider.value);
+			if (prevGl) map.removeLayer(prevGl as unknown as L.Layer);
+			if (prevRaster) map.removeLayer(prevRaster);
+		}
+
+		// 加入目標 layer
+		const targetGl = glLayers.get(targetProvider);
+		const targetRaster = rasterLayers.get(targetProvider);
+		if (targetGl) (targetGl as unknown as L.Layer).addTo(map);
+		else if (targetRaster) targetRaster.addTo(map);
+
+		currentProvider.value = targetProvider;
 	};
 
 	/**
@@ -581,12 +644,12 @@
 	};
 
 	/**
-	 * 當使用者手動透過 Leaflet Control 切換底圖時觸發
-	 * 用於保持 tileProviders 資料與 Leaflet 內部狀態同步
+	 * 當使用者手動透過 Layers Control 切換底圖時觸發
+	 * 用於同步 currentProvider 狀態並儲存選擇
 	 */
-	const onBaseLayerChange = (e: LayersControlEvent) => {
+	const onBaseLayerChange = (e: L.LayersControlEvent) => {
 		const selectedProvider = e.name;
-		changeTileProvider(selectedProvider);
+		currentProvider.value = selectedProvider;
 
 		// 儲存使用者手動選擇的結果
 		localStorage.setItem(PROVIDER_STORAGE_KEY, selectedProvider);
@@ -612,16 +675,22 @@
 		}
 	};
 
+	/**
+	 * 地圖 ready 事件：初始化 layers control 並顯示預設底圖
+	 * 必須在 map 實例建立後才能建立 GL layers
+	 */
+	const onMapReady = (map: Map) => {
+		leafletMap.value = map;
+		initLayersControl(map);
+
+		// 嘗試載入使用者上次選擇的圖層，若無則根據深淺色模式指定預設圖層
+		const userProvider = localStorage.getItem(PROVIDER_STORAGE_KEY);
+		changeTileProvider(userProvider || leaflet_provider_mode.value);
+	};
+
 	// 組件掛載前預設停止定位追蹤，節省資源
 	onBeforeMount(() => {
 		pause();
-
-		/**
-		 * 初始化時嘗試載入使用者上次選擇的圖層
-		 * 若無則根據深淺色模式指定預設圖層
-		 */
-		const userProvider = localStorage.getItem(PROVIDER_STORAGE_KEY);
-		changeTileProvider(userProvider || leaflet_provider_mode.value);
 	});
 
 	// 暴露 API 供父組件使用
