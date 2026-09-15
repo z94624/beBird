@@ -4,23 +4,28 @@ import { colors } from 'quasar';
 const { lighten } = colors;
 
 /**
- * 鳥科色相調色盤
- * 根據 familyCode 的 hash 值循環取色，確保顏色區隔明顯
- * 使用能清楚在地圖上辨識的飽和色
+ * 鳥科色相調色盤 (12 色)
+ * 根據 familyCode 的 hash 值循環取色，確保顏色區隔明顯。
+ *
+ * 色彩設計標準（兼顧深淺色模式）：
+ * 1. 與白色圖標（#ffffff）具備 WCAG AA 圖形對比度（>= 3.0:1），避免亮黃/淺青色反白不可辨
+ * 2. 在淺色底圖（CartoDB Voyager）有足夠邊界與對比（>= 2.8:1）
+ * 3. 在深色底圖（CartoDB DarkMatter）具備足夠鮮活度與辨識度（>= 3.7:1），避免深藍/暗紫沉底
+ * 4. 12 種色相在色輪上均勻分佈，相鄰科別可迅速肉眼區分
  */
 const FAMILY_HUE_PALETTE: string[] = [
-	'#e05c5c', // 紅
-	'#e0935c', // 橙
-	'#d4b800', // 黃
-	'#5cb85c', // 綠
-	'#5cb8a0', // 青綠
-	'#5c9ae0', // 藍
-	'#7b5ce0', // 靛紫
-	'#c05ce0', // 紫
-	'#e05ca8', // 粉紅
-	'#5ce0d0', // 水藍
-	'#a0c05c', // 黃綠
-	'#e0c45c', // 金黃
+	'#ef4444', // 紅 (Crimson Red)
+	'#ea580c', // 橙 (Warm Orange)
+	'#d97706', // 琥珀金 (Amber Gold，取代易反白的淡黃)
+	'#65a30d', // 萊姆綠 (Lime Green)
+	'#16a34a', // 翠綠 (Emerald Green)
+	'#0d9488', // 青綠/松石 (Teal)
+	'#0891b2', // 湖藍/青 (Ocean Cyan，取代易反白的水藍)
+	'#3b82f6', // 寶藍 (Royal Blue)
+	'#6366f1', // 靛青 (Indigo)
+	'#a855f7', // 紫羅蘭 (Purple)
+	'#d946ef', // 洋紅/桃紅 (Magenta)
+	'#f43f5e', // 玫瑰紅 (Rose)
 ];
 
 /**
