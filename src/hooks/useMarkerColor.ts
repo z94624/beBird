@@ -1,7 +1,7 @@
 import { type Ref, isRef } from 'vue';
 import { colors } from 'quasar';
 
-const { lighten } = colors;
+const { getPaletteColor, lighten } = colors;
 
 /**
  * 鳥科色相調色盤 (12 色)
@@ -48,6 +48,38 @@ const getBaseColorByFamily = (familyCode: string): string => {
 };
 
 /**
+ * 預設基準主色（Quasar primary）
+ */
+export const DEFAULT_MARKER_BASE_COLOR = getPaletteColor('primary');
+
+/**
+ * 最大淡化百分比（保留最低飽和度以供辨識）
+ */
+export const MAX_LIGHTEN_PERCENT = 55;
+
+/**
+ * 根據天數計算淡化顏色（單一真相來源）
+ * @param days 距今天數（0 為今天，數字越大越久遠）
+ * @param maxDays 最大天數區間（預設 30）
+ * @param baseColor 基礎色相（預設為 primary）
+ * @returns 淡化後的 Hex 顏色字串
+ */
+export const getDaysLightenColor = (
+	days: number,
+	maxDays = 30,
+	baseColor = DEFAULT_MARKER_BASE_COLOR
+): string => {
+	// ratio: 0（今天/最新）→ 1（最舊），線性漸淡
+	const ratio = Math.min(Math.max(days, 0) / maxDays, 1);
+
+	// lighten 百分比：0%（不淡化）→ 55%（大幅淡化）
+	// 保留最低飽和感，避免過淡難以辨認
+	const lightenPercent = Math.round(ratio * MAX_LIGHTEN_PERCENT);
+
+	return lighten(baseColor, lightenPercent);
+};
+
+/**
  * 圖釘顏色 Composable
  *
  * 顏色策略：
@@ -68,19 +100,12 @@ export const useMarkerColor = (maxDays: number | Ref<number> = 30) => {
 	 */
 	const getMarkerColor = (familyCode: string | undefined, days: number): string => {
 		// 無科資訊時 fallback 為 primary 色
-		const baseColor = familyCode ? getBaseColorByFamily(familyCode) : '#6d6ae4';
+		const baseColor = familyCode ? getBaseColorByFamily(familyCode) : DEFAULT_MARKER_BASE_COLOR;
 
 		// 每次取用最新的 maxDays（支援 Ref 響應式）
 		const max = isRef(maxDays) ? maxDays.value : maxDays;
 
-		// ratio: 0（今天/最新）→ 1（最舊），線性漸淡
-		const ratio = Math.min(Math.max(days, 0) / max, 1);
-
-		// lighten 百分比：0%（不淡化）→ 55%（大幅淡化）
-		// 保留最低飽和感，避免過淡難以辨認
-		const lightenPercent = Math.round(ratio * 55);
-
-		return lighten(baseColor, lightenPercent);
+		return getDaysLightenColor(days, max, baseColor);
 	};
 
 	return { getMarkerColor };
