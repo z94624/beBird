@@ -59,6 +59,14 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.6',
+		releaseDate: '2026/09/16',
+		features: [
+			'Enhanced map markers with dynamic hue and lightness: distinct hues correspond to bird families (familyCode) for intuitive classification, while lightness dynamically fades from deep to light based on observation recency (obsDt).',
+			'Synchronized DaysBackSlider visual design with marker freshness, featuring a left-to-right (light to deep) gradient track and real-time color-reactive slider thumb and label.',
+		],
+	},
+	{
 		version: '1.2.5',
 		releaseDate: '2026/09/10',
 		fixes: ['Patched API key to CARTO, a tile provider of Leaflet.'],
