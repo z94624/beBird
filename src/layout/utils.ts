@@ -59,6 +59,11 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.5',
+		releaseDate: '2026/09/10',
+		fixes: ['Patched API key to CARTO, a tile provider of Leaflet.'],
+	},
+	{
 		version: '1.2.4',
 		releaseDate: '2026/08/20',
 		features: [

@@ -10,25 +10,25 @@
 
 ## ✨ 核心特色 (Features)
 
--   **🗺️ 互動式生態地圖 (Interactive Eco-Map)**：基於 Leaflet 開發，整合地理圖資，視覺化呈現鳥類觀測熱點與稀有鳥種出沒位置，支援標記聚合 (Marker Clustering)。
--   **🦅 稀有鳥種追蹤 (Rare Birds Tracking)**：串接 eBird API，即時獲取熱門與稀有鳥種觀測數據，讓您不漏接任何生態動態。
--   **🌤️ 即時氣象與日地動態 (Live Weather & Sun Activity)**：結合 Tomorrow.io 即時天氣資料與日出日落時間，輔助規劃最佳賞鳥行程，日夜間自動切換不同視覺。
--   **📱 漸進式網頁應用 (PWA Support)**：支援 PWA 安裝，可於行動裝置上享有如原生 App 般的順暢體驗，提供離線支援基礎體驗。
--   **🌗 現代化 UI/UX 體驗 (Modern UI/UX)**：支援深淺色模式（Dark/Light Mode）無縫切換，並針對電腦與行動裝置提供流暢的響應式體驗 (RWD)。
--   **🌐 多語系支援 (i18n)**：內建完整的國際化多國語系架構，支援使用者切換不同語言介面。
--   **☁️ 雲端服務整合 (Cloud Integration)**：藉由 Firebase 提供穩定的後端服務，並且整合 EmailJS 提供聯絡客服等傳遞模組。
--   **🎨 動態視覺回饋 (Dynamic UI Feedback)**：結合 Quasar 與 Tailwind CSS，帶來高質感的過場動畫與流暢的元件互動。
+- **🗺️ 互動式生態地圖 (Interactive Eco-Map)**：基於 Leaflet 開發，整合地理圖資，視覺化呈現鳥類觀測熱點與稀有鳥種出沒位置，支援標記聚合 (Marker Clustering)。
+- **🦅 稀有鳥種追蹤 (Rare Birds Tracking)**：串接 eBird API，即時獲取熱門與稀有鳥種觀測數據，讓您不漏接任何生態動態。
+- **🌤️ 即時氣象與日地動態 (Live Weather & Sun Activity)**：結合 Tomorrow.io 即時天氣資料與日出日落時間，輔助規劃最佳賞鳥行程，日夜間自動切換不同視覺。
+- **📱 漸進式網頁應用 (PWA Support)**：支援 PWA 安裝，可於行動裝置上享有如原生 App 般的順暢體驗，提供離線支援基礎體驗。
+- **🌗 現代化 UI/UX 體驗 (Modern UI/UX)**：支援深淺色模式（Dark/Light Mode）無縫切換，並針對電腦與行動裝置提供流暢的響應式體驗 (RWD)。
+- **🌐 多語系支援 (i18n)**：內建完整的國際化多國語系架構，支援使用者切換不同語言介面。
+- **☁️ 雲端服務整合 (Cloud Integration)**：藉由 Firebase 提供穩定的後端服務，並且整合 EmailJS 提供聯絡客服等傳遞模組。
+- **🎨 動態視覺回饋 (Dynamic UI Feedback)**：結合 Quasar 與 Tailwind CSS，帶來高質感的過場動畫與流暢的元件互動。
 
 ## 🛠️ 技術棧 (Tech Stack)
 
--   **前端框架 (Framework)**：[Vue 3](https://vuejs.org/) (Composition API, `<script setup>`) + [Vite](https://vitejs.dev/)
--   **UI 框架 (UI Library)**：[Quasar Framework](https://quasar.dev/)
--   **樣式處理 (Styling)**：[Tailwind CSS](https://tailwindcss.com/) + SCSS + PostCSS
--   **狀態管理 (State Management)**：[Pinia](https://pinia.vuejs.org/)
--   **路由管理 (Routing)**：[Vue Router](https://router.vuejs.org/)
--   **地圖引擎 (Map Engine)**：[Leaflet](https://leafletjs.com/) & [@vue-leaflet/vue-leaflet](https://ui.vueland.bg/)
--   **後端與雲端 (Backend & Cloud)**：[Firebase](https://firebase.google.com/) (Vuefire), EmailJS
--   **其他工具 (Utilities)**：Axios, Dayjs, ESLint, Prettier, TypeScript
+- **前端框架 (Framework)**：[Vue 3](https://vuejs.org/) (Composition API, `<script setup>`) + [Vite](https://vitejs.dev/)
+- **UI 框架 (UI Library)**：[Quasar Framework](https://quasar.dev/)
+- **樣式處理 (Styling)**：[Tailwind CSS](https://tailwindcss.com/) + SCSS + PostCSS
+- **狀態管理 (State Management)**：[Pinia](https://pinia.vuejs.org/)
+- **路由管理 (Routing)**：[Vue Router](https://router.vuejs.org/)
+- **地圖引擎 (Map Engine)**：[Leaflet](https://leafletjs.com/) & [@vue-leaflet/vue-leaflet](https://ui.vueland.bg/)
+- **後端與雲端 (Backend & Cloud)**：[Firebase](https://firebase.google.com/) (Vuefire), EmailJS
+- **其他工具 (Utilities)**：Axios, Dayjs, ESLint, Prettier, TypeScript
 
 ## 📂 專案結構 (Project Structure)
 
@@ -106,25 +106,25 @@ npm run build
 
 ## 🧑‍💻 指令碼 (Scripts)
 
--   `npm run dev`：啟動開發伺服器 (本地測試用)
--   `npm run build`：執行 TypeScript 檢查並打包生產環境部署檔
--   `npm run preview`：預覽打包後的發佈版本
--   `npm run lint`：執行 ESLint 自動修復程式碼規範
--   `npm run format`：使用 Prettier 格式化所有程式碼與樣式設定
+- `npm run dev`：啟動開發伺服器 (本地測試用)
+- `npm run build`：執行 TypeScript 檢查並打包生產環境部署檔
+- `npm run preview`：預覽打包後的發佈版本
+- `npm run lint`：執行 ESLint 自動修復程式碼規範
+- `npm run format`：使用 Prettier 格式化所有程式碼與樣式設定
 
 ## 📡 資源與資料來源 (Attributions)
 
 本專案的順利運作仰賴以下優質的開源專案與第三方資料服務，特此致謝：
 
--   **地圖與地理 (Map & Geo)**
-    -   [Leaflet](https://leafletjs.com/) - 互動式地圖核心
--   **資料與服務 (API & Service)**
-    -   [eBird API 2.0](https://ebird.org/home) (Cornell Lab of Ornithology) - 核心鳥類觀測數據
-    -   [Tomorrow.io](https://www.tomorrow.io/) - 即時天氣 API
-    -   [SunriseSunset.io](https://sunrisesunset.io/) - 日出日落時間 API
--   **視覺設計 (Design & UI)**
-    -   Weather Animated Icons by [Freepik - Flaticon](https://www.flaticon.com/animated-icons)
-    -   [Lovart.ai](https://www.lovart.ai/)
+- **地圖與地理 (Map & Geo)**
+    - [Leaflet](https://leafletjs.com/) - 互動式地圖核心
+- **資料與服務 (API & Service)**
+    - [eBird API 2.0](https://ebird.org/home) (Cornell Lab of Ornithology) - 核心鳥類觀測數據
+    - [Tomorrow.io](https://www.tomorrow.io/) - 即時天氣 API
+    - [SunriseSunset.io](https://sunrisesunset.io/) - 日出日落時間 API
+- **視覺設計 (Design & UI)**
+    - Weather Animated Icons by [Freepik - Flaticon](https://www.flaticon.com/animated-icons)
+    - [Lovart.ai](https://www.lovart.ai/)
 
 ## 📄 授權條款 (License)
 
