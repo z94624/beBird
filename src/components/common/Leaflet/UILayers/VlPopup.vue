@@ -20,24 +20,45 @@
 
 				<q-card-actions
 					align="center"
-					class="no-wrap !px-2 !py-0"
+					class="!px-2 !py-0"
 				>
 					<slot name="buttons">
-						<BaseButton
-							:label="$t('common.detail')"
-							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
-							class="flex-1"
-							color="primary"
-							icon="o_info"
-							@click="emit('detail')"
-						/>
-						<HrefButton
-							:href="navigationUrl"
-							:icon="mdiCarArrowRight"
-							:label="$t('common.navigation')"
-							:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
-							color="secondary"
-						/>
+						<div class="flex w-full flex-col gap-1">
+							<!-- 細節按鈕 -->
+							<BaseButton
+								:label="$t('common.detail')"
+								:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
+								class="w-full"
+								color="primary"
+								icon="o_info"
+								@click="emit('detail')"
+							/>
+
+							<q-btn-group
+								class="externalActions w-full"
+								push
+								spread
+							>
+								<!-- 清單按鈕 -->
+								<HrefButton
+									v-if="checklistUrl"
+									:href="checklistUrl"
+									:label="$t('common.checklist')"
+									:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
+									color="secondary"
+									icon="list_alt"
+								/>
+								<!-- 導航按鈕 -->
+								<HrefButton
+									v-if="navigationUrl"
+									:href="navigationUrl"
+									:icon="mdiCarArrowRight"
+									:label="$t('common.navigation')"
+									:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
+									color="secondary"
+								/>
+							</q-btn-group>
+						</div>
 					</slot>
 				</q-card-actions>
 
@@ -67,6 +88,7 @@
 
 	const props = defineProps<{
 		options?: PopupOptions;
+		checklistUrl?: string;
 		navigationUrl?: string;
 	}>();
 
@@ -85,6 +107,13 @@
 <style lang="scss" scoped>
 	.popupCard {
 		border-radius: 0.75rem;
+
+		// 外連工具列群組：統一視覺風格
+		.externalActions {
+			:deep(.q-btn) {
+				flex: 1;
+			}
+		}
 
 		// 字體大小 text-sizes.scss
 		.remark {

@@ -12,6 +12,13 @@ export const getDateDiffFromNow = (obsDt: string): number => {
 };
 
 /**
+ * 取得 eBird 紀錄清單 URL
+ * @param subId 清單代碼
+ * @returns 紀錄清單 URL
+ */
+export const getChecklistURL = (subId: string): string => `https://ebird.org/checklist/${subId}`;
+
+/**
  * 取得 Google Maps 任意地點 URL
  * @param lat 緯度
  * @param lng 經度

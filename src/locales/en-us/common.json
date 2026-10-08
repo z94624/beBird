@@ -22,6 +22,7 @@
 	"country": "Country",
 	"region": "Region",
 	"back": "Time Interval (days ago)",
+	"checklist": "Checklist",
 	"detail": "Detail",
 	"navigation": "Navigation"
 }

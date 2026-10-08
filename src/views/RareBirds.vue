@@ -54,6 +54,7 @@
 				</VlTooltip>
 
 				<VlPopup
+					:checklist-url="getChecklistURL(obs.subId)"
 					:navigation-url="getGoogleMapsPlaceURL(obs.lat, obs.lng)"
 					@detail="onOpenRbMarkerDetailDialog(obs)"
 				>
@@ -117,7 +118,7 @@
 	import { useTaxonomyStore } from '@/store/modules/taxonomy';
 	import { GeoDataEnum } from '@/models/enum/geoEnum';
 	import { MarkerClickEvent } from '@/components/common/Leaflet/types';
-	import { getDateDiffFromNow, getGoogleMapsPlaceURL } from '@/utils/ebird';
+	import { getDateDiffFromNow, getChecklistURL, getGoogleMapsPlaceURL } from '@/utils/ebird';
 
 	const { t, locale } = useI18n();
 	const { $notify, $loading } = useQuasarTool();
