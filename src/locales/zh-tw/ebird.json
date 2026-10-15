@@ -8,6 +8,10 @@
 		"checklist": "紀錄清單",
 		"note": "註",
 		"source": "資料來源",
-		"listInfoCopied": "已複製紀錄清單資訊"
+		"listInfoCopied": "已複製紀錄清單資訊",
+		"observer": "觀察者",
+		"species": "共 {count} 種",
+		"openChecklist": "開啟原始清單",
+		"observerNotes": "觀察備註"
 	}
 }

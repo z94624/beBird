@@ -8,6 +8,10 @@
 		"checklist": "Checklist",
 		"note": "Note",
 		"source": "Source",
-		"listInfoCopied": "The checklist info is copied"
+		"listInfoCopied": "The checklist info is copied",
+		"observer": "Observer",
+		"species": "{count} Species",
+		"openChecklist": "Open Original Checklist",
+		"observerNotes": "Checklist Comments"
 	}
 }

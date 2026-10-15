@@ -8,6 +8,10 @@
 		"checklist": "قائمة الرصد",
 		"note": "ملاحظة",
 		"source": "المصدر",
-		"listInfoCopied": "تم نسخ معلومات القائمة"
+		"listInfoCopied": "تم نسخ معلومات القائمة",
+		"observer": "الراصد",
+		"species": "إجمالي {count} نوع",
+		"openChecklist": "فتح القائمة الأصلية",
+		"observerNotes": "تعليقات القائمة"
 	}
 }

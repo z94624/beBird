@@ -8,6 +8,10 @@
 		"checklist": "Liste de contrôle",
 		"note": "Note",
 		"source": "Source",
-		"listInfoCopied": "Informations de la liste copiées"
+		"listInfoCopied": "Informations de la liste copiées",
+		"observer": "Observateur",
+		"species": "{count} espèces au total",
+		"openChecklist": "Ouvrir la liste originale",
+		"observerNotes": "Commentaires de la liste"
 	}
 }

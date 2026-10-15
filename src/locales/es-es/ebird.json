@@ -8,6 +8,10 @@
 		"checklist": "Lista de verificación",
 		"note": "Nota",
 		"source": "Fuente",
-		"listInfoCopied": "Información de la lista de verificación copiada"
+		"listInfoCopied": "Información de la lista de verificación copiada",
+		"observer": "Observador",
+		"species": "{count} especies en total",
+		"openChecklist": "Abrir lista original",
+		"observerNotes": "Comentarios de la lista"
 	}
 }

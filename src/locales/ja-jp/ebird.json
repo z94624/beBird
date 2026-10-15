@@ -8,6 +8,10 @@
 		"checklist": "チェックリスト",
 		"note": "備考",
 		"source": "出典",
-		"listInfoCopied": "チェックリスト情報をコピーしました"
+		"listInfoCopied": "チェックリスト情報をコピーしました",
+		"observer": "観察者",
+		"species": "全 {count} 種",
+		"openChecklist": "元のチェックリストを開く",
+		"observerNotes": "観察コメント"
 	}
 }
