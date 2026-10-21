@@ -1,8 +1,12 @@
 <template>
-	<Checklist
-		:info="checklistInfo || []"
-		:notableSpeciesCode="notableObs?.speciesCode"
-	/>
+	<div class="rbMarkerDetailList flex flex-col gap-3">
+		<ChecklistDetailCard :info="checklistInfo || []" />
+
+		<Checklist
+			:info="checklistInfo || []"
+			:notableSpeciesCode="notableObs?.speciesCode"
+		/>
+	</div>
 </template>
 
 <script lang="ts" setup>
