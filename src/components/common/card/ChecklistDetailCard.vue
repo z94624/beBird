@@ -4,11 +4,11 @@
 		flat
 	>
 		<q-chat-message
+			:bg-color="isDarkMode ? 'grey-9' : 'grey-2'"
 			:name="messageName"
 			:stamp="info?.obsDt"
-			bg-color="primary"
+			:text-color="text_name_mode"
 			size="11"
-			text-color="white"
 		>
 			<template #default>
 				<!-- 清單按鈕 -->
@@ -18,6 +18,7 @@
 					:label="$t('ebird.info.checklist')"
 					:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 					color="secondary"
+					dense
 					icon="list_alt"
 				/>
 
@@ -34,7 +35,7 @@
 
 	import { IPRODUCTGetViewChecklistRes } from '@/models/product/product';
 
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 	import { getChecklistURL } from '@/utils/ebird';
 
 	const props = defineProps<{
@@ -45,6 +46,8 @@
 	const { t } = useI18n();
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { isDarkMode, text_name_mode } = toRefs(modeStore);
 
 	// 清單連結
 	const checklistUrl = computed(() => props.info?.subId && getChecklistURL(props.info.subId));

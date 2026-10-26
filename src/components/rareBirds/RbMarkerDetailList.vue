@@ -1,5 +1,5 @@
 <template>
-	<div class="rbMarkerDetailList flex flex-col gap-3">
+	<div class="rbMarkerDetailList flex flex-col gap-2">
 		<!-- 清單摘要資訊 -->
 		<ChecklistDetailCard
 			:info="checklistInfo"

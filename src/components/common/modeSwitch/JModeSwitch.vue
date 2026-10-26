@@ -168,9 +168,9 @@
 
 	const $q = useQuasar();
 	const modeStore = useModeStore();
-	const { mode } = toRefs(modeStore);
+	const { mode, isDarkMode } = toRefs(modeStore);
 
-	const dark = computed(() => (mode.value === ModeEnum.DARK ? 1 : 0));
+	const dark = computed(() => (isDarkMode.value ? 1 : 0));
 
 	/**
 	 * 監聽模式切換

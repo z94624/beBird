@@ -95,31 +95,32 @@ export const useModeStore = defineStore('mode', () => {
 	const userMode = localStorage.getItem('mode') as ModeEnum | null;
 	const mode = ref(userMode ?? ModeEnum.LIGHT);
 
+	const isLightMode = computed(() => mode.value === ModeEnum.LIGHT);
+	const isDarkMode = computed(() => mode.value === ModeEnum.DARK);
+
 	/**
 	 * 給需要依據模式自訂樣式的
 	 */
 	// 背景色
-	const bg_class_mode = computed(() =>
-		mode.value === ModeEnum.LIGHT ? 'bg-lightBg' : 'bg-dark'
-	);
+	const bg_class_mode = computed(() => (isLightMode.value ? 'bg-lightBg' : 'bg-dark'));
 	const bg_name_mode = computed(() => bg_class_mode.value.split('-')[1]);
 
 	// 文字色
 	const text_class_mode = computed(() =>
-		mode.value === ModeEnum.LIGHT ? 'text-lightText' : 'text-darkText'
+		isLightMode.value ? 'text-lightText' : 'text-darkText'
 	);
 	const text_name_mode = computed(() => text_class_mode.value.split('-')[1]);
 
 	// 地圖圖層
 	const leaflet_provider_mode = computed(() =>
-		mode.value === ModeEnum.DARK ? 'CartoDB_DarkMatter' : 'CartoDB_Voyager'
+		isDarkMode.value ? 'CartoDB_DarkMatter' : 'CartoDB_Voyager'
 	);
 
 	/**
 	 * 切換模式
 	 */
 	const toggleMode = () => {
-		mode.value = mode.value === ModeEnum.LIGHT ? ModeEnum.DARK : ModeEnum.LIGHT;
+		mode.value = isLightMode.value ? ModeEnum.DARK : ModeEnum.LIGHT;
 		localStorage.setItem('mode', mode.value);
 
 		// 更換符合模式的地圖圖層
@@ -129,6 +130,8 @@ export const useModeStore = defineStore('mode', () => {
 	return {
 		toggleMode,
 		mode,
+		isLightMode,
+		isDarkMode,
 		bg_class_mode,
 		bg_name_mode,
 		text_class_mode,
