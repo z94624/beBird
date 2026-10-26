@@ -9,9 +9,10 @@
 		"note": "Note",
 		"source": "Source",
 		"listInfoCopied": "Informations de la liste copiées",
-		"observer": "Observateur",
+		"observer": "Enregistreur",
 		"species": "{count} espèces au total",
-		"openChecklist": "Ouvrir la liste originale",
-		"observerNotes": "Commentaires de la liste"
+		"observerNotes": "Commentaires de la liste",
+		"at": "à",
+		"noComments": "Aucun commentaire"
 	}
 }

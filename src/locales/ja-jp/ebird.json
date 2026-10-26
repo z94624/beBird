@@ -9,9 +9,10 @@
 		"note": "備考",
 		"source": "出典",
 		"listInfoCopied": "チェックリスト情報をコピーしました",
-		"observer": "観察者",
+		"observer": "記録者",
 		"species": "全 {count} 種",
-		"openChecklist": "元のチェックリストを開く",
-		"observerNotes": "観察コメント"
+		"observerNotes": "観察コメント",
+		"at": "於",
+		"noComments": "コメントなし"
 	}
 }

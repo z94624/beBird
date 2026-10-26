@@ -1,7 +1,7 @@
 <template>
 	<q-list class="flex flex-col gap-1">
 		<q-item
-			v-for="(bird, bIdx) in info.obs"
+			v-for="(bird, bIdx) in info?.obs"
 			:key="bIdx"
 			:active="isNotable(bird.speciesCode)"
 			:href="`https://ebird.org/species/${bird.speciesCode}`"
@@ -33,7 +33,7 @@
 	import { IPRODUCTGetViewChecklistRes } from '@/models/product/product';
 
 	const props = defineProps<{
-		info: IPRODUCTGetViewChecklistRes;
+		info?: IPRODUCTGetViewChecklistRes;
 		notableSpeciesCode?: string;
 	}>();
 

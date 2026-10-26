@@ -9,9 +9,10 @@
 		"note": "Hinweis",
 		"source": "Quelle",
 		"listInfoCopied": "Checklisten-Info kopiert",
-		"observer": "Beobachter",
+		"observer": "Erfasser",
 		"species": "Insgesamt {count} Arten",
-		"openChecklist": "Originale Checkliste öffnen",
-		"observerNotes": "Checklisten-Kommentare"
+		"observerNotes": "Checklisten-Kommentare",
+		"at": "in",
+		"noComments": "Keine Kommentare"
 	}
 }

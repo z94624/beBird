@@ -1,9 +1,14 @@
 <template>
 	<div class="rbMarkerDetailList flex flex-col gap-3">
-		<ChecklistDetailCard :info="checklistInfo || []" />
+		<!-- 清單摘要資訊 -->
+		<ChecklistDetailCard
+			:info="checklistInfo"
+			:notableLocName="notableObs?.locName"
+		/>
 
+		<!-- 清單鳥種列表 -->
 		<Checklist
-			:info="checklistInfo || []"
+			:info="checklistInfo"
 			:notableSpeciesCode="notableObs?.speciesCode"
 		/>
 	</div>

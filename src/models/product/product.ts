@@ -50,6 +50,8 @@ export interface IPRODUCTGetViewChecklistRes {
 	subAuxAi?: IPRODUCTGetViewChecklistAuxAi[];
 	subId: string;
 	submissionMethodCode: string;
+	submissionMethodVersion: string;
+	submissionMethodVersionDisp: string;
 	subnational1Code: string;
 	userDisplayName: string;
 }

@@ -9,9 +9,10 @@
 		"note": "Note",
 		"source": "Source",
 		"listInfoCopied": "The checklist info is copied",
-		"observer": "Observer",
+		"observer": "Recorder",
 		"species": "{count} Species",
-		"openChecklist": "Open Original Checklist",
-		"observerNotes": "Checklist Comments"
+		"observerNotes": "Checklist Comments",
+		"at": "at",
+		"noComments": "No comments"
 	}
 }
