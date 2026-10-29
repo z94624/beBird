@@ -47,12 +47,15 @@
 					<q-separator spaced />
 
 					<!-- 鳥種備註 -->
-					<div class="flex items-start gap-1">
+					<div class="no-wrap flex items-start gap-1">
 						<BaseIcon
 							name="notes"
 							size="xs"
 						/>
-						<span class="birdComment text-caption">{{ bird.comments }}</span>
+						<span
+							v-html="bird.comments"
+							class="birdComment text-caption"
+						></span>
 					</div>
 				</div>
 			</q-slide-transition>
