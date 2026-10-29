@@ -33,7 +33,7 @@
 				>
 					<BaseButton
 						:icon="isExpanded(bird.obsId) ? 'chat_bubble' : 'chat_bubble_outline'"
-						:text-color="isNotable(bird.speciesCode) ? 'accent' : 'grey-6'"
+						:text-color="isNotable(bird.speciesCode) ? 'accent' : 'dark'"
 						round
 						size="sm"
 						@click.stop.prevent="toggleCommentButton(bird.obsId)"
