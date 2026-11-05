@@ -5,7 +5,7 @@
 	>
 		<template #default>
 			<q-card
-				class="popupCard flex flex-col gap-2"
+				class="popupCard flex w-full max-w-full flex-col gap-2"
 				flat
 			>
 				<q-card-section class="!px-2 !pb-0 !pt-2">
@@ -106,17 +106,38 @@
 
 <style lang="scss" scoped>
 	.popupCard {
+		width: 100%;
+		max-width: 100%;
+		box-sizing: border-box;
 		border-radius: 0.75rem;
+
+		:deep(.q-card__section),
+		:deep(.q-card__actions) {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+			min-width: 0;
+		}
 
 		// 外連工具列群組：統一視覺風格
 		.externalActions {
 			:deep(.q-btn) {
-				flex: 1;
+				flex: 1 1 0;
+				min-width: 0;
+
+				.q-btn__content {
+					min-width: 0;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
 			}
 		}
 
 		// 字體大小 text-sizes.scss
 		.remark {
+			width: 100%;
+			min-width: 0;
 		}
 	}
 </style>

@@ -62,7 +62,7 @@ $text-size-options: (
 		.leaflet-popup {
 			.leaflet-popup-content-wrapper {
 				.leaflet-popup-content {
-					width: min(#{12.5 * $multiplier}rem, 90vw) !important;
+					width: min(#{15 * $multiplier}rem, 88vw) !important;
 				}
 			}
 		}

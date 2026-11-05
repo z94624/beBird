@@ -65,6 +65,7 @@
 					<template #content>
 						<HrefButton
 							:href="`https://ebird.org/species/${obs.speciesCode}`"
+							:no-wrap="false"
 							class="!w-full"
 						>
 							<q-badge
@@ -76,7 +77,7 @@
 
 							<q-tooltip anchor="top middle">{{ obs.comName }}</q-tooltip>
 
-							<div class="flex items-baseline justify-center gap-1">
+							<div class="flex flex-wrap items-baseline justify-center gap-x-1">
 								<div class="comName-font">
 									{{ taxInfoDict[obs.speciesCode]?.comName ?? obs.comName }}
 								</div>

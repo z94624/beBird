@@ -1,9 +1,9 @@
 <template>
 	<q-btn
 		:="getBindingValues"
+		:no-wrap="noWrap"
 		class="baseButton"
 		no-caps
-		no-wrap
 	>
 		<template
 			#[slot]
@@ -30,10 +30,12 @@
 			square?: boolean;
 			round?: boolean;
 			dense?: boolean;
+			noWrap?: boolean;
 		}>(),
 		{
 			textColor: 'white',
 			color: getContrastColor('white'),
+			noWrap: true,
 		}
 	);
 
