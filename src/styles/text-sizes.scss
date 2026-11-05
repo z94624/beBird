@@ -173,6 +173,14 @@ $text-size-options: (
 			font-size: #{$multiplier}rem;
 		}
 
+		// Chat Message
+		.q-message {
+			.q-message-name,
+			.q-message-stamp {
+				font-size: #{0.8125 * $multiplier}rem;
+			}
+		}
+
 		/**
 		 * Tailwind
 		 */

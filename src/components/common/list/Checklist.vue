@@ -33,9 +33,9 @@
 				>
 					<BaseButton
 						:icon="isExpanded(bird.obsId) ? 'chat_bubble' : 'chat_bubble_outline'"
+						:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
 						:text-color="isNotable(bird.speciesCode) ? 'accent' : 'dark'"
 						round
-						size="sm"
 						@click.stop.prevent="toggleCommentButton(bird.obsId)"
 					/>
 				</q-item-section>
@@ -54,7 +54,7 @@
 						/>
 						<span
 							v-html="bird.comments"
-							class="birdComment text-caption"
+							class="birdComment text-sm"
 						></span>
 					</div>
 				</div>
@@ -64,14 +64,19 @@
 </template>
 
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { ref, toRefs } from 'vue';
 
 	import { IPRODUCTGetViewChecklistRes } from '@/models/product/product';
+
+	import { useTextSizeStore } from '@/store/modules/style';
 
 	const props = defineProps<{
 		info?: IPRODUCTGetViewChecklistRes;
 		notableSpeciesCode?: string;
 	}>();
+
+	const textSizeStore = useTextSizeStore();
+	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
 
 	// 已展開的鳥種備註的 obsId
 	const expandedIds = ref<string[]>([]);
