@@ -34,7 +34,7 @@
 					<BaseButton
 						:icon="isExpanded(bird.obsId) ? 'chat_bubble' : 'chat_bubble_outline'"
 						:size="isTextSizeMd ? 'sm' : isTextSizeLg ? 'md' : 'lg'"
-						:text-color="isNotable(bird.speciesCode) ? 'accent' : 'dark'"
+						:text-color="isNotable(bird.speciesCode) ? 'accent' : text_name_mode"
 						round
 						@click.stop.prevent="toggleCommentButton(bird.obsId)"
 					/>
@@ -68,7 +68,7 @@
 
 	import { IPRODUCTGetViewChecklistRes } from '@/models/product/product';
 
-	import { useTextSizeStore } from '@/store/modules/style';
+	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 
 	const props = defineProps<{
 		info?: IPRODUCTGetViewChecklistRes;
@@ -77,6 +77,8 @@
 
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
+	const modeStore = useModeStore();
+	const { text_name_mode } = toRefs(modeStore);
 
 	// 已展開的鳥種備註的 obsId
 	const expandedIds = ref<string[]>([]);
