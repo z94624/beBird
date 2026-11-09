@@ -224,7 +224,7 @@ export default defineConfig({
 	css: {
 		preprocessorOptions: {
 			scss: {
-				additionalData: `@import "@/styles/global.scss"; @use "@/styles/breakpoints" as *;`,
+				additionalData: `@use "@/styles/breakpoints" as *; @import "@/styles/global.scss";`,
 			},
 		},
 	},
