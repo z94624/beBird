@@ -1,0 +1,49 @@
+// Tailwind CSS Breakpoints Mixins (Mobile-First)
+
+/*
+ * 對應裝置：大尺寸手機 / 小型平板（或橫向放置的手機）。
+ * 說明：這個區間通常涵蓋螢幕較寬的智慧型手機、摺疊機外螢幕，或是較小的平板裝置。
+ */
+@mixin sm {
+    @media (width >= 40rem) { // 640px
+        @content;
+    }
+}
+
+/*
+ * 對應裝置：標準平板電腦（如 iPad 直向）。
+ * 說明：多數傳統平板（如 7.9 吋到 10 吋的 iPad、Android 平板）的直向解析度多落在這個區間起跳。
+ */
+@mixin md {
+    @media (width >= 48rem) { // 768px
+        @content;
+    }
+}
+
+/*
+ * 對應裝置：筆記型電腦 / 平板橫向（Laptop）。
+ * 說明：常見的 13 吋、14 吋筆電，或是橫放的平板電腦。這是許多網頁從「單欄手機版」切換成「多欄電腦版」的常見分界點。
+ */
+@mixin lg {
+    @media (width >= 64rem) { // 1024px
+        @content;
+    }
+}
+
+/*
+ * 對應裝置：桌上型電腦、外接大螢幕、2K/4K 寬螢幕。
+ * 說明：適用於寬螢幕桌機，通常用來限制內容的最大寬度（例如 max-w-7xl mx-auto），避免在超大螢幕上文字被拉得太長而難以閱讀。
+ */
+@mixin xl {
+    @media (width >= 80rem) { // 1280px
+        @content;
+    }
+}
+
+// 註：SCSS 名稱不能以數字開頭，故將 2xl 改為 xxl
+@mixin xxl {
+    @media (width >= 96rem) { // 1536px
+        @content;
+    }
+}
+
