@@ -59,6 +59,18 @@ export const versionList: {
 	perfs?: string[]; // 優化；perf
 }[] = [
 	{
+		version: '1.2.7',
+		releaseDate: '2026/11/09',
+		features: [
+			'Added a checklist button next to the navigation button in the map marker popup, providing direct access to the eBird checklist.',
+			'Displayed checklist-level comments at the top of the checklist detail card.',
+			'Added per-species observation notes in the checklist: a chat bubble icon appears beside species that have comments, clicking it smoothly expands the note inline; notable species with comments are auto-expanded by default.',
+		],
+		fixes: [
+			'Fixed a layout overflow issue in the map marker popup where content (location, species name, buttons, and remarks) occasionally overflowed and lost right-side padding, caused by flex min-content conflicts between the popup container width and long bird names or labels.',
+		],
+	},
+	{
 		version: '1.2.6',
 		releaseDate: '2026/09/16',
 		features: [
