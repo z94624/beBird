@@ -8,7 +8,8 @@
 		"build": "vue-tsc && vite build",
 		"preview": "vite preview",
 		"lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
-		"format": "prettier --ignore-path .gitignore --write \"**/*.+(html|vue|ts|js|json|cjs)\""
+		"format": "prettier --ignore-path .gitignore --write \"**/*.+(html|vue|ts|js|json|cjs)\"",
+		"deploy": "node scripts/deploy.mjs"
 	},
 	"dependencies": {
 		"@number-flow/vue": "^0.4.9",
