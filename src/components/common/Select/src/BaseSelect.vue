@@ -38,7 +38,7 @@
 		}
 	);
 
-	const attrs: Partial<QSelectProps> = useAttrs();
+	const attrs: Partial<QSelectProps> = useAttrs() as any;
 	const slots: Partial<QSelect> = useSlots();
 
 	const selectRef = ref();

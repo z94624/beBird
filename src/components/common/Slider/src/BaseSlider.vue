@@ -23,7 +23,7 @@
 		modelValue?: number | null;
 	}>();
 
-	const attrs: Partial<QSliderProps> = useAttrs();
+	const attrs: Partial<QSliderProps> = useAttrs() as any;
 	const slots: Partial<QSlider> = useSlots();
 
 	const sliderRef = ref();

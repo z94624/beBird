@@ -24,7 +24,7 @@
 		size?: string;
 	}>();
 
-	const attrs: Partial<QChipProps> = useAttrs();
+	const attrs: Partial<QChipProps> = useAttrs() as any;
 	const slots: Partial<QChip> = useSlots();
 	const textSizeStore = useTextSizeStore();
 	const { textSizeMultiplier } = toRefs(textSizeStore);

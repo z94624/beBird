@@ -51,7 +51,7 @@
 		}
 	);
 
-	const attrs: Partial<QSliderProps> = useAttrs();
+	const attrs: Partial<QSliderProps> = useAttrs() as any;
 	const slots: Partial<QSlider> = useSlots();
 	const textSizeStore = useTextSizeStore();
 	const { textSizeMultiplier } = toRefs(textSizeStore);
@@ -68,43 +68,43 @@
 	});
 
 	/**
-	 * 與 useMarkerColor 圖釘淡化程度完全同步的顏色計算
+	 * ??useMarkerColor ?��?淡�?程度完全?�步?��??��?�?
 	 */
-	// 最久遠（天數為 max）：最大淡化程度（淺色）
+	// ?�久�?（天?�為 max）�??�大淡?��?度�?淺色�?
 	const lightestColor = computed(() =>
 		getDaysLightenColor(props.max, props.max, DEFAULT_MARKER_BASE_COLOR)
 	);
 
-	// 最新鮮（天數為 0 或 min）：無淡化（深色 / primary）
+	// ?�?�鮮（天?�為 0 ??min）�??�淡?��?深色 / primary�?
 	const darkestColor = computed(() =>
 		getDaysLightenColor(0, props.max, DEFAULT_MARKER_BASE_COLOR)
 	);
 
-	// 當前滑塊選取天數對應的圖釘淡化色
+	// ?��?滑�??��?天數對�??��??�淡?�色
 	const currentColor = computed(() =>
 		getDaysLightenColor(props.modelValue ?? props.min, props.max, DEFAULT_MARKER_BASE_COLOR)
 	);
 
-	// 軌道漸層色：天數多(久遠)端為淺色，天數少(新鮮)端為深色
-	// 在 reverse = true (預設) 時，左端為 max(淺色)、右端為 min(深色)，呈現「左淺至右深」
+	// 軌�?漸層?��?天數�?久�?)端為淺色，天?��?(?�鮮)端為深色
+	// ??reverse = true (?�設) ?��?左端??max(淺色)?�右端為 min(深色)，�??�「左淺至?�深??
 	const trackGradient = computed(() => {
 		return props.reverse
 			? `linear-gradient(to right, ${lightestColor.value}, ${darkestColor.value})`
 			: `linear-gradient(to right, ${darkestColor.value}, ${lightestColor.value})`;
 	});
 
-	// 動態文字對比色：天數較大(淺色)時使用深色字體，反之使用白色字體，確保 WCAG 可讀性
+	// ?��??��?對�??��?天數較大(淺色)?�使?�深?��?體�??��?使用?�色字�?，確�?WCAG ?��???
 	const labelTextColor = computed(() => {
 		const val = props.modelValue ?? props.min;
 		return val > 12 ? 'var(--q-lightText)' : 'var(--q-darkText)';
 	});
 
 	/**
-	 * Marker 文字顯示
-	 * @param value 幾天以前
+	 * Marker ?��?顯示
+	 * @param value 幾天以�?
 	 */
 	const getMarkerLabels = (value: number): string => {
-		// 只顯示頭尾
+		// ?�顯示頭�?
 		if (![props.min, props.max].includes(value)) return ' ';
 		return `${value}`;
 	};
@@ -114,7 +114,7 @@
 
 <style lang="scss" scoped>
 	.days-back-slider {
-		// 軌道：套用與圖釘淡化同步之由淺至深漸層
+		// 軌�?：�??��??��?淡�??�步之由淺至深漸�?
 		:deep(.q-slider__track) {
 			background: v-bind(trackGradient) !important;
 			height: 6px;
@@ -123,12 +123,12 @@
 			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 		}
 
-		// 選取條設為透明，完整展示全光譜漸層
+		// ?��?條設?�透�?，�??��?示全?��?漸層
 		:deep(.q-slider__selection) {
 			background: transparent !important;
 		}
 
-		// 滑塊顏色同步當前天數淡化色，並帶有精緻立體陰影
+		// 滑�?顏色?�步?��?天數淡�??��?並帶?�精緻�?體陰�?
 		:deep(.q-slider__thumb) {
 			color: v-bind(currentColor) !important;
 		}
@@ -138,18 +138,18 @@
 			transition: filter 0.2s ease;
 		}
 
-		// 浮動標籤（Pin）顏色同步
+		// 浮�?標籤（Pin）�??��?�?
 		:deep(.q-slider__pin) {
 			color: v-bind(currentColor) !important;
 		}
 
-		// 標籤文字確保在不同明度下皆具備清晰對比度
+		// 標籤?��?確�??��??��?度�??�具?��??��?比度
 		:deep(.q-slider__text) {
 			color: v-bind(labelTextColor) !important;
 			font-weight: 700;
 		}
 
-		// 刻度點以半透明質感融入漸層
+		// ?�度點以?�透�?質�??�入漸層
 		:deep(.q-slider__markers) {
 			opacity: 0.55;
 		}

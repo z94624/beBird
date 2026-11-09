@@ -23,7 +23,7 @@
 		show: boolean;
 	}>();
 
-	const attrs: QInnerLoadingProps = useAttrs();
+	const attrs: QInnerLoadingProps = useAttrs() as any;
 	const slots: Partial<QInnerLoading> = useSlots();
 </script>
 

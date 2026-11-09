@@ -39,7 +39,7 @@
 		}
 	);
 
-	const attrs: Partial<QBtnProps> = useAttrs();
+	const attrs: Partial<QBtnProps> = useAttrs() as any;
 	const slots: Partial<QBtn> = useSlots();
 
 	const getBindingValues = computed(() => {
@@ -54,7 +54,7 @@
 	});
 
 	/**
-	 * 計算 Padding
+	 * 計�? Padding
 	 */
 	const getPadding = (): string | undefined => {
 		if (props.padding || props.round || props.dense) {
@@ -65,7 +65,7 @@
 </script>
 
 <style lang="scss" scoped>
-	// 字體大小 text-sizes.scss
+	// 字�?大�? text-sizes.scss
 	.baseButton {
 		font-weight: 700;
 		@include border($color: transparent);

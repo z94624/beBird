@@ -18,7 +18,7 @@
 	import { useAttrs, useSlots } from 'vue';
 	import { QChip, QChipProps } from 'quasar';
 
-	const attrs: Partial<QChipProps> = useAttrs();
+	const attrs: Partial<QChipProps> = useAttrs() as any;
 	const slots: Partial<QChip> = useSlots();
 </script>
 

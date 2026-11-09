@@ -17,7 +17,7 @@
 	import { useAttrs, useSlots } from 'vue';
 	import { QBadge, QBadgeProps } from 'quasar';
 
-	const attrs: Partial<QBadgeProps> = useAttrs();
+	const attrs: Partial<QBadgeProps> = useAttrs() as any;
 	const slots: Partial<QBadge> = useSlots();
 </script>
 

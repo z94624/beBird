@@ -43,14 +43,14 @@
 
 	import { useModeStore, useTextSizeStore } from '@/store/modules/style';
 
-	const attrs: Partial<QBtnProps> = useAttrs();
+	const attrs: Partial<QBtnProps> = useAttrs() as any;
 	const textSizeStore = useTextSizeStore();
 	const { textSizeDict, textSizeMultiplier, textSizeInfo } = toRefs(textSizeStore);
 	const modeStore = useModeStore();
 	const { text_name_mode } = toRefs(modeStore);
 
 	/**
-	 * 選擇網站字體大小
+	 * ?��?網�?字�?大�?
 	 */
 	const onSelectWebsiteTextSize = (dictVal: {
 		nick: string;
@@ -63,8 +63,8 @@
 	};
 
 	/**
-	 * 'data-text-size' attribute 必須設定在 body
-	 * 否則如跳窗透過 portal 方式將無法設定
+	 * 'data-text-size' attribute 必�?設�???body
+	 * ?��?如跳窗透�? portal ?��?將無法設�?
 	 */
 	watch(
 		textSizeInfo,

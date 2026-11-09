@@ -27,7 +27,7 @@
 		status: MigrationStatusEnum;
 	}>();
 
-	const attrs: Partial<QBadgeProps> = useAttrs();
+	const attrs: Partial<QBadgeProps> = useAttrs() as any;
 	const slots: Partial<QBadge> = useSlots();
 
 	const customColor = computed(() => {

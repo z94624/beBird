@@ -27,7 +27,7 @@
 		}
 	);
 
-	const attrs: Partial<QTabsProps> = useAttrs();
+	const attrs: Partial<QTabsProps> = useAttrs() as any;
 	const slots: Partial<QTabs> = useSlots();
 
 	const getBindingValues = computed(() => {

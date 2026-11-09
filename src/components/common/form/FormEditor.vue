@@ -46,11 +46,11 @@
 		tipsColor?: string;
 	}>();
 
-	const attrs: Partial<QEditorProps> = useAttrs();
+	const attrs: Partial<QEditorProps> = useAttrs() as any;
 	const slots: Partial<QEditor> = useSlots();
 
 	/**
-	 * æ˜¯å¦ç‚ºå¿…å¡«
+	 * ?¯å¦?ºå?å¡?
 	 */
 	const isRequired = computed(() => (props.rules || []).indexOf(requiredValid) > -1);
 </script>

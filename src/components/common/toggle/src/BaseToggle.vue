@@ -22,7 +22,7 @@
 		modelValue: any;
 	}>();
 
-	const attrs: Partial<QToggleProps> = useAttrs();
+	const attrs: Partial<QToggleProps> = useAttrs() as any;
 	const slots: Partial<QToggle> = useSlots();
 
 	const toggleRef = ref();

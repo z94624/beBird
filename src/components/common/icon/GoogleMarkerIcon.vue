@@ -33,7 +33,7 @@
 		}
 	);
 
-	const attrs: Partial<QIconProps> = useAttrs();
+	const attrs: Partial<QIconProps> = useAttrs() as any;
 	const slots: Partial<QIcon> = useSlots();
 
 	const { getPaletteColor } = colors;

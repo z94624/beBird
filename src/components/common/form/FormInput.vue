@@ -42,11 +42,11 @@
 		tipsColor?: string;
 	}>();
 
-	const attrs: Partial<QInputProps> = useAttrs();
+	const attrs: Partial<QInputProps> = useAttrs() as any;
 	const slots: Partial<QInput> = useSlots();
 
 	/**
-	 * æ˜¯å¦ç‚ºå¿…å¡«
+	 * ?¯å¦?ºå?å¡?
 	 */
 	const isRequired = computed(() => (props.rules || []).indexOf(requiredValid) > -1);
 </script>

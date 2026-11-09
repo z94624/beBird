@@ -48,12 +48,12 @@
 	}>();
 
 	const props = defineProps<{
-		contentWidth?: string; // 內容寬度
+		contentWidth?: string; // ?�容寬度
 		fullWidth?: boolean;
-		fullscreen?: boolean; // 全螢幕模式
+		fullscreen?: boolean; // ?�螢幕模�?
 	}>();
 
-	const attrs: Partial<QDialogProps> = useAttrs();
+	const attrs: Partial<QDialogProps> = useAttrs() as any;
 	const slots: Partial<QDialog> = useSlots();
 	const modeStore = useModeStore();
 	const { text_name_mode } = toRefs(modeStore);
@@ -62,7 +62,7 @@
 		return {
 			...props,
 			...attrs,
-			// 全螢幕
+			// ?�螢�?
 			maximized: props.fullscreen,
 			fullWidth: props.fullscreen || props.fullWidth,
 			fullHeight: props.fullscreen,

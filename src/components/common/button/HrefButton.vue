@@ -29,7 +29,7 @@
 		}
 	);
 
-	const attrs: Partial<QBtnProps> = useAttrs();
+	const attrs: Partial<QBtnProps> = useAttrs() as any;
 	const slots: Partial<QBtn> = useSlots();
 </script>
 

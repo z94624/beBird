@@ -39,21 +39,21 @@
 
 	const { locale } = useI18n();
 
-	const attrs: Partial<QBtnProps> = useAttrs();
+	const attrs: Partial<QBtnProps> = useAttrs() as any;
 	const taxonomyStore = useTaxonomyStore();
 	const { taxInfoDict } = toRefs(taxonomyStore);
 	const textSizeStore = useTextSizeStore();
 	const { isTextSizeMd, isTextSizeLg } = toRefs(textSizeStore);
 
 	/**
-	 * 切換網站語言時，先清空物種資訊字典
+	 * ?��?網�?語�??��??��?空物種�?訊�???
 	 */
 	watch(locale, () => {
 		taxInfoDict.value = {};
 	});
 
 	/**
-	 * 選擇網站語言
+	 * ?��?網�?語�?
 	 */
 	const onSelectWebsiteLanguage = (webLang: WebLangEnum) => {
 		locale.value = webLang;
