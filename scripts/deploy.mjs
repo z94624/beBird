@@ -15,7 +15,7 @@ chdir('dist');
 
 execSync('git add .', { stdio: 'inherit' });
 execSync(`git commit -m "deploy ${version}"`, { stdio: 'inherit' });
+execSync('git branch -M gh-pages5', { stdio: 'inherit' });
 execSync('git push -u https://github.com/z94624/beBird.git gh-pages5', { stdio: 'inherit' });
 
 console.log(`✅ Deployed version ${version} successfully!`);
-
